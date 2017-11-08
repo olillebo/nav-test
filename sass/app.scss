@@ -5,10 +5,131 @@ body {
 	margin: 8px !important;
 }
 
+
+.main-container-header {
+	height: 44px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 20;
+	background-color: #e75f3f;
+	padding: 0;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	transition: height .24s ease-in-out;
+
+	.titlebar-view {
+		position: relative;
+		background: #e75f3f url(https://www.leovegas.com/static/mobile/img/layout/upper-header.png?etag=855db6944d6f9df726b95737fc52d9f53fe7b853) no-repeat bottom;
+		height: 44px;
+		overflow: visible;
+		border-bottom: 1px solid #cc5c43;
+	}
+	.logotype {
+		position: absolute;
+		left: 50%;
+		bottom: -6px;
+		z-index: 1;
+		width: 52px;
+		height: 50px;
+		margin-left: -26px;
+		background-repeat: no-repeat;
+		background-position: 0 0;
+		background-size: 52px 50px;
+		background-image: url(https://www.leovegas.com/static/mobile/img/layout/header-logotype-head@2x.png?etag=5d4ab04c9e2d4f731d9a58e6279a0c8669a5d111);
+	}
+	.home {
+		float: left;
+		margin-right: 0;
+		opacity: .25;
+		pointer-events: none;
+		border-radius: 5px;
+		background: rgba(0,0,0,.5);
+
+		span {
+			background: transparent;
+			padding: 4px 0 4px 12px;
+			font-size: 14px;
+			font-weight: 700;
+			color: #fff;
+			text-shadow: 0 1px #333;
+			text-align: center;
+		}
+	}
+
+	.sidebar {
+		float: left;
+		margin-right: 0;
+		background-repeat: no-repeat;
+		background-size: 306px 281px;
+		background-image: url(https://www.leovegas.com/static/mobile/img/buttons/button-header-sprite@2x.png?etag=118fde9f427f8ee6c831d50ed5d05b617443a640);
+		display: block;
+		background-position: 100% -100px;
+		height: 31px;
+		padding-right: 11px;
+		text-decoration: none;
+		margin: 8px;
+
+		span {
+			padding: 4px 0 6px 12px;
+			background-position: 0 0;
+			font-size: 14px;
+			font-weight: 700;
+			color: #fff;
+			text-shadow: 0 1px #333;
+			text-align: center;
+			background-repeat: no-repeat;
+			background-size: 306px 281px;
+			background-image: url(https://www.leovegas.com/static/mobile/img/buttons/button-header-sprite@2x.png?etag=118fde9f427f8ee6c831d50ed5d05b617443a640);
+			display: block;
+
+			.iconsheader-paw {
+				width: 23px;
+				height: 22px;
+				background: url(https://www.leovegas.com/static/mobile/img/icons@2x.png?etag=4824a6f732e0b0516ceb775b694dfc2ff3b7e880) no-repeat;
+				background-position: 0 -829px;
+
+				background-size: 190px 2625px;
+				display: block;
+			}
+		}
+	}
+
+	.login {
+		background-repeat: no-repeat;
+		background-size: 306px 281px;
+		background-image: url(https://www.leovegas.com/static/mobile/img/buttons/button-header-sprite@2x.png?etag=118fde9f427f8ee6c831d50ed5d05b617443a640);
+		display: block;
+
+		background-position: 100% -100px;
+		float: right;
+		height: 31px;
+		padding-right: 11px;
+		text-decoration: none;
+		margin: 8px;
+
+		span {
+			background-position: 0 0;
+			padding: 5px 0 6px 12px;
+			font-size: 14px;
+			font-weight: 700;
+			color: #fff;
+			text-shadow: 0 1px #333;
+			text-align: center;
+			background-repeat: no-repeat;
+			background-size: 306px 281px;
+			background-image: url(https://www.leovegas.com/static/mobile/img/buttons/button-header-sprite@2x.png?etag=118fde9f427f8ee6c831d50ed5d05b617443a640);
+			display: block;
+		}
+	}
+}
+
+
 h2 {
 	font-family:sans-serif;
 }
-.list {
+#checkboxlist {
 	padding:0;
     margin: 0;
     list-style: none;
@@ -17,569 +138,260 @@ h2 {
     -webkit-box-shadow: 1px 1px 6px rgba(0,0,0,.2);
     box-shadow: 1px 1px 6px rgba(0,0,0,.2);
     margin-bottom: 12px;
+	padding: 8px;
 }
 
-.list > li {
-	border-bottom: solid 1px lightgrey;
-	padding: 8px 12px;
-	cursor: pointer;
-	display: flex;
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: row;
-	flex-direction: row;
-
-	.listContainer {
-		width: 100%;
-	}
-}
-
-
-.editIcon {
-	cursor: pointer;
-	align-items: center;
-	justify-content: center;
-	display: none;
-	position: absolute;
-	right: 20px;
-	padding: 10px;
-}
-
-.icon {
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.title {
-	display: inline;
-	font-size: 16px;
-	font-weight: 500;
-	color: rgba(0,0,0,.87);
-}
-.list {
-	.iconA {
-		display: none !important;
-		$color--green: #7ac142;
-		$curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
-		z-index: 1;
-
-		.checkmark__circle {
-			stroke-dasharray: 166;
-			stroke-dashoffset: 166;
-			stroke-width: 2;
-			stroke-miterlimit: 10;
-			stroke: $color--green;
-			fill: none;
-			animation: stroke .6s $curve forwards;
-		}
-
-		.checkmark {
-			width: 35px;
-			height: 35px;
-			border-radius: 50%;
-			display: block;
-			stroke-width: 2;
-			stroke: #fff;
-			stroke-miterlimit: 10;
-			margin: 10% auto;
-			box-shadow: inset 0px 0px 0px $color--green;
-			animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
-		}
-
-		.checkmark__check {
-			transform-origin: 50% 50%;
-			stroke-dasharray: 48;
-			stroke-dashoffset: 48;
-			animation: stroke .3s $curve .8s forwards;
-		}
-
-		@keyframes stroke {
-			100% {
-				stroke-dashoffset: 0;
-			}
-		}
-
-		@keyframes scale {
-			0%, 100% {
-				transform: none;
-			}
-			50% {
-				transform: scale3d(1.1, 1.1, 1);
-			}
-		}
-
-		@keyframes fill {
-			100% {
-				box-shadow: inset 0px 0px 0px 30px $color--green;
-			}
-		}
-	}
-	&.highlighted {
-		border: 2px solid lightgreen;
-		.iconA {
-			display: initial !important;
-		}
-
-		li {
-			border-bottom: none;
-		}
-	}
+#outcomeList {
+	padding: 0;
 
 }
-.subtitle {
-	font-size: 12px;
-	color: rgba(0,0,0,.38);
-}
-
-
-input {
-    width: 100%;
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
-	box-sizing: border-box;
-	height: 50px;
-	padding-left: 16px;
-	margin-bottom: 12px !important;
-	color: #555;
-	font-size: 16px;
-	line-height: 20px;
-	vertical-align: middle;
-	background-color: #fffdfb;
-	border: 1px solid #e1e1e1;
-	border-radius: 2px;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 15px 20px -20px rgba(0,0,0,.3);
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 15px 20px -20px rgba(0,0,0,.3);
-	-webkit-transition: border .2s linear,-webkit-box-shadow .2s linear;
-	-o-transition: border linear .2s,box-shadow linear .2s;
-	transition: border .2s linear,box-shadow .2s linear,-webkit-box-shadow .2s linear;
-}
-input:focus {
-	outline:none;
-	border-color:#aaa;
-}
-
-#outcomes {
-	display: none;
-}
-
-.hidden {
-	display: none !important;
-}
-
-.visible {
-	display: inline;
-}
-
-.search.move {
-	display: none;
-	opacity: 0;
-	transition: visibility 0s 0.5s, opacity 2s linear;
-}
-
-.hide {
-	-webkit-transition-delay: 2s; /* Safari */
-	transition-delay: 2s;
-	display: none;
-	opacity: 0;
-	transition: visibility 0s 0.5s, opacity 2s linear;
-}
-
-.selected {
-	li {
-		display: flex;
-		flex-direction: row;
-	}
-}
-
-#placeBet, button {
-	border-radius: 12px;
-	background: linear-gradient(180deg,#e45c3c 0,#df5737 49%,#cf4727 50%,#e65e3c);
-	box-shadow: 0 1px #ad4426, inset 0 1px #f29880;
-	display: inline-block;
+.card-container {
+	position: relative;
+	border-radius: 0 0 3px 3px;
+	background-clip: padding-box;
+	border-bottom: 2px solid #d1d1d1;
+	background-color: #fff;
 	width: 100%;
-	border: 0;
-	text-decoration: none;
-	font-weight: 700;
-	font-family: Arvo,serif;
-	font-size: 20px;
-	color: #fff;
-	padding: 12px 0;
-	margin-top: 16px !important;
-	cursor: pointer;
-}
-.stakeDisplay {
-	margin-top: 76px;
-	&.up {
-		margin-top: 0;
-	}
-}
-
-.payout {
-	position: relative;
-	text-align: right;
-	padding-top: 0;
-	display: flex;
-	justify-content: space-between;
-}
-.label {
-	text-align: left;
-	padding-right: 5px;
-	flex: 0 1 auto;
-	line-height: 24px;
-	color: #615452;
-	font-family: Arvo,serif;
-	font-weight: 700;
-}
-.amount {
-	color: #615452;
-	line-height: 24px;
-	font-size: 20px;
-	font-weight: 700;
-	flex: 0 0 auto;
-}
-
-.pageTitle {
-	font-weight: 700;
-	font-family: Arvo,serif;
-	font-size: 20px;
-	text-align: center;
-	padding: 16px;
-}
-
-.success {
-	background: transparent;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-
-	ul {
-		background: transparent;
-		-webkit-box-shadow: none;
-		box-shadow: none;
-	}
-	li {
-		border-bottom: none;
-		padding: 0;
-	}
-}
-
-
-
-.betPlaced {
-	color: green;
-}
-
-
-
-.hotspot {
-	position: relative;
-	cursor: pointer;
-	top: 60px;
-	left: 21px;
-	color: #fff;
-	-webkit-animation: none 3s linear infinite;
-	-moz-animation: none 3s linear infinite;
-	-ms-animation: none 3s linear infinite;
-	-o-animation: none 3s linear infinite;
-	animation: none 3s linear infinite;
-	-webkit-animation-fill-mode: both;
-	-moz-animation-fill-mode: both;
-	-ms-animation-fill-mode: both;
-	-o-animation-fill-mode: both;
-	animation-fill-mode: both;
-	-webkit-animation-name: hotspot-vertical-top;
-	-moz-animation-name: hotspot-vertical-top;
-	-ms-animation-name: hotspot-vertical-top;
-	-o-animation-name: hotspot-vertical-top;
-	animation-name: hotspot-vertical-top;
-	animation-iteration-count: 1;
-}
-
-.hotspot-inner {
-	position: absolute;
-	bottom: 0;
-	left: -20px;
-	height: 57px;
-	width: 278px;
-	margin-bottom: 10px;
-	background: #4385f5;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	-ms-border-radius: 8px;
-	-o-border-radius: 8px;
-	border-radius: 8px;
-	background: #f5b400;
-}
-
-.hotspot-inner:before {
-	content: '';
-	position: absolute;
-	left: 25px;
-	top: -10px;
-	margin-left: -5px;
-	border-left: 6px solid transparent;
-	border-right: 6px solid transparent;
-	border-bottom: 10px solid #f5b400;
-	border-top-color: #f5b400;
-}
-
-.icn {
+	margin-right: 7px;
+	margin-bottom: 7px;
+	min-height: 140px;
 	display: inline-block;
-	height: 25px;
-	padding: 4px 10px;
-	font-size: 16px;
-}
-
-@-webkit-keyframes hotspot-vertical-top {
-	0%,
-	30%,
-	40%,
-	53.3%,
-	66.667%,
-	100% {
-		-webkit-transform: translate3d(0, 0, 0);
-		-moz-transform: translate3d(0, 0, 0);
-		-ms-transform: translate3d(0, 0, 0);
-		-o-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-		-webkit-animation-timing-function: ease-out;
-		-moz-animation-timing-function: ease-out;
-		-ms-animation-timing-function: ease-out;
-		-o-animation-timing-function: ease-out;
-		animation-timing-function: ease-out;
-	}
-	35% {
-		-webkit-transform: translate3d(0, 25px, 0);
-		-moz-transform: translate3d(0, 25px, 0);
-		-ms-transform: translate3d(0, 25px, 0);
-		-o-transform: translate3d(0, 25px, 0);
-		transform: translate3d(0, 25px, 0);
-		-webkit-animation-timing-function: ease-in;
-		-moz-animation-timing-function: ease-in;
-		-ms-animation-timing-function: ease-in;
-		-o-animation-timing-function: ease-in;
-		animation-timing-function: ease-in;
-	}
-	46.667% {
-		-webkit-transform: translate3d(0, 12.5px, 0);
-		-moz-transform: translate3d(0, 12.5px, 0);
-		-ms-transform: translate3d(0, 12.5px, 0);
-		-o-transform: translate3d(0, 12.5px, 0);
-		transform: translate3d(0, 12.5px, 0);
-		-webkit-animation-timing-function: ease-in;
-		-moz-animation-timing-function: ease-in;
-		-ms-animation-timing-function: ease-in;
-		-o-animation-timing-function: ease-in;
-		animation-timing-function: ease-in;
-	}
-	60% {
-		-webkit-transform: translate3d(0, 6.25px, 0);
-		-moz-transform: translate3d(0, 6.25px, 0);
-		-ms-transform: translate3d(0, 6.25px, 0);
-		-o-transform: translate3d(0, 6.25px, 0);
-		transform: translate3d(0, 6.25px, 0);
-		-webkit-animation-timing-function: ease-in;
-		-moz-animation-timing-function: ease-in;
-		-ms-animation-timing-function: ease-in;
-		-o-animation-timing-function: ease-in;
-		animation-timing-function: ease-in;
-	}
-}
+	text-align: center;
+	vertical-align: top;
+	-webkit-column-break-inside: avoid;
+	page-break-inside: avoid;
+	break-inside: avoid;
+	cursor: pointer;
 
 
 
-@-moz-keyframes hotspot-vertical-top {
-	0%,
-	30%,
-	40%,
-	53.3%,
-	66.667%,
-	100% {
-		-webkit-transform: translate3d(0, 0, 0);
-		-moz-transform: translate3d(0, 0, 0);
-		-ms-transform: translate3d(0, 0, 0);
-		-o-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-		-webkit-animation-timing-function: ease-out;
-		-moz-animation-timing-function: ease-out;
-		-ms-animation-timing-function: ease-out;
-		-o-animation-timing-function: ease-out;
-		animation-timing-function: ease-out;
-	}
-	35% {
-		-webkit-transform: translate3d(0, 25px, 0);
-		-moz-transform: translate3d(0, 25px, 0);
-		-ms-transform: translate3d(0, 25px, 0);
-		-o-transform: translate3d(0, 25px, 0);
-		transform: translate3d(0, 25px, 0);
-		-webkit-animation-timing-function: ease-in;
-		-moz-animation-timing-function: ease-in;
-		-ms-animation-timing-function: ease-in;
-		-o-animation-timing-function: ease-in;
-		animation-timing-function: ease-in;
-	}
-	46.667% {
-		-webkit-transform: translate3d(0, 12.5px, 0);
-		-moz-transform: translate3d(0, 12.5px, 0);
-		-ms-transform: translate3d(0, 12.5px, 0);
-		-o-transform: translate3d(0, 12.5px, 0);
-		transform: translate3d(0, 12.5px, 0);
-		-webkit-animation-timing-function: ease-in;
-		-moz-animation-timing-function: ease-in;
-		-ms-animation-timing-function: ease-in;
-		-o-animation-timing-function: ease-in;
-		animation-timing-function: ease-in;
-	}
-	60% {
-		-webkit-transform: translate3d(0, 6.25px, 0);
-		-moz-transform: translate3d(0, 6.25px, 0);
-		-ms-transform: translate3d(0, 6.25px, 0);
-		-o-transform: translate3d(0, 6.25px, 0);
-		transform: translate3d(0, 6.25px, 0);
-		-webkit-animation-timing-function: ease-in;
-		-moz-animation-timing-function: ease-in;
-		-ms-animation-timing-function: ease-in;
-		-o-animation-timing-function: ease-in;
-		animation-timing-function: ease-in;
-	}
-}
+	.cardheader {
+		position: relative;
+		font-size: 12px;
+		font-weight: 500;
+		line-height: 19px;
+		color: #999;
+		padding: 5px 8px 0;
+		border-bottom: 2px solid #f0e7dc;
 
-@-ms-keyframes hotspot-vertical-top {
-	0%,
-	30%,
-	40%,
-	53.3%,
-	66.667%,
-	100% {
-		-webkit-transform: translate3d(0, 0, 0);
-		-moz-transform: translate3d(0, 0, 0);
-		-ms-transform: translate3d(0, 0, 0);
-		-o-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-		-webkit-animation-timing-function: ease-out;
-		-moz-animation-timing-function: ease-out;
-		-ms-animation-timing-function: ease-out;
-		-o-animation-timing-function: ease-out;
-		animation-timing-function: ease-out;
-	}
-	35% {
-		-webkit-transform: translate3d(0, 25px, 0);
-		-moz-transform: translate3d(0, 25px, 0);
-		-ms-transform: translate3d(0, 25px, 0);
-		-o-transform: translate3d(0, 25px, 0);
-		transform: translate3d(0, 25px, 0);
-		-webkit-animation-timing-function: ease-in;
-		-moz-animation-timing-function: ease-in;
-		-ms-animation-timing-function: ease-in;
-		-o-animation-timing-function: ease-in;
-		animation-timing-function: ease-in;
-	}
-	46.667% {
-		-webkit-transform: translate3d(0, 12.5px, 0);
-		-moz-transform: translate3d(0, 12.5px, 0);
-		-ms-transform: translate3d(0, 12.5px, 0);
-		-o-transform: translate3d(0, 12.5px, 0);
-		transform: translate3d(0, 12.5px, 0);
-		-webkit-animation-timing-function: ease-in;
-		-moz-animation-timing-function: ease-in;
-		-ms-animation-timing-function: ease-in;
-		-o-animation-timing-function: ease-in;
-		animation-timing-function: ease-in;
-	}
-	60% {
-		-webkit-transform: translate3d(0, 6.25px, 0);
-		-moz-transform: translate3d(0, 6.25px, 0);
-		-ms-transform: translate3d(0, 6.25px, 0);
-		-o-transform: translate3d(0, 6.25px, 0);
-		transform: translate3d(0, 6.25px, 0);
-		-webkit-animation-timing-function: ease-in;
-		-moz-animation-timing-function: ease-in;
-		-ms-animation-timing-function: ease-in;
-		-o-animation-timing-function: ease-in;
-		animation-timing-function: ease-in;
-	}
-}
+		.card-livelabel {
+			font-size: 9px;
+			color: #999;
+			font-weight: 700;
+			height: 15px;
+			line-height: 8px;
+			margin: 2px 0 0 8px;
+			padding: 3px;
+			border: 1px solid #999;
+			border-radius: 4px;
+			float: right;
+			text-transform: uppercase;
 
-@keyframes hotspot-vertical-top {
-	0%,
-	30%,
-	40%,
-	53.3%,
-	66.667%,
-	100% {
-		-webkit-transform: translate3d(0, 0, 0);
-		-moz-transform: translate3d(0, 0, 0);
-		-ms-transform: translate3d(0, 0, 0);
-		-o-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
-		-webkit-animation-timing-function: ease-out;
-		-moz-animation-timing-function: ease-out;
-		-ms-animation-timing-function: ease-out;
-		-o-animation-timing-function: ease-out;
-		animation-timing-function: ease-out;
+			& started {
+				color: #d30d12;
+				border-color: #d30d12;
+			}
+		}
+
+		.card-timer {
+			float: right;
+			font-size: 12px;
+			text-align: right;
+		}
+
+		.cardtitle {
+			color: #615452;
+			font-size: 14px;
+			text-align: left;
+
+			.path {
+				color: #999;
+				font-size: 12px;
+				overflow: hidden;
+				position: relative;
+				left: -12px;
+				height: 25px;
+				-o-text-overflow: ellipsis;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+
+				span:first-child {
+					background-color: #d30d12;
+					color: #fff;
+					padding: 6px 8px 3px;
+					margin-right: 5px;
+
+					&.pre {
+						background-color: #53778a;
+					}
+
+					&:before {
+						border-right-color: #701e20;
+						content: "";
+						position: absolute;
+						left: 0;
+						bottom: 1px;
+						width: 0;
+						height: 0;
+						border-style: solid;
+						border-width: 0 4px 4px 0;
+						border-color: transparent;
+					}
+				}
+			}
+		}
 	}
-	35% {
-		-webkit-transform: translate3d(0, 25px, 0);
-		-moz-transform: translate3d(0, 25px, 0);
-		-ms-transform: translate3d(0, 25px, 0);
-		-o-transform: translate3d(0, 25px, 0);
-		transform: translate3d(0, 25px, 0);
-		-webkit-animation-timing-function: ease-in;
-		-moz-animation-timing-function: ease-in;
-		-ms-animation-timing-function: ease-in;
-		-o-animation-timing-function: ease-in;
-		animation-timing-function: ease-in;
+
+	.cardcontent {
+		padding: 7px 16px;
+		color: #555;
+
+		.card-row {
+			margin-top: 12px;
+			display: block;
+			font-size: 16px;
+			line-height: 27px;
+			-o-text-overflow: ellipsis;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+		.card-score {
+			float: right;
+			display: block;
+
+			.goalbasedscore {
+				display: block;
+				-webkit-transform: translateZ(0);
+				transform: translateZ(0);
+				text-align: center;
+				margin-left: 10px;
+
+				.score-item {
+					display: block;
+					font-weight: 700;
+					text-align: right;
+					font-size: 16px;
+					line-height: 27px;
+					-webkit-font-smoothing: antialiased;
+				}
+			}
+		}
+
+		.card-teamnames {
+			text-align: left;
+			display: block;
+
+			.separator {
+				display: none;
+				margin: 0 6px;
+			}
+
+			.teamname-row {
+				font-size: 16px;
+				line-height: 27px;
+				-o-text-overflow: ellipsis;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+		}
 	}
-	46.667% {
-		-webkit-transform: translate3d(0, 12.5px, 0);
-		-moz-transform: translate3d(0, 12.5px, 0);
-		-ms-transform: translate3d(0, 12.5px, 0);
-		-o-transform: translate3d(0, 12.5px, 0);
-		transform: translate3d(0, 12.5px, 0);
-		-webkit-animation-timing-function: ease-in;
-		-moz-animation-timing-function: ease-in;
-		-ms-animation-timing-function: ease-in;
-		-o-animation-timing-function: ease-in;
-		animation-timing-function: ease-in;
+
+	.cardoffer {
+		width: 100%;
+		padding: 4px;
+		position: absolute;
+		bottom: 0;
+
+		.betoffer {
+			width: 100%;
+			overflow: hidden;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+
+			.betOfferButton {
+				font-family: inherit;
+				height: 36px;
+				background: #f8f3ee;
+				border-radius: 3px;
+				color: #222;
+				text-align: center;
+				font-family: Arvo;
+				border: 1px solid transparent;
+				border-bottom: 3px solid #b74930;
+				cursor: pointer;
+				margin-left: 0;
+				margin-right: 3px;
+				min-width: 0;
+				-webkit-flex-basis: 0;
+				-ms-flex-preferred-size: 0;
+				flex-basis: 0;
+				-webkit-flex-grow: 1;
+				-ms-flex-positive: 1;
+				flex-grow: 1;
+				padding: 0 6px;
+				outline: none;
+				position: relative;
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 20px;
+
+				&:after {
+					position: absolute;
+					content: "";
+					display: block;
+					top: 8px;
+					right: 12px;
+					border-color: transparent transparent #00e600;
+					border-style: solid;
+					width: 0;
+					height: 0;
+					border-width: 0 4px 4px;
+					opacity: 0;
+				}
+
+				.odds {
+					float: right;
+					line-height: 30px;
+					font-size: 12px;
+					text-align: right;
+					font-weight: 700;
+					-webkit-font-smoothing: antialiased;
+				}
+				.outcomeLabel {
+					line-height: 30px;
+					text-align: left;
+					-o-text-overflow: ellipsis;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+					padding-right: 5px;
+					font-size: 12px;
+				}
+			}
+		}
 	}
-	60% {
-		-webkit-transform: translate3d(0, 6.25px, 0);
-		-moz-transform: translate3d(0, 6.25px, 0);
-		-ms-transform: translate3d(0, 6.25px, 0);
-		-o-transform: translate3d(0, 6.25px, 0);
-		transform: translate3d(0, 6.25px, 0);
-		-webkit-animation-timing-function: ease-in;
-		-moz-animation-timing-function: ease-in;
-		-ms-animation-timing-function: ease-in;
-		-o-animation-timing-function: ease-in;
-		animation-timing-function: ease-in;
-	}
-}
 
-.ripple{
-	overflow:hidden;
-}
+	.card-wrap[live='false']{
+		.path {
+			span:first-child {
+				background-color: #53778a;
+			}
+		}
 
-.ripple-effect{
-	position: absolute;
-	border-radius: 50%;
-	width: 50px;
-	height: 50px;
-	background: white;
+		.card-score {
+			display: none;
+		}
 
-
-	animation: ripple-animation 2s;
-}
-
-
-@keyframes ripple-animation {
-	from {
-		transform: scale(1);
-		opacity: 0.4;
-	}
-	to {
-		transform: scale(100);
-		opacity: 0;
+		.card-teamnames {
+			display: flex;
+			justify-content: center;
+			margin-top: 12px;
+			.separator {
+				display: inline;
+			}
+		}
 	}
 }

@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const dotenv = require('dotenv');
 const passport = require('passport');
-const Auth0Strategy = require('passport-auth0');
+//const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
 const sassMiddleware = require('node-sass-middleware');
 
@@ -17,7 +17,7 @@ const routes = require('./routes/index');
 const user = require('./routes/user');
 
 // This will configure Passport to use Auth0
-const strategy = new Auth0Strategy(
+/*const strategy = new Auth0Strategy(
   {
     domain: process.env.AUTH0_DOMAIN,
     clientID: process.env.AUTH0_CLIENT_ID,
@@ -43,6 +43,7 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
   done(null, user);
 });
+*/
 
 const app = express();
 
@@ -56,13 +57,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(
+/*app.use(
   session({
     secret: 'shhhhhhhhh',
     resave: true,
     saveUninitialized: true
   })
-);
+);*/
 app.use(
     sassMiddleware({
         src: __dirname + '/sass',
@@ -71,8 +72,8 @@ app.use(
         debug: true,
     })
 );
-app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.initialize());
+//app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(flash());
@@ -89,13 +90,13 @@ app.use(function(req, res, next) {
 });
 
 // Check logged in
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
   res.locals.loggedIn = false;
   if (req.session.passport && typeof req.session.passport.user != 'undefined') {
     res.locals.loggedIn = true;
   }
   next();
-});
+});*/
 
 app.use('/', routes);
 app.use('/user', user);
