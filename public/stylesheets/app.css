@@ -1,7 +1,12 @@
 body {
   background-color: #f0e7dd !important;
-  font-family: arvo !important;
+  font-family: arvo !important; }
+
+#page {
   margin: 8px !important; }
+
+h2 {
+  font-family: sans-serif; }
 
 .main-container-header {
   height: 44px;
@@ -40,7 +45,12 @@ body {
     opacity: .25;
     pointer-events: none;
     border-radius: 5px;
-    background: rgba(0, 0, 0, 0.5); }
+    background: rgba(0, 0, 0, 0.5);
+    background-position: 100% -100px;
+    height: 31px;
+    padding-right: 11px;
+    text-decoration: none;
+    margin: 8px; }
     .main-container-header .home span {
       background: transparent;
       padding: 4px 0 4px 12px;
@@ -49,6 +59,30 @@ body {
       color: #fff;
       text-shadow: 0 1px #333;
       text-align: center; }
+      .main-container-header .home span i {
+        opacity: .75;
+        font-size: 22px;
+        display: block;
+        font-family: FontAwesome;
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: inherit;
+        -webkit-font-smoothing: antialiased;
+        width: auto;
+        height: auto;
+        line-height: normal;
+        vertical-align: baseline;
+        background-image: none;
+        background-position: 0 0;
+        background-repeat: repeat;
+        margin-top: 0;
+        margin-top: -19px;
+        margin-left: 12px; }
+        .main-container-header .home span i:before {
+          content: "\f015";
+          text-decoration: inherit;
+          display: inline-block;
+          speak: none; }
   .main-container-header .sidebar {
     float: left;
     margin-right: 0;
@@ -104,22 +138,181 @@ body {
       background-image: url(https://www.leovegas.com/static/mobile/img/buttons/button-header-sprite@2x.png?etag=118fde9f427f8ee6c831d50ed5d05b617443a640);
       display: block; }
 
-h2 {
-  font-family: sans-serif; }
+.main-container-lobby-menu {
+  display: block;
+  position: absolute;
+  top: 44px;
+  width: 100%;
+  z-index: 3; }
+  .main-container-lobby-menu .lobby-menu-view {
+    margin-right: 3px;
+    padding: 0;
+    width: 100%;
+    text-shadow: 1px 1px #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(97, 59, 53, 0.7);
+            box-shadow: 0 2px 2px 0 rgba(97, 59, 53, 0.7); }
+  .main-container-lobby-menu .lobby-menu-list {
+    margin-bottom: 0;
+    background-color: #f0e7db;
+    text-align: center;
+    list-style-type: none;
+    margin: 0;
+    width: 100%;
+    display: block;
+    font-size: 0;
+    height: 40px;
+    padding: 0; }
+    .main-container-lobby-menu .lobby-menu-list li {
+      text-align: center;
+      height: 40px;
+      max-width: 220px;
+      float: none;
+      line-height: 39px;
+      overflow: hidden;
+      display: inline-block;
+      white-space: nowrap;
+      width: 33.3333%; }
+      .main-container-lobby-menu .lobby-menu-list li .borderStyle {
+        position: absolute;
+        height: 50%;
+        width: inherit;
+        top: 25%; }
+      .main-container-lobby-menu .lobby-menu-list li a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        position: relative;
+        color: #615452;
+        font-size: 14px;
+        font-weight: 700; }
+        .main-container-lobby-menu .lobby-menu-list li a .lobbyIcon {
+          background-repeat: no-repeat;
+          background-position: 0 0;
+          background-size: 20px 20px;
+          display: inline-block;
+          background-size: contain;
+          background-repeat: no-repeat;
+          width: 20px;
+          height: 20px;
+          margin-right: 3px; }
+        .main-container-lobby-menu .lobby-menu-list li a span {
+          position: relative;
+          vertical-align: middle;
+          color: #615452;
+          font-size: 14px;
+          font-weight: 700; }
+      .main-container-lobby-menu .lobby-menu-list li.casino .lobbyIcon {
+        background-image: url(https://www.leovegas.com/static/mobile/img/layout/casino-icon@2x.png?etag=db8bb373b352b6b011aaaf05169968be8c7b99e7); }
+      .main-container-lobby-menu .lobby-menu-list li.live .borderStyle {
+        border-left: 1px solid #ccbebc;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box; }
+      .main-container-lobby-menu .lobby-menu-list li.live .lobbyIcon {
+        background-image: url(https://www.leovegas.com/static/mobile/img/layout/live-icon@2x.png?etag=d42af5ad8557072fe10d5b8bc2aa8c62748617ac); }
+      .main-container-lobby-menu .lobby-menu-list li.sportsbook .borderStyle {
+        border-left: 1px solid #ccbebc;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box; }
+      .main-container-lobby-menu .lobby-menu-list li.sportsbook a {
+        border-bottom-width: 3px;
+        color: #e75f3f;
+        font-weight: 700;
+        border-bottom-color: #e75f3f;
+        border-bottom-style: solid;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box; }
+        .main-container-lobby-menu .lobby-menu-list li.sportsbook a .lobbyIcon {
+          background-image: url(https://www.leovegas.com/static/mobile/img/layout/sports-icon-active@2x.png?etag=7584222db53b08370483ecd15915d480df5fb8ab); }
+        .main-container-lobby-menu .lobby-menu-list li.sportsbook a span {
+          color: #e75f3f;
+          font-weight: 700; }
+
+.bottom-nav-view {
+  z-index: 199;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #f0e7dc;
+  -webkit-box-shadow: 0 -2px 0 #ccc6c0;
+          box-shadow: 0 -2px 0 #ccc6c0;
+  z-index: 18;
+  height: 48px;
+  overflow: visible;
+  display: table;
+  table-layout: fixed; }
+  .bottom-nav-view .bottomnav-item {
+    display: table-cell;
+    margin: 0 5px;
+    background-repeat: no-repeat;
+    background-position: top !important;
+    background-position-y: 6px !important;
+    font-size: 10px;
+    text-align: center;
+    color: #89827d;
+    vertical-align: middle;
+    line-height: 10px;
+    padding-top: 27px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 20px 20px; }
+    .bottom-nav-view .bottomnav-item.browse {
+      background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/browse@2x.png?etag=3c88e738a6001b0a741ea76e8b52cf6e8ab456b7); }
+    .bottom-nav-view .bottomnav-item.searchsports {
+      background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/search-sports@2x.png?etag=9feb01e59d2383f008461648118bbb52e2e7f45d); }
+    .bottom-nav-view .bottomnav-item.live {
+      background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/live@2x.png?etag=008aaa690a92782b750e73745edfadae4455130a); }
+    .bottom-nav-view .bottomnav-item.openbets {
+      background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/open-bets@2x.png?etag=721298533be5e6ccbb7c60f96b5c0f965328cf65); }
+    .bottom-nav-view .bottomnav-item.betslip {
+      background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/betslip@2x.png?etag=98e3c2c6e817eff934688334cd459345f4d659a2); }
+    .bottom-nav-view .bottomnav-item.disabled {
+      opacity: .35; }
+
+.showMore {
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  margin-bottom: 60px; }
+  .showMore i {
+    font-size: 14px;
+    margin-right: 5px;
+    font-family: FontAwesome;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: inherit;
+    -webkit-font-smoothing: antialiased;
+    display: inline;
+    width: auto;
+    height: auto;
+    line-height: normal;
+    vertical-align: baseline;
+    background-image: none;
+    background-position: 0 0;
+    background-repeat: repeat;
+    margin-top: 0; }
+    .showMore i .icon-share-alt:before {
+      content: "\f064";
+      text-decoration: inherit;
+      display: inline-block;
+      speak: none; }
+  .showMore a {
+    color: #615452;
+    font-size: 16px; }
 
 #checkboxlist {
-  padding: 0;
   margin: 0;
   list-style: none;
   overflow: visible;
   background: #fff;
   -webkit-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
-  margin-bottom: 12px;
-  padding: 8px; }
+  padding: 8px;
+  margin-bottom: 30px;
+  margin-top: 100px; }
 
 #outcomeList {
-  padding: 0; }
+  padding: 0;
+  -webkit-margin-after: 0; }
 
 .card-container {
   position: relative;
@@ -311,4 +504,4 @@ h2 {
     margin-top: 12px; }
     .card-container .card-wrap[live='false'] .card-teamnames .separator {
       display: inline; }
-/*# sourceMappingURL=data:application/json;base64,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 */
+/*# sourceMappingURL=data:application/json;base64,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 */

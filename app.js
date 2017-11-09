@@ -10,11 +10,13 @@ const passport = require('passport');
 //const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
 const sassMiddleware = require('node-sass-middleware');
+const fs = require("fs");
 
 dotenv.load();
 
 const routes = require('./routes/index');
 const user = require('./routes/user');
+
 
 // This will configure Passport to use Auth0
 /*const strategy = new Auth0Strategy(

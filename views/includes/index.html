@@ -12,46 +12,84 @@
 
 <div class="main-container-lobby-menu"><div class="view lobby-menu-view">
     <ul class="lobby-menu-list">
-        <li data-lobby-type="casino" class="starter item">
+        <li data-lobby-type="casino" class="starter item casino">
             <div class="borderStyle"></div>
-            <a href="/en/casino/">
+            <a href="">
                 <span class="casino lobbyIcon"></span>
                 <span>Casino</span>
             </a>
         </li>
 
-        <li data-lobby-type="live" class="item">
+        <li data-lobby-type="live" class="item live">
             <div class="borderStyle"></div>
-            <a href="/en/live/">
+            <a href="">
                 <span class="live lobbyIcon"></span>
                 <span>Live Casino</span>
             </a>
         </li>
 
-        <li data-lobby-type="sportsbook" class="item active">
+        <li data-lobby-type="sportsbook" class="item active sportsbook">
             <div class="borderStyle"></div>
-            <a href="/en/sportsbook/">
+            <a href="">
                 <span class="sports lobbyIcon"></span>
                 <span>Sports</span>
             </a>
         </li>
-
     </ul>
 
 </div></div>
 
 <ul class="checkboxlist" id="checkboxlist">
     <li>
-        <input type="checkbox" id="premierleague" class="premier">
+        <input type="checkbox" id="all" class="allSelect" checked="true">
+        <label for="all">All</label>
+    </li>
+    <li>
+        <input type="checkbox" id="premierleague" class="premier league">
         <label for="premierleague">Premier League</label>
     </li>
     <li>
-        <input type="checkbox" id="laliga" class="laliga"/>
+        <input type="checkbox" id="laliga" class="laliga league"/>
         <label for="laliga">La Liga</label>
+    </li>
+    <li>
+        <input type="checkbox" id="bundesliga" class="bundesliga league"/>
+        <label for="bundesliga">Bundesliga</label>
+    </li>
+    <li>
+        <input type="checkbox" id="seriea" class="seriea league"/>
+        <label for="seriea">Serie A</label>
+    </li>
+    <li>
+        <input type="checkbox" id="other" class="other league"/>
+        <label for="other">Other</label>
     </li>
 </ul>
 <div id="page">
     <div id="outcomes">
         <ul class="list" id="outcomeList"></ul>
+    </div>
+</div>
+
+<div class="showMore">
+    <i class="fa fa-share icon-share-alt"></i>
+    <a class="Home__showMore___1Ff1q" href="">Show all</a>
+</div>
+
+<div id="sportsbook-default" class="view bottom-nav-view">
+    <div name="browse" class="bottomnav-item browse">
+        Sports
+    </div>
+    <div name="searchsports" class="bottomnav-item searchsports">
+        Search
+    </div>
+    <div name="live" class="bottomnav-item live">
+        Live now
+    </div>
+    <div name="openbets" class="bottomnav-item openbets disabled">
+    Open Bets
+    </div>
+    <div name="betslip" class="bottomnav-item betslip disabled">
+        Betslip
     </div>
 </div>
