@@ -39,41 +39,89 @@
 
 </div></div>
 
-<ul class="checkboxlist" id="checkboxlist">
-    <li>
-        <input type="checkbox" id="all" class="allSelect" checked="true">
-        <label for="all">All</label>
-    </li>
-    <li>
-        <input type="checkbox" id="premierleague" class="premier league">
-        <label for="premierleague">Premier League</label>
-    </li>
-    <li>
-        <input type="checkbox" id="laliga" class="laliga league"/>
-        <label for="laliga">La Liga</label>
-    </li>
-    <li>
-        <input type="checkbox" id="bundesliga" class="bundesliga league"/>
-        <label for="bundesliga">Bundesliga</label>
-    </li>
-    <li>
-        <input type="checkbox" id="seriea" class="seriea league"/>
-        <label for="seriea">Serie A</label>
-    </li>
-    <li>
-        <input type="checkbox" id="other" class="other league"/>
-        <label for="other">Other</label>
-    </li>
-</ul>
+<!-- Left aligned menu below button -->
+<div class="navigation">
+
+    <div class="sports">
+        <button id="sportsButton" class="mdl-button mdl-js-button">
+            <span class="label">Football</span>
+            <i class="material-icons">arrow_drop_down</i>
+        </button>
+
+        <ul class="list mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" id="sportsList" for="sportsButton">
+            <li class ="mdl-menu__item">
+                <input type="checkbox" id="All2" class="allSports" disabled>
+                <label for="All2">All sports</label>
+            </li>
+            <li class ="mdl-menu__item">
+                <input type="checkbox" id="football" class="football" checked="true" disabled>
+                <label for="football">Football</label>
+            </li>
+            <li class ="mdl-menu__item">
+                <input type="checkbox" id="tennis" class="tennis" disabled>
+                <label for="tennis">Tennis</label>
+            </li>
+            <li class ="mdl-menu__item">
+                <input type="checkbox" id="icehockey" class="icehockey" disabled>
+                <label for="icehockey">Ice hockey</label>
+            </li>
+        </ul>
+    </div>
+    <div class="leagues">
+        <button id="leagueButton" class="mdl-button mdl-js-button">
+            <span class="label">All leagues</span>
+            <i class="material-icons">arrow_drop_down</i>
+        </button>
+
+        <ul class="list mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" id="leaguelist" for="leagueButton">
+            <li class ="mdl-menu__item">
+                <input type="checkbox" id="all" class="allSelect" checked="true">
+                <label for="all">All</label>
+            </li>
+            <li class ="mdl-menu__item">
+                <input type="checkbox" id="premierleague" class="premier league">
+                <label for="premierleague">Premier League</label>
+            </li>
+            <li class ="mdl-menu__item">
+                <input type="checkbox" id="laliga" class="laliga league"/>
+                <label for="laliga">La Liga</label>
+            </li>
+            <li class ="mdl-menu__item">
+                <input type="checkbox" id="bundesliga" class="bundesliga league"/>
+                <label for="bundesliga">Bundesliga</label>
+            </li>
+            <li class ="mdl-menu__item">
+                <input type="checkbox" id="seriea" class="seriea league"/>
+                <label for="seriea">Serie A</label>
+            </li>
+            <li class ="mdl-menu__item">
+                <input type="checkbox" id="other" class="other league"/>
+                <label for="other">Other</label>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<button id="sort" class="mdl-button mdl-js-button">
+    <span class="label">Sort</span>
+</button>
+<button id="idag" class="mdl-button mdl-js-button">
+    <span class="label">17</span>
+</button>
+<button id="imorgen" class="mdl-button mdl-js-button">
+    <span class="label">18</span>
+</button>
+
 <div id="page">
     <div id="outcomes">
         <ul class="list" id="outcomeList"></ul>
+        <ul class="pagination"></ul>
     </div>
 </div>
 
 <div class="showMore">
     <i class="fa fa-share icon-share-alt"></i>
-    <a class="Home__showMore___1Ff1q" href="">Show all</a>
+    <a class="Home__showMore___1Ff1q">Show more</a>
 </div>
 
 <div id="sportsbook-default" class="view bottom-nav-view">

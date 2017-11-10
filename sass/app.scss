@@ -376,16 +376,15 @@ h2 {
 	}
 }
 
-#checkboxlist {
+.list {
     margin: 0;
     list-style: none;
     overflow: visible;
-    background: #fff;
-    -webkit-box-shadow: 1px 1px 6px rgba(0,0,0,.2);
-    box-shadow: 1px 1px 6px rgba(0,0,0,.2);
-	padding: 8px;
-	margin-bottom: 30px;
-	margin-top: 100px;
+
+	label {
+		margin-left: 8px;
+		width: 100%;
+	}
 }
 
 #outcomeList {
@@ -394,6 +393,7 @@ h2 {
 
 }
 .card-container {
+	display: none;
 	position: relative;
 	border-radius: 0 0 3px 3px;
 	background-clip: padding-box;
@@ -403,13 +403,16 @@ h2 {
 	margin-right: 7px;
 	margin-bottom: 7px;
 	min-height: 140px;
-	display: inline-block;
 	text-align: center;
 	vertical-align: top;
 	-webkit-column-break-inside: avoid;
 	page-break-inside: avoid;
 	break-inside: avoid;
 	cursor: pointer;
+
+	&.show {
+		display: inline-block;
+	}
 
 	.cardheader {
 		position: relative;
@@ -640,4 +643,17 @@ h2 {
 			}
 		}
 	}
+}
+
+.navigation {
+	margin-top: 94px;
+	display: flex;
+
+	button {
+		text-transform: none;
+	}
+}
+
+#sort {
+	display:none;
 }

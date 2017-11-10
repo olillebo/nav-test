@@ -1,5 +1,5 @@
 var outcomeOptions = {
-    valueNames: ["home", "away", "sport", "league", { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league"],
+    valueNames: ["home", "away", "sport", "league", { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date"],
     item: '<div class="card-container">\n' +
     '    <div class="card-wrap live">\n' +
     '        <header class="cardheader">\n' +
@@ -15,8 +15,8 @@ var outcomeOptions = {
     '        <div class="cardcontent">\n' +
     '            <div class="card-score">\n' +
     '                <div class="goalbasedscore">\n' +
-    '                    <span class="score-item">0</span>\n' +
-    '                    <span class="score-item">4</span>\n' +
+    '                    <span class="homeScore score-item">0</span>\n' +
+    '                    <span class="awayScore score-item">4</span>\n' +
     '                </div>\n' +
     '            </div>\n' +
     '            <div class="card-teamnames">\n' +
@@ -48,7 +48,9 @@ var outcomeOptions = {
     '            </div>\n' +
     '        </div>\n' +
     '    </div>\n' +
-    '</div>'
+    '</div>',
+    //page: 10,
+    //pagination: true
 };
 
 var array = [];
@@ -58,42 +60,53 @@ var bundesligaArray = [3];
 var serieaArray = [4];
 var otherArray = [5];
 var allArray = [1,2,3,4,5];
+var visibleItems = 0;
 
-var outcomeValues;
-var outcomeList;
+var outcomeValues, outcomeList, leagueLabel;
 
 $(document).ready(function() {
     $(document).bind('createList', createList)
     $.getJSON("data/events.json", function(json) {
         $(document).trigger('createList', json);
     });
+
 });
 
 function createList(evt, json) {
     outcomeValues = json.events;
     outcomeList = new List("outcomes", outcomeOptions, outcomeValues);
+    outcomeList.sort('date', { order: "asc" });
+
+    showItems("All leagues");
 }
-$('input:checkbox').change(
+
+$('#leaguelist input:checkbox').change(
     function(){
 
         var leagueArray;
         switch ($(this).attr("id")) {
             case "premierleague":
                 leagueArray = premierArray;
+                leagueLabel = "Premier League";
                 break;
             case "laliga":
                 leagueArray = laligaArray;
+                leagueLabel = "La Liga";
                 break;
             case "bundesliga":
                 leagueArray = bundesligaArray;
+                leagueLabel = "Bundesliga";
                 break;
             case "seriea":
                 leagueArray = serieaArray;
+                leagueLabel = "Serie A";
                 break;
             case "other":
                 leagueArray = otherArray;
+                leagueLabel = "Other";
                 break;
             case "all":
+                leagueLabel = "All leagues";
                 leagueArray = allArray;
                 break;
         }
@@ -106,7 +119,6 @@ $('input:checkbox').change(
             } else if($(".allSelect").prop('checked')) {
                 $(".allSelect").prop('checked',false);
                 array = [];
-                console.log("nå")
             }
             array = leagueArray.concat(array).unique();
 
@@ -116,7 +128,12 @@ $('input:checkbox').change(
                 return leagueArray.indexOf(item) === -1;
             });
         }
+        if ($("#leaguelist input:checkbox:checked").length > 1) {
+            $("#leagueButton .label").text($("#leaguelist input:checkbox:checked").length+" leagues selected");
+        } else $("#leagueButton .label").text(leagueLabel);
+        $("#leagueButton i").text("arrow_drop_down");
         filterList();
+        showItems(leagueLabel);
     });
 
     function  filterList() {
@@ -129,6 +146,17 @@ $('input:checkbox').change(
     });
 };
 
+
+$(".mdl-button").click(function(){
+    if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
+        $(this).find(".material-icons").text("arrow_drop_down");
+    } else $(this).find(".material-icons").text("arrow_drop_up");
+});
+
+$("#sort").click(function(){
+    outcomeList.sort('date', { order: "asc" });
+});
+
 Array.prototype.unique = function() {
     var a = this.concat();
     for(var i=0; i<a.length; ++i) {
@@ -137,6 +165,79 @@ Array.prototype.unique = function() {
                 a.splice(j--, 1);
         }
     }
-
     return a;
 };
+
+$(".showMore").click(function(){
+  showItems();
+});
+
+
+function showItems(league) {
+    if(league=="All leagues") {
+        visibleItems = 0;
+        var newShow = visibleItems+8;
+
+        $("#outcomeList").children('.card-container').each(function () {
+            $(this).removeClass("show");
+        });
+
+        $("#outcomeList").children('.card-container').each(function () {
+            if(!$(this).hasClass("show") && visibleItems<newShow) {
+                $(this).addClass("show");
+                visibleItems++;
+            }
+        })
+    } else {
+        $("#outcomeList").children('.card-container').each(function () {
+            $(this).addClass("show");
+        })
+    }
+
+}
+
+
+$("#idag").click(function(){
+
+    //set current day in button
+    //get current day and match with inputDate
+    //keep league filter
+
+    outcomeList.filter(function(item) {
+        var inputDate = parseDate(item.values().date).getDate();
+        var todaysDate = new Date();
+
+        var tomorrowDate = todaysDate.getDate() + 7;
+
+        if(inputDate == tomorrowDate) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+});
+
+$("#imorgen").click(function(){
+
+    //data attribute = dag
+    //set check date to input date
+
+    outcomeList.filter(function(item) {
+        var inputDate = parseDate(item.values().date).getDate();
+        var todaysDate = new Date();
+
+        var tomorrowDate = todaysDate.getDate() + 8;
+
+        if(inputDate == tomorrowDate) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+});
+
+function parseDate(input) {
+    var parts = input.match(/(\d+)/g);
+    // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+    return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
+}
