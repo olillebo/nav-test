@@ -53,7 +53,12 @@ var outcomeOptions = {
     //pagination: true
 };
 
-var array = [];
+//new
+var arrayOfLeagues = [];
+
+//
+
+var selectedLeagues = [];
 var premierArray = [1];
 var laligaArray = [2];
 var bundesligaArray = [3];
@@ -167,39 +172,30 @@ function createList(evt, json) {
     outcomeList = new List("outcomes", outcomeOptions, outcomeValues);
     outcomeList.sort('date', { order: "asc" });
 
+    buildFilterItems();
+
     showItems("All leagues");
 }
 
-$('#leaguelist input:checkbox').change(
-    function(){
+function buildFilterItems(evt, json) {
+    for (var x = 0; x < outcomeList.items.length; x++) {
+        var currLeague = outcomeList.items[x]._values.league;
+        if(arrayOfLeagues.indexOf(currLeague) === -1) arrayOfLeagues.push(currLeague);
+    }
 
+    $(arrayOfLeagues).each(function(i, e) {
+        $("#leaguelist").append(
+            '<li class ="mdl-menu__item"> <input type="checkbox" id="' +[i]+ '" data-league="' + arrayOfLeagues[i] + '" class="league"> <label for="' +[i]+ '">' + arrayOfLeagues[i] + '</label></li>'
+        )
+    })
+
+}
+$(document).on('click', '#leaguelist input:checkbox', function(){
         var leagueArray;
-        switch ($(this).attr("id")) {
-            case "premierleague":
-                leagueArray = premierArray;
-                leagueLabel = "Premier League";
-                break;
-            case "laliga":
-                leagueArray = laligaArray;
-                leagueLabel = "La Liga";
-                break;
-            case "bundesliga":
-                leagueArray = bundesligaArray;
-                leagueLabel = "Bundesliga";
-                break;
-            case "seriea":
-                leagueArray = serieaArray;
-                leagueLabel = "Serie A";
-                break;
-            case "other":
-                leagueArray = otherArray;
-                leagueLabel = "Other";
-                break;
-            case "all":
-                leagueLabel = "All leagues";
-                leagueArray = allArray;
-                break;
-        }
+        var ligaNavn =  $(this).data('league');
+        leagueArray = [ligaNavn];
+        leagueLabel = ligaNavn;
+
 
         if($(this).hasClass("allSelect")) {
             $(".allSelect").prop('checked', true);
@@ -212,13 +208,13 @@ $('#leaguelist input:checkbox').change(
                 });
             } else if($(".allSelect").prop('checked')) {
                 $(".allSelect").prop('checked',false);
-                array = [];
+                selectedLeagues = [];
             }
-            array = leagueArray.concat(array).unique();
+            selectedLeagues = leagueArray.concat(selectedLeagues).unique();
 
 
         } else {
-            array = array.filter(function(item) {
+            selectedLeagues = selectedLeagues.filter(function(item) {
                 return leagueArray.indexOf(item) === -1;
             });
         }
@@ -234,19 +230,20 @@ $('#leaguelist input:checkbox').change(
     });
 
     function  filterList() {
-        //array = filter på liga
+        //selectedLeagues = filter på liga
         //filterOnDay = filter på dag
 
         outcomeList.filter(function(item) {
             var inputDate = parseDate(item.values().date).getDate();
             //TODO improve this
             if($(".allSelect").prop('checked')) return true;
-            if ((array.indexOf((item.values().leagueID)) >= 0)&& (filterOnDay == inputDate))  {
+            if ((selectedLeagues.indexOf((item.values().league)) >= 0)&& (filterOnDay == inputDate))  {
                 return true;
             } else {
                 return false;
             }
         });
+        showItems();
 
         if (outcomeList.visibleItems.length > 0)  {
             $(".showMore").show();
