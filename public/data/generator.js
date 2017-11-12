@@ -43,6 +43,7 @@ for(var x = 0; x < dataLists.length; x++) {
             var currentDate = new Date();
             live = (date <= currentDate);
             var time = date.getUTCDate() +"/"+(date.getUTCMonth() + 1)+" - "+date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
+            var sortDate = date.getTime();
             if(live) {
                 homeScore = item.liveData.score.home;
                 awayScore = item.liveData.score.away;
@@ -81,15 +82,13 @@ for(var x = 0; x < dataLists.length; x++) {
                 leagueID: league,
                 homeScore: homeScore,
                 awayScore: awayScore,
-                date: date
+                date: date,
+                sortDate: sortDate
             });
         }
     }
 }
-
-
-
-
+console.log(output)
 var st = JSON.stringify(output);
 
 fs.writeFile("events.json", st);
