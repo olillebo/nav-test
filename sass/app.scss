@@ -647,6 +647,7 @@ h2 {
 
 .navigation {
 	margin-top: 94px;
+	margin-bottom: 4px;
 	display: flex;
 
 	button {
@@ -656,4 +657,26 @@ h2 {
 
 #sort {
 	display:none;
+}
+
+.dayFilter {
+	margin-left: 16px;
+	.dayButton {
+		min-width: 0;
+		&.selected {
+			border: 1px solid black;
+		}
+	}
+}
+
+.empty {
+	display: none;
+
+	border-radius: 3px;
+	border: 2px dashed lightgrey;
+	padding: 30px;
+	margin: 10px;
+	text-align: center;
+	color: grey;
+
 }

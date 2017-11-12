@@ -61,14 +61,104 @@ var serieaArray = [4];
 var otherArray = [5];
 var allArray = [1,2,3,4,5];
 var visibleItems = 0;
+var filterOnDay;
 
 var outcomeValues, outcomeList, leagueLabel;
 
 $(document).ready(function() {
-    $(document).bind('createList', createList)
+    $(document).bind('createList', createList);
     $.getJSON("data/events.json", function(json) {
         $(document).trigger('createList', json);
     });
+
+    var todaysDay = new Date().getDate() + 3;
+    filterOnDay = todaysDay;
+
+    $('.dayButton').each(function(){
+        $(this).data('day',todaysDay);
+        $(this).find(".label").text(todaysDay);
+        todaysDay = todaysDay +1;
+    });
+
+    //Callback for other function.
+
+    //$(document).bind('createList', createList);
+    //var eventData = getJsonData();
+    // $(document).trigger('createList', eventData);
+   // });
+    //console.log(eventData);
+
+
+    /*$.getJSON( "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/all/all/all/all/in-play.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510245150377&categoryGroup=COMBINED&displayDefault=true", function( data ) {
+        var output = {events: []};
+        var dataLists = [data];
+
+        for(var x = 0; x < dataLists.length; x++) {
+            for(var i = 0; i < dataLists[x].events.length; i++) {
+                var item = dataLists[x].events[i];
+                if(item.event.sport=="FOOTBALL") {
+                    var odds1, oddsX, odds2, live, league, homeScore, awayScore;
+                    if(item.betOffers != null && item.betOffers.length > 0 ){
+                        for(var j = 0; j < item.betOffers.length; j++) {
+                            var offer = item.betOffers[j];
+                            if(offer.betOfferType.name == "Match") {
+                                odds1 = offer.outcomes[0].odds;
+                                oddsX = offer.outcomes[1].odds;
+                                odds2 = offer.outcomes[2].odds;
+                            }
+                        }
+                    }
+
+                    var date = new Date(item.event.start);
+                    var currentDate = new Date();
+                    live = (date <= currentDate);
+                    var time = date.getUTCDate() +"/"+(date.getUTCMonth() + 1)+" - "+date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
+                    /!*if(live) {
+                        homeScore = item.liveData.score.home;
+                        awayScore = item.liveData.score.away;
+                        time = (item.liveData.matchClock.minute<10?'0':'') + item.liveData.matchClock.minute + ":" + (item.liveData.matchClock.second<10?'0':'') + item.liveData.matchClock.second;
+
+                    }*!/
+                    switch (item.event.group) {
+                        case "Premier League":
+                            league = 1;
+                            break;
+                        case "LaLiga":
+                            league = 2;
+                            break;
+                        case "Bundesliga":
+                            league = 3;
+                            break;
+                        case "Serie A":
+                            league = 4;
+                            break;
+                        default:
+                            league = 5;
+                    }
+
+                    output.events.push({
+                        home : item.event.homeName,
+                        away : item.event.awayName,
+                        sport : (item.event.sport).charAt(0).toUpperCase() + (item.event.sport).slice(1).toLowerCase(),
+                        league : item.event.group,
+                        live : live,
+                        time : time,
+                        odds1Name: item.event.homeName,
+                        odds2Name : item.event.awayName,
+                        odds1: odds1.toString()[0]+"."+odds1.toString()[1]+odds1.toString()[2],
+                        oddsX: oddsX.toString()[0]+"."+oddsX.toString()[1]+oddsX.toString()[2],
+                        odds2: odds2.toString()[0]+"."+odds2.toString()[1]+odds2.toString()[2],
+                        leagueID: league,
+                        homeScore: homeScore,
+                        awayScore: awayScore,
+                        date: date
+                    });
+                }
+            }
+        }
+        $(document).trigger('createList', output);
+    console.log(output);
+    });*/
 
 });
 
@@ -111,6 +201,10 @@ $('#leaguelist input:checkbox').change(
                 break;
         }
 
+        if($(this).hasClass("allSelect")) {
+            $(".allSelect").prop('checked', true);
+        }
+
         if ($(this).is(':checked')) {
             if($(this).hasClass("allSelect")) {
                 $('.league').each(function(){
@@ -130,22 +224,40 @@ $('#leaguelist input:checkbox').change(
         }
         if ($("#leaguelist input:checkbox:checked").length > 1) {
             $("#leagueButton .label").text($("#leaguelist input:checkbox:checked").length+" leagues selected");
-        } else $("#leagueButton .label").text(leagueLabel);
+        } else {
+            $("#leagueButton .label").text($("#leaguelist input:checkbox:checked").next("label").text());
+        }
         $("#leagueButton i").text("arrow_drop_down");
+
         filterList();
         showItems(leagueLabel);
     });
 
     function  filterList() {
-        outcomeList.filter(function(item) {
-            if (array.indexOf((item.values().leagueID)) >= 0)  {
-                return true;
-        } else {
-            return false;
-        }
-    });
-};
+        //array = filter på liga
+        //filterOnDay = filter på dag
 
+        outcomeList.filter(function(item) {
+            var inputDate = parseDate(item.values().date).getDate();
+            //TODO improve this
+            if($(".allSelect").prop('checked')) return true;
+            if ((array.indexOf((item.values().leagueID)) >= 0)&& (filterOnDay == inputDate))  {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        if (outcomeList.visibleItems.length > 0)  {
+            $(".showMore").show();
+            $(".empty").hide();
+        } else {
+
+            $(".showMore").hide();
+            $(".empty").show();
+
+        }
+};
 
 $(".mdl-button").click(function(){
     if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
@@ -188,52 +300,39 @@ function showItems(league) {
                 visibleItems++;
             }
         })
+        $(".showMore").show();
+        $(".dayFilter").hide();
+
     } else {
         $("#outcomeList").children('.card-container').each(function () {
             $(this).addClass("show");
         })
+        $(".dayFilter").show();
     }
 
 }
 
+//function to set dayfilter to either current day and refresh list (if all->first league) or keep day and refresh list if adding/removing leagues
+//call from
 
-$("#idag").click(function(){
+function setDayFilter(day) {
 
-    //set current day in button
-    //get current day and match with inputDate
-    //keep league filter
-
-    outcomeList.filter(function(item) {
-        var inputDate = parseDate(item.values().date).getDate();
-        var todaysDate = new Date();
-
-        var tomorrowDate = todaysDate.getDate() + 7;
-
-        if(inputDate == tomorrowDate) {
-            return true;
-        } else {
-            return false;
-        }
+    var element;
+    $('.dayButton').each(function(){
+        $(this).removeClass("selected");
+        if($(this).data("day") == day) element = $(this);
     });
-});
 
-$("#imorgen").click(function(){
+    element.addClass("selected");
+    var selectedDate = element.data("day");
+    filterOnDay = day;
+    filterList();
+}
 
-    //data attribute = dag
-    //set check date to input date
 
-    outcomeList.filter(function(item) {
-        var inputDate = parseDate(item.values().date).getDate();
-        var todaysDate = new Date();
-
-        var tomorrowDate = todaysDate.getDate() + 8;
-
-        if(inputDate == tomorrowDate) {
-            return true;
-        } else {
-            return false;
-        }
-    });
+$(".dayButton").click(function(){
+    var selectedDate = $(this).data("day");
+    setDayFilter(selectedDate);
 });
 
 function parseDate(input) {
