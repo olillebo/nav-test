@@ -69,7 +69,7 @@ var outcomeValues, outcomeList, leagueLabel;
 $(document).ready(function() {
     $(document).bind('createList', createList);
 
-    var todaysDay = new Date().getDate() +3;
+    var todaysDay = new Date().getDate();
     filterOnDay = todaysDay;
 
     $('.dayButton').each(function(){
