@@ -3,540 +3,502 @@ body {
     background-color: rgb(240, 231, 221) !important;
     font-family: arvo !important;
 }
-#page {
-	margin: 8px !important;
-}
-h2 {
-	font-family:sans-serif;
-}
+#mainPage {
+	#page {
+		margin: 8px !important;
+	}
+	h2 {
+		font-family:sans-serif;
+	}
 
-.main-container-header {
-	height: 44px;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 20;
-	background-color: #e75f3f;
-	padding: 0;
-	-webkit-transform: translateZ(0);
-	transform: translateZ(0);
-	transition: height .24s ease-in-out;
-
-	.titlebar-view {
-		position: relative;
-		background: #e75f3f url(https://www.leovegas.com/static/mobile/img/layout/upper-header.png?etag=855db6944d6f9df726b95737fc52d9f53fe7b853) no-repeat bottom;
+	.main-container-header {
 		height: 44px;
-		overflow: visible;
-		border-bottom: 1px solid #cc5c43;
-	}
-	.logotype {
-		position: absolute;
-		left: 50%;
-		bottom: -6px;
-		z-index: 1;
-		width: 52px;
-		height: 50px;
-		margin-left: -26px;
-		background-repeat: no-repeat;
-		background-position: 0 0;
-		background-size: 52px 50px;
-		background-image: url(https://www.leovegas.com/static/mobile/img/layout/header-logotype-head@2x.png?etag=5d4ab04c9e2d4f731d9a58e6279a0c8669a5d111);
-	}
-	.home {
-		float: left;
-		margin-right: 0;
-		opacity: .25;
-		pointer-events: none;
-		border-radius: 5px;
-		background: rgba(0,0,0,.5);
-		background-position: 100% -100px;
-		height: 31px;
-		padding-right: 11px;
-		text-decoration: none;
-		margin: 8px;
-
-		span {
-			background: transparent;
-			padding: 4px 0 4px 12px;
-			font-size: 14px;
-			font-weight: 700;
-			color: #fff;
-			text-shadow: 0 1px #333;
-			text-align: center;
-
-			i {
-				opacity: .75;
-				font-size: 22px;
-				display: block;
-				font-family: FontAwesome;
-				font-weight: 400;
-				font-style: normal;
-				text-decoration: inherit;
-				-webkit-font-smoothing: antialiased;
-				width: auto;
-				height: auto;
-				line-height: normal;
-				vertical-align: baseline;
-				background-image: none;
-				background-position: 0 0;
-				background-repeat: repeat;
-				margin-top: 0;
-				margin-top: -19px;
-				margin-left: 12px;
-
-				&:before {
-					content: "\f015";
-					text-decoration: inherit;
-					display: inline-block;
-					speak: none;
-				}
-			}
-		}
-	}
-
-	.sidebar {
-		float: left;
-		margin-right: 0;
-		background-repeat: no-repeat;
-		background-size: 306px 281px;
-		background-image: url(https://www.leovegas.com/static/mobile/img/buttons/button-header-sprite@2x.png?etag=118fde9f427f8ee6c831d50ed5d05b617443a640);
-		display: block;
-		background-position: 100% -100px;
-		height: 31px;
-		padding-right: 11px;
-		text-decoration: none;
-		margin: 8px;
-
-		span {
-			padding: 4px 0 6px 12px;
-			background-position: 0 0;
-			font-size: 14px;
-			font-weight: 700;
-			color: #fff;
-			text-shadow: 0 1px #333;
-			text-align: center;
-			background-repeat: no-repeat;
-			background-size: 306px 281px;
-			background-image: url(https://www.leovegas.com/static/mobile/img/buttons/button-header-sprite@2x.png?etag=118fde9f427f8ee6c831d50ed5d05b617443a640);
-			display: block;
-
-			.iconsheader-paw {
-				width: 23px;
-				height: 22px;
-				background: url(https://www.leovegas.com/static/mobile/img/icons@2x.png?etag=4824a6f732e0b0516ceb775b694dfc2ff3b7e880) no-repeat;
-				background-position: 0 -829px;
-
-				background-size: 190px 2625px;
-				display: block;
-			}
-		}
-	}
-
-	.login {
-		background-repeat: no-repeat;
-		background-size: 306px 281px;
-		background-image: url(https://www.leovegas.com/static/mobile/img/buttons/button-header-sprite@2x.png?etag=118fde9f427f8ee6c831d50ed5d05b617443a640);
-		display: block;
-
-		background-position: 100% -100px;
-		float: right;
-		height: 31px;
-		padding-right: 11px;
-		text-decoration: none;
-		margin: 8px;
-
-		span {
-			background-position: 0 0;
-			padding: 5px 0 6px 12px;
-			font-size: 14px;
-			font-weight: 700;
-			color: #fff;
-			text-shadow: 0 1px #333;
-			text-align: center;
-			background-repeat: no-repeat;
-			background-size: 306px 281px;
-			background-image: url(https://www.leovegas.com/static/mobile/img/buttons/button-header-sprite@2x.png?etag=118fde9f427f8ee6c831d50ed5d05b617443a640);
-			display: block;
-		}
-	}
-}
-
-.main-container-lobby-menu {
-	display: block;
-	position: absolute;
-	top: 44px;
-	width: 100%;
-	z-index: 3;
-
-	.lobby-menu-view {
-		margin-right: 3px;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 20;
+		background-color: #e75f3f;
 		padding: 0;
-		width: 100%;
-		text-shadow: 1px 1px #fff;
-		box-shadow: 0 2px 2px 0 rgba(97,59,53,.7);
-	}
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0);
+		transition: height .24s ease-in-out;
 
-	.lobby-menu-list {
-		margin-bottom: 0;
-		background-color: #f0e7db;
-		text-align: center;
-		list-style-type: none;
-		margin: 0;
-		width: 100%;
-		display: block;
-		font-size: 0;
-		height: 40px;
-		padding: 0;
+		.titlebar-view {
+			position: relative;
+			background: #e75f3f url(https://www.leovegas.com/static/mobile/img/layout/upper-header.png?etag=855db6944d6f9df726b95737fc52d9f53fe7b853) no-repeat bottom;
+			height: 44px;
+			overflow: visible;
+			border-bottom: 1px solid #cc5c43;
+		}
+		.logotype {
+			position: absolute;
+			left: 50%;
+			bottom: -6px;
+			z-index: 1;
+			width: 52px;
+			height: 50px;
+			margin-left: -26px;
+			background-repeat: no-repeat;
+			background-position: 0 0;
+			background-size: 52px 50px;
+			background-image: url(https://www.leovegas.com/static/mobile/img/layout/header-logotype-head@2x.png?etag=5d4ab04c9e2d4f731d9a58e6279a0c8669a5d111);
+		}
+		.home {
+			float: left;
+			margin-right: 0;
+			opacity: .25;
+			pointer-events: none;
+			border-radius: 5px;
+			background: rgba(0,0,0,.5);
+			background-position: 100% -100px;
+			height: 31px;
+			padding-right: 11px;
+			text-decoration: none;
+			margin: 8px;
 
-		li {
-			text-align: center;
-			height: 40px;
-			max-width: 220px;
-			float: none;
-			line-height: 39px;
-			overflow: hidden;
-			display: inline-block;
-			white-space: nowrap;
-			width: 33.3333%;
-
-			.borderStyle {
-				position: absolute;
-				height: 50%;
-				width: inherit;
-				top: 25%;
-			}
-
-			a {
-				display: block;
-				width: 100%;
-				height: 100%;
-				text-decoration: none;
-				position: relative;
-				color: #615452;
+			span {
+				background: transparent;
+				padding: 4px 0 4px 12px;
 				font-size: 14px;
 				font-weight: 700;
+				color: #fff;
+				text-shadow: 0 1px #333;
+				text-align: center;
 
-				.lobbyIcon {
-					background-repeat: no-repeat;
+				i {
+					opacity: .75;
+					font-size: 22px;
+					display: block;
+					font-family: FontAwesome;
+					font-weight: 400;
+					font-style: normal;
+					text-decoration: inherit;
+					-webkit-font-smoothing: antialiased;
+					width: auto;
+					height: auto;
+					line-height: normal;
+					vertical-align: baseline;
+					background-image: none;
 					background-position: 0 0;
-					background-size: 20px 20px;
-					display: inline-block;
-					background-size: contain;
-					background-repeat: no-repeat;
-					width: 20px;
-					height: 20px;
-					margin-right: 3px;
+					background-repeat: repeat;
+					margin-top: 0;
+					margin-top: -19px;
+					margin-left: 12px;
+
+					&:before {
+						content: "\f015";
+						text-decoration: inherit;
+						display: inline-block;
+						speak: none;
+					}
+				}
+			}
+		}
+
+		.sidebar {
+			float: left;
+			margin-right: 0;
+			background-repeat: no-repeat;
+			background-size: 306px 281px;
+			background-image: url(https://www.leovegas.com/static/mobile/img/buttons/button-header-sprite@2x.png?etag=118fde9f427f8ee6c831d50ed5d05b617443a640);
+			display: block;
+			background-position: 100% -100px;
+			height: 31px;
+			padding-right: 11px;
+			text-decoration: none;
+			margin: 8px;
+
+			span {
+				padding: 4px 0 6px 12px;
+				background-position: 0 0;
+				font-size: 14px;
+				font-weight: 700;
+				color: #fff;
+				text-shadow: 0 1px #333;
+				text-align: center;
+				background-repeat: no-repeat;
+				background-size: 306px 281px;
+				background-image: url(https://www.leovegas.com/static/mobile/img/buttons/button-header-sprite@2x.png?etag=118fde9f427f8ee6c831d50ed5d05b617443a640);
+				display: block;
+
+				.iconsheader-paw {
+					width: 23px;
+					height: 22px;
+					background: url(https://www.leovegas.com/static/mobile/img/icons@2x.png?etag=4824a6f732e0b0516ceb775b694dfc2ff3b7e880) no-repeat;
+					background-position: 0 -829px;
+
+					background-size: 190px 2625px;
+					display: block;
+				}
+			}
+		}
+
+		.login {
+			background-repeat: no-repeat;
+			background-size: 306px 281px;
+			background-image: url(https://www.leovegas.com/static/mobile/img/buttons/button-header-sprite@2x.png?etag=118fde9f427f8ee6c831d50ed5d05b617443a640);
+			display: block;
+
+			background-position: 100% -100px;
+			float: right;
+			height: 31px;
+			padding-right: 11px;
+			text-decoration: none;
+			margin: 8px;
+
+			span {
+				background-position: 0 0;
+				padding: 5px 0 6px 12px;
+				font-size: 14px;
+				font-weight: 700;
+				color: #fff;
+				text-shadow: 0 1px #333;
+				text-align: center;
+				background-repeat: no-repeat;
+				background-size: 306px 281px;
+				background-image: url(https://www.leovegas.com/static/mobile/img/buttons/button-header-sprite@2x.png?etag=118fde9f427f8ee6c831d50ed5d05b617443a640);
+				display: block;
+			}
+		}
+	}
+
+	.main-container-lobby-menu {
+		display: block;
+		position: absolute;
+		top: 44px;
+		width: 100%;
+		z-index: 3;
+
+		.lobby-menu-view {
+			margin-right: 3px;
+			padding: 0;
+			width: 100%;
+			text-shadow: 1px 1px #fff;
+			box-shadow: 0 2px 2px 0 rgba(97,59,53,.7);
+		}
+
+		.lobby-menu-list {
+			margin-bottom: 0;
+			background-color: #f0e7db;
+			text-align: center;
+			list-style-type: none;
+			margin: 0;
+			width: 100%;
+			display: block;
+			font-size: 0;
+			height: 40px;
+			padding: 0;
+
+			li {
+				text-align: center;
+				height: 40px;
+				max-width: 220px;
+				float: none;
+				line-height: 39px;
+				overflow: hidden;
+				display: inline-block;
+				white-space: nowrap;
+				width: 33.3333%;
+
+				.borderStyle {
+					position: absolute;
+					height: 50%;
+					width: inherit;
+					top: 25%;
 				}
 
-				span {
+				a {
+					display: block;
+					width: 100%;
+					height: 100%;
+					text-decoration: none;
 					position: relative;
-					vertical-align: middle;
 					color: #615452;
 					font-size: 14px;
 					font-weight: 700;
-				}
-			}
-
-			&.casino {
-				.lobbyIcon {
-					background-image: url(https://www.leovegas.com/static/mobile/img/layout/casino-icon@2x.png?etag=db8bb373b352b6b011aaaf05169968be8c7b99e7);
-				}
-
-			}
-			&.live {
-				.borderStyle {
-					border-left: 1px solid #ccbebc;
-					box-sizing: border-box;
-
-
-				}
-				.lobbyIcon {
-					background-image: url(https://www.leovegas.com/static/mobile/img/layout/live-icon@2x.png?etag=d42af5ad8557072fe10d5b8bc2aa8c62748617ac);
-				}
-			}
-			&.sportsbook {
-				.borderStyle {
-					border-left: 1px solid #ccbebc;
-					box-sizing: border-box;
-				}
-				a {
-					border-bottom-width: 3px;
-					color: #e75f3f;
-					font-weight: 700;
-					border-bottom-color: #e75f3f;
-					border-bottom-style: solid;
-					box-sizing: border-box;
 
 					.lobbyIcon {
-						background-image: url(https://www.leovegas.com/static/mobile/img/layout/sports-icon-active@2x.png?etag=7584222db53b08370483ecd15915d480df5fb8ab);
+						background-repeat: no-repeat;
+						background-position: 0 0;
+						background-size: 20px 20px;
+						display: inline-block;
+						background-size: contain;
+						background-repeat: no-repeat;
+						width: 20px;
+						height: 20px;
+						margin-right: 3px;
 					}
+
 					span {
-						color: #e75f3f;
+						position: relative;
+						vertical-align: middle;
+						color: #615452;
+						font-size: 14px;
 						font-weight: 700;
 					}
 				}
 
+				&.casino {
+					.lobbyIcon {
+						background-image: url(https://www.leovegas.com/static/mobile/img/layout/casino-icon@2x.png?etag=db8bb373b352b6b011aaaf05169968be8c7b99e7);
+					}
+
+				}
+				&.live {
+					.borderStyle {
+						border-left: 1px solid #ccbebc;
+						box-sizing: border-box;
+
+
+					}
+					.lobbyIcon {
+						background-image: url(https://www.leovegas.com/static/mobile/img/layout/live-icon@2x.png?etag=d42af5ad8557072fe10d5b8bc2aa8c62748617ac);
+					}
+				}
+				&.sportsbook {
+					.borderStyle {
+						border-left: 1px solid #ccbebc;
+						box-sizing: border-box;
+					}
+					a {
+						border-bottom-width: 3px;
+						color: #e75f3f;
+						font-weight: 700;
+						border-bottom-color: #e75f3f;
+						border-bottom-style: solid;
+						box-sizing: border-box;
+
+						.lobbyIcon {
+							background-image: url(https://www.leovegas.com/static/mobile/img/layout/sports-icon-active@2x.png?etag=7584222db53b08370483ecd15915d480df5fb8ab);
+						}
+						span {
+							color: #e75f3f;
+							font-weight: 700;
+						}
+					}
+
+				}
 			}
-		}
 
 
-	}
-}
-
-.bottom-nav-view {
-	z-index: 199;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	background: #f0e7dc;
-	box-shadow: 0 -2px 0 #ccc6c0;
-	z-index: 18;
-	height: 48px;
-	overflow: visible;
-	display: table;
-	table-layout: fixed;
-
-	.bottomnav-item {
-		display: table-cell;
-		margin: 0 5px;
-		background-repeat: no-repeat;
-		background-position: top!important;
-		background-position-y: 6px!important;
-		font-size: 10px;
-		text-align: center;
-		color: #89827d;
-		vertical-align: middle;
-		line-height: 10px;
-		padding-top: 27px;
-
-		background-repeat: no-repeat;
-		background-position: 0 0;
-		background-size: 20px 20px;
-
-	    &.browse {
-			background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/browse@2x.png?etag=3c88e738a6001b0a741ea76e8b52cf6e8ab456b7);
-		}
-
-		&.searchsports {
-			background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/search-sports@2x.png?etag=9feb01e59d2383f008461648118bbb52e2e7f45d);
-		}
-
-		&.live {
-			background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/live@2x.png?etag=008aaa690a92782b750e73745edfadae4455130a);
-		}
-
-		&.openbets {
-			background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/open-bets@2x.png?etag=721298533be5e6ccbb7c60f96b5c0f965328cf65);
-		}
-
-		&.betslip {
-			background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/betslip@2x.png?etag=98e3c2c6e817eff934688334cd459345f4d659a2);
-		}
-
-		&.disabled {
-			opacity: .35;
 		}
 	}
-}
 
-.showMore {
-	text-align: center;
-	text-shadow: 0 1px 0 #fff;
-	margin-bottom: 60px;
-
-	i {
-		font-size: 14px;
-		margin-right: 5px;
-		font-family: FontAwesome;
-		font-weight: 400;
-		font-style: normal;
-		text-decoration: inherit;
-		-webkit-font-smoothing: antialiased;
-		display: inline;
-		width: auto;
-		height: auto;
-		line-height: normal;
-		vertical-align: baseline;
-		background-image: none;
-		background-position: 0 0;
-		background-repeat: repeat;
-		margin-top: 0;
-
-		.icon-share-alt:before {
-			content: "\f064";
-			text-decoration: inherit;
-			display: inline-block;
-			speak: none;
-		}
-	}
-	a {
-		color: #615452;
-		font-size: 16px;
-	}
-}
-
-.list {
-    margin: 0;
-    list-style: none;
-    overflow: visible;
-
-	label {
-		margin-left: 8px;
+	.bottom-nav-view {
+		z-index: 199;
+		position: fixed;
+		bottom: 0;
 		width: 100%;
-	}
-}
+		background: #f0e7dc;
+		box-shadow: 0 -2px 0 #ccc6c0;
+		z-index: 18;
+		height: 48px;
+		overflow: visible;
+		display: table;
+		table-layout: fixed;
 
-#outcomeList {
-	padding: 0;
-	-webkit-margin-after: 0;
+		.bottomnav-item {
+			display: table-cell;
+			margin: 0 5px;
+			background-repeat: no-repeat;
+			background-position: top!important;
+			background-position-y: 6px!important;
+			font-size: 10px;
+			text-align: center;
+			color: #89827d;
+			vertical-align: middle;
+			line-height: 10px;
+			padding-top: 27px;
 
-}
-.card-container {
-	display: none;
-	position: relative;
-	border-radius: 0 0 3px 3px;
-	background-clip: padding-box;
-	border-bottom: 2px solid #d1d1d1;
-	background-color: #fff;
-	width: 100%;
-	margin-right: 7px;
-	margin-bottom: 7px;
-	min-height: 140px;
-	text-align: center;
-	vertical-align: top;
-	-webkit-column-break-inside: avoid;
-	page-break-inside: avoid;
-	break-inside: avoid;
-	cursor: pointer;
+			background-repeat: no-repeat;
+			background-position: 0 0;
+			background-size: 20px 20px;
 
-	&.show {
-		display: inline-block;
-	}
+			&.browse {
+				background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/browse@2x.png?etag=3c88e738a6001b0a741ea76e8b52cf6e8ab456b7);
+			}
 
-	.cardheader {
-		position: relative;
-		font-size: 12px;
-		font-weight: 500;
-		line-height: 19px;
-		color: #999;
-		padding: 5px 8px 0;
-		border-bottom: 2px solid #f0e7dc;
+			&.searchsports {
+				background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/search-sports@2x.png?etag=9feb01e59d2383f008461648118bbb52e2e7f45d);
+			}
 
-		.card-livelabel {
-			font-size: 9px;
-			color: #999;
-			font-weight: 700;
-			height: 15px;
-			line-height: 8px;
-			margin: 2px 0 0 8px;
-			padding: 3px;
-			border: 1px solid #999;
-			border-radius: 4px;
-			float: right;
-			text-transform: uppercase;
+			&.live {
+				background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/live@2x.png?etag=008aaa690a92782b750e73745edfadae4455130a);
+			}
 
-			& started {
-				color: #d30d12;
-				border-color: #d30d12;
+			&.openbets {
+				background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/open-bets@2x.png?etag=721298533be5e6ccbb7c60f96b5c0f965328cf65);
+			}
+
+			&.betslip {
+				background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/betslip@2x.png?etag=98e3c2c6e817eff934688334cd459345f4d659a2);
+			}
+
+			&.disabled {
+				opacity: .35;
 			}
 		}
+	}
 
-		.card-timer {
-			float: right;
-			font-size: 12px;
-			text-align: right;
-		}
+	.showMore {
+		text-align: center;
+		text-shadow: 0 1px 0 #fff;
+		margin-bottom: 60px;
 
-		.cardtitle {
-			color: #615452;
+		i {
 			font-size: 14px;
-			text-align: left;
+			margin-right: 5px;
+			font-family: FontAwesome;
+			font-weight: 400;
+			font-style: normal;
+			text-decoration: inherit;
+			-webkit-font-smoothing: antialiased;
+			display: inline;
+			width: auto;
+			height: auto;
+			line-height: normal;
+			vertical-align: baseline;
+			background-image: none;
+			background-position: 0 0;
+			background-repeat: repeat;
+			margin-top: 0;
 
-			.path {
-				color: #999;
-				font-size: 12px;
-				overflow: hidden;
-				position: relative;
-				left: -12px;
-				height: 25px;
-				-o-text-overflow: ellipsis;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-
-				span:first-child {
-					background-color: #d30d12;
-					color: #fff;
-					padding: 6px 8px 3px;
-					margin-right: 5px;
-
-					&.pre {
-						background-color: #53778a;
-					}
-
-					&:before {
-						border-right-color: #701e20;
-						content: "";
-						position: absolute;
-						left: 0;
-						bottom: 1px;
-						width: 0;
-						height: 0;
-						border-style: solid;
-						border-width: 0 4px 4px 0;
-						border-color: transparent;
-					}
-				}
+			.icon-share-alt:before {
+				content: "\f064";
+				text-decoration: inherit;
+				display: inline-block;
+				speak: none;
 			}
+		}
+		a {
+			color: #615452;
+			font-size: 16px;
 		}
 	}
 
-	.cardcontent {
-		padding: 7px 16px;
-		color: #555;
+	.list {
+		margin: 0;
+		list-style: none;
+		overflow: visible;
 
-		.card-row {
-			margin-top: 12px;
-			display: block;
-			font-size: 16px;
-			line-height: 27px;
-			-o-text-overflow: ellipsis;
-			text-overflow: ellipsis;
-			overflow: hidden;
-			white-space: nowrap;
+		label {
+			margin-left: 8px;
+			width: 100%;
 		}
-		.card-score {
-			float: right;
-			display: block;
+	}
 
-			.goalbasedscore {
-				display: block;
-				-webkit-transform: translateZ(0);
-				transform: translateZ(0);
-				text-align: center;
-				margin-left: 10px;
+	#outcomeList {
+		padding: 0;
+		-webkit-margin-after: 0;
 
-				.score-item {
-					display: block;
-					font-weight: 700;
-					text-align: right;
-					font-size: 16px;
-					line-height: 27px;
-					-webkit-font-smoothing: antialiased;
+	}
+	.card-container {
+		display: none;
+		position: relative;
+		border-radius: 0 0 3px 3px;
+		background-clip: padding-box;
+		border-bottom: 2px solid #d1d1d1;
+		background-color: #fff;
+		width: 100%;
+		margin-right: 7px;
+		margin-bottom: 7px;
+		min-height: 140px;
+		text-align: center;
+		vertical-align: top;
+		-webkit-column-break-inside: avoid;
+		page-break-inside: avoid;
+		break-inside: avoid;
+		cursor: pointer;
+
+		&.show {
+			display: inline-block;
+		}
+
+		.cardheader {
+			position: relative;
+			font-size: 12px;
+			font-weight: 500;
+			line-height: 19px;
+			color: #999;
+			padding: 5px 8px 0;
+			border-bottom: 2px solid #f0e7dc;
+
+			.card-livelabel {
+				font-size: 9px;
+				color: #999;
+				font-weight: 700;
+				height: 15px;
+				line-height: 8px;
+				margin: 2px 0 0 8px;
+				padding: 3px;
+				border: 1px solid #999;
+				border-radius: 4px;
+				float: right;
+				text-transform: uppercase;
+
+				& started {
+					color: #d30d12;
+					border-color: #d30d12;
+				}
+			}
+
+			.card-timer {
+				float: right;
+				font-size: 12px;
+				text-align: right;
+			}
+
+			.cardtitle {
+				color: #615452;
+				font-size: 14px;
+				text-align: left;
+
+				.path {
+					color: #999;
+					font-size: 12px;
+					overflow: hidden;
+					position: relative;
+					left: -12px;
+					height: 25px;
+					-o-text-overflow: ellipsis;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+
+					span:first-child {
+						background-color: #d30d12;
+						color: #fff;
+						padding: 6px 8px 3px;
+						margin-right: 5px;
+
+						&.pre {
+							background-color: #53778a;
+						}
+
+						&:before {
+							border-right-color: #701e20;
+							content: "";
+							position: absolute;
+							left: 0;
+							bottom: 1px;
+							width: 0;
+							height: 0;
+							border-style: solid;
+							border-width: 0 4px 4px 0;
+							border-color: transparent;
+						}
+					}
 				}
 			}
 		}
 
-		.card-teamnames {
-			text-align: left;
-			display: block;
+		.cardcontent {
+			padding: 7px 16px;
+			color: #555;
 
-			.separator {
-				display: none;
-				margin: 0 6px;
-			}
-
-			.teamname-row {
+			.card-row {
+				margin-top: 12px;
+				display: block;
 				font-size: 16px;
 				line-height: 27px;
 				-o-text-overflow: ellipsis;
@@ -544,139 +506,196 @@ h2 {
 				overflow: hidden;
 				white-space: nowrap;
 			}
-		}
-	}
+			.card-score {
+				float: right;
+				display: block;
 
-	.cardoffer {
-		width: 100%;
-		padding: 4px;
-		position: absolute;
-		bottom: 0;
-
-		.betoffer {
-			width: 100%;
-			overflow: hidden;
-			display: -webkit-flex;
-			display: -ms-flexbox;
-			display: flex;
-
-			.betOfferButton {
-				font-family: inherit;
-				height: 36px;
-				background: #f8f3ee;
-				border-radius: 3px;
-				color: #222;
-				text-align: center;
-				font-family: Arvo;
-				border: 1px solid transparent;
-				border-bottom: 3px solid #b74930;
-				cursor: pointer;
-				margin-left: 0;
-				margin-right: 3px;
-				min-width: 0;
-				-webkit-flex-basis: 0;
-				-ms-flex-preferred-size: 0;
-				flex-basis: 0;
-				-webkit-flex-grow: 1;
-				-ms-flex-positive: 1;
-				flex-grow: 1;
-				padding: 0 6px;
-				outline: none;
-				position: relative;
-				font-size: 14px;
-				font-weight: 400;
-				line-height: 20px;
-
-				&:after {
-					position: absolute;
-					content: "";
+				.goalbasedscore {
 					display: block;
-					top: 8px;
-					right: 12px;
-					border-color: transparent transparent #00e600;
-					border-style: solid;
-					width: 0;
-					height: 0;
-					border-width: 0 4px 4px;
-					opacity: 0;
+					-webkit-transform: translateZ(0);
+					transform: translateZ(0);
+					text-align: center;
+					margin-left: 10px;
+
+					.score-item {
+						display: block;
+						font-weight: 700;
+						text-align: right;
+						font-size: 16px;
+						line-height: 27px;
+						-webkit-font-smoothing: antialiased;
+					}
+				}
+			}
+
+			.card-teamnames {
+				text-align: left;
+				display: block;
+
+				.separator {
+					display: none;
+					margin: 0 6px;
 				}
 
-				.odds {
-					float: right;
-					line-height: 30px;
-					font-size: 12px;
-					text-align: right;
-					font-weight: 700;
-					-webkit-font-smoothing: antialiased;
-				}
-				.outcomeLabel {
-					line-height: 30px;
-					text-align: left;
+				.teamname-row {
+					font-size: 16px;
+					line-height: 27px;
 					-o-text-overflow: ellipsis;
 					text-overflow: ellipsis;
-					white-space: nowrap;
 					overflow: hidden;
-					padding-right: 5px;
-					font-size: 12px;
+					white-space: nowrap;
+				}
+			}
+		}
+
+		.cardoffer {
+			width: 100%;
+			padding: 4px;
+			position: absolute;
+			bottom: 0;
+
+			.betoffer {
+				width: 100%;
+				overflow: hidden;
+				display: -webkit-flex;
+				display: -ms-flexbox;
+				display: flex;
+
+				.betOfferButton {
+					font-family: inherit;
+					height: 36px;
+					background: #f8f3ee;
+					border-radius: 3px;
+					color: #222;
+					text-align: center;
+					font-family: Arvo;
+					border: 1px solid transparent;
+					border-bottom: 3px solid #b74930;
+					cursor: pointer;
+					margin-left: 0;
+					margin-right: 3px;
+					min-width: 0;
+					-webkit-flex-basis: 0;
+					-ms-flex-preferred-size: 0;
+					flex-basis: 0;
+					-webkit-flex-grow: 1;
+					-ms-flex-positive: 1;
+					flex-grow: 1;
+					padding: 0 6px;
+					outline: none;
+					position: relative;
+					font-size: 14px;
+					font-weight: 400;
+					line-height: 20px;
+
+					&:after {
+						position: absolute;
+						content: "";
+						display: block;
+						top: 8px;
+						right: 12px;
+						border-color: transparent transparent #00e600;
+						border-style: solid;
+						width: 0;
+						height: 0;
+						border-width: 0 4px 4px;
+						opacity: 0;
+					}
+
+					.odds {
+						float: right;
+						line-height: 30px;
+						font-size: 12px;
+						text-align: right;
+						font-weight: 700;
+						-webkit-font-smoothing: antialiased;
+					}
+					.outcomeLabel {
+						line-height: 30px;
+						text-align: left;
+						-o-text-overflow: ellipsis;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						overflow: hidden;
+						padding-right: 5px;
+						font-size: 12px;
+					}
+				}
+			}
+		}
+
+		.card-wrap[live='false']{
+			.path {
+				span:first-child {
+					background-color: #53778a;
+				}
+			}
+
+			.card-score {
+				display: none;
+			}
+
+			.card-teamnames {
+				display: flex;
+				justify-content: center;
+				margin-top: 12px;
+				.separator {
+					display: inline;
 				}
 			}
 		}
 	}
 
-	.card-wrap[live='false']{
-		.path {
-			span:first-child {
-				background-color: #53778a;
+	.navigation {
+		margin-top: 94px;
+		margin-bottom: 4px;
+		display: flex;
+
+		button {
+			text-transform: none;
+		}
+	}
+
+	#sort {
+		display:none;
+	}
+
+	.dayFilter {
+		margin-left: 16px;
+		.dayButton {
+			min-width: 0;
+			&.selected {
+				border: 1px solid black;
 			}
 		}
-
-		.card-score {
-			display: none;
-		}
-
-		.card-teamnames {
-			display: flex;
-			justify-content: center;
-			margin-top: 12px;
-			.separator {
-				display: inline;
-			}
-		}
 	}
-}
 
-.navigation {
-	margin-top: 94px;
-	margin-bottom: 4px;
-	display: flex;
+	.empty {
+		display: none;
 
-	button {
-		text-transform: none;
+		border-radius: 3px;
+		border: 2px dashed lightgrey;
+		padding: 30px;
+		margin: 10px;
+		text-align: center;
+		color: grey;
+
 	}
-}
 
-#sort {
-	display:none;
-}
+	.fullScreen {
+		display: none;
+		background: #F8704D;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		z-index: 1000;
+		//display: flex;
+		justify-content: center;
 
-.dayFilter {
-	margin-left: 16px;
-	.dayButton {
-		min-width: 0;
-		&.selected {
-			border: 1px solid black;
+		#progressbar {
+			width: 400px;
 		}
 	}
-}
-
-.empty {
-	display: none;
-
-	border-radius: 3px;
-	border: 2px dashed lightgrey;
-	padding: 30px;
-	margin: 10px;
-	text-align: center;
-	color: grey;
-
 }

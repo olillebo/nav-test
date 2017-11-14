@@ -25,6 +25,10 @@ router.get('/login', passport.authenticate('auth0', {
     res.redirect("/");
 });
 
+router.get('/quickbet', function(req, res, next) {
+    res.render('quickbet');
+});
+
 router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');

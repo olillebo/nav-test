@@ -1,0 +1,106 @@
+<div id="quickbet">
+    <div id="page">
+        <div class="pageTitle">
+            <span>Quickbet!</span>
+            <i class="fa fa-share icon-share-alt"></i>
+        </div>
+
+        <div id="matches">
+            <div id="matchSearchDiv">
+                <input class="search2" id="matchSearch" placeholder="Search for event" />
+            </div>
+            <div class="hotspot" id="hotspot1">
+                <div class="hotspot-inner">
+                    <span class="icn">Start by typing the event you want to place a bet on</span>
+                </div>
+            </div>
+            <ul class="list hidden" id="matchlist"></ul>
+        </div>
+
+        <div id="outcomes">
+            <div id="outcomeSearchDiv">
+                <input class="search2" id="outcomeSearch" placeholder="Outcome" />
+            </div>
+            <div class="hotspot" id="hotspot2">
+                <div class="hotspot-inner">
+                    <span class="icn">Enter the outcome you want to place a bet on</span>
+                </div>
+            </div>
+            <ul class="list hidden" id="outcomeList"></ul>
+        </div>
+
+        <input class="stake hidden" id="stakeInput" placeholder="Stake" />
+        <div class="hotspot hidden" id="hotspot3">
+            <div class="hotspot-inner">
+                <span class="icn">Enter the stake followd by enter or a space</span>
+            </div>
+        </div>
+
+        <div id="selectedStake" class="selected hidden">
+            <ul class="list" id="stakelist">
+                <li>
+                    <div class="listContainer">
+                        <div class="subtitle">Stake</div>
+                        <div class="selectedStakeName title"></div>
+                    </div>
+                    <div class="editIcon stakeIcon"><i id="editStake" class="icon material-icons">mode_edit</i></div><div class="iconA"><svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="stakeDisplay hidden">
+            <div class="payout">
+                <div class="label">Potential win: </div>
+                <div class="amount win"></div>
+            </div>
+        </div>
+
+        <button id="placeBet" class="hidden" >Place bet</button>
+    </div>
+    <div class="success hidden">
+        <div class="betPlaced pageTitle">Bet placed!</div>
+
+        <div id="selectedMatch2" class="selected">
+            <ul class="list">
+                <li>
+                    <div>
+                        <div class="subtitle">Event</div>
+                        <div class="selectedMatch title"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="selectedOutcome2" class="selected">
+            <ul class="list">
+                <li>
+                    <div>
+                        <div class="subtitle">Outcome</div>
+                        <div class="selectedOutcomeName title"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="selectedStake2" class="selected">
+            <ul class="list">
+                <li>
+                    <div>
+                        <div class="subtitle">Stake</div>
+                        <div class="selectedStakeName title"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="selectedStake3" class="selected">
+            <ul class="list">
+                <li>
+                    <div>
+                        <div class="subtitle">Potential win:</div>
+                        <div class="win title"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <button id="placeNew">Place new bet</button>
+    </div>
+</div>

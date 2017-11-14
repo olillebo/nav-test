@@ -1,142 +1,148 @@
-<div class="main-container-header">
-    <div class="view titlebar-view">
-        <span class="logotype">
-            <span class="close-icon"></span>
-            <span class="search-icon"></span>
-        </span>
-    <a href="/en/sidebar/" class="sidebar"><span><i class="iconsheader-paw"></i></span></a>
-    <a href="#" class="home disabled"><span><i class="icon-home"></i></span></a>
-    <a href="/en/login/" class="text login"><span>Log in</span></a>
+<div id="mainPage">
+    <div class="main-container-header">
+        <div class="view titlebar-view">
+            <span class="logotype">
+                <span class="close-icon"></span>
+                <span class="search-icon"></span>
+            </span>
+        <a href="/en/sidebar/" class="sidebar"><span><i class="iconsheader-paw"></i></span></a>
+        <a href="#" class="home disabled"><span><i class="icon-home"></i></span></a>
+        <a href="/en/login/" class="text login"><span>Log in</span></a>
+        </div>
     </div>
-</div>
 
-<div class="main-container-lobby-menu"><div class="view lobby-menu-view">
-    <ul class="lobby-menu-list">
-        <li data-lobby-type="casino" class="starter item casino">
-            <div class="borderStyle"></div>
-            <a href="">
-                <span class="casino lobbyIcon"></span>
-                <span>Casino</span>
-            </a>
-        </li>
-
-        <li data-lobby-type="live" class="item live">
-            <div class="borderStyle"></div>
-            <a href="">
-                <span class="live lobbyIcon"></span>
-                <span>Live Casino</span>
-            </a>
-        </li>
-
-        <li data-lobby-type="sportsbook" class="item active sportsbook">
-            <div class="borderStyle"></div>
-            <a href="">
-                <span class="sports lobbyIcon"></span>
-                <span>Sports</span>
-            </a>
-        </li>
-    </ul>
-
-</div></div>
-
-<!-- Left aligned menu below button -->
-<div class="navigation">
-
-    <div class="sports">
-        <button id="sportsButton" class="mdl-button mdl-js-button">
-            <span class="label">Football</span>
-            <i class="material-icons">arrow_drop_down</i>
-        </button>
-
-        <ul class="list mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" id="sportsList" for="sportsButton">
-            <li class ="mdl-menu__item">
-                <input type="checkbox" id="All2" class="allSports" disabled>
-                <label for="All2">All sports</label>
+    <div class="main-container-lobby-menu"><div class="view lobby-menu-view">
+        <ul class="lobby-menu-list">
+            <li data-lobby-type="casino" class="starter item casino">
+                <div class="borderStyle"></div>
+                <a href="">
+                    <span class="casino lobbyIcon"></span>
+                    <span>Casino</span>
+                </a>
             </li>
-            <li class ="mdl-menu__item">
-                <input type="checkbox" id="football" class="football" checked="true" disabled>
-                <label for="football">Football</label>
+
+            <li data-lobby-type="live" class="item live">
+                <div class="borderStyle"></div>
+                <a href="">
+                    <span class="live lobbyIcon"></span>
+                    <span>Live Casino</span>
+                </a>
             </li>
-            <li class ="mdl-menu__item">
-                <input type="checkbox" id="tennis" class="tennis" disabled>
-                <label for="tennis">Tennis</label>
-            </li>
-            <li class ="mdl-menu__item">
-                <input type="checkbox" id="icehockey" class="icehockey" disabled>
-                <label for="icehockey">Ice hockey</label>
+
+            <li data-lobby-type="sportsbook" class="item active sportsbook">
+                <div class="borderStyle"></div>
+                <a href="">
+                    <span class="sports lobbyIcon"></span>
+                    <span>Sports</span>
+                </a>
             </li>
         </ul>
+
+    </div></div>
+
+    <!-- Left aligned menu below button -->
+    <div class="navigation">
+
+        <div class="sports">
+            <button id="sportsButton" class="mdl-button mdl-js-button">
+                <span class="label">Football</span>
+                <i class="material-icons">arrow_drop_down</i>
+            </button>
+
+            <ul class="list mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" id="sportsList" for="sportsButton">
+                <li class ="mdl-menu__item">
+                    <input type="checkbox" id="All2" class="allSports" disabled>
+                    <label for="All2">All sports</label>
+                </li>
+                <li class ="mdl-menu__item">
+                    <input type="checkbox" id="football" class="football" checked="true" disabled>
+                    <label for="football">Football</label>
+                </li>
+                <li class ="mdl-menu__item">
+                    <input type="checkbox" id="tennis" class="tennis" disabled>
+                    <label for="tennis">Tennis</label>
+                </li>
+                <li class ="mdl-menu__item">
+                    <input type="checkbox" id="icehockey" class="icehockey" disabled>
+                    <label for="icehockey">Ice hockey</label>
+                </li>
+            </ul>
+        </div>
+        <div class="leagues">
+            <button id="leagueButton" class="mdl-button mdl-js-button">
+                <span class="label">All leagues</span>
+                <i class="material-icons">arrow_drop_down</i>
+            </button>
+
+            <ul class="list mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" id="leaguelist" for="leagueButton">
+                <li class ="mdl-menu__item">
+                    <input type="checkbox" id="all" class="allSelect" checked="true" data-league="All leagues">
+                    <label for="all">All leagues</label>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="leagues">
-        <button id="leagueButton" class="mdl-button mdl-js-button">
-            <span class="label">All leagues</span>
-            <i class="material-icons">arrow_drop_down</i>
+
+    <button id="sort" class="mdl-button mdl-js-button">
+        <span class="label">Sort</span>
+    </button>
+
+    <div class="dayFilter">
+        <button class="dayButton mdl-button mdl-js-button selected" data-day="15">
+            <span class="label"></span>
         </button>
-
-        <ul class="list mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" id="leaguelist" for="leagueButton">
-            <li class ="mdl-menu__item">
-                <input type="checkbox" id="all" class="allSelect" checked="true" data-league="All leagues">
-                <label for="all">All leagues</label>
-            </li>
-        </ul>
+        <button class="dayButton mdl-button mdl-js-button">
+            <span class="label"></span>
+        </button>
+        <button class="dayButton mdl-button mdl-js-button">
+            <span class="label"></span>
+        </button>
+        <button class="dayButton mdl-button mdl-js-button">
+            <span class="label"></span>
+        </button>
+        <button class="dayButton mdl-button mdl-js-button">
+            <span class="label"></span>
+        </button>
+        <button class="outrightButton mdl-button mdl-js-button">
+            <span class="label">Outrights</span>
+        </button>
     </div>
-</div>
-
-<button id="sort" class="mdl-button mdl-js-button">
-    <span class="label">Sort</span>
-</button>
-
-<div class="dayFilter">
-    <button class="dayButton mdl-button mdl-js-button selected" data-day="15">
-        <span class="label"></span>
-    </button>
-    <button class="dayButton mdl-button mdl-js-button">
-        <span class="label"></span>
-    </button>
-    <button class="dayButton mdl-button mdl-js-button">
-        <span class="label"></span>
-    </button>
-    <button class="dayButton mdl-button mdl-js-button">
-        <span class="label"></span>
-    </button>
-    <button class="dayButton mdl-button mdl-js-button">
-        <span class="label"></span>
-    </button>
-    <button class="outrightButton mdl-button mdl-js-button">
-        <span class="label">Outrights</span>
-    </button>
-</div>
 
 
-<div id="page">
-    <div id="outcomes">
-        <ul class="list" id="outcomeList"></ul>
-        <ul class="pagination"></ul>
+    <div id="page">
+        <div id="outcomes">
+            <ul class="list" id="outcomeList"></ul>
+            <ul class="pagination"></ul>
+        </div>
     </div>
-</div>
 
-<div class="showMore">
-    <i class="fa fa-share icon-share-alt"></i>
-    <a class="Home__showMore___1Ff1q">Show more</a>
-</div>
-<div class="empty">
-    No events on this day
-</div>
+    <div class="showMore">
+        <i id="closeQuickBet" class="fa fa-share icon-share-alt"></i>
+        <a class="Home__showMore___1Ff1q">Show more</a>
+    </div>
+    <div class="empty">
+        No events on this day
+    </div>
 
-<div id="sportsbook-default" class="view bottom-nav-view">
-    <div name="browse" class="bottomnav-item browse">
-        Sports
+    <div id="sportsbook-default" class="view bottom-nav-view">
+        <div name="browse" id="quickbet" class="bottomnav-item browse">
+            Quickbet
+        </div>
+        <div name="searchsports" class="bottomnav-item searchsports">
+            Search
+        </div>
+        <div name="live" class="bottomnav-item live">
+            Live now
+        </div>
+        <div name="openbets" class="bottomnav-item openbets disabled">
+        Open Bets
+        </div>
+        <div name="betslip" class="bottomnav-item betslip disabled">
+            Betslip
+        </div>
     </div>
-    <div name="searchsports" class="bottomnav-item searchsports">
-        Search
-    </div>
-    <div name="live" class="bottomnav-item live">
-        Live now
-    </div>
-    <div name="openbets" class="bottomnav-item openbets disabled">
-    Open Bets
-    </div>
-    <div name="betslip" class="bottomnav-item betslip disabled">
-        Betslip
+
+    <div class="fullScreen">
+        <div id="progressbar"></div>
     </div>
 </div>

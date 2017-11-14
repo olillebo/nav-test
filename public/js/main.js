@@ -61,6 +61,7 @@ var arrayOfLeagues = [];
 var selectedLeagues = [];
 var visibleItems = 0;
 var filterOnDay;
+var progress = 0;
 
 
 var outcomeValues, outcomeList, leagueLabel;
@@ -85,157 +86,161 @@ $(document).ready(function() {
 });
 
 function createList(evt, json) {
-    outcomeValues = json.events;
+outcomeValues = json.events;
 
-    outcomeList = new List("outcomes", outcomeOptions, outcomeValues);
-    outcomeList.sort('sortDate', { order: "asc" });
-    buildFilterItems();
+outcomeList = new List("outcomes", outcomeOptions, outcomeValues);
+outcomeList.sort('sortDate', { order: "asc" });
+buildFilterItems();
 
-    showItems("All leagues");
+showItems("All leagues");
+    /*        $( "#progressbar" ).progressbar( "value", progress );
+            progress++;
+            console.log(progress)*/
+
 }
 
 function buildFilterItems(evt, json) {
-    for (var x = 0; x < outcomeList.items.length; x++) {
-        var currLeague = outcomeList.items[x]._values.league;
-        if(arrayOfLeagues.indexOf(currLeague) === -1) arrayOfLeagues.push(currLeague);
-    }
-    arrayOfLeagues.sort();
+for (var x = 0; x < outcomeList.items.length; x++) {
+    var currLeague = outcomeList.items[x]._values.league;
+    if(arrayOfLeagues.indexOf(currLeague) === -1) arrayOfLeagues.push(currLeague);
+}
+arrayOfLeagues.sort();
 
-    $(arrayOfLeagues).each(function(i, e) {
-        $("#leaguelist").append(
-            '<li class ="mdl-menu__item"> <input type="checkbox" id="' +[i]+ '" data-league="' + arrayOfLeagues[i] + '" class="league"> <label for="' +[i]+ '">' + arrayOfLeagues[i] + '</label></li>'
-        )
-    })
+$(arrayOfLeagues).each(function(i, e) {
+    $("#leaguelist").append(
+        '<li class ="mdl-menu__item"> <input type="checkbox" id="' +[i]+ '" data-league="' + arrayOfLeagues[i] + '" class="league"> <label for="' +[i]+ '">' + arrayOfLeagues[i] + '</label></li>'
+    )
+})
 
 }
 $(document).on('click', '#leaguelist input:checkbox', function(){
-        var leagueArray;
-        var ligaNavn =  $(this).data('league');
-        leagueArray = [ligaNavn];
-        leagueLabel = ligaNavn;
+    var leagueArray;
+    var ligaNavn =  $(this).data('league');
+    leagueArray = [ligaNavn];
+    leagueLabel = ligaNavn;
 
 
+    if($(this).hasClass("allSelect")) {
+        $(".allSelect").prop('checked', true);
+    }
+
+    if ($(this).is(':checked')) {
         if($(this).hasClass("allSelect")) {
-            $(".allSelect").prop('checked', true);
-        }
-
-        if ($(this).is(':checked')) {
-            if($(this).hasClass("allSelect")) {
-                $('.league').each(function(){
-                    this.checked = false;
-                });
-            } else if($(".allSelect").prop('checked')) {
-                $(".allSelect").prop('checked',false);
-                selectedLeagues = [];
-            }
-            selectedLeagues = leagueArray.concat(selectedLeagues).unique();
-
-
-        } else {
-            selectedLeagues = selectedLeagues.filter(function(item) {
-                return leagueArray.indexOf(item) === -1;
+            $('.league').each(function(){
+                this.checked = false;
             });
+        } else if($(".allSelect").prop('checked')) {
+            $(".allSelect").prop('checked',false);
+            selectedLeagues = [];
         }
-        if ($("#leaguelist input:checkbox:checked").length >= 1) {
-            $("#leagueButton .label").text($("#leaguelist input:checkbox:checked").length+" leagues selected");
-        } else if ($("#leaguelist .league:checked").length == 0) {
-            $(".allSelect").prop('checked',true);
-            $("#leagueButton .label").text($(".allSelect").next("label").text())
-        } else {
-            $("#leagueButton .label").text($("#leaguelist input:checkbox:checked").next("label").text());
-        }
+        selectedLeagues = leagueArray.concat(selectedLeagues).unique();
 
-        if ($("#leaguelist .league:checked").length == 0) {
-            leagueLabel = "All leagues"
-            $(".allSelect").prop('checked',true);
-            $("#leagueButton .label").text($(".allSelect").next("label").text())
-        }
 
-        $("#leagueButton i").text("arrow_drop_down");
-
-        filterList();
-        showItems(leagueLabel);
-    });
-
-    function  filterList() {
-        //selectedLeagues = filter på liga
-        //filterOnDay = filter på dag
-
-        outcomeList.filter(function(item) {
-
-            var timestamp = new Date(item.values().sortDate);
-
-            var inputDate = timestamp.getDate();
-
-            //TODO improve this
-            if($(".allSelect").prop('checked')) return true;
-            if ((selectedLeagues.indexOf((item.values().league)) >= 0)&& (filterOnDay == inputDate))  {
-                return true;
-            } else {
-                return false;
-            }
+    } else {
+        selectedLeagues = selectedLeagues.filter(function(item) {
+            return leagueArray.indexOf(item) === -1;
         });
-        showItems();
+    }
+    if ($("#leaguelist input:checkbox:checked").length >= 1) {
+        $("#leagueButton .label").text($("#leaguelist input:checkbox:checked").length+" leagues selected");
+    } else if ($("#leaguelist .league:checked").length == 0) {
+        $(".allSelect").prop('checked',true);
+        $("#leagueButton .label").text($(".allSelect").next("label").text())
+    } else {
+        $("#leagueButton .label").text($("#leaguelist input:checkbox:checked").next("label").text());
+    }
 
-        if (outcomeList.visibleItems.length > 0)  {
-            $(".showMore").show();
-            $(".empty").hide();
+    if ($("#leaguelist .league:checked").length == 0) {
+        leagueLabel = "All leagues"
+        $(".allSelect").prop('checked',true);
+        $("#leagueButton .label").text($(".allSelect").next("label").text())
+    }
+
+    $("#leagueButton i").text("arrow_drop_down");
+
+    filterList();
+    showItems(leagueLabel);
+});
+
+function  filterList() {
+    //selectedLeagues = filter på liga
+    //filterOnDay = filter på dag
+
+    outcomeList.filter(function(item) {
+
+        var timestamp = new Date(item.values().sortDate);
+
+        var inputDate = timestamp.getDate();
+
+        //TODO improve this
+        if($(".allSelect").prop('checked')) return true;
+        if ((selectedLeagues.indexOf((item.values().league)) >= 0)&& (filterOnDay == inputDate))  {
+            return true;
         } else {
-            $(".showMore").hide();
-            $(".empty").show();
+            return false;
         }
+    });
+    showItems();
+
+    if (outcomeList.visibleItems.length > 0)  {
+        $(".showMore").show();
+        $(".empty").hide();
+    } else {
+        $(".showMore").hide();
+        $(".empty").show();
+    }
 };
 
 $(".mdl-button").click(function(){
-    if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
-        $(this).find(".material-icons").text("arrow_drop_down");
-    } else $(this).find(".material-icons").text("arrow_drop_up");
+if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
+    $(this).find(".material-icons").text("arrow_drop_down");
+} else $(this).find(".material-icons").text("arrow_drop_up");
 });
 
 $("#sort").click(function(){
-    outcomeList.sort('date', { order: "asc" });
+outcomeList.sort('date', { order: "asc" });
 });
 
 Array.prototype.unique = function() {
-    var a = this.concat();
-    for(var i=0; i<a.length; ++i) {
-        for(var j=i+1; j<a.length; ++j) {
-            if(a[i] === a[j])
-                a.splice(j--, 1);
-        }
+var a = this.concat();
+for(var i=0; i<a.length; ++i) {
+    for(var j=i+1; j<a.length; ++j) {
+        if(a[i] === a[j])
+            a.splice(j--, 1);
     }
-    return a;
+}
+return a;
 };
 
 $(".showMore").click(function(){
-  showItems();
+showItems();
 });
 
 
 function showItems(league) {
-    if(league=="All leagues") {
-        visibleItems = 0;
-        var newShow = visibleItems+8;
+if(league=="All leagues") {
+    visibleItems = 0;
+    var newShow = visibleItems+8;
 
-        $("#outcomeList").children('.card-container').each(function () {
-            $(this).removeClass("show");
-        });
+    $("#outcomeList").children('.card-container').each(function () {
+        $(this).removeClass("show");
+    });
 
-        $("#outcomeList").children('.card-container').each(function () {
-            if(!$(this).hasClass("show") && visibleItems<newShow) {
-                $(this).addClass("show");
-                visibleItems++;
-            }
-        })
-        $(".showMore").show();
-        $(".dayFilter").hide();
-
-    } else {
-        $("#outcomeList").children('.card-container').each(function () {
+    $("#outcomeList").children('.card-container').each(function () {
+        if(!$(this).hasClass("show") && visibleItems<newShow) {
             $(this).addClass("show");
-        })
-        $(".dayFilter").show();
-    }
+            visibleItems++;
+        }
+    })
+    $(".showMore").show();
+    $(".dayFilter").hide();
+
+} else {
+    $("#outcomeList").children('.card-container').each(function () {
+        $(this).addClass("show");
+    })
+    $(".dayFilter").show();
+}
 
 }
 
@@ -243,133 +248,193 @@ function showItems(league) {
 //call from
 
 function setDayFilter(day) {
-    var element;
-    $('.dayButton').each(function(){
-        $(this).removeClass("selected");
-        if($(this).data("day") == day) element = $(this);
-    });
+var element;
+$('.dayButton').each(function(){
+    $(this).removeClass("selected");
+    if($(this).data("day") == day) element = $(this);
+});
 
-    element.addClass("selected");
-    var selectedDate = element.data("day");
-    filterOnDay = day;
-    filterList();
+element.addClass("selected");
+var selectedDate = element.data("day");
+filterOnDay = day;
+filterList();
 }
 
 
 $(".dayButton").click(function(){
-    var selectedDate = $(this).data("day");
-    setDayFilter(selectedDate);
+var selectedDate = $(this).data("day");
+setDayFilter(selectedDate);
 });
 
 
 function parseDate(input) {
-    var parts = input.match(/(\d+)/g);
-    // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
-    return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
+var parts = input.match(/(\d+)/g);
+// new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
 }
 
 $(document).mouseup(function(e)
 {
-    var sportsbutton = $(".sports");
-    var leaguebutton = $(".sports");
+var sportsbutton = $(".sports");
+var leaguebutton = $(".sports");
 
 
-    // if the target of the click isn't the container nor a descendant of the container
-    if (!sportsbutton.is(e.target) && sportsbutton.has(e.target).length === 0)
-    {
-        $("#sportsButton i").text("arrow_drop_down");
-    }
-    if (!leaguebutton.is(e.target) && leaguebutton.has(e.target).length === 0)
-    {
-        $("#leagueButton i").text("arrow_drop_down");
-    }
+// if the target of the click isn't the container nor a descendant of the container
+if (!sportsbutton.is(e.target) && sportsbutton.has(e.target).length === 0)
+{
+    $("#sportsButton i").text("arrow_drop_down");
+}
+if (!leaguebutton.is(e.target) && leaguebutton.has(e.target).length === 0)
+{
+    $("#leagueButton i").text("arrow_drop_down");
+}
 });
 
 
 
 function getJsonData() {
-    var data = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/england/premier_league.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510215931013&categoryGroup=COMBINED&displayDefault=true";
-    var data2 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/spain/laliga.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510228334897&categoryGroup=COMBINED&displayDefault=true&category=match";
-    var data3 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/germany/bundesliga.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510231152204&categoryGroup=COMBINED&displayDefault=true&category=match";
-    var data4 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/italy/serie_a.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510231127753&categoryGroup=COMBINED&displayDefault=true&category=match";
-    var inplay = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/all/all/all/all/in-play.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510245150377&categoryGroup=COMBINED&displayDefault=true";
+var data = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/england/premier_league.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510215931013&categoryGroup=COMBINED&displayDefault=true";
+var data2 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/spain/laliga.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510228334897&categoryGroup=COMBINED&displayDefault=true&category=match";
+var data3 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/germany/bundesliga.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510231152204&categoryGroup=COMBINED&displayDefault=true&category=match";
+var data4 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/italy/serie_a.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510231127753&categoryGroup=COMBINED&displayDefault=true&category=match";
+var inplay = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/all/all/all/all/in-play.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510245150377&categoryGroup=COMBINED&displayDefault=true";
 
-    var output = {events: []};
+var output = {events: []};
+//var A = $.getJSON(data);
 
-    var A = $.getJSON(data);
-    var B = $.getJSON(data2);
-    var C = $.getJSON(data3);
-    var D = $.getJSON(data4);
-    var E = $.getJSON(inplay);
+var A = $.ajax({ dataType:"json",
+    url: data,
+    success: function(data){
+/*        $( "#progressbar" ).progressbar( "value", progress );
+        progress++;
+        console.log(progress)*/
+    }
+});
+var B = $.ajax({ dataType:"json",
+    url: data2,
+    success: function(data){
+        /*        $( "#progressbar" ).progressbar( "value", progress );
+                progress++;
+                console.log(progress)*/
+    }
+});
+var C = $.ajax({ dataType:"json",
+    url: data3,
+    success: function(data){
+        /*        $( "#progressbar" ).progressbar( "value", progress );
+                progress++;
+                console.log(progress)*/
 
-    $.when(A,B,C,D,E).done(function(aResult, bResult, cResult, dResult, eResult){//when all request are successful
-        var dataLists = [aResult[0],bResult[0],cResult[0],dResult[0],eResult[0]];
+    }
+});
+var D = $.ajax({ dataType:"json",
+    url: data4,
+    success: function(data){
+        /*        $( "#progressbar" ).progressbar( "value", progress );
+                progress++;
+                console.log(progress)*/
 
-        for(var x = 0; x < dataLists.length; x++) {
-            for(var i = 0; i < dataLists[x].events.length; i++) {
-                var item = dataLists[x].events[i];
-                if(item.event.sport=="FOOTBALL") {
-                    var odds1, oddsX, odds2, live, league, homeScore, awayScore;
-                    if(item.betOffers != null && item.betOffers.length > 0 ){
-                        for(var j = 0; j < item.betOffers.length; j++) {
-                            var offer = item.betOffers[j];
-                            if(offer.betOfferType.name == "Match") {
-                                odds1 = offer.outcomes[0].odds;
-                                oddsX = offer.outcomes[1].odds;
-                                odds2 = offer.outcomes[2].odds;
-                            }
+    }
+});
+var E = $.ajax({ dataType:"json",
+    url: inplay,
+    success: function(data){
+        /*        $( "#progressbar" ).progressbar( "value", progress );
+                progress++;
+                console.log(progress)*/
+
+    }
+});
+//var B = $.getJSON(data2);
+//var C = $.getJSON(data3);
+//var D = $.getJSON(data4);
+//var E = $.getJSON(inplay);
+
+$.when(A,B,C,D,E).done(function(aResult, bResult, cResult, dResult, eResult){//when all request are successful
+    var dataLists = [aResult[0],bResult[0],cResult[0],dResult[0],eResult[0]];
+
+    for(var x = 0; x < dataLists.length; x++) {
+        for(var i = 0; i < dataLists[x].events.length; i++) {
+            var item = dataLists[x].events[i];
+            if(item.event.sport=="FOOTBALL") {
+                var odds1, oddsX, odds2, live, league, homeScore, awayScore;
+                if(item.betOffers != null && item.betOffers.length > 0 ){
+                    for(var j = 0; j < item.betOffers.length; j++) {
+                        var offer = item.betOffers[j];
+                        if(offer.betOfferType.name == "Match") {
+                            odds1 = offer.outcomes[0].odds;
+                            oddsX = offer.outcomes[1].odds;
+                            odds2 = offer.outcomes[2].odds;
                         }
                     }
-
-                    var date = new Date(item.event.start);
-                    var currentDate = new Date();
-                    live = (date <= currentDate);
-                    var time = date.getUTCDate() +"/"+(date.getUTCMonth() + 1)+" - "+date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
-                    var sortDate = date.getTime();
-                    if(live) {
-                        homeScore = item.liveData.score.home;
-                        awayScore = item.liveData.score.away;
-                        time = (item.liveData.matchClock.minute<10?'0':'') + item.liveData.matchClock.minute + ":" + (item.liveData.matchClock.second<10?'0':'') + item.liveData.matchClock.second;
-
-                    }
-                    switch (item.event.group) {
-                        case "Premier League":
-                            league = 1;
-                            break;
-                        case "LaLiga":
-                            league = 2;
-                            break;
-                        case "Bundesliga":
-                            league = 3;
-                            break;
-                        case "Serie A":
-                            league = 4;
-                            break;
-                        default:
-                            league = 5;
-                    }
-
-                    output.events.push({
-                        home : item.event.homeName,
-                        away : item.event.awayName,
-                        sport : (item.event.sport).charAt(0).toUpperCase() + (item.event.sport).slice(1).toLowerCase(),
-                        league : item.event.group,
-                        live : live,
-                        time : time,
-                        odds1Name: item.event.homeName,
-                        odds2Name : item.event.awayName,
-                        odds1: odds1.toString()[0]+"."+odds1.toString()[1]+odds1.toString()[2],
-                        oddsX: oddsX.toString()[0]+"."+oddsX.toString()[1]+oddsX.toString()[2],
-                        odds2: odds2.toString()[0]+"."+odds2.toString()[1]+odds2.toString()[2],
-                        leagueID: league,
-                        homeScore: homeScore,
-                        awayScore: awayScore,
-                        date: date,
-                        sortDate: sortDate
-                    });
                 }
+
+                var date = new Date(item.event.start);
+                var currentDate = new Date();
+                live = (date <= currentDate);
+                var time = date.getUTCDate() +"/"+(date.getUTCMonth() + 1)+" - "+date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
+                var sortDate = date.getTime();
+                if(live) {
+                    homeScore = item.liveData.score.home;
+                    awayScore = item.liveData.score.away;
+                    time = (item.liveData.matchClock.minute<10?'0':'') + item.liveData.matchClock.minute + ":" + (item.liveData.matchClock.second<10?'0':'') + item.liveData.matchClock.second;
+
+                }
+                switch (item.event.group) {
+                    case "Premier League":
+                        league = 1;
+                        break;
+                    case "LaLiga":
+                        league = 2;
+                        break;
+                    case "Bundesliga":
+                        league = 3;
+                        break;
+                    case "Serie A":
+                        league = 4;
+                        break;
+                    default:
+                        league = 5;
+                }
+
+                output.events.push({
+                    home : item.event.homeName,
+                    away : item.event.awayName,
+                    sport : (item.event.sport).charAt(0).toUpperCase() + (item.event.sport).slice(1).toLowerCase(),
+                    league : item.event.group,
+                    live : live,
+                    time : time,
+                    odds1Name: item.event.homeName,
+                    odds2Name : item.event.awayName,
+                    odds1: odds1.toString()[0]+"."+odds1.toString()[1]+odds1.toString()[2],
+                    oddsX: oddsX.toString()[0]+"."+oddsX.toString()[1]+oddsX.toString()[2],
+                    odds2: odds2.toString()[0]+"."+odds2.toString()[1]+odds2.toString()[2],
+                    leagueID: league,
+                    homeScore: homeScore,
+                    awayScore: awayScore,
+                    date: date,
+                    sortDate: sortDate
+                });
             }
         }
-        $(document).trigger('createList', output);
+        /*        $( "#progressbar" ).progressbar( "value", progress );
+                progress++;
+                console.log(progress)*/
+
+    }
+    $(document).trigger('createList', output);
+});
+}
+
+$( function() {
+    $( "#progressbar" ).progressbar({
+        value: 0,
+        max: 7
+
     });
 }
+);
+
+$("#quickbet").click(function(){
+    // open quickbet
+})

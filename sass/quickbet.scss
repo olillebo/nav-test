@@ -1,0 +1,617 @@
+body {
+  background-color: rgb(240, 231, 221) !important;
+  font-family: arvo !important;
+}
+#quickbet {
+
+  #page {
+    margin: 8px;
+  }
+  h2 {
+    font-family:sans-serif;
+  }
+  .list {
+    padding:0;
+    margin: 0;
+    list-style: none;
+    overflow: visible;
+    background: #fff;
+    -webkit-box-shadow: 1px 1px 6px rgba(0,0,0,.2);
+    box-shadow: 1px 1px 6px rgba(0,0,0,.2);
+    margin-bottom: 12px;
+  }
+
+  .list > li {
+    border-bottom: solid 1px lightgrey;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+
+    .listContainer {
+      width: 100%;
+    }
+  }
+
+
+  .editIcon {
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    position: absolute;
+    right: 20px;
+    padding: 10px;
+  }
+
+  .icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title {
+    display: inline;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(0,0,0,.87);
+  }
+  .list {
+    .iconA {
+      display: none !important;
+      $color--green: #7ac142;
+      $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+      z-index: 1;
+
+      .checkmark__circle {
+        stroke-dasharray: 166;
+        stroke-dashoffset: 166;
+        stroke-width: 2;
+        stroke-miterlimit: 10;
+        stroke: $color--green;
+        fill: none;
+        animation: stroke .6s $curve forwards;
+      }
+
+      .checkmark {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: block;
+        stroke-width: 2;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        margin: 10% auto;
+        box-shadow: inset 0px 0px 0px $color--green;
+        animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+      }
+
+      .checkmark__check {
+        transform-origin: 50% 50%;
+        stroke-dasharray: 48;
+        stroke-dashoffset: 48;
+        animation: stroke .3s $curve .8s forwards;
+      }
+
+      @keyframes stroke {
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @keyframes scale {
+        0%, 100% {
+          transform: none;
+        }
+        50% {
+          transform: scale3d(1.1, 1.1, 1);
+        }
+      }
+
+      @keyframes fill {
+        100% {
+          box-shadow: inset 0px 0px 0px 30px $color--green;
+        }
+      }
+    }
+    &.highlighted {
+      border: 2px solid lightgreen;
+      .iconA {
+        display: initial !important;
+      }
+
+      li {
+        border-bottom: none;
+      }
+    }
+
+  }
+  .subtitle {
+    font-size: 12px;
+    color: rgba(0,0,0,.38);
+  }
+
+
+  input {
+    width: 100%;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    height: 50px;
+    padding-left: 16px;
+    margin-bottom: 12px !important;
+    color: #555;
+    font-size: 16px;
+    line-height: 20px;
+    vertical-align: middle;
+    background-color: #fffdfb;
+    border: 1px solid #e1e1e1;
+    border-radius: 2px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 15px 20px -20px rgba(0,0,0,.3);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 15px 20px -20px rgba(0,0,0,.3);
+    -webkit-transition: border .2s linear,-webkit-box-shadow .2s linear;
+    -o-transition: border linear .2s,box-shadow linear .2s;
+    transition: border .2s linear,box-shadow .2s linear,-webkit-box-shadow .2s linear;
+  }
+  input:focus {
+    outline:none;
+    border-color:#aaa;
+  }
+
+  #outcomes {
+    display: none;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .visible {
+    display: inline;
+  }
+
+  .search.move {
+    display: none;
+    opacity: 0;
+    transition: visibility 0s 0.5s, opacity 2s linear;
+  }
+
+  .hide {
+    -webkit-transition-delay: 2s; /* Safari */
+    transition-delay: 2s;
+    display: none;
+    opacity: 0;
+    transition: visibility 0s 0.5s, opacity 2s linear;
+  }
+
+  .selected {
+    li {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  #placeBet, button {
+    border-radius: 12px;
+    background: linear-gradient(180deg,#e45c3c 0,#df5737 49%,#cf4727 50%,#e65e3c);
+    box-shadow: 0 1px #ad4426, inset 0 1px #f29880;
+    display: inline-block;
+    width: 100%;
+    border: 0;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: Arvo,serif;
+    font-size: 20px;
+    color: #fff;
+    padding: 12px 0;
+    margin-top: 16px !important;
+    cursor: pointer;
+  }
+  .stakeDisplay {
+    margin-top: 76px;
+    &.up {
+      margin-top: 0;
+    }
+  }
+
+  .payout {
+    position: relative;
+    text-align: right;
+    padding-top: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .label {
+    text-align: left;
+    padding-right: 5px;
+    flex: 0 1 auto;
+    line-height: 24px;
+    color: #615452;
+    font-family: Arvo,serif;
+    font-weight: 700;
+  }
+  .amount {
+    color: #615452;
+    line-height: 24px;
+    font-size: 20px;
+    font-weight: 700;
+    flex: 0 0 auto;
+  }
+
+  .pageTitle {
+    font-weight: 700;
+    font-family: Arvo,serif;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+    i {
+      font-size: 14px;
+      font-family: FontAwesome;
+      font-weight: 400;
+      font-style: normal;
+      text-decoration: inherit;
+      -webkit-font-smoothing: antialiased;
+      display: inline;
+      width: auto;
+      height: auto;
+      line-height: normal;
+      vertical-align: baseline;
+      background-image: none;
+      background-position: 0 0;
+      background-repeat: repeat;
+      float: right;
+      margin-top: 8px;
+
+      .icon-share-alt:before {
+        content: "\f064";
+        text-decoration: inherit;
+        display: inline-block;
+        speak: none;
+      }
+    }
+  }
+
+  .success {
+    margin: 8px;
+    background: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+    ul {
+      background: transparent;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+    li {
+      border-bottom: none;
+      padding: 0;
+    }
+  }
+
+
+
+  .betPlaced {
+    color: green;
+  }
+
+
+
+  .hotspot {
+    position: relative;
+    cursor: pointer;
+    top: 60px;
+    left: 21px;
+    color: #fff;
+    -webkit-animation: none 3s linear infinite;
+    -moz-animation: none 3s linear infinite;
+    -ms-animation: none 3s linear infinite;
+    -o-animation: none 3s linear infinite;
+    animation: none 3s linear infinite;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: hotspot-vertical-top;
+    -moz-animation-name: hotspot-vertical-top;
+    -ms-animation-name: hotspot-vertical-top;
+    -o-animation-name: hotspot-vertical-top;
+    animation-name: hotspot-vertical-top;
+    animation-iteration-count: 1;
+    width: 278px;
+  }
+
+  .hotspot-inner {
+    position: absolute;
+    bottom: 0;
+    left: -20px;
+    height: 57px;
+    width: 278px;
+    margin-bottom: 10px;
+    background: #4385f5;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    background: #f5b400;
+  }
+
+  .hotspot-inner:before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: -10px;
+    margin-left: -5px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 10px solid #f5b400;
+    border-top-color: #f5b400;
+  }
+
+  .icn {
+    display: inline-block;
+    height: 25px;
+    padding: 4px 10px;
+    font-size: 16px;
+  }
+
+  @-webkit-keyframes hotspot-vertical-top {
+    0%,
+    30%,
+    40%,
+    53.3%,
+    66.667%,
+    100% {
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      -ms-transform: translate3d(0, 0, 0);
+      -o-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      -webkit-animation-timing-function: ease-out;
+      -moz-animation-timing-function: ease-out;
+      -ms-animation-timing-function: ease-out;
+      -o-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+    35% {
+      -webkit-transform: translate3d(0, 25px, 0);
+      -moz-transform: translate3d(0, 25px, 0);
+      -ms-transform: translate3d(0, 25px, 0);
+      -o-transform: translate3d(0, 25px, 0);
+      transform: translate3d(0, 25px, 0);
+      -webkit-animation-timing-function: ease-in;
+      -moz-animation-timing-function: ease-in;
+      -ms-animation-timing-function: ease-in;
+      -o-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+    46.667% {
+      -webkit-transform: translate3d(0, 12.5px, 0);
+      -moz-transform: translate3d(0, 12.5px, 0);
+      -ms-transform: translate3d(0, 12.5px, 0);
+      -o-transform: translate3d(0, 12.5px, 0);
+      transform: translate3d(0, 12.5px, 0);
+      -webkit-animation-timing-function: ease-in;
+      -moz-animation-timing-function: ease-in;
+      -ms-animation-timing-function: ease-in;
+      -o-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+    60% {
+      -webkit-transform: translate3d(0, 6.25px, 0);
+      -moz-transform: translate3d(0, 6.25px, 0);
+      -ms-transform: translate3d(0, 6.25px, 0);
+      -o-transform: translate3d(0, 6.25px, 0);
+      transform: translate3d(0, 6.25px, 0);
+      -webkit-animation-timing-function: ease-in;
+      -moz-animation-timing-function: ease-in;
+      -ms-animation-timing-function: ease-in;
+      -o-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+  }
+
+
+
+  @-moz-keyframes hotspot-vertical-top {
+    0%,
+    30%,
+    40%,
+    53.3%,
+    66.667%,
+    100% {
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      -ms-transform: translate3d(0, 0, 0);
+      -o-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      -webkit-animation-timing-function: ease-out;
+      -moz-animation-timing-function: ease-out;
+      -ms-animation-timing-function: ease-out;
+      -o-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+    35% {
+      -webkit-transform: translate3d(0, 25px, 0);
+      -moz-transform: translate3d(0, 25px, 0);
+      -ms-transform: translate3d(0, 25px, 0);
+      -o-transform: translate3d(0, 25px, 0);
+      transform: translate3d(0, 25px, 0);
+      -webkit-animation-timing-function: ease-in;
+      -moz-animation-timing-function: ease-in;
+      -ms-animation-timing-function: ease-in;
+      -o-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+    46.667% {
+      -webkit-transform: translate3d(0, 12.5px, 0);
+      -moz-transform: translate3d(0, 12.5px, 0);
+      -ms-transform: translate3d(0, 12.5px, 0);
+      -o-transform: translate3d(0, 12.5px, 0);
+      transform: translate3d(0, 12.5px, 0);
+      -webkit-animation-timing-function: ease-in;
+      -moz-animation-timing-function: ease-in;
+      -ms-animation-timing-function: ease-in;
+      -o-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+    60% {
+      -webkit-transform: translate3d(0, 6.25px, 0);
+      -moz-transform: translate3d(0, 6.25px, 0);
+      -ms-transform: translate3d(0, 6.25px, 0);
+      -o-transform: translate3d(0, 6.25px, 0);
+      transform: translate3d(0, 6.25px, 0);
+      -webkit-animation-timing-function: ease-in;
+      -moz-animation-timing-function: ease-in;
+      -ms-animation-timing-function: ease-in;
+      -o-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+  }
+
+  @-ms-keyframes hotspot-vertical-top {
+    0%,
+    30%,
+    40%,
+    53.3%,
+    66.667%,
+    100% {
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      -ms-transform: translate3d(0, 0, 0);
+      -o-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      -webkit-animation-timing-function: ease-out;
+      -moz-animation-timing-function: ease-out;
+      -ms-animation-timing-function: ease-out;
+      -o-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+    35% {
+      -webkit-transform: translate3d(0, 25px, 0);
+      -moz-transform: translate3d(0, 25px, 0);
+      -ms-transform: translate3d(0, 25px, 0);
+      -o-transform: translate3d(0, 25px, 0);
+      transform: translate3d(0, 25px, 0);
+      -webkit-animation-timing-function: ease-in;
+      -moz-animation-timing-function: ease-in;
+      -ms-animation-timing-function: ease-in;
+      -o-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+    46.667% {
+      -webkit-transform: translate3d(0, 12.5px, 0);
+      -moz-transform: translate3d(0, 12.5px, 0);
+      -ms-transform: translate3d(0, 12.5px, 0);
+      -o-transform: translate3d(0, 12.5px, 0);
+      transform: translate3d(0, 12.5px, 0);
+      -webkit-animation-timing-function: ease-in;
+      -moz-animation-timing-function: ease-in;
+      -ms-animation-timing-function: ease-in;
+      -o-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+    60% {
+      -webkit-transform: translate3d(0, 6.25px, 0);
+      -moz-transform: translate3d(0, 6.25px, 0);
+      -ms-transform: translate3d(0, 6.25px, 0);
+      -o-transform: translate3d(0, 6.25px, 0);
+      transform: translate3d(0, 6.25px, 0);
+      -webkit-animation-timing-function: ease-in;
+      -moz-animation-timing-function: ease-in;
+      -ms-animation-timing-function: ease-in;
+      -o-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+  }
+
+  @keyframes hotspot-vertical-top {
+    0%,
+    30%,
+    40%,
+    53.3%,
+    66.667%,
+    100% {
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      -ms-transform: translate3d(0, 0, 0);
+      -o-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      -webkit-animation-timing-function: ease-out;
+      -moz-animation-timing-function: ease-out;
+      -ms-animation-timing-function: ease-out;
+      -o-animation-timing-function: ease-out;
+      animation-timing-function: ease-out;
+    }
+    35% {
+      -webkit-transform: translate3d(0, 25px, 0);
+      -moz-transform: translate3d(0, 25px, 0);
+      -ms-transform: translate3d(0, 25px, 0);
+      -o-transform: translate3d(0, 25px, 0);
+      transform: translate3d(0, 25px, 0);
+      -webkit-animation-timing-function: ease-in;
+      -moz-animation-timing-function: ease-in;
+      -ms-animation-timing-function: ease-in;
+      -o-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+    46.667% {
+      -webkit-transform: translate3d(0, 12.5px, 0);
+      -moz-transform: translate3d(0, 12.5px, 0);
+      -ms-transform: translate3d(0, 12.5px, 0);
+      -o-transform: translate3d(0, 12.5px, 0);
+      transform: translate3d(0, 12.5px, 0);
+      -webkit-animation-timing-function: ease-in;
+      -moz-animation-timing-function: ease-in;
+      -ms-animation-timing-function: ease-in;
+      -o-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+    60% {
+      -webkit-transform: translate3d(0, 6.25px, 0);
+      -moz-transform: translate3d(0, 6.25px, 0);
+      -ms-transform: translate3d(0, 6.25px, 0);
+      -o-transform: translate3d(0, 6.25px, 0);
+      transform: translate3d(0, 6.25px, 0);
+      -webkit-animation-timing-function: ease-in;
+      -moz-animation-timing-function: ease-in;
+      -ms-animation-timing-function: ease-in;
+      -o-animation-timing-function: ease-in;
+      animation-timing-function: ease-in;
+    }
+  }
+
+  .ripple{
+    overflow:hidden;
+  }
+
+  .ripple-effect{
+    position: absolute;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background: white;
+
+
+    animation: ripple-animation 2s;
+  }
+
+
+  @keyframes ripple-animation {
+    from {
+      transform: scale(1);
+      opacity: 0.4;
+    }
+    to {
+      transform: scale(100);
+      opacity: 0;
+    }
+  }
+}
