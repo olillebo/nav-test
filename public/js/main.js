@@ -436,5 +436,5 @@ $( function() {
 );
 
 $("#quickbet").click(function(){
-    // open quickbet
+    location.replace('/quickbet')
 })

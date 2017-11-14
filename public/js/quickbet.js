@@ -273,6 +273,6 @@ $("#placeNew").click(function(){
     location.reload();
 });
 
-$("#closeQuickBet").click(function(){
-    //open /
+$(".closeQuickbet").click(function(){
+    location.replace('/')
 });

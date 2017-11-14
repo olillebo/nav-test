@@ -297,6 +297,7 @@ body {
 		overflow: visible;
 		display: table;
 		table-layout: fixed;
+		cursor: pointer;
 
 		.bottomnav-item {
 			display: table-cell;
@@ -316,7 +317,13 @@ body {
 			background-size: 20px 20px;
 
 			&.browse {
-				background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/browse@2x.png?etag=3c88e738a6001b0a741ea76e8b52cf6e8ab456b7);
+				display: flex;
+				flex-direction: column;
+				padding-top: 5px;
+
+				.material-icons {
+					padding-bottom: 3px;
+				}
 			}
 
 			&.searchsports {
