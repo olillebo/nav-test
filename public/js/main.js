@@ -390,7 +390,7 @@ $.when(A,B,C,D,E, F).done(function(aResult, bResult, cResult, dResult, eResult, 
                 }
 
                 if(item.event.sport == "FOOTBALL") {
-                    if(jQuery.inArray(item.event.ID, output) == -1) {
+                    if(jQuery.inArray({id : item.event.ID}, output) == -1) {
                         output.events.push({
                             id: item.event.ID,
                             home : item.event.homeName,
