@@ -88,6 +88,7 @@ $(document).ready(function() {
 function createList(evt, json) {
 outcomeValues = json.events;
 
+
 outcomeList = new List("outcomes", outcomeOptions, outcomeValues);
 outcomeList.sort('sortDate', { order: "asc" });
 buildFilterItems();
@@ -99,20 +100,46 @@ showItems("All leagues");
 
 }
 
+function buildFilterItems2(evt, json) {
+    for (var x = 0; x < outcomeList.items.length; x++) {
+        var currLeague = outcomeList.items[x]._values.league;
+        if(arrayOfLeagues.indexOf(currLeague) === -1) arrayOfLeagues.push(currLeague);
+    }
+    arrayOfLeagues.sort();
+
+    $(arrayOfLeagues).each(function(i, e) {
+        $("#leaguelist").append(
+            '<li class ="mdl-menu__item"> <input type="checkbox" id="' +[i]+ '" data-league="' + arrayOfLeagues[i] + '" class="league"> <label for="' +[i]+ '">' + arrayOfLeagues[i] + '</label></li>'
+        )
+    })
+
+}
+
 function buildFilterItems(evt, json) {
-for (var x = 0; x < outcomeList.items.length; x++) {
-    var currLeague = outcomeList.items[x]._values.league;
-    if(arrayOfLeagues.indexOf(currLeague) === -1) arrayOfLeagues.push(currLeague);
-}
-arrayOfLeagues.sort();
 
-$(arrayOfLeagues).each(function(i, e) {
-    $("#leaguelist").append(
-        '<li class ="mdl-menu__item"> <input type="checkbox" id="' +[i]+ '" data-league="' + arrayOfLeagues[i] + '" class="league"> <label for="' +[i]+ '">' + arrayOfLeagues[i] + '</label></li>'
-    )
-})
+    var countryLeagues = _.chain(outcomeValues).groupBy('country').map(function(value, key) {
+        return {
+            country: key,
+            leagues: _.uniq(_.pluck(value, 'league')).sort()
+        }
+    }).value();
+    var sortedArray = _.sortBy(countryLeagues, function(o) { return o.country; })
+
+    var id = 0;
+    $(sortedArray).each(function(i, e) {
+        $("#leaguelist").append(
+            '<div>'+sortedArray[i].country+'</div>'
+        )
+        $(sortedArray[i].leagues).each(function(m, e) {
+            $("#leaguelist").append(
+                '<li class ="mdl-menu__item"> <input type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].leagues[m] + '</label></li>'
+            )
+            id++;
+        });
+    })
 
 }
+
 $(document).on('click', '#leaguelist input:checkbox', function(){
     var leagueArray;
     var ligaNavn =  $(this).data('league');
@@ -354,13 +381,11 @@ var F = $.ajax({ dataType:"json",
 
     }
 });
-//var B = $.getJSON(data2);
-//var C = $.getJSON(data3);
-//var D = $.getJSON(data4);
-//var E = $.getJSON(inplay);
 
-$.when(A,B,C,D,E, F).done(function(aResult, bResult, cResult, dResult, eResult, fResult){//when all request are successful
+    $.when(A,B,C,D,E,F).done(function(aResult, bResult, cResult, dResult, eResult, fResult){//when all request are successful
     var dataLists = [aResult[0],bResult[0],cResult[0],dResult[0],eResult[0],fResult[0]];
+    //$.when(E,F).done(function(eResult,fResult){//when all request are successful
+    //    var dataLists = [eResult[0],fResult[0]];
 
     for(var x = 0; x < dataLists.length; x++) {
         for(var i = 0; i < dataLists[x].events.length; i++) {
@@ -378,6 +403,7 @@ $.when(A,B,C,D,E, F).done(function(aResult, bResult, cResult, dResult, eResult, 
                     }
                 }
 
+                var odds1, oddsX, odds2;
                 var date = new Date(item.event.start);
                 var currentDate = new Date();
                 live = (date <= currentDate);
@@ -388,22 +414,36 @@ $.when(A,B,C,D,E, F).done(function(aResult, bResult, cResult, dResult, eResult, 
                     awayScore = item.liveData.score.away;
                     time = (item.liveData.matchClock.minute<10?'0':'') + item.liveData.matchClock.minute + ":" + (item.liveData.matchClock.second<10?'0':'') + item.liveData.matchClock.second;
                 }
+                if(odds1) {
+                    odds1 = odds1.toString()[0]+"."+odds1.toString()[1]+odds1.toString()[2];
+                }
+                if(oddsX) {
+                    oddsX = oddsX.toString()[0]+"."+oddsX.toString()[1]+oddsX.toString()[2];
+                }
+                if(odds2) {
+                    odds2 = odds2.toString()[0]+"."+odds2.toString()[1]+odds2.toString()[2];
+                }
+
+                var alreadyAdded = $.grep(output.events, function(n) {
+                    return(n.id === item.event.id);
+                });
 
                 if(item.event.sport == "FOOTBALL") {
-                    if(jQuery.inArray({id : item.event.ID}, output) == -1) {
+                    if (!alreadyAdded.length) {
                         output.events.push({
-                            id: item.event.ID,
+                            id: item.event.id,
                             home : item.event.homeName,
                             away : item.event.awayName,
                             sport : (item.event.sport).charAt(0).toUpperCase() + (item.event.sport).slice(1).toLowerCase(),
                             league : item.event.group,
+                            country: item.event.path[1].name,
                             live : live,
                             time : time,
                             odds1Name: item.event.homeName,
                             odds2Name : item.event.awayName,
-                            odds1: odds1.toString()[0]+"."+odds1.toString()[1]+odds1.toString()[2],
-                            oddsX: oddsX.toString()[0]+"."+oddsX.toString()[1]+oddsX.toString()[2],
-                            odds2: odds2.toString()[0]+"."+odds2.toString()[1]+odds2.toString()[2],
+                            odds1: odds1,
+                            oddsX: oddsX,
+                            odds2: odds2,
                             homeScore: homeScore,
                             awayScore: awayScore,
                             date: date,
