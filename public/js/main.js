@@ -298,7 +298,7 @@ var data2 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/footba
 var data3 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/germany/bundesliga.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510231152204&categoryGroup=COMBINED&displayDefault=true&category=match";
 var data4 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/italy/serie_a.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510231127753&categoryGroup=COMBINED&displayDefault=true&category=match";
 var inplay = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/all/all/all/all/in-play.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510245150377&categoryGroup=COMBINED&displayDefault=true";
-
+var all = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/all/all/all/all.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1511963366090&categoryGroup=COMBINED&displayDefault=true";
 var output = {events: []};
 //var A = $.getJSON(data);
 
@@ -345,13 +345,22 @@ var E = $.ajax({ dataType:"json",
 
     }
 });
+var F = $.ajax({ dataType:"json",
+    url: all,
+    success: function(data){
+        /*        $( "#progressbar" ).progressbar( "value", progress );
+                progress++;
+                console.log(progress)*/
+
+    }
+});
 //var B = $.getJSON(data2);
 //var C = $.getJSON(data3);
 //var D = $.getJSON(data4);
 //var E = $.getJSON(inplay);
 
-$.when(A,B,C,D,E).done(function(aResult, bResult, cResult, dResult, eResult){//when all request are successful
-    var dataLists = [aResult[0],bResult[0],cResult[0],dResult[0],eResult[0]];
+$.when(A,B,C,D,E, F).done(function(aResult, bResult, cResult, dResult, eResult, fResult){//when all request are successful
+    var dataLists = [aResult[0],bResult[0],cResult[0],dResult[0],eResult[0],fResult[0]];
 
     for(var x = 0; x < dataLists.length; x++) {
         for(var i = 0; i < dataLists[x].events.length; i++) {
