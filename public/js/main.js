@@ -1,5 +1,5 @@
 var outcomeOptions = {
-    valueNames: ["id", "home", "away", "sport", "league", { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate"],
+    valueNames: ["id", "home", "away", "sport", "league", "leagueName", { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate"],
     item: '<div class="card-container id">\n' +
     '    <div class="card-wrap live">\n' +
     '        <header class="cardheader">\n' +
@@ -8,7 +8,7 @@ var outcomeOptions = {
     '            <div class="cardtitle">\n' +
     '                <div class="path">\n' +
     '                    <span class="sport"></span>\n' +
-    '                    <span class="league"></span>\n' +
+    '                    <span class="leagueName"></span>\n' +
     '                </div>\n' +
     '            </div>\n' +
     '        </header>\n' +
@@ -53,6 +53,14 @@ var outcomeOptions = {
     //pagination: true
 };
 
+/*var filterOptions = {
+    valueNames: [{ name: 'id', attr: 'id' },"leagueName",{ name: 'league', attr: 'league'}],
+    item: '<li class ="mdl-menu__item">\n' +
+    '       <input type="checkbox" class="league id league">\n' +
+    '       <label for="id" class="leagueName"></label>\n' +
+    '      </li>'
+};*/
+
 //new
 var arrayOfLeagues = [];
 
@@ -64,10 +72,12 @@ var filterOnDay;
 var progress = 0;
 
 
-var outcomeValues, outcomeList, leagueLabel;
+var outcomeValues, outcomeList, leagueLabel, leagueList;
 
 $(document).ready(function() {
     $(document).bind('createList', createList);
+    //leagueList = new List("filters", filterOptions);
+
 
     var todaysDay = new Date().getDate();
     filterOnDay = todaysDay;
@@ -86,33 +96,11 @@ $(document).ready(function() {
 });
 
 function createList(evt, json) {
-outcomeValues = json.events;
-
-
-outcomeList = new List("outcomes", outcomeOptions, outcomeValues);
-outcomeList.sort('sortDate', { order: "asc" });
-buildFilterItems();
-
-showItems("All leagues");
-    /*        $( "#progressbar" ).progressbar( "value", progress );
-            progress++;
-            console.log(progress)*/
-
-}
-
-function buildFilterItems2(evt, json) {
-    for (var x = 0; x < outcomeList.items.length; x++) {
-        var currLeague = outcomeList.items[x]._values.league;
-        if(arrayOfLeagues.indexOf(currLeague) === -1) arrayOfLeagues.push(currLeague);
-    }
-    arrayOfLeagues.sort();
-
-    $(arrayOfLeagues).each(function(i, e) {
-        $("#leaguelist").append(
-            '<li class ="mdl-menu__item"> <input type="checkbox" id="' +[i]+ '" data-league="' + arrayOfLeagues[i] + '" class="league"> <label for="' +[i]+ '">' + arrayOfLeagues[i] + '</label></li>'
-        )
-    })
-
+    outcomeValues = json.events;
+    outcomeList = new List("outcomes", outcomeOptions, outcomeValues);
+    outcomeList.sort('sortDate', { order: "asc" });
+    buildFilterItems();
+    showItems("All leagues");
 }
 
 function buildFilterItems(evt, json) {
@@ -120,7 +108,8 @@ function buildFilterItems(evt, json) {
     var countryLeagues = _.chain(outcomeValues).groupBy('country').map(function(value, key) {
         return {
             country: key,
-            leagues: _.uniq(_.pluck(value, 'league')).sort()
+            leagues: _.uniq(_.pluck(value, 'league')),
+            name: _.uniq(_.pluck(value, 'leagueName'))
         }
     }).value();
     var sortedArray = _.sortBy(countryLeagues, function(o) { return o.country; })
@@ -128,21 +117,28 @@ function buildFilterItems(evt, json) {
     var id = 0;
     $(sortedArray).each(function(i, e) {
         $("#leaguelist").append(
-            '<div>'+sortedArray[i].country+'</div>'
+            '<div class="countryWrapper" leagueCollection=leagueCollection'+[i]+'><div>'+sortedArray[i].country+'</div><i class="material-icons">arrow_drop_down</i></div><div class="leagueCollection" id=leagueCollection'+[i]+'></div>'
         )
         $(sortedArray[i].leagues).each(function(m, e) {
-            $("#leaguelist").append(
-                '<li class ="mdl-menu__item"> <input type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].leagues[m] + '</label></li>'
+            $("#leagueCollection"+[i]).append(
+                '<li class ="mdl-menu__item"> <input type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].name[m] + '</label></li>'
             )
+            //leagueList.add({ leagueName: sortedArray[i].name[m], id: id, league: sortedArray[i].leagues[m]});
             id++;
         });
     })
 
 }
 
+$(document).on('click', ".countryWrapper", function(){
+    $( "#"+$(this).attr('leaguecollection') ).slideToggle( "slow", function() {
+        // Animation complete.
+    });
+});
+
 $(document).on('click', '#leaguelist input:checkbox', function(){
     var leagueArray;
-    var ligaNavn =  $(this).data('league');
+    var ligaNavn =  parseInt($(this).data('league'));
     leagueArray = [ligaNavn];
     leagueLabel = ligaNavn;
 
@@ -435,7 +431,8 @@ var F = $.ajax({ dataType:"json",
                             home : item.event.homeName,
                             away : item.event.awayName,
                             sport : (item.event.sport).charAt(0).toUpperCase() + (item.event.sport).slice(1).toLowerCase(),
-                            league : item.event.group,
+                            leagueName : item.event.group,
+                            league : item.event.groupId,
                             country: item.event.path[1].name,
                             live : live,
                             time : time,

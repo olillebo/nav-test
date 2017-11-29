@@ -661,6 +661,37 @@ body {
 		button {
 			text-transform: none;
 		}
+
+		.mdl-menu__item {
+			padding: 0 30px;
+		}
+
+		.mdl-menu__container {
+			left: 0 !important;
+			width: 100% !important;
+		}
+		.mdl-menu--bottom-left {
+			width: 100% !important;
+		}
+
+		.leagueCollection {
+			display: none;
+		}
+
+
+
+		.countryWrapper {
+			display: flex;
+			justify-content: space-between;
+			height: 48px;
+			line-height: 48px;
+			padding: 0 16px;
+			cursor: pointer;
+			align-content: center;
+		}
+
+
+
 	}
 
 	#sort {
