@@ -43,6 +43,7 @@
     <!-- Left aligned menu below button -->
     <div class="navigation">
 
+
         <div class="sports">
             <button id="sportsButton" class="mdl-button mdl-js-button">
                 <span class="label">Football</span>
@@ -77,10 +78,20 @@
             </div>-->
 
             <ul class="list mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" id="leaguelist" for="leagueButton">
-                <li class ="mdl-menu__item">
+
+<!--                <li class ="mdl-menu__item">
                     <input type="checkbox" id="all" class="allSelect" checked="true" data-league="All leagues">
                     <label for="all">All leagues</label>
+                </li>-->
+
+                <li class ="mdl-menu__item">
+                    <div class ="checkboxStyle">
+                        <input type="checkbox" id="all" data-league="All leagues" class="allSelect" checked="true">
+                        <label for="all">All leagues</label>
+                    </div>
                 </li>
+
+
             </ul>
         </div>
     </div>

@@ -85,15 +85,21 @@ $(document).ready(function() {
     $('.dayButton').each(function(){
         $(this).data('day',todaysDay);
         $(this).find(".label").text(todaysDay);
-        todaysDay = todaysDay +1;
+        //console.log(getNumberOfDays(new Date().getYear(), new Date().getMonth()))
+        // if todaysdate = total days in month, todaysDay: 1 else
+        if (todaysDay==getNumberOfDays(new Date().getYear(), new Date().getMonth())) {
+            todaysDay = 1;
+        } else todaysDay = todaysDay +1;
     });
 
-    /*$.getJSON("data/events.json", function(json) {
-        $(document).trigger('createList', json);
-    });*/
     getJsonData();
 
 });
+
+function getNumberOfDays(year, month) {
+    var isLeap = ((year % 4) == 0 && ((year % 100) != 0 || (year % 400) == 0));
+    return [31, (isLeap ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+}
 
 function createList(evt, json) {
     outcomeValues = json.events;
@@ -117,11 +123,11 @@ function buildFilterItems(evt, json) {
     var id = 0;
     $(sortedArray).each(function(i, e) {
         $("#leaguelist").append(
-            '<div class="countryWrapper" leagueCollection=leagueCollection'+[i]+'><div>'+sortedArray[i].country+'</div><i class="material-icons">arrow_drop_down</i></div><div class="leagueCollection" id=leagueCollection'+[i]+'></div>'
+            '<div class="countryWrapper" onclick="test($(this));" leagueCollection=leagueCollection'+[i]+'><i class="material-icons">arrow_drop_down</i><div class="country">'+sortedArray[i].country+'</div><div class ="checkboxStyle"> <input type="checkbox" id="' +[i]+ '" class="league"> <label for="' +[i]+ '"></label></div></div><div class="leagueCollection" id=leagueCollection'+[i]+'></div>'
         )
         $(sortedArray[i].leagues).each(function(m, e) {
             $("#leagueCollection"+[i]).append(
-                '<li class ="mdl-menu__item"> <input type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].name[m] + '</label></li>'
+                '<li class ="mdl-menu__item"><div class ="checkboxStyle"> <input type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].name[m] + '</label></div></li>'
             )
             //leagueList.add({ leagueName: sortedArray[i].name[m], id: id, league: sortedArray[i].leagues[m]});
             id++;
@@ -129,14 +135,23 @@ function buildFilterItems(evt, json) {
     })
 
 }
+function test(element) {
+    event.stopPropagation();
 
-$(document).on('click', ".countryWrapper", function(){
+
+    $( "#"+$(element).attr('leaguecollection') ).slideToggle( "fast", function() {
+        // Animation complete.
+    });
+};
+$(document).on('click', ".countryWrapper", function(event){
+    event.stopPropagation();
     $( "#"+$(this).attr('leaguecollection') ).slideToggle( "slow", function() {
         // Animation complete.
     });
 });
 
-$(document).on('click', '#leaguelist input:checkbox', function(){
+$(document).on('click', '#leaguelist input:checkbox', function(event){
+    event.stopPropagation();
     var leagueArray;
     var ligaNavn =  parseInt($(this).data('league'));
     leagueArray = [ligaNavn];
@@ -297,20 +312,20 @@ return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
 }
 
 $(document).mouseup(function(e)
-{
-var sportsbutton = $(".sports");
-var leaguebutton = $(".sports");
+    {
+    var sportsbutton = $(".sports");
+    var leaguebutton = $(".sports");
 
 
-// if the target of the click isn't the container nor a descendant of the container
-if (!sportsbutton.is(e.target) && sportsbutton.has(e.target).length === 0)
-{
-    $("#sportsButton i").text("arrow_drop_down");
-}
-if (!leaguebutton.is(e.target) && leaguebutton.has(e.target).length === 0)
-{
-    $("#leagueButton i").text("arrow_drop_down");
-}
+    // if the target of the click isn't the container nor a descendant of the container
+    if (!sportsbutton.is(e.target) && sportsbutton.has(e.target).length === 0)
+    {
+        $("#sportsButton i").text("arrow_drop_down");
+    }
+    if (!leaguebutton.is(e.target) && leaguebutton.has(e.target).length === 0)
+    {
+        $("#leagueButton i").text("arrow_drop_down");
+    }
 });
 
 
