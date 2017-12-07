@@ -688,7 +688,7 @@ body {
 
 			.country {
 				width: 100%;
-				padding-left: 8px;
+				padding-left: 16px;
 			}
 		}
 
@@ -705,7 +705,7 @@ body {
 			position: relative;
 			margin: 0;
 			display: flex;
-			padding-left: 40px;
+			padding-left: 50px;
 
 			label {
 				margin: 0;
@@ -731,6 +731,7 @@ body {
 					border-radius: 2px;
 					cursor: pointer;
 					transition: background .3s;
+					margin-right: 2px;
 				}
 
 				&:after {
@@ -743,7 +744,7 @@ body {
 				-webkit-appearance: none;
 				-moz-appearance: none;
 				outline: 0;
-				margin-right: $md-checkbox-size - 10px;
+				//margin-right: $md-checkbox-size - 10px;
 
 				&:checked {
 					+ label:before{
@@ -758,7 +759,7 @@ body {
 
 						width: $md-checkmark-size;
 						height: $md-checkmark-size / 2;
-						margin-right: -13px;
+						margin-right: -11px;
 						position: absolute;
 						display: block;
 						top: 20px;
@@ -819,4 +820,11 @@ body {
 			width: 400px;
 		}
 	}
+}
+
+
+.flag-icon {
+	height: 26px;
+	width: 44px !important;
+	border-radius: 4px;
 }

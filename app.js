@@ -38,7 +38,7 @@ const user = require('./routes/user');
 passport.use(strategy);
 
 // you can use this section to keep a smaller payload
-passport.serializeUser(function(user, done) {
+   passport.serializeUser(function(user, done) {
   done(null, user);
 });
 
