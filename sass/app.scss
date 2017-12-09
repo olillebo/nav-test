@@ -389,6 +389,7 @@ body {
 		list-style: none;
 		overflow: visible;
 
+
 		label {
 			margin-left: 8px;
 			width: 100%;
@@ -662,12 +663,96 @@ body {
 			text-transform: none;
 		}
 
-		.mdl-menu__container {
-			left: 0 !important;
-			width: 100% !important;
-		}
-		.mdl-menu--bottom-left {
-			width: 100% !important;
+		.leagues {
+			.mdl-menu__container {
+				left: 0 !important;
+				width: 100% !important;
+
+				height: 100% !important;
+				overflow: scroll;
+				top: 50px !important;
+				//position: fixed;
+
+				.list {
+					padding: 0 0 55px 0;
+				}
+
+
+				.filterHeader {
+					display: flex;
+					justify-content: space-between;
+					padding: 8px 16px;
+					height: 50px;
+					top: 0;
+					position: fixed;
+					bottom: 10px;
+					width: 100%;
+					overflow-y: auto;
+					background-color: white;
+					z-index: 9999;
+
+					&.shadow {
+						box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+					}
+					.filterText {
+						display: flex;
+						align-items: center;
+					}
+				}
+			}
+			.mdl-menu--bottom-left {
+				width: 100% !important;
+
+			}
+
+			.mdl-selectfield-label {
+				margin: 0 !important;
+				font-size: 16px;
+				font-weight: bold;
+			}
+
+
+			$color-black: "0,0,0";
+			$select-background-color: transparent;
+			$select-border-color: unquote("rgba(#{$color-black}, 1)") !default;
+			$select-color: unquote("rgba(#{$color-black}, 1)") !default;
+
+			/* ==========  Select Field ========== */
+
+			/* Style Select Field */
+			select {
+				background-color: transparent;
+				width: 100%;
+				padding: 8px 0;
+				color: $select-color;
+				border: none;
+				border-bottom: 1px solid $select-border-color;
+				-webkit-appearance: none;
+				-webkit-border-radius: 0px;
+			}
+
+			/* Remove focus */
+			select:focus {
+				outline: none}
+
+			/* Hide label */
+			.mdl-selectfield label {display: none;}
+			/* Use custom arrow */
+			.mdl-selectfield select {appearance: none}
+			.mdl-selectfield {
+				position: relative;
+				&:after {
+					position: absolute;
+					top: 0.35em;
+					right: 1em;
+					width: 0;
+					height: 0;
+					pointer-events: none;
+					font-family: 'Material Icons';
+					font-size: 24px;
+					content: "arrow_drop_down";
+				}
+			}
 		}
 
 		.leagueCollection {
@@ -824,7 +909,33 @@ body {
 
 
 .flag-icon {
-	height: 26px;
+	height: 27px;
 	width: 44px !important;
 	border-radius: 4px;
+}
+
+.filterTop {
+	padding: 16px;
+
+	#sportsButton {
+		border-bottom: 1px solid black;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.hide {
+	visibility: hidden
+}
+
+.topLeagues {
+	margin-top: 24px;
+
+	.mdl-menu__item {
+		padding: 0;
+	}
+	.checkboxStyle {
+		padding-left: 0px !important;
+	}
 }
