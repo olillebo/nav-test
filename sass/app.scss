@@ -402,150 +402,157 @@ body {
 
 	}
 	.card-container {
-		display: none;
-		position: relative;
-		border-radius: 0 0 3px 3px;
-		background-clip: padding-box;
-		border-bottom: 2px solid #d1d1d1;
-		background-color: #fff;
-		width: 100%;
-		margin-right: 7px;
-		margin-bottom: 7px;
-		min-height: 140px;
-		text-align: center;
-		vertical-align: top;
-		-webkit-column-break-inside: avoid;
-		page-break-inside: avoid;
-		break-inside: avoid;
-		cursor: pointer;
 
-		&.show {
-			display: inline-block;
+		&.v2 {
+			background-color: white;
+			margin-bottom: 8px;
+
+			.card-wrap{
+				display: flex;
+
+				.left {
+					flex-grow: 1;
+					display: flex;
+					flex-direction: column;
+                    padding: 8px;
+
+					.teamline {
+						display: flex;
+						flex-direction: row;
+						justify-content: space-between;
+                        font-weight: bold;
+
+                      .teamname-row {
+                        flex: 1;
+
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                      }
+					}
+				}
+
+				.right {
+					display: flex;
+					flex-direction: row;
+
+                    .betOfferButton {
+                      height: 100%;
+                      width: 50px;
+                      background-color: #52778B;
+                      color: #fff;
+                      border: none;
+                    }
+				}
+			}
+
 		}
-
-		.cardheader {
+		&.v1 {
+			display: none;
 			position: relative;
-			font-size: 12px;
-			font-weight: 500;
-			line-height: 19px;
-			color: #999;
-			padding: 5px 8px 0;
-			border-bottom: 2px solid #f0e7dc;
+			border-radius: 0 0 3px 3px;
+			background-clip: padding-box;
+			border-bottom: 2px solid #d1d1d1;
+			background-color: #fff;
+			width: 100%;
+			margin-right: 7px;
+			margin-bottom: 7px;
+			min-height: 140px;
+			text-align: center;
+			vertical-align: top;
+			-webkit-column-break-inside: avoid;
+			page-break-inside: avoid;
+			break-inside: avoid;
+			cursor: pointer;
 
-			.card-livelabel {
-				font-size: 9px;
-				color: #999;
-				font-weight: 700;
-				height: 15px;
-				line-height: 8px;
-				margin: 2px 0 0 8px;
-				padding: 3px;
-				border: 1px solid #999;
-				border-radius: 4px;
-				float: right;
-				text-transform: uppercase;
-
-				& started {
-					color: #d30d12;
-					border-color: #d30d12;
-				}
+			&.show {
+				display: inline-block;
 			}
 
-			.card-timer {
-				float: right;
+			.cardheader {
+				position: relative;
 				font-size: 12px;
-				text-align: right;
-			}
+				font-weight: 500;
+				line-height: 19px;
+				color: #999;
+				padding: 5px 8px 0;
+				border-bottom: 2px solid #f0e7dc;
 
-			.cardtitle {
-				color: #615452;
-				font-size: 14px;
-				text-align: left;
-
-				.path {
+				.card-livelabel {
+					font-size: 9px;
 					color: #999;
+					font-weight: 700;
+					height: 15px;
+					line-height: 8px;
+					margin: 2px 0 0 8px;
+					padding: 3px;
+					border: 1px solid #999;
+					border-radius: 4px;
+					float: right;
+					text-transform: uppercase;
+
+					& started {
+						color: #d30d12;
+						border-color: #d30d12;
+					}
+				}
+
+				.card-timer {
+					float: right;
 					font-size: 12px;
-					overflow: hidden;
-					position: relative;
-					left: -12px;
-					height: 25px;
-					-o-text-overflow: ellipsis;
-					text-overflow: ellipsis;
-					white-space: nowrap;
+					text-align: right;
+				}
 
-					span:first-child {
-						background-color: #d30d12;
-						color: #fff;
-						padding: 6px 8px 3px;
-						margin-right: 5px;
+				.cardtitle {
+					color: #615452;
+					font-size: 14px;
+					text-align: left;
 
-						&.pre {
-							background-color: #53778a;
-						}
+					.path {
+						color: #999;
+						font-size: 12px;
+						overflow: hidden;
+						position: relative;
+						left: -12px;
+						height: 25px;
+						-o-text-overflow: ellipsis;
+						text-overflow: ellipsis;
+						white-space: nowrap;
 
-						&:before {
-							border-right-color: #701e20;
-							content: "";
-							position: absolute;
-							left: 0;
-							bottom: 1px;
-							width: 0;
-							height: 0;
-							border-style: solid;
-							border-width: 0 4px 4px 0;
-							border-color: transparent;
+						span:first-child {
+							background-color: #d30d12;
+							color: #fff;
+							padding: 6px 8px 3px;
+							margin-right: 5px;
+
+							&.pre {
+								background-color: #53778a;
+							}
+
+							&:before {
+								border-right-color: #701e20;
+								content: "";
+								position: absolute;
+								left: 0;
+								bottom: 1px;
+								width: 0;
+								height: 0;
+								border-style: solid;
+								border-width: 0 4px 4px 0;
+								border-color: transparent;
+							}
 						}
 					}
 				}
 			}
-		}
 
-		.cardcontent {
-			padding: 7px 16px;
-			color: #555;
+			.cardcontent {
+				padding: 7px 16px;
+				color: #555;
 
-			.card-row {
-				margin-top: 12px;
-				display: block;
-				font-size: 16px;
-				line-height: 27px;
-				-o-text-overflow: ellipsis;
-				text-overflow: ellipsis;
-				overflow: hidden;
-				white-space: nowrap;
-			}
-			.card-score {
-				float: right;
-				display: block;
-
-				.goalbasedscore {
+				.card-row {
+					margin-top: 12px;
 					display: block;
-					-webkit-transform: translateZ(0);
-					transform: translateZ(0);
-					text-align: center;
-					margin-left: 10px;
-
-					.score-item {
-						display: block;
-						font-weight: 700;
-						text-align: right;
-						font-size: 16px;
-						line-height: 27px;
-						-webkit-font-smoothing: antialiased;
-					}
-				}
-			}
-
-			.card-teamnames {
-				text-align: left;
-				display: block;
-
-				.separator {
-					display: none;
-					margin: 0 6px;
-				}
-
-				.teamname-row {
 					font-size: 16px;
 					line-height: 27px;
 					-o-text-overflow: ellipsis;
@@ -553,102 +560,142 @@ body {
 					overflow: hidden;
 					white-space: nowrap;
 				}
-			}
-		}
+				.card-score {
+					float: right;
+					display: block;
 
-		.cardoffer {
-			width: 100%;
-			padding: 4px;
-			position: absolute;
-			bottom: 0;
-
-			.betoffer {
-				width: 100%;
-				overflow: hidden;
-				display: -webkit-flex;
-				display: -ms-flexbox;
-				display: flex;
-
-				.betOfferButton {
-					font-family: inherit;
-					height: 36px;
-					background: #f8f3ee;
-					border-radius: 3px;
-					color: #222;
-					text-align: center;
-					font-family: Arvo;
-					border: 1px solid transparent;
-					border-bottom: 3px solid #b74930;
-					cursor: pointer;
-					margin-left: 0;
-					margin-right: 3px;
-					min-width: 0;
-					-webkit-flex-basis: 0;
-					-ms-flex-preferred-size: 0;
-					flex-basis: 0;
-					-webkit-flex-grow: 1;
-					-ms-flex-positive: 1;
-					flex-grow: 1;
-					padding: 0 6px;
-					outline: none;
-					position: relative;
-					font-size: 14px;
-					font-weight: 400;
-					line-height: 20px;
-
-					&:after {
-						position: absolute;
-						content: "";
+					.goalbasedscore {
 						display: block;
-						top: 8px;
-						right: 12px;
-						border-color: transparent transparent #00e600;
-						border-style: solid;
-						width: 0;
-						height: 0;
-						border-width: 0 4px 4px;
-						opacity: 0;
+						-webkit-transform: translateZ(0);
+						transform: translateZ(0);
+						text-align: center;
+						margin-left: 10px;
+
+						.score-item {
+							display: block;
+							font-weight: 700;
+							text-align: right;
+							font-size: 16px;
+							line-height: 27px;
+							-webkit-font-smoothing: antialiased;
+						}
+					}
+				}
+
+				.card-teamnames {
+					text-align: left;
+					display: block;
+
+					.separator {
+						display: none;
+						margin: 0 6px;
 					}
 
-					.odds {
-						float: right;
-						line-height: 30px;
-						font-size: 12px;
-						text-align: right;
-						font-weight: 700;
-						-webkit-font-smoothing: antialiased;
-					}
-					.outcomeLabel {
-						line-height: 30px;
-						text-align: left;
+					.teamname-row {
+						font-size: 16px;
+						line-height: 27px;
 						-o-text-overflow: ellipsis;
 						text-overflow: ellipsis;
-						white-space: nowrap;
 						overflow: hidden;
-						padding-right: 5px;
-						font-size: 12px;
+						white-space: nowrap;
 					}
 				}
 			}
-		}
 
-		.card-wrap[live='false']{
-			.path {
-				span:first-child {
-					background-color: #53778a;
+			.cardoffer {
+				width: 100%;
+				padding: 4px;
+				position: absolute;
+				bottom: 0;
+
+				.betoffer {
+					width: 100%;
+					overflow: hidden;
+					display: -webkit-flex;
+					display: -ms-flexbox;
+					display: flex;
+
+					.betOfferButton {
+						font-family: inherit;
+						height: 36px;
+						background: #f8f3ee;
+						border-radius: 3px;
+						color: #222;
+						text-align: center;
+						font-family: Arvo;
+						border: 1px solid transparent;
+						border-bottom: 3px solid #b74930;
+						cursor: pointer;
+						margin-left: 0;
+						margin-right: 3px;
+						min-width: 0;
+						-webkit-flex-basis: 0;
+						-ms-flex-preferred-size: 0;
+						flex-basis: 0;
+						-webkit-flex-grow: 1;
+						-ms-flex-positive: 1;
+						flex-grow: 1;
+						padding: 0 6px;
+						outline: none;
+						position: relative;
+						font-size: 14px;
+						font-weight: 400;
+						line-height: 20px;
+
+						&:after {
+							position: absolute;
+							content: "";
+							display: block;
+							top: 8px;
+							right: 12px;
+							border-color: transparent transparent #00e600;
+							border-style: solid;
+							width: 0;
+							height: 0;
+							border-width: 0 4px 4px;
+							opacity: 0;
+						}
+
+						.odds {
+							float: right;
+							line-height: 30px;
+							font-size: 12px;
+							text-align: right;
+							font-weight: 700;
+							-webkit-font-smoothing: antialiased;
+						}
+						.outcomeLabel {
+							line-height: 30px;
+							text-align: left;
+							-o-text-overflow: ellipsis;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+							overflow: hidden;
+							padding-right: 5px;
+							font-size: 12px;
+						}
+					}
 				}
 			}
 
-			.card-score {
-				display: none;
-			}
+			.card-wrap[live='false']{
+				.path {
+					span:first-child {
+						background-color: #53778a;
+					}
+				}
 
-			.card-teamnames {
-				display: flex;
-				justify-content: center;
-				margin-top: 12px;
-				.separator {
-					display: inline;
+				.card-score {
+					display: none;
+				}
+
+				.card-teamnames {
+					display: flex;
+					justify-content: center;
+					margin-top: 12px;
+					.separator {
+						display: inline;
+					}
 				}
 			}
 		}
@@ -968,6 +1015,10 @@ body {
 	}
 	button {
 		float: right;
+	}
+
+	.closeDrawer{
+		border: none;
 	}
 
 	$md-checkbox-checked-color: rgb(51, 122, 183);
