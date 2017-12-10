@@ -110,7 +110,29 @@ $(document).ready(function() {
             $('.otherSports').addClass("hidden");
         }
     });
+    $( ".drawer" ).hide();
+    $( ".selectedLeagues" ).hide();
+
 });
+$( ".sidebar" ).click(function() {
+    $( ".drawer" ).toggle( "slide" , {
+        direction: 'left'
+    }, 500);
+});
+
+$( ".closeDrawer" ).click(function() {
+    $( ".drawer" ).toggle( "slide" , {
+        direction: 'left'
+    }, 500);
+});
+
+$( "#switch-1" ).click(function() {
+    if($(this).is(':checked'))
+        $( ".leagues" ).addClass("fullscreen")
+    else    $( ".leagues" ).removeClass("fullscreen")
+
+});
+
 
 
 function getNumberOfDays(year, month) {
@@ -172,11 +194,12 @@ function buildFilterItems(evt, json) {
 
 }
 function clickSports(element) {
-    event.stopPropagation();
-
     if( $(event.target).hasClass("league") ) {
+        $(event.target)[0].click();
         return true;
     }
+    event.stopPropagation();
+
 };
 
 function clickCountry(element) {
@@ -192,57 +215,90 @@ function clickHeader(element) {
 
 };
 
-$(document).on('click', '#leaguelist input:checkbox', function(event){
-    console.log("click")
-    event.stopPropagation();
-    var leagueArray;
+// click selected
+// delete this element
+//find and trigger click on element in listcontent
+
+$(document).on('click', '#selectedList input:checkbox', function(event){
     var ligaNavn =  parseInt($(this).data('league'));
-    leagueArray = [ligaNavn];
-    leagueLabel = ligaNavn;
+    $("#listContent").find("[data-league=" + $(this).data('league') + "]").trigger("click")
+});
+
+$(document).on('click', '.topLeagues input:checkbox', function(event){
+    var ligaNavn =  parseInt($(this).data('league'));
+    $("#listContent").find("[data-league=" + $(this).data('league') + "]").trigger("click")
+    $(this).closest( "li" ).hide();
+    $(this).prop('checked', false);
+});
+
+$(document).on('click', '#listContent input:checkbox', function(event){
+        event.stopPropagation();
+        var leagueArray;
+        var ligaNavn =  parseInt($(this).data('league'));
+        leagueArray = [ligaNavn];
+        leagueLabel = ligaNavn;
 
 
-    if($(this).hasClass("allSelect")) {
-        $(".allSelect").prop('checked', true);
-    }
-
-    if ($(this).is(':checked')) {
         if($(this).hasClass("allSelect")) {
-            $('.league').each(function(){
-                this.checked = false;
-            });
-        } else if($(".allSelect").prop('checked')) {
-            $(".allSelect").prop('checked',false);
-            selectedLeagues = [];
+            $(".allSelect").prop('checked', true);
         }
-        selectedLeagues = leagueArray.concat(selectedLeagues).unique();
+
+        if ($(this).is(':checked')) {
+            if($(this).hasClass("allSelect")) {
+                $('.league').each(function(){
+                    this.checked = false;
+                });
+            } else if($(".allSelect").prop('checked')) {
+                $(".allSelect").prop('checked',false);
+                selectedLeagues = [];
+            }
+            selectedLeagues = leagueArray.concat(selectedLeagues).unique();
+
+            // then when click on the clone, remove it and find related li and uncheck it
+            var id = parseInt(  $(this).prop("id"));
+
+            $(this).closest( "li" ).clone().addClass('out').appendTo( "#selectedList" );
+            $("#selectedList").find("[data-league=" + $(this).data('league') + "]").prop('id', id + 100 )
+            $(".topLeagues").find("[data-league=" + $(this).data('league') + "]").closest( "li" ).hide();
 
 
-    } else {
-        selectedLeagues = selectedLeagues.filter(function(item) {
-            return leagueArray.indexOf(item) === -1;
-        });
-    }
-    if ($("#leaguelist input:checkbox:checked").length >= 1) {
-        $("#leagueButton .label").text($("#leaguelist input:checkbox:checked").length+" leagues selected");
-    } else if ($("#leaguelist .league:checked").length == 0) {
-        $(".allSelect").prop('checked',true);
-        $("#leagueButton .label").text($(".allSelect").next("label").text())
-    } else {
-        $("#leagueButton .label").text($("#leaguelist input:checkbox:checked").next("label").text());
-    }
-
-    if ($("#leaguelist .league:checked").length == 0) {
-        leagueLabel = "All leagues"
-        $(".allSelect").prop('checked',true);
-        $("#leagueButton .label").text($(".allSelect").next("label").text())
-    }
-
-    $("#leagueButton i").text("arrow_drop_down");
-    $('html, body').css('overflowY', 'auto');
+            $("#selectedList label[for='"+id+"']").attr('for',
+                function(index, old) { return old.replace(/\d+/, id + 100); }
+            );
 
 
-    filterList();
-    showItems(leagueLabel);
+        } else {
+            selectedLeagues = selectedLeagues.filter(function(item) {
+                return leagueArray.indexOf(item) === -1;
+            });
+            $("#selectedList").find("[data-league=" + $(this).data('league') + "]").closest( "li" ).remove();
+            $(".topLeagues").find("[data-league=" + $(this).data('league') + "]").closest( "li" ).show();
+
+        }
+        if ($("#listContent input:checkbox:checked").length >= 1) {
+            $("#leagueButton .label").text($("#listContent input:checkbox:checked").length+" leagues selected");
+            $(".selectedLeagues").show();
+        } else if ($("#listContent .league:checked").length == 0) {
+            $(".allSelect").prop('checked',true);
+            $("#leagueButton .label").text($(".allSelect").next("label").text())
+            $(".selectedLeagues").hide();
+        } else {
+            $("#leagueButton .label").text($("#listContent input:checkbox:checked").next("label").text());
+        }
+        if ($("#listContent .league:checked").length == 0) {
+            leagueLabel = "All leagues"
+            $(".allSelect").prop('checked',true);
+            $("#leagueButton .label").text($(".allSelect").next("label").text())
+        }
+
+
+        $("#leagueButton i").text("arrow_drop_down");
+        $('html, body').css('overflowY', 'auto');
+
+
+        filterList();
+        showItems(leagueLabel);
+
 });
 
 function  filterList() {

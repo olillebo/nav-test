@@ -664,14 +664,24 @@ body {
 		}
 
 		.leagues {
+			&.fullscreen {
+				.mdl-menu__container {
+					top: 50px !important;
+
+					.filterHeader {
+						display: flex;
+					}
+				}
+			}
 			.mdl-menu__container {
 				left: 0 !important;
 				width: 100% !important;
 
 				height: 100% !important;
 				overflow: scroll;
-				top: 50px !important;
+				//top: 50px !important;
 				//position: fixed;
+
 
 				.list {
 					padding: 0 0 55px 0;
@@ -679,7 +689,7 @@ body {
 
 
 				.filterHeader {
-					display: flex;
+					display: none;
 					justify-content: space-between;
 					padding: 8px 16px;
 					height: 50px;
@@ -929,7 +939,7 @@ body {
 	visibility: hidden
 }
 
-.topLeagues {
+.topLeagues, .selectedLeagues {
 	margin-top: 24px;
 
 	.mdl-menu__item {
@@ -937,5 +947,23 @@ body {
 	}
 	.checkboxStyle {
 		padding-left: 0px !important;
+	}
+}
+
+.drawer {
+	position: fixed;
+	top:0;
+	left: 0;
+	width: 80%;
+	height: 100%;
+	background-color: white;
+	z-index: 10000;
+	padding: 16px;
+
+	h4 {
+		padding-bottom: 16px;
+	}
+	button {
+		float: right;
 	}
 }

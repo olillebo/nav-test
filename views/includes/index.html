@@ -1,3 +1,11 @@
+<div class="drawer">
+    <button class="closeDrawer">Close</button>
+    <h4>Prototype settings</h4>
+    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+        <input type="checkbox" id="switch-1" class="mdl-switch__input">
+        <span class="mdl-switch__label">Full screen filter</span>
+    </label>
+</div>
 <div id="mainPage">
     <div class="main-container-header">
         <div class="view titlebar-view">
@@ -5,7 +13,7 @@
                 <span class="close-icon"></span>
                 <span class="search-icon"></span>
             </span>
-        <a href="/en/sidebar/" class="sidebar"><span><i class="iconsheader-paw"></i></span></a>
+        <div class="sidebar"><span><i class="iconsheader-paw"></i></span></div>
         <a href="#" class="home disabled"><span><i class="icon-home"></i></span></a>
         <a href="/en/login/" class="text login"><span>Log in</span></a>
         </div>
@@ -69,23 +77,15 @@
                 <span class="label">All leagues</span>
                 <i class="material-icons">arrow_drop_down</i>
             </button>
-<!--            <div id="filters">
-            </div>-->
-
 
             <ul class="list mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" id="leaguelist" for="leagueButton">
 
-<!--                <li class ="mdl-menu__item">
-                    <input type="checkbox" id="all" class="allSelect" checked="true" data-league="All leagues">
-                    <label for="all">All leagues</label>
-                </li>-->
-
-<!--                <li class ="mdl-menu__item">
+                <li class ="mdl-menu__item" hidden>
                     <div class ="checkboxStyle">
                         <input type="checkbox" id="all" data-league="All leagues" class="allSelect" checked="true">
                         <label for="all">All leagues</label>
                     </div>
-                </li>-->
+                </li>
                 <div class="filterTop" onclick="clickSports($(this));">
                     <span class="mdl-selectfield-label">Sport</span>
 
@@ -100,14 +100,20 @@
                     <div class="topLeagues">
                         <span class="mdl-selectfield-label">Top leagues</span>
 
-                        <li class="mdl-menu__item" style="transition-delay: 0s;"><div class="checkboxStyle"> <input type="checkbox" id="32" data-league="1000094985" class="league"> <label for="32">Premier League</label></div></li>
-                        <li class="mdl-menu__item" style=""><div class="checkboxStyle"> <input type="checkbox" id="96" data-league="1000095049" class="league"> <label for="96">LaLiga</label></div></li>
-                        <li class="mdl-menu__item" style=""><div class="checkboxStyle"> <input type="checkbox" id="39" data-league="1000094994" class="league"> <label for="39">Bundesliga</label></div></li>
-                        <li class="mdl-menu__item" style=""><div class="checkboxStyle"> <input type="checkbox" id="66" data-league="1000095001" class="league"> <label for="66">Serie A</label></div></li>
+                        <li class="mdl-menu__item" style="transition-delay: 0s;"><div class="checkboxStyle"> <input type="checkbox" id="pl" data-league="1000094985" class="league"> <label for="pl">Premier League</label></div></li>
+                        <li class="mdl-menu__item" style=""><div class="checkboxStyle"> <input type="checkbox" id="laliga" data-league="1000095049" class="league"> <label for="laliga">LaLiga</label></div></li>
+                        <li class="mdl-menu__item" style=""><div class="checkboxStyle"> <input type="checkbox" id="bundes" data-league="1000094994" class="league"> <label for="bundes">Bundesliga</label></div></li>
+                        <li class="mdl-menu__item" style=""><div class="checkboxStyle"> <input type="checkbox" id="serie" data-league="1000095001" class="league"> <label for="serie">Serie A</label></div></li>
                         <div class="otherSports">
                             <li class="mdl-menu__item" style=""><div class="checkboxStyle"> <input type="checkbox" id="NHL" data-league="" class="league" disabled> <label for="NHL">NHL</label></div></li>
                             <li class="mdl-menu__item" style=""><div class="checkboxStyle"> <input type="checkbox" id="french" data-league="" class="league" disabled> <label for="french">French Open</label></div></li>
                             <li class="mdl-menu__item" style=""><div class="checkboxStyle"> <input type="checkbox" id="horse" data-league="" class="league" disabled> <label for="horse">Horsy Mc Horserace</label></div></li>
+                        </div>
+
+                    </div>
+                    <div class="selectedLeagues">
+                        <span class="mdl-selectfield-label">Selected leagues</span>
+                        <div id="selectedList">
                         </div>
 
                     </div>
