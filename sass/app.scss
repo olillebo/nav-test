@@ -959,12 +959,106 @@ body {
 	background-color: white;
 	z-index: 10000;
 	padding: 16px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
 
 	h4 {
 		padding-bottom: 16px;
 	}
 	button {
 		float: right;
+	}
+
+	$md-checkbox-checked-color: rgb(51, 122, 183);
+	$md-checkbox-border-color: rgba(0, 0, 0, 0.54);
+
+	$md-checkbox-size: 20px;
+	$md-checkbox-padding: 4px;
+
+	$md-checkmark-width: 2px;
+	$md-checkmark-color: #fff;
+
+
+
+	.checkboxStyle {
+		position: relative;
+		margin: 0;
+		display: flex;
+		height: 48px;
+		align-items: center;
+		padding-left: 0;
+		cursor: pointer;
+
+		label {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			&:before, &:after {
+				content: "";
+				position: absolute;
+				display: block;
+				right: 0;
+				top: 50%;
+				-webkit-transform: translateY(-50%);
+				-moz-transform: translateY(-50%);
+				-ms-transform: translateY(-50%);
+				transform: translateY(-50%);
+			}
+
+			&:before {
+				// box
+				width: $md-checkbox-size;
+				height: $md-checkbox-size;
+				background: #fff;
+				border: 2px solid $md-checkbox-border-color;
+				border-radius: 2px;
+				cursor: pointer;
+				transition: background .3s;
+				margin-right: 2px;
+			}
+
+			&:after {
+				right: 17px;
+			}
+		}
+
+		input[type="checkbox"] {
+			appearance: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			outline: 0;
+			//margin-right: $md-checkbox-size - 10px;
+
+			&:checked {
+				+ label:before{
+					background: $md-checkbox-checked-color;
+					border:none;
+				}
+				+ label:after {
+
+					$md-checkmark-size: $md-checkbox-size - 2*$md-checkbox-padding;
+
+					transform: rotate(-45deg);
+
+					width: $md-checkmark-size;
+					height: $md-checkmark-size / 2;
+					margin-right: -11px;
+					position: absolute;
+					display: block;
+					top: 20px;
+					right: 17px;
+
+					border: $md-checkmark-width solid $md-checkmark-color;
+					border-top-style: none;
+					border-right-style: none;
+				}
+			}
+		}
+
 	}
 }
 
@@ -982,4 +1076,16 @@ body {
     font-size: 16px;
     margin-bottom: 8px;
   }
+  .dateTitle {
+    @extend .leagueTitle;
+    background-color: #e75e3f;
+  }
+  .eventGroup {
+    margin-bottom: 20px;
+  }
+}
+
+#saveSettings {
+	width: 100%;
+	background-color: #e75f3f;
 }

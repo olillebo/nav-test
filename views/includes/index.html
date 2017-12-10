@@ -1,11 +1,21 @@
 <div class="drawer">
-    <button class="closeDrawer">Close</button>
-    <h4>Prototype settings</h4>
-    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-        <input type="checkbox" id="switch-1" class="mdl-switch__input">
-        <span class="mdl-switch__label">Full screen filter</span>
-    </label>
+    <div class="top">
+        <button class="closeDrawer">Close</button>
+        <h4>Prototype settings</h4>
+
+        <div class="checkboxStyle"">
+            <input type="checkbox" id="switch-1">
+            <label for="switch-1">Full screen filter</label>
+        </div>
+        <div class="checkboxStyle">
+            <input type="checkbox" id="switch-2">
+            <label for="switch-2">Group by day</label>
+        </div>
+    </div>
+    <button id="saveSettings" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Save</button>
+
 </div>
+
 <div id="mainPage">
     <div class="main-container-header">
         <div class="view titlebar-view">

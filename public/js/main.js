@@ -1,7 +1,7 @@
 var outcomeOptions = {
-    valueNames: ["id", "home", "away", "sport", "league", "leagueName", { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate"],
+    valueNames: ["id", "home", "away", "sport", "league", "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate"],
     item: '<div class="card-container id">\n' +
-    '    <div class="card-wrap live leagueID">\n' +
+    '    <div class="card-wrap live leagueID dateStamp">\n' +
     '        <header class="cardheader">\n' +
     '            <div class="card-livelabel started">Live</div>\n' +
     '            <div class="card-timer"><span class="timer time">90:35</span></div>\n' +
@@ -70,6 +70,8 @@ var selectedLeagues = [];
 var visibleItems = 0;
 var filterOnDay;
 var progress = 0;
+var cardSortType, fullScreen;
+
 
 
 var outcomeValues, outcomeList, leagueLabel, leagueList;
@@ -113,6 +115,24 @@ $(document).ready(function() {
     $( ".drawer" ).hide();
     $( ".selectedLeagues" ).hide();
 
+    cardSortType = Cookies.get('cardSort');
+    fullScreen = Cookies.get('fullScreen');
+
+    if (typeof fullScreen === 'undefined'){
+        $( ".leagues" ).removeClass("fullscreen")
+        fullScreen = false;
+    } else if (fullScreen === "true") {
+        $('#switch-1').attr("checked", true)
+        $( ".leagues" ).addClass("fullscreen")
+    }
+
+    if (typeof cardSortType === 'undefined'){
+        cardSortType = false;
+    } else if (cardSortType === "true") {
+        $('#switch-2').attr("checked", true)
+    }
+
+
 });
 $( ".sidebar" ).click(function() {
     $( ".drawer" ).toggle( "slide" , {
@@ -127,13 +147,26 @@ $( ".closeDrawer" ).click(function() {
 });
 
 $( "#switch-1" ).click(function() {
-    if($(this).is(':checked'))
-        $( ".leagues" ).addClass("fullscreen")
-    else    $( ".leagues" ).removeClass("fullscreen")
+    if($(this).is(':checked')) {
+        Cookies.set('fullScreen', true );
+    }
+    else {
+        Cookies.set('fullScreen', false );
+    }
 
 });
+$( "#switch-2" ).click(function() {
+    if($(this).is(':checked')) {
+        Cookies.set('cardSort', true );
+    } else {
+        Cookies.set('cardSort', false );
+    }
+});
 
+$( "#saveSettings" ).click(function() {
 
+    location.reload();
+});
 
 function getNumberOfDays(year, month) {
     var isLeap = ((year % 4) == 0 && ((year % 100) != 0 || (year % 400) == 0));
@@ -279,12 +312,10 @@ $(document).on('click', '#listContent input:checkbox', function(event){
         if ($("#listContent input:checkbox:checked").length >= 1) {
             $("#leagueButton .label").text($("#listContent input:checkbox:checked").length+" leagues selected");
             $(".selectedLeagues").show();
-            reorderList();
         } else if ($("#listContent .league:checked").length == 0) {
             $(".allSelect").prop('checked',true);
             $("#leagueButton .label").text($(".allSelect").next("label").text())
             $(".selectedLeagues").hide();
-            $("#outcomeList").show();
         } else {
             $("#leagueButton .label").text($("#listContent input:checkbox:checked").next("label").text());
         }
@@ -305,7 +336,10 @@ $(document).on('click', '#listContent input:checkbox', function(event){
 
         if ($("#listContent input:checkbox:checked").length >= 1) {
             $("#outcomeList").hide();
-            reorderList();
+            if(cardSortType === "true") {
+                reorderList();
+            } else reorderList2();
+
         } else if ($("#listContent .league:checked").length == 0) {
             $("#outcomeList").show();
 
@@ -341,32 +375,125 @@ function  filterList() {
     }
 };
 
-function  reorderList() {
+function reorderList() {
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
     var listItems = $("#outcomeList .card-container");
 
-    $.each( selectedLeagues, function( index, value ){
+    // Build list
+    var currList = [];
+    listItems.each(function( index, div ) {
+
+        var currDate = new Date($(div).find(".card-wrap").attr("dateStamp"));
+        var currFormatted = currDate.getUTCDate() +"-"+monthNames[(currDate.getUTCMonth())];
+
+        currList.push(currFormatted);
+
+    });
+
+    var formattedCurrList = currList.unique();
+    $.each( formattedCurrList, function( index2, value2 ){
         $("#outcomeListCopyEvents").append('' +
-            '<div class="league-'+value+'">'+
-                '<div class="leagueTitle leagueTitle-'+value+'">' +value+'</div>' +
+            '<div class="eventGroup date-'+value2+'">'+
+            '<div class="dateTitle dateTitle-'+value2+'">' +value2.replace(/-/g, ' ')+'</div>' +
             '</div>'
         );
     });
 
+    $.each( formattedCurrList, function( index2, value2 ){
+        var currList = [];
+
+        $.each( selectedLeagues, function( index, value ){
+
+            listItems.each(function( index, div ) {
+
+                var currDate = new Date($(div).find(".card-wrap").attr("dateStamp"));
+                var currFormatted = currDate.getUTCDate() +"-"+monthNames[(currDate.getUTCMonth())];
+
+                if ((currFormatted==value2) && value==$(div).find(".card-wrap").attr("leagueID"))  {
+                    currList.push(value);
+                }
+            });
+        });
+        var uniqueLeagues = currList.unique();
+        $.each( uniqueLeagues, function( index3, value3 ){
+            $( ".date-"+value2 ).append('' +
+                '<div class="date-'+value3+value2+'">'+
+                '<div class="leagueTitle leagueTitle-'+value3+'">' +value3+'</div>' +
+                '</div>'
+            );
+        });
+    });
+
+    //Place card in list
     listItems.each(function( index, div ) {
         $.each( selectedLeagues, function( index, value ){
 
-            if (value==$(div).find(".card-wrap").attr("leagueID"))  {
-                $(div).clone().appendTo( ".league-"+value );
-                $( ".leagueTitle-"+value ).text($(div).find(".leagueName").text())
+            var currDate = new Date($(div).find(".card-wrap").attr("dateStamp"));
+            var currFormatted = currDate.getUTCDate() +"-"+monthNames[(currDate.getUTCMonth())];
 
+            if (value==$(div).find(".card-wrap").attr("leagueID"))  {
+                $(div).clone().appendTo( ".date-"+value+currFormatted );
+                $( ".leagueTitle-"+value ).text($(div).find(".leagueName").text())
             }
 
         });
-
-
     });
 
 };
+
+function reorderList2() {
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    var listItems = $("#outcomeList .card-container");
+
+    // Build list
+    $.each( selectedLeagues, function( index, value ){
+        $("#outcomeListCopyEvents").append('' +
+            '<div class="eventGroup league-'+value+'">'+
+            '<div class="leagueTitle leagueTitle-'+value+'">' +value+'</div>' +
+            '</div>'
+        );
+        var currList = [];
+        listItems.each(function( index, div ) {
+
+            var currDate = new Date($(div).find(".card-wrap").attr("dateStamp"));
+            var currFormatted = currDate.getUTCDate() +"-"+monthNames[(currDate.getUTCMonth())];
+
+            if (value==$(div).find(".card-wrap").attr("leagueID"))  {
+                currList.push(currFormatted);
+            }
+        });
+        var formattedCurrList = currList.unique();
+        $.each( formattedCurrList, function( index2, value2 ){
+            $( ".league-"+value ).append('' +
+                '<div class="date-'+value+value2+'">'+
+                '<div class="dateTitle dateTitle-'+value2+'">' +value2.replace(/-/g, ' ')+'</div>' +
+                '</div>'
+            );
+        });
+
+    });
+
+    //Place card in list
+    listItems.each(function( index, div ) {
+        $.each( selectedLeagues, function( index, value ){
+
+            var currDate = new Date($(div).find(".card-wrap").attr("dateStamp"));
+            var currFormatted = currDate.getUTCDate() +"-"+monthNames[(currDate.getUTCMonth())];
+
+            if (value==$(div).find(".card-wrap").attr("leagueID"))  {
+                $(div).clone().appendTo( ".date-"+value+currFormatted );
+                $( ".leagueTitle-"+value ).text($(div).find(".leagueName").text())
+            }
+
+        });
+    });
+};
+
+
 
 $(".mdl-button").click(function(){
 if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
@@ -566,11 +693,13 @@ var F = $.ajax({ dataType:"json",
                 var time = date.getUTCDate() +"/"+(date.getUTCMonth() + 1)+" - "+date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
                 var sortDate = date.getTime();
                 if(live) {
-                    if(item.liveData.score.home) {
-                        homeScore = item.liveData.score.home;
-                        awayScore = item.liveData.score.away;
+                    if(item.liveData) {
+                        if(item.liveData.score.home) {
+                            homeScore = item.liveData.score.home;
+                            awayScore = item.liveData.score.away;
+                        }
+                        time = (item.liveData.matchClock.minute<10?'0':'') + item.liveData.matchClock.minute + ":" + (item.liveData.matchClock.second<10?'0':'') + item.liveData.matchClock.second;
                     }
-                    time = (item.liveData.matchClock.minute<10?'0':'') + item.liveData.matchClock.minute + ":" + (item.liveData.matchClock.second<10?'0':'') + item.liveData.matchClock.second;
                 }
                 if(odds1) {
                     odds1 = odds1.toString()[0]+"."+odds1.toString()[1]+odds1.toString()[2];
@@ -595,6 +724,7 @@ var F = $.ajax({ dataType:"json",
                             sport : (item.event.sport).charAt(0).toUpperCase() + (item.event.sport).slice(1).toLowerCase(),
                             leagueName : item.event.group,
                             league : item.event.groupId,
+                            dateStamp: date,
                             leagueID : item.event.groupId,
                             country: item.event.path[1].name,
                             live : live,
