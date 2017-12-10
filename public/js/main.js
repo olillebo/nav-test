@@ -1,7 +1,7 @@
 var outcomeOptions = {
-    valueNames: ["id", "home", "away", "sport", "league", "leagueName", { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate"],
+    valueNames: ["id", "home", "away", "sport", "league", "leagueName", { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate"],
     item: '<div class="card-container id">\n' +
-    '    <div class="card-wrap live">\n' +
+    '    <div class="card-wrap live leagueID">\n' +
     '        <header class="cardheader">\n' +
     '            <div class="card-livelabel started">Live</div>\n' +
     '            <div class="card-timer"><span class="timer time">90:35</span></div>\n' +
@@ -162,6 +162,7 @@ function buildFilterItems(evt, json) {
         '</div>'
     );
 
+
     var countryLeagues = _.chain(outcomeValues).groupBy('country').map(function(value, key) {
         return {
             country: key,
@@ -278,10 +279,12 @@ $(document).on('click', '#listContent input:checkbox', function(event){
         if ($("#listContent input:checkbox:checked").length >= 1) {
             $("#leagueButton .label").text($("#listContent input:checkbox:checked").length+" leagues selected");
             $(".selectedLeagues").show();
+            reorderList();
         } else if ($("#listContent .league:checked").length == 0) {
             $(".allSelect").prop('checked',true);
             $("#leagueButton .label").text($(".allSelect").next("label").text())
             $(".selectedLeagues").hide();
+            $("#outcomeList").show();
         } else {
             $("#leagueButton .label").text($("#listContent input:checkbox:checked").next("label").text());
         }
@@ -295,10 +298,18 @@ $(document).on('click', '#listContent input:checkbox', function(event){
         $("#leagueButton i").text("arrow_drop_down");
         $('html, body').css('overflowY', 'auto');
 
-
         filterList();
         showItems(leagueLabel);
 
+        $("#outcomeListCopyEvents").empty()
+
+        if ($("#listContent input:checkbox:checked").length >= 1) {
+            $("#outcomeList").hide();
+            reorderList();
+        } else if ($("#listContent .league:checked").length == 0) {
+            $("#outcomeList").show();
+
+        }
 });
 
 function  filterList() {
@@ -313,7 +324,7 @@ function  filterList() {
 
         //TODO improve this
         if($(".allSelect").prop('checked')) return true;
-        if ((selectedLeagues.indexOf((item.values().league)) >= 0)&& (filterOnDay == inputDate))  {
+        if ((selectedLeagues.indexOf((item.values().league)) >= 0))  {
             return true;
         } else {
             return false;
@@ -330,6 +341,33 @@ function  filterList() {
     }
 };
 
+function  reorderList() {
+    var listItems = $("#outcomeList .card-container");
+
+    $.each( selectedLeagues, function( index, value ){
+        $("#outcomeListCopyEvents").append('' +
+            '<div class="league-'+value+'">'+
+                '<div class="leagueTitle leagueTitle-'+value+'">' +value+'</div>' +
+            '</div>'
+        );
+    });
+
+    listItems.each(function( index, div ) {
+        $.each( selectedLeagues, function( index, value ){
+
+            if (value==$(div).find(".card-wrap").attr("leagueID"))  {
+                $(div).clone().appendTo( ".league-"+value );
+                $( ".leagueTitle-"+value ).text($(div).find(".leagueName").text())
+
+            }
+
+        });
+
+
+    });
+
+};
+
 $(".mdl-button").click(function(){
 if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
     $('html, body').css('overflowY', 'auto');
@@ -338,7 +376,6 @@ if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
     $(this).find(".material-icons").text("arrow_drop_up");
     $('html, body').css('overflowY', 'hidden');
 }
-
 });
 
 $("#sort").click(function(){
@@ -558,6 +595,7 @@ var F = $.ajax({ dataType:"json",
                             sport : (item.event.sport).charAt(0).toUpperCase() + (item.event.sport).slice(1).toLowerCase(),
                             leagueName : item.event.group,
                             league : item.event.groupId,
+                            leagueID : item.event.groupId,
                             country: item.event.path[1].name,
                             live : live,
                             time : time,
