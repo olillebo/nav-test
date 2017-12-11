@@ -57,6 +57,58 @@ var outcomeOptions_2 = {
     '    <div class="card-wrap live leagueID dateStamp">\n' +
     '        <div class="left">\n' +
     '           <div class="cardcontent ">\n' +
+    '              <div class="teamline">\n' +
+    '                  <div class="teamNames">\n' +
+    '                      <div class="teamname-row home"></div>\n' +
+    '                      <div class="teamname-row away"></div>\n' +
+    '                  </div>\n' +
+    '                  <div class="teamScores">\n' +
+    '                      <div class="homeScore score-item">0</div>\n' +
+    '                      <div class="awayScore score-item">4</div>\n' +
+    '                  </div>\n' +
+    '              </div>\n' +
+    '               <div class="bottomInfo">\n' +
+    '                   <div class="card-timer"><span class="timer time">90:35</span></div>\n' +
+    '                   <div class="card-livelabel started">Live</div>\n' +
+    '                   <div class="card-stream stream"></div>\n' +
+    '                   <div class="cardtitle hidden">\n' +
+    '                       <div class="path">\n' +
+    '                           <span class="sport"></span>\n' +
+    '                           <span class="leagueName"></span>\n' +
+    '                       </div>\n' +
+    '                   </div>\n' +
+    '               </div>\n' +
+    '           </div>\n' +
+    '        </div>\n' +
+    '        <div class="right">\n' +
+    '            <div class="betoffer betOffers">\n' +
+    '                <button class="betOfferButton">\n' +
+    '                    <div>\n' +
+    '                        <div class="odds odds1"></div>\n' +
+    '                    </div>\n' +
+    '                </button>\n' +
+    '                <button class="betOfferButton">\n' +
+    '                    <div>\n' +
+    '                        <div class="odds oddsX"></div>\n' +
+    '                    </div>\n' +
+    '                </button>\n' +
+    '                <button class="betOfferButton">\n' +
+    '                    <div>\n' +
+    '                        <div class="odds odds2"></div>\n' +
+    '                    </div>\n' +
+    '                </button>\n' +
+    '            </div>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '</div>'
+};
+
+var outcomeOptions_3 = {
+    valueNames: ["id", "home", "away", "sport", "league", "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }],
+    item: '<div class="card-container v2 id">\n' +
+    '    <div class="card-wrap live leagueID dateStamp">\n' +
+    '        <div class="left">\n' +
+    '           <div class="cardcontent ">\n' +
     '              <div class="home1 teamline">\n' +
     '                  <div class="teamname-row home"></div>\n' +
     '                   <span class="homeScore score-item">0</span>\n' +

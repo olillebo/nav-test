@@ -413,24 +413,46 @@ body {
 				.left {
 					flex-grow: 1;
 					display: flex;
+					flex-shrink: 1;
+					overflow: hidden;
 					flex-direction: column;
                     padding: 8px;
 
 					.teamline {
+					display: flex
+					}
+
+					.teamNames {
+					  flex: 1 1 auto;
+					  min-width: 0;
+					  white-space: nowrap;
+					  overflow: hidden;
+					  display: flex;
+					  flex-direction: column;
+
+
+					.teamname-row {
+						display: inline-block;
+						vertical-align: top;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						overflow: hidden;
+					}
+					}
+
+					.teamScores {
+					  flex: 0 0 auto;
+					  flex-direction: column;
+
+					  .score-item {
+						  text-align: center;
+					  }
+					}
+
+					.bottomInfo {
 						display: flex;
-						flex-direction: row;
 						justify-content: space-between;
-                        font-weight: bold;
 						align-items: center;
-
-                      .teamname-row {
-                        flex: 1;
-
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                      }
-
 						.time {
 							color: #999999;
 						}
@@ -456,6 +478,7 @@ body {
 				.right {
 					display: flex;
 					flex-direction: row;
+					flex-shrink: 0;
 
                     .betOfferButton {
                       height: 100%;
@@ -752,8 +775,15 @@ body {
 			text-transform: none;
 		}
 
+		#leagueButton2 {
+			width: 100%;
+			color: white;
+			background-color: #e75f3f;
+		}
+
 		.leagues {
 			&.fullscreen {
+				//width: 100%;
 				.mdl-menu__container {
 					top: 50px !important;
 
