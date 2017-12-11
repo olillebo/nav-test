@@ -52,11 +52,11 @@ var outcomeOptions = {
 };
 
 var outcomeOptions_2 = {
-    valueNames: ["id", "home", "away", "sport", "league", "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate"],
+    valueNames: ["id", "home", "away", "sport", "league", "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }],
     item: '<div class="card-container v2 id">\n' +
     '    <div class="card-wrap live leagueID dateStamp">\n' +
     '        <div class="left">\n' +
-    '           <div class="cardcontent">\n' +
+    '           <div class="cardcontent ">\n' +
     '              <div class="home1 teamline">\n' +
     '                  <div class="teamname-row home"></div>\n' +
     '                   <span class="homeScore score-item">0</span>\n' +
@@ -66,8 +66,9 @@ var outcomeOptions_2 = {
     '                  <span class="awayScore score-item">4</span>\n' +
     '               </div>\n' +
     '               <div class="teamline">\n' +
-    '                   <div class="card-livelabel started">Live</div>\n' +
     '                   <div class="card-timer"><span class="timer time">90:35</span></div>\n' +
+    '                   <div class="card-livelabel started">Live</div>\n' +
+    '                   <div class="card-stream stream"></div>\n' +
     '                   <div class="cardtitle hidden">\n' +
     '                       <div class="path">\n' +
     '                           <span class="sport"></span>\n' +
@@ -78,7 +79,7 @@ var outcomeOptions_2 = {
     '           </div>\n' +
     '        </div>\n' +
     '        <div class="right">\n' +
-    '            <div class="betoffer">\n' +
+    '            <div class="betoffer betOffers">\n' +
     '                <button class="betOfferButton">\n' +
     '                    <div>\n' +
     '                        <div class="odds odds1"></div>\n' +
@@ -126,7 +127,6 @@ var outcomeValues, outcomeList, leagueLabel, leagueList;
 $(document).ready(function() {
     $(document).bind('createList', createList);
     //leagueList = new List("filters", filterOptions);
-
 
     var todaysDay = new Date().getDate();
     filterOnDay = todaysDay;
@@ -249,7 +249,7 @@ function createList(evt, json) {
     outcomeList = new List("outcomes", options, outcomeValues);
     outcomeList.sort('sortDate', { order: "asc" });
     buildFilterItems();
-    showItems("All leagues");
+    showItems("Filter events");
 }
 
 function buildFilterItems(evt, json) {
@@ -391,7 +391,7 @@ $(document).on('click', '#listContent input:checkbox', function(event){
             $("#leagueButton .label").text($("#listContent input:checkbox:checked").next("label").text());
         }
         if ($("#listContent .league:checked").length == 0) {
-            leagueLabel = "All leagues"
+            leagueLabel = "Filter events"
             $(".allSelect").prop('checked',true);
             $("#leagueButton .label").text($(".allSelect").next("label").text())
         }
@@ -599,7 +599,7 @@ showItems();
 
 
 function showItems(league) {
-if(league=="All leagues") {
+if(league=="Filter events") {
     visibleItems = 0;
     var newShow = visibleItems+8;
 
@@ -746,8 +746,20 @@ var F = $.ajax({ dataType:"json",
         for(var i = 0; i < dataLists[x].events.length; i++) {
             var item = dataLists[x].events[i];
             if(item.event.sport=="FOOTBALL") {
-                var odds1, oddsX, odds2, live, league, homeScore, awayScore;
+                var odds1 = undefined;
+                var oddsX = undefined;
+                var odds2 = undefined;
+                var live = undefined;
+                var league = undefined;
+                var homeScore = undefined;
+                var awayScore = undefined;
+                var betOffers = undefined;
+
                 if(item.betOffers != null && item.betOffers.length > 0 ){
+                    betOffers = true;
+                } else betOffers = false;
+
+                if(betOffers === true){
                     for(var j = 0; j < item.betOffers.length; j++) {
                         var offer = item.betOffers[j];
                         if(offer.betOfferType.name == "Match") {
@@ -761,7 +773,12 @@ var F = $.ajax({ dataType:"json",
                 var date = new Date(item.event.start);
                 var currentDate = new Date();
                 live = (date <= currentDate);
-                var time = date.getUTCDate() +"/"+(date.getUTCMonth() + 1)+" - "+date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
+                if (newCards === "true"){
+                    var time = date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
+
+                } else {
+                    var time = date.getUTCDate() +"/"+(date.getUTCMonth() + 1)+" - "+date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
+                }
                 var sortDate = date.getTime();
                 if(live) {
                     if(item.liveData) {
@@ -772,14 +789,20 @@ var F = $.ajax({ dataType:"json",
                         time = (item.liveData.matchClock.minute<10?'0':'') + item.liveData.matchClock.minute + ":" + (item.liveData.matchClock.second<10?'0':'') + item.liveData.matchClock.second;
                     }
                 }
+
                 if(odds1) {
                     odds1 = odds1.toString()[0]+"."+odds1.toString()[1]+odds1.toString()[2];
-                }
+                } else odds1 = ""
+
                 if(oddsX) {
                     oddsX = oddsX.toString()[0]+"."+oddsX.toString()[1]+oddsX.toString()[2];
-                }
+                } else oddsX = ""
                 if(odds2) {
                     odds2 = odds2.toString()[0]+"."+odds2.toString()[1]+odds2.toString()[2];
+                } else odds2 = ""
+                var stream = true;
+                if (item.event.streams.length === 0) {
+                    stream = false;
                 }
 
                 var alreadyAdded = $.grep(output.events, function(n) {
@@ -808,6 +831,8 @@ var F = $.ajax({ dataType:"json",
                             homeScore: homeScore,
                             awayScore: awayScore,
                             date: date,
+                            stream: stream,
+                            betOffers: betOffers,
                             sortDate: sortDate
                         });
                     }

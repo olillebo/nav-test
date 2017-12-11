@@ -421,6 +421,7 @@ body {
 						flex-direction: row;
 						justify-content: space-between;
                         font-weight: bold;
+						align-items: center;
 
                       .teamname-row {
                         flex: 1;
@@ -429,6 +430,26 @@ body {
                         overflow: hidden;
                         text-overflow: ellipsis;
                       }
+
+						.time {
+							color: #999999;
+						}
+
+						.card-stream {
+							display: none;
+
+						}
+						.card-livelabel {
+							display: none;
+						}
+						.card-stream[stream='true']{
+							display: inline;
+							width: 42px;
+							height: 15px;
+							background-image: url('/stylesheets/stream.png');
+							background-repeat: no-repeat;
+
+						}
 					}
 				}
 
@@ -443,7 +464,27 @@ body {
                       color: #fff;
                       border: none;
                     }
+
+					.betoffer[betOffers='false']{
+						//background-color: white;
+						//border: 2px solid #52778B;
+						//width: 156px;
+
+						button {
+							//display: none;
+							background-color: #52778B;
+							opacity: .5;
+						}
+
+					}
 				}
+			}
+
+			.card-wrap[live='false']{
+				.score-item {
+					display: none;
+				}
+
 			}
 
 		}
@@ -601,6 +642,7 @@ body {
 					}
 				}
 			}
+
 
 			.cardoffer {
 				width: 100%;
@@ -925,6 +967,7 @@ body {
 	}
 
 	.dayFilter {
+		display: none !important;
 		margin-left: 16px;
 		.dayButton {
 			min-width: 0;
@@ -1115,6 +1158,7 @@ body {
 
 #outcomeListCopy {
   padding: 0;
+
   .leagueTitle {
     width: 100%;
     background-color: #618a9b;
@@ -1129,7 +1173,10 @@ body {
   }
   .dateTitle {
     @extend .leagueTitle;
-    background-color: #e75e3f;
+    //background-color: #e75e3f;
+	  background-color: transparent;
+	  color: #000;
+	  border-bottom: 1px solid #b3b3b3;
   }
   .eventGroup {
     margin-bottom: 20px;

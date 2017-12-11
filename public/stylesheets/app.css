@@ -19,7 +19,6 @@ body {
   padding: 0;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-transition: height .24s ease-in-out;
   transition: height .24s ease-in-out; }
   #mainPage .main-container-header .titlebar-view {
     position: relative;
@@ -149,8 +148,7 @@ body {
     padding: 0;
     width: 100%;
     text-shadow: 1px 1px #fff;
-    -webkit-box-shadow: 0 2px 2px 0 rgba(97, 59, 53, 0.7);
-            box-shadow: 0 2px 2px 0 rgba(97, 59, 53, 0.7); }
+    box-shadow: 0 2px 2px 0 rgba(97, 59, 53, 0.7); }
   #mainPage .main-container-lobby-menu .lobby-menu-list {
     margin-bottom: 0;
     background-color: #f0e7db;
@@ -206,22 +204,19 @@ body {
         background-image: url(https://www.leovegas.com/static/mobile/img/layout/casino-icon@2x.png?etag=db8bb373b352b6b011aaaf05169968be8c7b99e7); }
       #mainPage .main-container-lobby-menu .lobby-menu-list li.live .borderStyle {
         border-left: 1px solid #ccbebc;
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box; }
+        box-sizing: border-box; }
       #mainPage .main-container-lobby-menu .lobby-menu-list li.live .lobbyIcon {
         background-image: url(https://www.leovegas.com/static/mobile/img/layout/live-icon@2x.png?etag=d42af5ad8557072fe10d5b8bc2aa8c62748617ac); }
       #mainPage .main-container-lobby-menu .lobby-menu-list li.sportsbook .borderStyle {
         border-left: 1px solid #ccbebc;
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box; }
+        box-sizing: border-box; }
       #mainPage .main-container-lobby-menu .lobby-menu-list li.sportsbook a {
         border-bottom-width: 3px;
         color: #e75f3f;
         font-weight: 700;
         border-bottom-color: #e75f3f;
         border-bottom-style: solid;
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box; }
+        box-sizing: border-box; }
         #mainPage .main-container-lobby-menu .lobby-menu-list li.sportsbook a .lobbyIcon {
           background-image: url(https://www.leovegas.com/static/mobile/img/layout/sports-icon-active@2x.png?etag=7584222db53b08370483ecd15915d480df5fb8ab); }
         #mainPage .main-container-lobby-menu .lobby-menu-list li.sportsbook a span {
@@ -234,8 +229,7 @@ body {
   bottom: 0;
   width: 100%;
   background: #f0e7dc;
-  -webkit-box-shadow: 0 -2px 0 #ccc6c0;
-          box-shadow: 0 -2px 0 #ccc6c0;
+  box-shadow: 0 -2px 0 #ccc6c0;
   z-index: 18;
   height: 48px;
   overflow: visible;
@@ -258,13 +252,8 @@ body {
     background-position: 0 0;
     background-size: 20px 20px; }
     #mainPage .bottom-nav-view .bottomnav-item.browse {
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-              flex-direction: column;
+      flex-direction: column;
       padding-top: 5px; }
       #mainPage .bottom-nav-view .bottomnav-item.browse .material-icons {
         padding-bottom: 3px; }
@@ -325,54 +314,49 @@ body {
   background-color: white;
   margin-bottom: 8px; }
   #mainPage .card-container.v2 .card-wrap {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex; }
     #mainPage .card-container.v2 .card-wrap .left {
-      -webkit-box-flex: 1;
-          -ms-flex-positive: 1;
-              flex-grow: 1;
-      display: -webkit-box;
-      display: -ms-flexbox;
+      flex-grow: 1;
       display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-              flex-direction: column;
+      flex-direction: column;
       padding: 8px; }
       #mainPage .card-container.v2 .card-wrap .left .teamline {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-            -ms-flex-direction: row;
-                flex-direction: row;
-        -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-                justify-content: space-between;
-        font-weight: bold; }
+        flex-direction: row;
+        justify-content: space-between;
+        font-weight: bold;
+        align-items: center; }
         #mainPage .card-container.v2 .card-wrap .left .teamline .teamname-row {
-          -webkit-box-flex: 1;
-              -ms-flex: 1;
-                  flex: 1;
+          flex: 1;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis; }
+        #mainPage .card-container.v2 .card-wrap .left .teamline .time {
+          color: #999999; }
+        #mainPage .card-container.v2 .card-wrap .left .teamline .card-stream {
+          display: none; }
+        #mainPage .card-container.v2 .card-wrap .left .teamline .card-livelabel {
+          display: none; }
+        #mainPage .card-container.v2 .card-wrap .left .teamline .card-stream[stream='true'] {
+          display: inline;
+          width: 42px;
+          height: 15px;
+          background-image: url("/stylesheets/stream.png");
+          background-repeat: no-repeat; }
     #mainPage .card-container.v2 .card-wrap .right {
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: row;
-              flex-direction: row; }
+      flex-direction: row; }
       #mainPage .card-container.v2 .card-wrap .right .betOfferButton {
         height: 100%;
         width: 50px;
         background-color: #52778B;
         color: #fff;
         border: none; }
+      #mainPage .card-container.v2 .card-wrap .right .betoffer[betOffers='false'] button {
+        background-color: #52778B;
+        opacity: .5; }
+  #mainPage .card-container.v2 .card-wrap[live='false'] .score-item {
+    display: none; }
 
 #mainPage .card-container.v1 {
   display: none;
@@ -388,6 +372,7 @@ body {
   text-align: center;
   vertical-align: top;
   -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
   break-inside: avoid;
   cursor: pointer; }
   #mainPage .card-container.v1.show {
@@ -430,6 +415,7 @@ body {
         position: relative;
         left: -12px;
         height: 25px;
+        -o-text-overflow: ellipsis;
         text-overflow: ellipsis;
         white-space: nowrap; }
         #mainPage .card-container.v1 .cardheader .cardtitle .path span:first-child {
@@ -458,6 +444,7 @@ body {
       display: block;
       font-size: 16px;
       line-height: 27px;
+      -o-text-overflow: ellipsis;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap; }
@@ -486,6 +473,7 @@ body {
       #mainPage .card-container.v1 .cardcontent .card-teamnames .teamname-row {
         font-size: 16px;
         line-height: 27px;
+        -o-text-overflow: ellipsis;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap; }
@@ -497,8 +485,8 @@ body {
     #mainPage .card-container.v1 .cardoffer .betoffer {
       width: 100%;
       overflow: hidden;
+      display: -webkit-flex;
       display: -ms-flexbox;
-      display: -webkit-box;
       display: flex; }
       #mainPage .card-container.v1 .cardoffer .betoffer .betOfferButton {
         font-family: inherit;
@@ -514,11 +502,12 @@ body {
         margin-left: 0;
         margin-right: 3px;
         min-width: 0;
+        -webkit-flex-basis: 0;
         -ms-flex-preferred-size: 0;
         flex-basis: 0;
+        -webkit-flex-grow: 1;
         -ms-flex-positive: 1;
-        -webkit-box-flex: 1;
-                flex-grow: 1;
+        flex-grow: 1;
         padding: 0 6px;
         outline: none;
         position: relative;
@@ -547,6 +536,7 @@ body {
         #mainPage .card-container.v1 .cardoffer .betoffer .betOfferButton .outcomeLabel {
           line-height: 30px;
           text-align: left;
+          -o-text-overflow: ellipsis;
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;
@@ -557,12 +547,8 @@ body {
   #mainPage .card-container.v1 .card-wrap[live='false'] .card-score {
     display: none; }
   #mainPage .card-container.v1 .card-wrap[live='false'] .card-teamnames {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
     margin-top: 12px; }
     #mainPage .card-container.v1 .card-wrap[live='false'] .card-teamnames .separator {
       display: inline; }
@@ -570,8 +556,6 @@ body {
 #mainPage .navigation {
   margin-top: 94px;
   margin-bottom: 4px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex; }
   #mainPage .navigation button {
     text-transform: none; }
@@ -584,8 +568,6 @@ body {
     #mainPage .navigation .leagues.fullscreen .mdl-menu__container {
       top: 50px !important; }
       #mainPage .navigation .leagues.fullscreen .mdl-menu__container .filterHeader {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex; }
     #mainPage .navigation .leagues .mdl-menu__container {
       left: 0 !important;
@@ -596,9 +578,7 @@ body {
         padding: 0 0 55px 0; }
       #mainPage .navigation .leagues .mdl-menu__container .filterHeader {
         display: none;
-        -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-                justify-content: space-between;
+        justify-content: space-between;
         padding: 8px 16px;
         height: 50px;
         top: 0;
@@ -609,15 +589,10 @@ body {
         background-color: white;
         z-index: 9999; }
         #mainPage .navigation .leagues .mdl-menu__container .filterHeader.shadow {
-          -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-                  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
         #mainPage .navigation .leagues .mdl-menu__container .filterHeader .filterText {
-          display: -webkit-box;
-          display: -ms-flexbox;
           display: flex;
-          -webkit-box-align: center;
-              -ms-flex-align: center;
-                  align-items: center; }
+          align-items: center; }
     #mainPage .navigation .leagues .mdl-menu--bottom-left {
       width: 100% !important; }
     #mainPage .navigation .leagues .mdl-selectfield-label {
@@ -638,9 +613,7 @@ body {
     #mainPage .navigation .leagues .mdl-selectfield label {
       display: none; }
     #mainPage .navigation .leagues .mdl-selectfield select {
-      -webkit-appearance: none;
-         -moz-appearance: none;
-              appearance: none; }
+      appearance: none; }
     #mainPage .navigation .leagues .mdl-selectfield {
       position: relative; }
       #mainPage .navigation .leagues .mdl-selectfield:after {
@@ -656,19 +629,13 @@ body {
   #mainPage .navigation .leagueCollection {
     display: none; }
   #mainPage .navigation .countryWrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    justify-content: space-between;
     height: 48px;
     line-height: 48px;
     padding: 0 16px;
     cursor: pointer;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
     border-top: 1px solid lightgray; }
     #mainPage .navigation .countryWrapper .country {
       width: 100%;
@@ -676,8 +643,6 @@ body {
   #mainPage .navigation .checkboxStyle {
     position: relative;
     margin: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     padding-left: 50px; }
     #mainPage .navigation .checkboxStyle label {
@@ -690,6 +655,8 @@ body {
         right: 0;
         top: 50%;
         -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
         transform: translateY(-50%); }
       #mainPage .navigation .checkboxStyle label:before {
         width: 20px;
@@ -698,7 +665,6 @@ body {
         border: 2px solid rgba(0, 0, 0, 0.54);
         border-radius: 2px;
         cursor: pointer;
-        -webkit-transition: background .3s;
         transition: background .3s;
         margin-right: 2px; }
       #mainPage .navigation .checkboxStyle label:after {
@@ -712,8 +678,7 @@ body {
         background: #337ab7;
         border: none; }
       #mainPage .navigation .checkboxStyle input[type="checkbox"]:checked + label:after {
-        -webkit-transform: rotate(-45deg);
-                transform: rotate(-45deg);
+        transform: rotate(-45deg);
         width: 12px;
         height: 6px;
         margin-right: -11px;
@@ -729,6 +694,7 @@ body {
   display: none; }
 
 #mainPage .dayFilter {
+  display: none !important;
   margin-left: 16px; }
   #mainPage .dayFilter .dayButton {
     min-width: 0; }
@@ -753,9 +719,7 @@ body {
   height: 100%;
   width: 100%;
   z-index: 1000;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center; }
+  justify-content: center; }
   #mainPage .fullScreen #progressbar {
     width: 400px; }
 
@@ -769,12 +733,8 @@ body {
   .filterTop #sportsButton {
     border-bottom: 1px solid black;
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between; }
+    justify-content: space-between; }
 
 .hide {
   visibility: hidden; }
@@ -795,16 +755,9 @@ body {
   background-color: white;
   z-index: 10000;
   padding: 16px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column; }
+  justify-content: space-between;
+  flex-direction: column; }
   .drawer h4 {
     padding-bottom: 16px; }
   .drawer button {
@@ -814,13 +767,9 @@ body {
   .drawer .checkboxStyle {
     position: relative;
     margin: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     height: 48px;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
     padding-left: 0;
     cursor: pointer; }
     .drawer .checkboxStyle label {
@@ -828,12 +777,8 @@ body {
       height: 100%;
       margin: 0;
       cursor: pointer;
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center; }
+      align-items: center; }
       .drawer .checkboxStyle label:before, .drawer .checkboxStyle label:after {
         content: "";
         position: absolute;
@@ -841,6 +786,8 @@ body {
         right: 0;
         top: 50%;
         -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
         transform: translateY(-50%); }
       .drawer .checkboxStyle label:before {
         width: 20px;
@@ -849,7 +796,6 @@ body {
         border: 2px solid rgba(0, 0, 0, 0.54);
         border-radius: 2px;
         cursor: pointer;
-        -webkit-transition: background .3s;
         transition: background .3s;
         margin-right: 2px; }
       .drawer .checkboxStyle label:after {
@@ -863,8 +809,7 @@ body {
         background: #337ab7;
         border: none; }
       .drawer .checkboxStyle input[type="checkbox"]:checked + label:after {
-        -webkit-transform: rotate(-45deg);
-                transform: rotate(-45deg);
+        transform: rotate(-45deg);
         width: 12px;
         height: 6px;
         margin-right: -11px;
@@ -883,22 +828,19 @@ body {
     background-color: #618a9b;
     color: white;
     height: 40px;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    align-items: center;
     display: flex;
     padding-left: 8px;
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 8px; }
   #outcomeListCopy .dateTitle {
-    background-color: #e75e3f; }
+    background-color: transparent;
+    color: #000;
+    border-bottom: 1px solid #b3b3b3; }
   #outcomeListCopy .eventGroup {
     margin-bottom: 20px; }
 
 #saveSettings {
   width: 100%;
   background-color: #e75f3f; }
-/*# sourceMappingURL=data:application/json;base64,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 */
