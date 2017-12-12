@@ -190,7 +190,7 @@ $(document).ready(function() {
     } else if (fullScreen === "true") {
         $('#switch-1').attr("checked", true)
         $( ".leagues" ).addClass("fullscreen")
-        $( "#leagueButton" ).addClass("mdl-button--raised")
+        //$( "#leagueButton" ).addClass("mdl-button--raised")
         $( "#leagueButton" ).addClass("mdl-button--colored")
         $( "#leagueButton .material-icons" ).text("filter_list");
     } else {
@@ -295,8 +295,8 @@ function buildFilterItems(evt, json) {
             '<div class="filterText">' +
                 '<h3 class="label">Filter events</h3>' +
             '</div>' +
-            '<button class="closeFilter">' +
-                '<span class="label">Close filter</span>' +
+            '<button class="closeFilter mdl-button mdl-js-button">' +
+                '<i class="material-icons">close</i>' +
             '</button>' +
         '</div>'
     );
