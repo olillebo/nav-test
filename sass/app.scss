@@ -525,36 +525,46 @@ body {
 					flex-direction: row;
 					flex-shrink: 0;
 
+                  .betOffers {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
                     .betOfferButton {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
                       outline: none;
                       height: 100%;
                       width: 50px;
                       background-color: #52778B;
                       color: #fff;
-                      border: none;
+                      border-left: 1px solid white;
+                      cursor: pointer;
 
-						&.showAll {
-							display: none;
-							width: 100%;
-							justify-content: center;
-						}
+                      &.showAll {
+                        display: none;
+                        width: 100%;
+                        justify-content: center;
+                      }
 
-						&.selected {
-							background-color: #27414D;
-						}
+                      &.selected {
+                        background-color: #27414D;
+                      }
                     }
 
-					.betoffer[betOffers='false']{
-						width: 156px;
+                    .betoffer[betOffers='false']{
+                      width: 156px;
 
-						button {
-							display: none;
+                      button {
+                        display: none;
 
-							&.showAll {
-								display: flex;
-							}
-						}
-					}
+                        &.showAll {
+                          display: flex;
+                        }
+                      }
+                    }
+                  }
 				}
 			}
 
@@ -846,6 +856,10 @@ body {
 
 					.filterHeader {
 						display: flex;
+
+                      h3 {
+                        margin-bottom: 0;
+                      }
 					}
 				}
               #leagueButton {

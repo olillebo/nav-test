@@ -82,26 +82,26 @@ var outcomeOptions_2 = {
     '        </div>\n' +
     '        <div class="right">\n' +
     '            <div class="betoffer betOffers">\n' +
-    '                <button class="betOfferButton showAll">\n' +
+    '                <div class="betOfferButton showAll">\n' +
     '                    <div>\n' +
     '                        <div class="odds">Show all offers</div>\n' +
     '                    </div>\n' +
-    '                </button>\n' +
-    '                <button class="betOfferButton">\n' +
+    '                </div>\n' +
+    '                <div class="betOfferButton">\n' +
     '                    <div>\n' +
     '                        <div class="odds odds1"></div>\n' +
     '                    </div>\n' +
-    '                </button>\n' +
-    '                <button class="betOfferButton">\n' +
+    '                </div>\n' +
+    '                <div class="betOfferButton">\n' +
     '                    <div>\n' +
     '                        <div class="odds oddsX"></div>\n' +
     '                    </div>\n' +
-    '                </button>\n' +
-    '                <button class="betOfferButton">\n' +
+    '                </div>\n' +
+    '                <div class="betOfferButton">\n' +
     '                    <div>\n' +
     '                        <div class="odds odds2"></div>\n' +
     '                    </div>\n' +
-    '                </button>\n' +
+    '                </div>\n' +
     '            </div>\n' +
     '        </div>\n' +
     '    </div>\n' +
@@ -293,8 +293,7 @@ function buildFilterItems(evt, json) {
     $(".mdl-menu__container").append('' +
         '<div class="filterHeader" onclick="clickHeader($(this));">' +
             '<div class="filterText">' +
-                '<span class="label">Filter events</span>' +
-                '<i class="material-icons">arrow_drop_up</i>' +
+                '<h3 class="label">Filter events</h3>' +
             '</div>' +
             '<button class="closeFilter">' +
                 '<span class="label">Close filter</span>' +
