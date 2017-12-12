@@ -175,25 +175,30 @@ $(document).ready(function() {
     fullScreen = Cookies.get('fullScreen');
     newCards = Cookies.get('newCards');
 
+
     if (typeof newCards === 'undefined'){
-        newCards = false;
+        newCards = true;
+        $('#switch-3').attr("checked", true)
     } else if (newCards === "true") {
         $('#switch-3').attr("checked", true)
-    }
+    } else $('#switch-3').attr("checked", false)
 
     if (typeof fullScreen === 'undefined'){
         $( ".leagues" ).removeClass("fullscreen")
-        fullScreen = false;
+        fullScreen = true;
+        $('#switch-1').attr("checked", true)
     } else if (fullScreen === "true") {
         $('#switch-1').attr("checked", true)
         $( ".leagues" ).addClass("fullscreen")
-    }
+    } else $('#switch-1').attr("checked", false)
+
 
     if (typeof cardSortType === 'undefined'){
-        cardSortType = false;
+        cardSortType = true;
+        $('#switch-2').attr("checked", true)
     } else if (cardSortType === "true") {
         $('#switch-2').attr("checked", true)
-    }
+    } else $('#switch-2').attr("checked", false)
 
 
 });
@@ -313,7 +318,7 @@ function buildFilterItems(evt, json) {
         )
         $(sortedArray[i].leagues).each(function(m, e) {
             $("#leagueCollection"+[i]).append(
-                '<li class ="mdl-menu__item"><div class ="checkboxStyle"> <input type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].name[m] + '</label></div></li>'
+                '<li class ="mdl-menu__item"><div class ="checkboxStyle"> <input type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" data-leagueName="' + sortedArray[i].name[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].name[m] + '</label></div></li>'
             )
             //leagueList.add({ leagueName: sortedArray[i].name[m], id: id, league: sortedArray[i].leagues[m]});
             id++;
@@ -386,17 +391,15 @@ $(document).on('click', '#listContent input:checkbox', function(event){
             selectedLeagues = leagueArray.concat(selectedLeagues).unique();
 
             // then when click on the clone, remove it and find related li and uncheck it
-            var id = parseInt(  $(this).prop("id"));
+            var id = parseInt( $(this).prop("id"));
 
             $(this).closest( "li" ).clone().addClass('out').appendTo( "#selectedList" );
             $("#selectedList").find("[data-league=" + $(this).data('league') + "]").prop('id', id + 100 )
             $(".topLeagues").find("[data-league=" + $(this).data('league') + "]").closest( "li" ).hide();
 
-
             $("#selectedList label[for='"+id+"']").attr('for',
                 function(index, old) { return old.replace(/\d+/, id + 100); }
             );
-
 
         } else {
             selectedLeagues = selectedLeagues.filter(function(item) {
@@ -406,8 +409,11 @@ $(document).on('click', '#listContent input:checkbox', function(event){
             $(".topLeagues").find("[data-league=" + $(this).data('league') + "]").closest( "li" ).show();
 
         }
-        if ($("#listContent input:checkbox:checked").length >= 1) {
+        if ($("#listContent input:checkbox:checked").length > 1) {
             $("#leagueButton .label").text($("#listContent input:checkbox:checked").length+" leagues selected");
+            $(".selectedLeagues").show();
+        } else if ($("#listContent input:checkbox:checked").length = 1) {
+            $("#leagueButton .label").text($("#listContent input:checkbox:checked").data('leaguename'));
             $(".selectedLeagues").show();
         } else if ($("#listContent .league:checked").length == 0) {
             $(".allSelect").prop('checked',true);
@@ -429,7 +435,7 @@ $(document).on('click', '#listContent input:checkbox', function(event){
         filterList();
         showItems(leagueLabel);
 
-        $("#outcomeListCopyEvents").empty()
+        $("#outcomeListCopyEvents").empty();
 
         if ($("#listContent input:checkbox:checked").length >= 1) {
             $("#outcomeList").hide();
@@ -440,6 +446,13 @@ $(document).on('click', '#listContent input:checkbox', function(event){
         } else if ($("#listContent .league:checked").length == 0) {
             $("#outcomeList").show();
 
+        }
+        if (cardSortType === "true") {
+            if ($("#listContent input:checkbox:checked").length > 1) {
+                $(".leagueTitle").show();
+            } else {
+                $(".leagueTitle").hide();
+            }
         }
 });
 
