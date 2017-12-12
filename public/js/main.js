@@ -190,7 +190,12 @@ $(document).ready(function() {
     } else if (fullScreen === "true") {
         $('#switch-1').attr("checked", true)
         $( ".leagues" ).addClass("fullscreen")
-    } else $('#switch-1').attr("checked", false)
+        $( "#leagueButton" ).addClass("mdl-button--raised")
+        $( "#leagueButton" ).addClass("mdl-button--colored")
+        $( "#leagueButton .material-icons" ).text("filter_list");
+    } else {
+        $('#switch-1').attr("checked", false);
+    }
 
 
     if (typeof cardSortType === 'undefined'){
@@ -313,7 +318,6 @@ function buildFilterItems(evt, json) {
     var id = 0;
     $(sortedArray).each(function(i, e) {
         $(".listContent").append(
-            //'<div class="countryWrapper" onclick="test($(this));" leagueCollection=leagueCollection'+[i]+'><i class="material-icons">arrow_drop_down</i><div class="country">'+sortedArray[i].country+'</div><div class ="checkboxStyle"> <input type="checkbox" id="' +[i]+ '" class="league"> <label for="' +[i]+ '"></label></div></div><div class="leagueCollection" id=leagueCollection'+[i]+'></div>'
             '<div class="countryWrapper" onclick="clickCountry($(this));" leagueCollection=leagueCollection'+[i]+'><span class="flag-icon flag-icon-'+getCountryCode(sortedArray[i].country).toLowerCase()+'"></span><div class="country">'+sortedArray[i].country+'</div><div class ="checkboxStyle"><i class="material-icons">arrow_drop_down</i></div></div><div class="leagueCollection" id=leagueCollection'+[i]+'></div>'
         )
         $(sortedArray[i].leagues).each(function(m, e) {
@@ -342,7 +346,8 @@ function clickCountry(element) {
     event.stopPropagation();
 
     $( "#"+$(element).attr('leaguecollection') ).slideToggle( "fast", function() {
-        // Animation complete.
+
+        element.find(".material-icons").toggleClass("rotate")
     });
 };
 
@@ -428,8 +433,9 @@ $(document).on('click', '#listContent input:checkbox', function(event){
             $("#leagueButton .label").text($(".allSelect").next("label").text())
         }
 
-
-        $("#leagueButton i").text("arrow_drop_down");
+        if (fullScreen === "false") {
+            $("#leagueButton i").text("arrow_drop_down");
+        }
         $('html, body').css('overflowY', 'auto');
 
         filterList();
@@ -606,13 +612,19 @@ function reorderList2() {
 
 
 $(".mdl-button").click(function(){
-if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
-    $('html, body').css('overflowY', 'auto');
-    $(this).find(".material-icons").text("arrow_drop_down");
-} else {
-    $(this).find(".material-icons").text("arrow_drop_up");
-    $('html, body').css('overflowY', 'hidden');
-}
+    if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
+        $('html, body').css('overflowY', 'auto');
+        console.log("her2")
+
+        if (fullScreen === "false") {
+            $(this).find(".material-icons").text("arrow_drop_down");
+        }
+    } else {
+        if (fullScreen === "false") {
+            $(this).find(".material-icons").text("arrow_drop_up");
+        }
+        $('html, body').css('overflowY', 'hidden');
+    }
 });
 
 $("#sort").click(function(){
@@ -702,11 +714,17 @@ $(document).mouseup(function(e)
     // if the target of the click isn't the container nor a descendant of the container
     if (!sportsbutton.is(e.target) && sportsbutton.has(e.target).length === 0)
     {
-        $("#sportsButton i").text("arrow_drop_down");
+        console.log("her3")
+
+        if (fullScreen === "false") {
+            $("#leagueButton i").text("arrow_drop_down");
+        }
     }
     if (!leaguebutton.is(e.target) && leaguebutton.has(e.target).length === 0)
     {
-        $("#leagueButton i").text("arrow_drop_down");
+        if (fullScreen === "false") {
+            $("#leagueButton i").text("arrow_drop_down");
+        }
         window.scrollTo(0,0)
     }
 });

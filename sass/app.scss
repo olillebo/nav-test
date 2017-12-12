@@ -833,12 +833,14 @@ body {
 		#leagueButton2 {
 			width: 100%;
 			color: white;
-			background-color: #e75f3f;
 		}
 
 		.leagues {
 			&.fullscreen {
-				//width: 100%;
+              display: flex;
+              justify-content: flex-end;
+              width: 100%;
+              padding: 0 4px 4px 0;
 				.mdl-menu__container {
 					top: 50px !important;
 
@@ -846,6 +848,10 @@ body {
 						display: flex;
 					}
 				}
+              #leagueButton {
+                background: white;
+                color: black;
+              }
 			}
 			.mdl-menu__container {
 				left: 0 !important;
@@ -860,7 +866,6 @@ body {
 				.list {
 					padding: 0 0 55px 0;
 				}
-
 
 				.filterHeader {
 					display: none;
@@ -1271,4 +1276,10 @@ body {
 #saveSettings {
 	width: 100%;
 	background-color: #e75f3f;
+}
+
+.rotate {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
