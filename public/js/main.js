@@ -82,6 +82,11 @@ var outcomeOptions_2 = {
     '        </div>\n' +
     '        <div class="right">\n' +
     '            <div class="betoffer betOffers">\n' +
+    '                <button class="betOfferButton showAll">\n' +
+    '                    <div>\n' +
+    '                        <div class="odds">Show all offers</div>\n' +
+    '                    </div>\n' +
+    '                </button>\n' +
     '                <button class="betOfferButton">\n' +
     '                    <div>\n' +
     '                        <div class="odds odds1"></div>\n' +
@@ -103,55 +108,6 @@ var outcomeOptions_2 = {
     '</div>'
 };
 
-var outcomeOptions_3 = {
-    valueNames: ["id", "home", "away", "sport", "league", "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }],
-    item: '<div class="card-container v2 id">\n' +
-    '    <div class="card-wrap live leagueID dateStamp">\n' +
-    '        <div class="left">\n' +
-    '           <div class="cardcontent ">\n' +
-    '              <div class="home1 teamline">\n' +
-    '                  <div class="teamname-row home"></div>\n' +
-    '                   <span class="homeScore score-item">0</span>\n' +
-    '              </div>\n' +
-    '              <div class="away1 teamline">\n' +
-    '                  <div class="teamname-row away"></div>\n' +
-    '                  <span class="awayScore score-item">4</span>\n' +
-    '               </div>\n' +
-    '               <div class="teamline">\n' +
-    '                   <div class="card-timer"><span class="timer time">90:35</span></div>\n' +
-    '                   <div class="card-livelabel started">Live</div>\n' +
-    '                   <div class="card-stream stream"></div>\n' +
-    '                   <div class="cardtitle hidden">\n' +
-    '                       <div class="path">\n' +
-    '                           <span class="sport"></span>\n' +
-    '                           <span class="leagueName"></span>\n' +
-    '                       </div>\n' +
-    '                   </div>\n' +
-    '               </div>\n' +
-    '           </div>\n' +
-    '        </div>\n' +
-    '        <div class="right">\n' +
-    '            <div class="betoffer betOffers">\n' +
-    '                <button class="betOfferButton">\n' +
-    '                    <div>\n' +
-    '                        <div class="odds odds1"></div>\n' +
-    '                    </div>\n' +
-    '                </button>\n' +
-    '                <button class="betOfferButton">\n' +
-    '                    <div>\n' +
-    '                        <div class="odds oddsX"></div>\n' +
-    '                    </div>\n' +
-    '                </button>\n' +
-    '                <button class="betOfferButton">\n' +
-    '                    <div>\n' +
-    '                        <div class="odds odds2"></div>\n' +
-    '                    </div>\n' +
-    '                </button>\n' +
-    '            </div>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '</div>'
-};
 
 /*var filterOptions = {
     valueNames: [{ name: 'id', attr: 'id' },"leagueName",{ name: 'league', attr: 'league'}],
@@ -171,6 +127,7 @@ var visibleItems = 0;
 var filterOnDay;
 var progress = 0;
 var cardSortType, fullScreen, newCards;
+var addedBets = 0;
 
 
 
@@ -274,6 +231,23 @@ $( "#switch-3" ).click(function() {
         Cookies.set('newCards', true );
     } else {
         Cookies.set('newCards', false );
+    }
+});
+
+$(document).on('click', '.betOfferButton', function() {
+    if ($(this).hasClass('selected')) {
+        $(this).removeClass('selected');
+        addedBets--;
+    } else {
+        $(this).addClass('selected');
+        addedBets++;
+    }
+    $(".count-badge-betslip").text(addedBets);
+
+    if (addedBets > 0) {
+        $(".betslip").removeClass('disabled');
+    } else {
+        $(".betslip").addClass('disabled');
     }
 });
 

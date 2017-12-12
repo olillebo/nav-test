@@ -315,6 +315,7 @@ body {
 			background-repeat: no-repeat;
 			background-position: 0 0;
 			background-size: 20px 20px;
+			position: relative;
 
 			&.browse {
 				display: flex;
@@ -326,6 +327,28 @@ body {
 				}
 			}
 
+			&.streamsports {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: center;
+				height: 100%;
+				padding: 3px 0 6px 0;
+				.image {
+					background-position: -25px -175px !important;
+					width: 25px;
+					height: 25px;
+					background-size: 225px 200px;
+					-webkit-filter: grayscale(100%);
+					-moz-filter: grayscale(100%);
+					-ms-filter: grayscale(100%);
+					-o-filter: grayscale(100%);
+					filter: grayscale(100%);
+					background-image: url(https://www.leovegas.com/static/sports-client/images/submenu@2x.f89bd482.png);
+
+				}
+
+			}
 			&.searchsports {
 				background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/search-sports@2x.png?etag=9feb01e59d2383f008461648118bbb52e2e7f45d);
 			}
@@ -340,6 +363,28 @@ body {
 
 			&.betslip {
 				background-image: url(https://www.leovegas.com/static/mobile/img/bottombar/betslip@2x.png?etag=98e3c2c6e817eff934688334cd459345f4d659a2);
+
+				.count-badge-betslip {
+					display: none;
+					position: absolute;
+					left: 50%;
+					top: -6px;
+					border-radius: 50%;
+					width: 20px;
+					height: 20px;
+					background-color: #e60000;
+					color: #fff;
+					line-height: 20px;
+					text-align: center;
+
+
+				}
+
+				&:not(.disabled) {
+					.count-badge-betslip {
+						display: initial;
+					}
+				}
 			}
 
 			&.disabled {
@@ -431,13 +476,13 @@ body {
 					  flex-direction: column;
 
 
-					.teamname-row {
-						display: inline-block;
-						vertical-align: top;
-						white-space: nowrap;
-						text-overflow: ellipsis;
-						overflow: hidden;
-					}
+						.teamname-row {
+							display: inline-block;
+							vertical-align: top;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+							overflow: hidden;
+						}
 					}
 
 					.teamScores {
@@ -486,19 +531,28 @@ body {
                       background-color: #52778B;
                       color: #fff;
                       border: none;
+
+						&.showAll {
+							display: none;
+							width: 100%;
+							justify-content: center;
+						}
+
+						&.selected {
+							background-color: #27414D;
+						}
                     }
 
 					.betoffer[betOffers='false']{
-						//background-color: white;
-						//border: 2px solid #52778B;
-						//width: 156px;
+						width: 156px;
 
 						button {
-							//display: none;
-							background-color: #52778B;
-							opacity: .5;
-						}
+							display: none;
 
+							&.showAll {
+								display: flex;
+							}
+						}
 					}
 				}
 			}
