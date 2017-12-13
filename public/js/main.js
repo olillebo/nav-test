@@ -126,7 +126,7 @@ var selectedLeagues = [];
 var visibleItems = 0;
 var filterOnDay;
 var progress = 0;
-var cardSortType, fullScreen, newCards;
+var cardSortType, fullScreen, newCards, multiSelect;
 var addedBets = 0;
 
 
@@ -174,6 +174,8 @@ $(document).ready(function() {
     cardSortType = Cookies.get('cardSort');
     fullScreen = Cookies.get('fullScreen');
     newCards = Cookies.get('newCards');
+    multiSelect = Cookies.get('multiSelect');
+
 
 
     if (typeof newCards === 'undefined'){
@@ -204,6 +206,13 @@ $(document).ready(function() {
     } else if (cardSortType === "true") {
         $('#switch-2').attr("checked", true)
     } else $('#switch-2').attr("checked", false)
+
+    if (typeof multiSelect === 'undefined'){
+        multiSelect = true;
+        $('#switch-4').attr("checked", true)
+    } else if (multiSelect === "true") {
+        $('#switch-4').attr("checked", true)
+    } else $('#switch-24').attr("checked", false)
 
 
 });
@@ -241,6 +250,14 @@ $( "#switch-3" ).click(function() {
         Cookies.set('newCards', true );
     } else {
         Cookies.set('newCards', false );
+    }
+});
+
+$( "#switch-4" ).click(function() {
+    if($(this).is(':checked')) {
+        Cookies.set('multiSelect', true );
+    } else {
+        Cookies.set('multiSelect', false );
     }
 });
 
@@ -300,13 +317,15 @@ function buildFilterItems(evt, json) {
             '</button>' +
         '</div>'
     );
-    $(".mdl-menu__container").append('' +
-        '<div class="filterFooter" onclick="clickFooter($(this));">' +
+    if (multiSelect === "true"){
+        $(".mdl-menu__container").append('' +
+            '<div class="filterFooter" onclick="clickFooter($(this));">' +
             '<div class="filterText">' +
-                '<span class="label">Apply</span>' +
+            '<span class="label">Apply</span>' +
             '</div>' +
-        '</div>'
-    );
+            '</div>'
+        );
+    }
 
 
     var countryLeagues = _.chain(outcomeValues).groupBy('country').map(function(value, key) {
@@ -329,7 +348,7 @@ function buildFilterItems(evt, json) {
         )
         $(sortedArray[i].leagues).each(function(m, e) {
             $("#leagueCollection"+[i]).append(
-                '<li class ="mdl-menu__item"><div class ="checkboxStyle"> <input type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" data-leagueName="' + sortedArray[i].name[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].name[m] + '</label></div></li>'
+                '<li class ="mdl-menu__item" onclick="clickList($(this));" ><div class ="checkboxStyle"> <input onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" data-leagueName="' + sortedArray[i].name[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].name[m] + '</label></div></li>'
             )
             //leagueList.add({ leagueName: sortedArray[i].name[m], id: id, league: sortedArray[i].leagues[m]});
             id++;
@@ -351,6 +370,7 @@ function clickSports(element) {
 
 function clickCountry(element) {
     event.stopPropagation();
+    console.log("h")
 
     $( "#"+$(element).attr('leaguecollection') ).slideToggle( "fast", function() {
 
@@ -358,9 +378,15 @@ function clickCountry(element) {
     });
 };
 
+
+
 function clickHeader(element) {
     $('html, body').css('overflowY', 'auto');
 
+};
+
+function clickFooter(element) {
+    $('html, body').css('overflowY', 'auto');
 };
 
 // click selected
@@ -379,7 +405,110 @@ $(document).on('click', '.topLeagues input:checkbox', function(event){
     $(this).prop('checked', false);
 });
 
-$(document).on('click', '#listContent input:checkbox', function(event){
+function clickList(element) {
+    event.stopPropagation();
+    var inputElement = element.find("input");
+    var leagueArray;
+    var ligaNavn =  parseInt(inputElement.data('league'));
+    leagueArray = [ligaNavn];
+    leagueLabel = ligaNavn;
+    var allSelect = $(".allSelect");
+
+
+    if(inputElement.hasClass("allSelect")) {
+        allSelect.prop('checked', true);
+    }
+
+    if (inputElement.is(':checked')) {
+        //turning off
+        inputElement.prop('checked', false);
+
+        selectedLeagues = selectedLeagues.filter(function(item) {
+            return leagueArray.indexOf(item) === -1;
+        });
+        $("#selectedList").find("[data-league=" + inputElement.data('league') + "]").closest( "li" ).remove();
+        $(".topLeagues").find("[data-league=" + inputElement.data('league') + "]").closest( "li" ).show();
+    } else {
+        //turning on
+        inputElement.prop('checked', true);
+
+        selectedLeagues = leagueArray.concat(selectedLeagues).unique();
+
+        var id = parseInt( inputElement.prop("id"));
+
+        inputElement.closest( "li" ).clone().addClass('out').appendTo( "#selectedList" );
+        $("#selectedList").find("[data-league=" + inputElement.data('league') + "]").prop('id', id + 100 )
+        $(".topLeagues").find("[data-league=" + inputElement.data('league') + "]").closest( "li" ).hide();
+
+        $("#selectedList label[for='"+id+"']").attr('for',
+            function(index, old) { return old.replace(/\d+/, id + 100); }
+        );
+    }
+
+    console.log(leagueArray)
+    console.log(selectedLeagues.length)
+    console.log(selectedLeagues)
+
+
+    var leagueButtonLabel = $("#leagueButton .label");
+    var allSelect = $(".allSelect");
+    var leagueChecked = $("#listContent .league:checked");
+
+
+    if (selectedLeagues.length > 1) {
+        leagueButtonLabel.text(selectedLeagues.length+" leagues selected");
+        $(".selectedLeagues").show();
+    } else if (selectedLeagues.length = 1) {
+        leagueButtonLabel.text($("#listContent input:checkbox:checked").data('leaguename'));
+        $(".selectedLeagues").show();
+    } else if (leagueChecked.length == 0) {
+        allSelect.prop('checked',true);
+        leagueButtonLabel.text(allSelect.next("label").text())
+        $(".selectedLeagues").hide();
+    } else {
+        // when is this called?
+        leagueButtonLabel.text($("#listContent input:checkbox:checked").next("label").text());
+    }
+    if (leagueChecked.length == 0) {
+        leagueLabel = "Filter events"
+        allSelect.prop('checked',true);
+        leagueButtonLabel.text(allSelect.next("label").text())
+    }
+
+    filterList();
+    showItems(leagueLabel);
+
+    $("#outcomeListCopyEvents").empty();
+
+    if (selectedLeagues.length >= 1) {
+        $("#outcomeList").hide();
+        if(cardSortType === "true") {
+            reorderList();
+        } else reorderList2();
+
+    } else if (leagueChecked.length == 0) {
+        $("#outcomeList").show();
+
+    }
+    if (cardSortType === "true") {
+        if ($("#listContent input:checkbox:checked").length > 1) {
+            $(".leagueTitle").show();
+        } else {
+            $(".leagueTitle").hide();
+        }
+    }
+
+    if (multiSelect === "false") {
+        if (fullScreen === "false") {
+            $("#leagueButton i").text("arrow_drop_down");
+        }
+
+        $('html, body').css('overflowY', 'auto');
+    }
+};
+
+
+$(document).on('click', '#listContent2 input:checkbox', function(event){
         event.stopPropagation();
         var leagueArray;
         var ligaNavn =  parseInt($(this).data('league'));
@@ -621,7 +750,6 @@ function reorderList2() {
 $(".mdl-button").click(function(){
     if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
         $('html, body').css('overflowY', 'auto');
-        console.log("her2")
 
         if (fullScreen === "false") {
             $(this).find(".material-icons").text("arrow_drop_down");
@@ -721,7 +849,6 @@ $(document).mouseup(function(e)
     // if the target of the click isn't the container nor a descendant of the container
     if (!sportsbutton.is(e.target) && sportsbutton.has(e.target).length === 0)
     {
-        console.log("her3")
 
         if (fullScreen === "false") {
             $("#leagueButton i").text("arrow_drop_down");
