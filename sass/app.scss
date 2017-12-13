@@ -1,3 +1,12 @@
+@font-face {
+	font-family: 'Handel Gothic D';
+	src: url('font.otf');
+}
+
+@font-face {
+	font-family: 'Informa pro medium';
+	src: url('informa-pro-medium.ttf');
+}
 
 body {
     background-color: rgb(240, 231, 221) !important;
@@ -814,9 +823,63 @@ body {
 		z-index: 1000;
 		//display: flex;
 		justify-content: center;
-
 		#progressbar {
 			width: 400px;
+		}
+	}
+}
+
+.cmCard {
+	display: flex;
+
+}
+
+
+.card {
+	font-family: "Handel Gothic D";
+
+
+	display: flex;
+	.score {
+		display: flex;
+		width: 100%;
+
+		.team{
+			box-shadow:
+				inset 2px 2px 2px rgba(255, 255, 255, 0.4),
+				inset -2px -2px 2px rgba(0, 0, 0, 0.5);
+			width: 50%;
+			height: 31px;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			padding-left: 12px;
+			align-items: center;
+			padding: 3px 3px 3px 12px;
+			color: white;
+			text-shadow: 1.5px 1.5px 2px rgba(0, 0, 0, 0.5);
+
+			&.home {
+				background-color: red;
+			}
+
+			&.away {
+				background-color: blue;
+			}
+
+			.score {
+				color: black;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 20px;
+				background-color: white;
+				text-shadow: 1.5px 1.5px 2px rgba(0, 0, 0, 0.5);
+				height: 100%;
+				box-shadow:
+					inset 0px 0px 0px rgba(255, 255, 255, 0),
+					inset -2px -2px 1px rgba(0, 0, 0, 0.6);
+			}
 		}
 	}
 }

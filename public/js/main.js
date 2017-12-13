@@ -92,7 +92,7 @@ $(document).ready(function() {
         } else todaysDay = todaysDay +1;
     });
 
-    getJsonData();
+    //getJsonData();
 
 });
 
