@@ -300,6 +300,13 @@ function buildFilterItems(evt, json) {
             '</button>' +
         '</div>'
     );
+    $(".mdl-menu__container").append('' +
+        '<div class="filterFooter" onclick="clickFooter($(this));">' +
+            '<div class="filterText">' +
+                '<span class="label">Apply</span>' +
+            '</div>' +
+        '</div>'
+    );
 
 
     var countryLeagues = _.chain(outcomeValues).groupBy('country').map(function(value, key) {
@@ -312,7 +319,8 @@ function buildFilterItems(evt, json) {
     var sortedArray = _.sortBy(countryLeagues, function(o) { return o.country; })
 
     $("#leaguelist").append('' +
-        '<div id="listContent" class="listContent hide">'
+        '<div id="listContent" class="listContent hide">'+
+        '<div class="mdl-selectfield-label">Leagues by country</div>'
     );
     var id = 0;
     $(sortedArray).each(function(i, e) {
