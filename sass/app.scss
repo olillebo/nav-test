@@ -857,12 +857,15 @@ body {
               justify-content: flex-end;
               width: 100%;
               padding: 0 4px 4px 4px;
-				.mdl-menu__container {
+				.listContainer {
 					top: 50px !important;
 
 					.filterHeader, .filterFooter {
 						display: flex;
 					}
+					position: absolute;
+					background-color: white;
+					z-index: 9999;
 
 				}
               #leagueButton {
@@ -880,7 +883,7 @@ body {
 				padding: 0 12px;
 
 			}
-			.mdl-menu__container {
+			.listContainer {
 				left: 0 !important;
 				width: 100% !important;
 
@@ -889,8 +892,30 @@ body {
 				//top: 50px !important;
 				//position: fixed;
 
+				.li-element {
+					display: block;
+					border: none;
+					color: rgba(0,0,0,.87);
+					background-color: transparent;
+					text-align: left;
+					margin: 0;
+					padding: 0 16px;
+					outline-color: #bdbdbd;
+					position: relative;
+					overflow: hidden;
+					font-size: 14px;
+					font-weight: 400;
+					letter-spacing: 0;
+					text-decoration: none;
+					cursor: pointer;
+					height: 48px;
+					line-height: 48px;
+					white-space: nowrap;
+					transition: opacity .2s
+				}
 
-				.list {
+
+					.list {
 					padding: 0 0 55px 0;
 				}
 

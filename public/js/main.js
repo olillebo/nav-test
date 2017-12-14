@@ -111,7 +111,7 @@ var outcomeOptions_2 = {
 
 /*var filterOptions = {
     valueNames: [{ name: 'id', attr: 'id' },"leagueName",{ name: 'league', attr: 'league'}],
-    item: '<li class ="mdl-menu__item">\n' +
+    item: '<li class ="li-element">\n' +
     '       <input type="checkbox" class="league id league">\n' +
     '       <label for="id" class="leagueName"></label>\n' +
     '      </li>'
@@ -128,14 +128,10 @@ var filterOnDay;
 var progress = 0;
 var cardSortType, fullScreen, newCards, multiSelect;
 var addedBets = 0;
-
-
-
 var outcomeValues, outcomeList, leagueLabel, leagueList;
 
 $(document).ready(function() {
     $(document).bind('createList', createList);
-    //leagueList = new List("filters", filterOptions);
 
     var todaysDay = new Date().getDate();
     filterOnDay = todaysDay;
@@ -152,6 +148,7 @@ $(document).ready(function() {
 
     getJsonData();
 
+    console.log($(".listContainer" ))
     $(".mdl-menu__container" ).scroll(function() { //.box is the class of the div
         var p = $( "#leaguelist" ).position().top;
         if(p<0) $(".filterHeader" ).addClass("shadow");
@@ -169,6 +166,7 @@ $(document).ready(function() {
         }
     });
     $( ".drawer" ).hide();
+    $( ".listContainer" ).hide();
     $( ".selectedLeagues" ).hide();
 
     cardSortType = Cookies.get('cardSort');
@@ -176,17 +174,15 @@ $(document).ready(function() {
     newCards = Cookies.get('newCards');
     multiSelect = Cookies.get('multiSelect');
 
-
-
     if (typeof newCards === 'undefined'){
         newCards = true;
         $('#switch-3').attr("checked", true)
     } else if (newCards === "true") {
         $('#switch-3').attr("checked", true)
-    } else $('#switch-3').attr("checked", false)
+    } else $('#switch-3').attr("checked", false);
 
     if (typeof fullScreen === 'undefined'){
-        $( ".leagues" ).removeClass("fullscreen")
+        $( ".leagues" ).removeClass("fullscreen");
         fullScreen = true;
         $('#switch-1').attr("checked", true)
     } else if (fullScreen === "true") {
@@ -216,6 +212,7 @@ $(document).ready(function() {
 
 
 });
+
 $( ".sidebar" ).click(function() {
     $( ".drawer" ).toggle( "slide" , {
         direction: 'left'
@@ -260,6 +257,11 @@ $( "#switch-4" ).click(function() {
         Cookies.set('multiSelect', false );
     }
 });
+
+$( "#leagueButton" ).click(function() {
+    $( ".listContainer" ).slideToggle( "fast");
+});
+
 
 $(document).on('click', '.betOfferButton', function() {
     if ($(this).hasClass('selected')) {
@@ -307,7 +309,7 @@ function createList(evt, json) {
 
 function buildFilterItems(evt, json) {
 
-    $(".mdl-menu__container").append('' +
+    $(".listContainer").append('' +
         '<div class="filterHeader" onclick="clickHeader($(this));">' +
             '<div class="filterText">' +
                 '<h3 class="label">Filter events</h3>' +
@@ -318,7 +320,9 @@ function buildFilterItems(evt, json) {
         '</div>'
     );
     if (multiSelect === "true"){
-        $(".mdl-menu__container").append('' +
+        console.log($(".listContainer"))
+
+        $(".listContainer").append('' +
             '<div class="filterFooter" onclick="clickFooter($(this));">' +
             '<div class="filterText">' +
             '<span class="label">Apply</span>' +
@@ -348,7 +352,7 @@ function buildFilterItems(evt, json) {
         )
         $(sortedArray[i].leagues).each(function(m, e) {
             $("#leagueCollection"+[i]).append(
-                '<li class ="mdl-menu__item" onclick="clickList($(this));" ><div class ="checkboxStyle"> <input onclick="(function(e) { e.preventDefault(); e.stopPropagation(); })(event)" type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" data-leagueName="' + sortedArray[i].name[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].name[m] + '</label></div></li>'
+                '<li class ="li-element" ><div class ="checkboxStyle"> <input type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" data-leagueName="' + sortedArray[i].name[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].name[m] + '</label></div></li>'
             )
             //leagueList.add({ leagueName: sortedArray[i].name[m], id: id, league: sortedArray[i].leagues[m]});
             id++;
@@ -370,7 +374,6 @@ function clickSports(element) {
 
 function clickCountry(element) {
     event.stopPropagation();
-    console.log("h")
 
     $( "#"+$(element).attr('leaguecollection') ).slideToggle( "fast", function() {
 
@@ -387,6 +390,7 @@ function clickHeader(element) {
 
 function clickFooter(element) {
     $('html, body').css('overflowY', 'auto');
+    $( ".listContainer" ).hide();
 };
 
 // click selected
@@ -394,20 +398,33 @@ function clickFooter(element) {
 //find and trigger click on element in listcontent
 
 $(document).on('click', '#selectedList input:checkbox', function(event){
+    event.stopPropagation();
+    event.preventDefault();
+    console.log("her1")
     var ligaNavn =  parseInt($(this).data('league'));
-    $("#listContent").find("[data-league=" + $(this).data('league') + "]").trigger("click")
+    $("#listContent").find("[data-league=" + $(this).data('league') + "]").closest( ".checkboxStyle" ).trigger("click")
 });
 
 $(document).on('click', '.topLeagues input:checkbox', function(event){
+    console.log("her2")
+
+    event.stopPropagation();
+    event.preventDefault();
+
     var ligaNavn =  parseInt($(this).data('league'));
-    $("#listContent").find("[data-league=" + $(this).data('league') + "]").trigger("click")
+    $("#listContent").find("[data-league=" + $(this).data('league') + "]").closest( ".checkboxStyle" ).trigger("click")
     $(this).closest( "li" ).hide();
     $(this).prop('checked', false);
 });
 
-function clickList(element) {
+
+
+$(document).on('click', '#listContent .checkboxStyle', function(event){
+    console.log("her")
     event.stopPropagation();
-    var inputElement = element.find("input");
+    event.preventDefault();
+
+    var inputElement = $(this).find('input');
     var leagueArray;
     var ligaNavn =  parseInt(inputElement.data('league'));
     leagueArray = [ligaNavn];
@@ -418,6 +435,7 @@ function clickList(element) {
     if(inputElement.hasClass("allSelect")) {
         allSelect.prop('checked', true);
     }
+    console.log(inputElement.is(':checked'));
 
     if (inputElement.is(':checked')) {
         //turning off
@@ -445,11 +463,6 @@ function clickList(element) {
         );
     }
 
-    console.log(leagueArray)
-    console.log(selectedLeagues.length)
-    console.log(selectedLeagues)
-
-
     var leagueButtonLabel = $("#leagueButton .label");
     var allSelect = $(".allSelect");
     var leagueChecked = $("#listContent .league:checked");
@@ -458,18 +471,19 @@ function clickList(element) {
     if (selectedLeagues.length > 1) {
         leagueButtonLabel.text(selectedLeagues.length+" leagues selected");
         $(".selectedLeagues").show();
-    } else if (selectedLeagues.length = 1) {
+    } else if (selectedLeagues.length === 1) {
         leagueButtonLabel.text($("#listContent input:checkbox:checked").data('leaguename'));
         $(".selectedLeagues").show();
-    } else if (leagueChecked.length == 0) {
+    } else if (leagueChecked.length === 0) {
         allSelect.prop('checked',true);
         leagueButtonLabel.text(allSelect.next("label").text())
+        selectedLeagues = [];
         $(".selectedLeagues").hide();
     } else {
         // when is this called?
         leagueButtonLabel.text($("#listContent input:checkbox:checked").next("label").text());
     }
-    if (leagueChecked.length == 0) {
+    if (leagueChecked.length === 0) {
         leagueLabel = "Filter events"
         allSelect.prop('checked',true);
         leagueButtonLabel.text(allSelect.next("label").text())
@@ -477,7 +491,6 @@ function clickList(element) {
 
     filterList();
     showItems(leagueLabel);
-
     $("#outcomeListCopyEvents").empty();
 
     if (selectedLeagues.length >= 1) {
@@ -486,7 +499,7 @@ function clickList(element) {
             reorderList();
         } else reorderList2();
 
-    } else if (leagueChecked.length == 0) {
+    } else if (leagueChecked.length === 0) {
         $("#outcomeList").show();
 
     }
@@ -505,7 +518,7 @@ function clickList(element) {
 
         $('html, body').css('overflowY', 'auto');
     }
-};
+});
 
 
 $(document).on('click', '#listContent2 input:checkbox', function(event){
@@ -609,7 +622,7 @@ function  filterList() {
         var inputDate = timestamp.getDate();
 
         //TODO improve this
-        if($(".allSelect").prop('checked')) return true;
+        //if($(".allSelect").prop('checked')) return true;
         if ((selectedLeagues.indexOf((item.values().league)) >= 0))  {
             return true;
         } else {
@@ -617,6 +630,7 @@ function  filterList() {
         }
     });
     showItems();
+
 
     if (outcomeList.visibleItems.length > 0)  {
         $(".showMore").show();
@@ -628,6 +642,7 @@ function  filterList() {
 };
 
 function reorderList() {
+
     var monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
@@ -645,6 +660,7 @@ function reorderList() {
     });
 
     var formattedCurrList = currList.unique();
+
     $.each( formattedCurrList, function( index2, value2 ){
         $("#outcomeListCopyEvents").append('' +
             '<div class="eventGroup date-'+value2+'">'+
@@ -652,6 +668,7 @@ function reorderList() {
             '</div>'
         );
     });
+
 
     $.each( formattedCurrList, function( index2, value2 ){
         var currList = [];
@@ -670,6 +687,7 @@ function reorderList() {
         });
         var uniqueLeagues = currList.unique();
         $.each( uniqueLeagues, function( index3, value3 ){
+
             $( ".date-"+value2 ).append('' +
                 '<div class="date-'+value3+value2+'">'+
                 '<div class="leagueTitle leagueTitle-'+value3+'">' +value3+'</div>' +
@@ -708,6 +726,7 @@ function reorderList2() {
             '<div class="leagueTitle leagueTitle-'+value+'">' +value+'</div>' +
             '</div>'
         );
+
         var currList = [];
         listItems.each(function( index, div ) {
 
