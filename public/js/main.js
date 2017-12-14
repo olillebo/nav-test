@@ -479,8 +479,11 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
             $(".leagueTitle").hide();
         }
     }
+    console.log(multiSelect)
+    console.log(fullScreen)
 
     if ((multiSelect === false) || (multiSelect === "false") ){
+        console.log(multiSelect)
 
         if (fullScreen === false) {
             $("#leagueButton i").text("arrow_drop_down");
