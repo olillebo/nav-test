@@ -130,12 +130,13 @@ var cardSortType, fullScreen, newCards, multiSelect;
 var addedBets = 0;
 var outcomeValues, outcomeList, leagueLabel, leagueList;
 
+
 $(document).ready(function() {
     $(document).bind('createList', createList);
-
     var todaysDay = new Date().getDate();
     filterOnDay = todaysDay;
-
+    loadCookies();
+    console.log(newCards)
     $('.dayButton').each(function(){
         $(this).data('day',todaysDay);
         $(this).find(".label").text(todaysDay);
@@ -148,7 +149,6 @@ $(document).ready(function() {
 
     getJsonData();
 
-    console.log($(".listContainer" ))
     $(".mdl-menu__container" ).scroll(function() { //.box is the class of the div
         var p = $( "#leaguelist" ).position().top;
         if(p<0) $(".filterHeader" ).addClass("shadow");
@@ -169,6 +169,9 @@ $(document).ready(function() {
     $( ".listContainer" ).hide();
     $( ".selectedLeagues" ).hide();
 
+});
+
+function loadCookies() {
     cardSortType = Cookies.get('cardSort');
     fullScreen = Cookies.get('fullScreen');
     newCards = Cookies.get('newCards');
@@ -176,13 +179,15 @@ $(document).ready(function() {
 
     if (typeof newCards === 'undefined'){
         newCards = true;
+
         $('#switch-3').attr("checked", true)
     } else if (newCards === "true") {
+        console.log("true")
         $('#switch-3').attr("checked", true)
     } else $('#switch-3').attr("checked", false);
 
     if (typeof fullScreen === 'undefined'){
-        $( ".leagues" ).removeClass("fullscreen");
+        $( ".leagues" ).addClass("fullscreen");
         fullScreen = true;
         $('#switch-1').attr("checked", true)
     } else if (fullScreen === "true") {
@@ -194,7 +199,6 @@ $(document).ready(function() {
     } else {
         $('#switch-1').attr("checked", false);
     }
-
 
     if (typeof cardSortType === 'undefined'){
         cardSortType = true;
@@ -209,9 +213,7 @@ $(document).ready(function() {
     } else if (multiSelect === "true") {
         $('#switch-4').attr("checked", true)
     } else $('#switch-24').attr("checked", false)
-
-
-});
+}
 
 $( ".sidebar" ).click(function() {
     $( ".drawer" ).toggle( "slide" , {
@@ -294,8 +296,8 @@ function getNumberOfDays(year, month) {
 function createList(evt, json) {
     var options;
     outcomeValues = json.events;
+    if (newCards === true){
 
-    if (newCards === "true"){
         options = outcomeOptions_2;
     } else {
         options = outcomeOptions;
@@ -309,7 +311,7 @@ function createList(evt, json) {
 
 function buildFilterItems(evt, json) {
 
-    if (multiSelect === "true"){
+    if ((multiSelect === true) || (multiSelect === "true") ){
         $(".filterFooter").removeClass("hidden");
     }
 
@@ -348,11 +350,10 @@ function buildFilterItems(evt, json) {
 
 $(document).on('click', '.countryWrapper', function(event){
     event.stopPropagation();
+    $(this).find(".material-icons").toggleClass("rotate")
 
-    $( "#"+$(this).attr('leaguecollection') ).slideToggle( "fast", function() {
 
-        $(this).find(".material-icons").toggleClass("rotate")
-    });
+    $( "#"+$(this).attr('leaguecollection') ).slideToggle( "fast");
 });
 
 
@@ -379,7 +380,6 @@ $(document).on('click', '.closeFilter', function(event){
 $(document).on('click', '#selectedList input:checkbox', function(event){
     event.stopPropagation();
     event.preventDefault();
-    console.log("her1")
     var ligaNavn =  parseInt($(this).data('league'));
     $("#listContent").find("[data-league=" + $(this).data('league') + "]").closest( ".checkboxStyle" ).trigger("click")
 });
@@ -475,8 +475,9 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
         }
     }
 
-    if (multiSelect === "false") {
-        if (fullScreen === "false") {
+    if ((multiSelect === false) || (multiSelect === "false") ){
+
+        if (fullScreen === false) {
             $("#leagueButton i").text("arrow_drop_down");
         }
 
@@ -860,7 +861,8 @@ var F = $.ajax({ dataType:"json",
                 var date = new Date(item.event.start);
                 var currentDate = new Date();
                 live = (date <= currentDate);
-                if (newCards === "true"){
+                if (newCards === true){
+
                     var time = date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
 
                 } else {
