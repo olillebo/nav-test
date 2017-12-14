@@ -1,7 +1,7 @@
 var outcomeOptions = {
-    valueNames: ["id", "home", "away", "sport", "league", "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate"],
+    valueNames: [{ name: 'id', attr: 'id' }, "home", "away", "sport", "league", { name: 'rank', attr: 'rank' }, "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate"],
     item: '<div class="card-container v1 id">\n' +
-    '    <div class="card-wrap live leagueID dateStamp">\n' +
+    '    <div class="card-wrap live leagueID dateStamp rank">\n' +
     '        <header class="cardheader">\n' +
     '            <div class="card-livelabel started">Live</div>\n' +
     '            <div class="card-timer"><span class="timer time">90:35</span></div>\n' +
@@ -52,9 +52,9 @@ var outcomeOptions = {
 };
 
 var outcomeOptions_2 = {
-    valueNames: ["id", "home", "away", "sport", "league", "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }],
+    valueNames: [{ name: 'id', attr: 'id' }, "home", "away", "sport", "league", { name: 'rank', attr: 'rank' }, "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }],
     item: '<div class="card-container v2 id">\n' +
-    '    <div class="card-wrap live leagueID dateStamp">\n' +
+    '    <div class="card-wrap live leagueID id dateStamp rank">\n' +
     '        <div class="left">\n' +
     '           <div class="cardcontent ">\n' +
     '              <div class="teamline">\n' +
@@ -126,7 +126,7 @@ var selectedLeagues = [];
 var visibleItems = 0;
 var filterOnDay;
 var progress = 0;
-var cardSortType, fullScreen, newCards, multiSelect;
+var cardSortType, fullScreen, newCards, multiSelect, groupStartPage;
 var addedBets = 0;
 var outcomeValues, outcomeList, leagueLabel, leagueList;
 
@@ -150,9 +150,7 @@ $(document).ready(function() {
     getJsonData();
 
     $("#leaguelist" ).scroll(function() { //.box is the class of the div
-        console.log("scroll");
         var p = $( ".filterTop" ).position().top;
-        console.log(p)
         if(p<0) $(".filterHeader" ).addClass("shadow");
         else $(".filterHeader" ).removeClass("shadow");
     });
@@ -180,6 +178,7 @@ function loadCookies() {
     fullScreen = Cookies.get('fullScreen');
     newCards = Cookies.get('newCards');
     multiSelect = Cookies.get('multiSelect');
+    groupStartPage = Cookies.get('groupStartPage');
 
     if (typeof newCards === 'undefined'){
         newCards = true;
@@ -218,7 +217,14 @@ function loadCookies() {
         $('#switch-4').attr("checked", true)
     } else if (multiSelect === "true") {
         $('#switch-4').attr("checked", true)
-    } else $('#switch-24').attr("checked", false)
+    } else $('#switch-4').attr("checked", false)
+
+    if (typeof groupStartPage === 'undefined'){
+        groupStartPage = true;
+        $('#switch-5').attr("checked", true)
+    } else if (groupStartPage === "true") {
+        $('#switch-5').attr("checked", true)
+    } else $('#switch-5').attr("checked", false)
 }
 
 $( ".sidebar" ).click(function() {
@@ -263,6 +269,14 @@ $( "#switch-4" ).click(function() {
         Cookies.set('multiSelect', true );
     } else {
         Cookies.set('multiSelect', false );
+    }
+});
+
+$( "#switch-5" ).click(function() {
+    if($(this).is(':checked')) {
+        Cookies.set('groupStartPage', true );
+    } else {
+        Cookies.set('groupStartPage', false );
     }
 });
 
@@ -314,6 +328,7 @@ function createList(evt, json) {
     outcomeList.sort('sortDate', { order: "asc" });
     buildFilterItems();
     showItems("Filter events");
+    sortPopularity();
 }
 
 function buildFilterItems(evt, json) {
@@ -601,6 +616,94 @@ function reorderList() {
     });
 
 };
+function sort_li(a, b) {
+    return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
+}
+function sortPopularity() {
+    var popularLeagues = [1000095001, 1000094994, 1000095049, 1000094985];
+    var listItems = $("#outcomeList .card-container");
+    $("#outcomeList").hide();
+
+    if ((groupStartPage === true) || (groupStartPage === "true")){
+        //top events from each league
+
+        var listEach = [];
+        $.each( popularLeagues, function( index, value ){
+
+            var currList = [];
+            listItems.each(function( index, div ) {
+                if (value==$(div).find(".card-wrap").attr("leagueID"))  {
+                    var rank = $(div).find(".card-wrap").attr("rank");
+                    var id = $(div).find(".card-wrap").attr("id");
+                    currList.push([parseInt(rank), parseInt(id)]);
+                }
+            });
+
+            currList.sort(function(a, b) {
+                return b[0] - a[0];
+            });
+            console.log(currList)
+
+            //var arr = currList.slice(1).slice(-5);
+            var arr = currList.slice(0,5)
+            listEach.push([arr, value]);
+        });
+
+
+        $.each( listEach, function( index, value ){
+            $("#outcomeListCopyEvents").append('' +
+                '<div class="eventGroup league-'+value[1]+'">'+
+                '<div class="leagueTitle leagueTitle-'+value[1]+'">' +value[1]+'</div>' +
+                '</div>'
+            );
+            $.each( value[0], function( index2, value2 ){
+                listItems.each(function( index, div ) {
+                    if (value2[1]==$(div).find(".card-wrap").attr("id"))  {
+                        $(div).clone().appendTo( ".league-"+value[1] );
+                        $( ".leagueTitle-"+value[1] ).text($(div).find(".leagueName").text())
+                    }
+                });
+
+            });
+        });
+
+    } else {
+        //top events from all leagues
+        var topAll = [];
+        listItems.each(function( index, div ) {
+            var rank = $(div).find(".card-wrap").attr("rank");
+            var id = $(div).find(".card-wrap").attr("id");
+            topAll.push([parseInt(rank), parseInt(id)]);
+        });
+        topAll.sort(function(a, b) {
+            return b[0] - a[0];
+        });
+        console.log(topAll)
+
+        //var arr = topAll.slice(1).slice(-12);
+        var arr = topAll.slice(0,5)
+        topAll = arr;
+        console.log(topAll)
+
+        $("#outcomeListCopyEvents").append('' +
+            '<div class="eventGroup-popular">'+
+            '<div class="leagueTitle leagueTitle-pop">' +"Top leagues"+'</div>' +
+            '</div>'
+        );
+
+
+        $.each( topAll, function( index, value ){
+            listItems.each(function( index, div ) {
+
+                if (value[1]==$(div).find(".card-wrap").attr("id"))  {
+                    $(div).clone().appendTo( ".eventGroup-popular" );
+                }
+            });
+
+        });
+    }
+
+};
 
 function reorderList2() {
     var monthNames = ["January", "February", "March", "April", "May", "June",
@@ -767,7 +870,7 @@ $(document).mouseup(function(e)
         if (fullScreen === "false") {
             $("#leagueButton i").text("arrow_drop_down");
         }
-        window.scrollTo(0,0)
+        //window.scrollTo(0,0)
     }
 });
 
@@ -853,6 +956,7 @@ var F = $.ajax({ dataType:"json",
                 var homeScore = undefined;
                 var awayScore = undefined;
                 var betOffers = undefined;
+                var rank = undefined;
 
                 if(item.betOffers != null && item.betOffers.length > 0 ){
                     betOffers = true;
@@ -923,6 +1027,7 @@ var F = $.ajax({ dataType:"json",
                             country: item.event.path[1].name,
                             live : live,
                             time : time,
+                            rank: item.event.rank,
                             odds1Name: item.event.homeName,
                             odds2Name : item.event.awayName,
                             odds1: odds1,

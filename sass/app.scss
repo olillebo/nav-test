@@ -2,6 +2,7 @@
 body {
     background-color: rgb(240, 231, 221) !important;
     font-family: arvo !important;
+	min-height: auto !important;
 }
 
 input[type=checkbox] {
@@ -1117,11 +1118,24 @@ select {
 		$md-checkmark-width: 2px;
 		$md-checkmark-color: #fff;
 
+		.otherSports {
+			.checkboxStyle {
+				label {
+					&:before {
+						border: 2px solid rgba(0, 0, 0, 0.3);
+						cursor: not-allowed;
+					}
+					color: rgba(0, 0, 0, 0.3);
+					cursor: not-allowed;
+				}
+			}
+		}
 		.checkboxStyle {
 			position: relative;
 			margin: 0;
 			display: flex;
 			padding-left: 50px;
+
 
 			label {
 				margin: 0;
@@ -1154,6 +1168,7 @@ select {
 					right: 17px;
 				}
 			}
+
 
 			input[type="checkbox"] {
 				appearance: none;
