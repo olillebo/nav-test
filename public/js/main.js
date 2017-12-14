@@ -298,7 +298,8 @@ function getNumberOfDays(year, month) {
 function createList(evt, json) {
     var options;
     outcomeValues = json.events;
-    if (newCards === true){
+    if ((newCards === true) || (newCards === "true")){
+
 
         options = outcomeOptions_2;
     } else {
@@ -863,7 +864,7 @@ var F = $.ajax({ dataType:"json",
                 var date = new Date(item.event.start);
                 var currentDate = new Date();
                 live = (date <= currentDate);
-                if (newCards === true){
+                if ((newCards === true) || (newCards === "true")){
 
                     var time = date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
 
