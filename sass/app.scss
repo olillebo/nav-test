@@ -1016,11 +1016,11 @@ select {
 					}
 
 					button {
-
+						border: none;
 					}
 
 					button:disabled {
-						background: #dddddd;
+						background: #ddd;
 					}
 				}
 			}
