@@ -149,8 +149,10 @@ $(document).ready(function() {
 
     getJsonData();
 
-    $(".mdl-menu__container" ).scroll(function() { //.box is the class of the div
-        var p = $( "#leaguelist" ).position().top;
+    $("#leaguelist" ).scroll(function() { //.box is the class of the div
+        console.log("scroll");
+        var p = $( ".filterTop" ).position().top;
+        console.log(p)
         if(p<0) $(".filterHeader" ).addClass("shadow");
         else $(".filterHeader" ).removeClass("shadow");
     });
