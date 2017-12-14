@@ -310,7 +310,7 @@ function createList(evt, json) {
 function buildFilterItems(evt, json) {
 
     $(".listContainer").append('' +
-        '<div class="filterHeader" onclick="clickHeader($(this));">' +
+        '<div class="filterHeader">' +
             '<div class="filterText">' +
                 '<h3 class="label">Filter events</h3>' +
             '</div>' +
@@ -320,10 +320,9 @@ function buildFilterItems(evt, json) {
         '</div>'
     );
     if (multiSelect === "true"){
-        console.log($(".listContainer"))
 
         $(".listContainer").append('' +
-            '<div class="filterFooter" onclick="clickFooter($(this));">' +
+            '<div class="filterFooter">' +
             '<div class="filterText">' +
             '<span class="label">Apply</span>' +
             '</div>' +
@@ -348,7 +347,7 @@ function buildFilterItems(evt, json) {
     var id = 0;
     $(sortedArray).each(function(i, e) {
         $(".listContent").append(
-            '<div class="countryWrapper" onclick="clickCountry($(this));" leagueCollection=leagueCollection'+[i]+'><span class="flag-icon flag-icon-'+getCountryCode(sortedArray[i].country).toLowerCase()+'"></span><div class="country">'+sortedArray[i].country+'</div><div class ="checkboxStyle"><i class="material-icons">arrow_drop_down</i></div></div><div class="leagueCollection" id=leagueCollection'+[i]+'></div>'
+            '<div class="countryWrapper" leagueCollection=leagueCollection'+[i]+'><span class="flag-icon flag-icon-'+getCountryCode(sortedArray[i].country).toLowerCase()+'"></span><div class="country">'+sortedArray[i].country+'</div><div class ="checkboxStyle"><i class="material-icons">arrow_drop_down</i></div></div><div class="leagueCollection" id=leagueCollection'+[i]+'></div>'
         )
         $(sortedArray[i].leagues).each(function(m, e) {
             $("#leagueCollection"+[i]).append(
@@ -363,35 +362,35 @@ function buildFilterItems(evt, json) {
     );
 
 }
-function clickSports(element) {
+/*$(document).on('click', '.filterTop', function(event){
     if( $(event.target).hasClass("league") ) {
         $(event.target)[0].click();
         return true;
     }
     event.stopPropagation();
 
-};
+});*/
 
-function clickCountry(element) {
+$(document).on('click', '.countryWrapper', function(event){
     event.stopPropagation();
 
-    $( "#"+$(element).attr('leaguecollection') ).slideToggle( "fast", function() {
+    $( "#"+$(this).attr('leaguecollection') ).slideToggle( "fast", function() {
 
-        element.find(".material-icons").toggleClass("rotate")
+        $(this).find(".material-icons").toggleClass("rotate")
     });
-};
+});
 
 
 
-function clickHeader(element) {
-    $('html, body').css('overflowY', 'auto');
+$(document).on('click', '.filterHeader', function(event){
+    //$('html, body').css('overflowY', 'auto');
 
-};
+});
 
-function clickFooter(element) {
+$(document).on('click', '.filterFooter', function(event){
     $('html, body').css('overflowY', 'auto');
     $( ".listContainer" ).hide();
-};
+});
 
 // click selected
 // delete this element
@@ -429,13 +428,7 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
     var ligaNavn =  parseInt(inputElement.data('league'));
     leagueArray = [ligaNavn];
     leagueLabel = ligaNavn;
-    var allSelect = $(".allSelect");
 
-
-    if(inputElement.hasClass("allSelect")) {
-        allSelect.prop('checked', true);
-    }
-    console.log(inputElement.is(':checked'));
 
     if (inputElement.is(':checked')) {
         //turning off
@@ -464,9 +457,6 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
     }
 
     var leagueButtonLabel = $("#leagueButton .label");
-    var allSelect = $(".allSelect");
-    var leagueChecked = $("#listContent .league:checked");
-
 
     if (selectedLeagues.length > 1) {
         leagueButtonLabel.text(selectedLeagues.length+" leagues selected");
@@ -474,19 +464,14 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
     } else if (selectedLeagues.length === 1) {
         leagueButtonLabel.text($("#listContent input:checkbox:checked").data('leaguename'));
         $(".selectedLeagues").show();
-    } else if (leagueChecked.length === 0) {
-        allSelect.prop('checked',true);
-        leagueButtonLabel.text(allSelect.next("label").text())
+    } else if (selectedLeagues.length === 0) {
+        leagueLabel = "Filter events"
+        leagueButtonLabel.text(leagueLabel)
         selectedLeagues = [];
         $(".selectedLeagues").hide();
     } else {
         // when is this called?
         leagueButtonLabel.text($("#listContent input:checkbox:checked").next("label").text());
-    }
-    if (leagueChecked.length === 0) {
-        leagueLabel = "Filter events"
-        allSelect.prop('checked',true);
-        leagueButtonLabel.text(allSelect.next("label").text())
     }
 
     filterList();
@@ -499,12 +484,12 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
             reorderList();
         } else reorderList2();
 
-    } else if (leagueChecked.length === 0) {
+    } else if (selectedLeagues.length === 0) {
         $("#outcomeList").show();
 
     }
     if (cardSortType === "true") {
-        if ($("#listContent input:checkbox:checked").length > 1) {
+        if (selectedLeagues.length > 1) {
             $(".leagueTitle").show();
         } else {
             $(".leagueTitle").hide();
@@ -521,95 +506,6 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
 });
 
 
-$(document).on('click', '#listContent2 input:checkbox', function(event){
-        event.stopPropagation();
-        var leagueArray;
-        var ligaNavn =  parseInt($(this).data('league'));
-        leagueArray = [ligaNavn];
-        leagueLabel = ligaNavn;
-
-
-        if($(this).hasClass("allSelect")) {
-            $(".allSelect").prop('checked', true);
-        }
-
-        if ($(this).is(':checked')) {
-            if($(this).hasClass("allSelect")) {
-                $('.league').each(function(){
-                    this.checked = false;
-                });
-            } else if($(".allSelect").prop('checked')) {
-                $(".allSelect").prop('checked',false);
-                selectedLeagues = [];
-            }
-            selectedLeagues = leagueArray.concat(selectedLeagues).unique();
-
-            // then when click on the clone, remove it and find related li and uncheck it
-            var id = parseInt( $(this).prop("id"));
-
-            $(this).closest( "li" ).clone().addClass('out').appendTo( "#selectedList" );
-            $("#selectedList").find("[data-league=" + $(this).data('league') + "]").prop('id', id + 100 )
-            $(".topLeagues").find("[data-league=" + $(this).data('league') + "]").closest( "li" ).hide();
-
-            $("#selectedList label[for='"+id+"']").attr('for',
-                function(index, old) { return old.replace(/\d+/, id + 100); }
-            );
-
-        } else {
-            selectedLeagues = selectedLeagues.filter(function(item) {
-                return leagueArray.indexOf(item) === -1;
-            });
-            $("#selectedList").find("[data-league=" + $(this).data('league') + "]").closest( "li" ).remove();
-            $(".topLeagues").find("[data-league=" + $(this).data('league') + "]").closest( "li" ).show();
-
-        }
-        if ($("#listContent input:checkbox:checked").length > 1) {
-            $("#leagueButton .label").text($("#listContent input:checkbox:checked").length+" leagues selected");
-            $(".selectedLeagues").show();
-        } else if ($("#listContent input:checkbox:checked").length = 1) {
-            $("#leagueButton .label").text($("#listContent input:checkbox:checked").data('leaguename'));
-            $(".selectedLeagues").show();
-        } else if ($("#listContent .league:checked").length == 0) {
-            $(".allSelect").prop('checked',true);
-            $("#leagueButton .label").text($(".allSelect").next("label").text())
-            $(".selectedLeagues").hide();
-        } else {
-            $("#leagueButton .label").text($("#listContent input:checkbox:checked").next("label").text());
-        }
-        if ($("#listContent .league:checked").length == 0) {
-            leagueLabel = "Filter events"
-            $(".allSelect").prop('checked',true);
-            $("#leagueButton .label").text($(".allSelect").next("label").text())
-        }
-
-        if (fullScreen === "false") {
-            $("#leagueButton i").text("arrow_drop_down");
-        }
-        $('html, body').css('overflowY', 'auto');
-
-        filterList();
-        showItems(leagueLabel);
-
-        $("#outcomeListCopyEvents").empty();
-
-        if ($("#listContent input:checkbox:checked").length >= 1) {
-            $("#outcomeList").hide();
-            if(cardSortType === "true") {
-                reorderList();
-            } else reorderList2();
-
-        } else if ($("#listContent .league:checked").length == 0) {
-            $("#outcomeList").show();
-
-        }
-        if (cardSortType === "true") {
-            if ($("#listContent input:checkbox:checked").length > 1) {
-                $(".leagueTitle").show();
-            } else {
-                $(".leagueTitle").hide();
-            }
-        }
-});
 
 function  filterList() {
     //selectedLeagues = filter på liga
@@ -622,7 +518,7 @@ function  filterList() {
         var inputDate = timestamp.getDate();
 
         //TODO improve this
-        //if($(".allSelect").prop('checked')) return true;
+        if(selectedLeagues.length === 0) return true;
         if ((selectedLeagues.indexOf((item.values().league)) >= 0))  {
             return true;
         } else {
