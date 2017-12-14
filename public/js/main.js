@@ -401,7 +401,6 @@ $(document).on('click', '.topLeagues input:checkbox', function(event){
 
 
 $(document).on('click', '#listContent .checkboxStyle', function(event){
-    console.log("her")
     event.stopPropagation();
     event.preventDefault();
 
@@ -461,6 +460,7 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
     $("#outcomeListCopyEvents").empty();
 
     if (selectedLeagues.length >= 1) {
+        $('#applyFilter').removeAttr("disabled");
         $("#outcomeList").hide();
         if(cardSortType === "true") {
             reorderList();
@@ -487,6 +487,10 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
         //$('html, body').css('overflowY', 'auto');
         $(".filterFooter").trigger("click")
     }
+
+        if(($('#selectSport').val() == '0') && (selectedLeagues.length === 0)) {
+            $('#applyFilter').attr("disabled", "disabled");
+        }
 
 });
 
