@@ -309,25 +309,9 @@ function createList(evt, json) {
 
 function buildFilterItems(evt, json) {
 
-    $(".listContainer").append('' +
-        '<div class="filterHeader">' +
-            '<div class="filterText">' +
-                '<h3 class="label">Filter events</h3>' +
-            '</div>' +
-            '<button class="closeFilter mdl-button mdl-js-button">' +
-                '<i class="material-icons">close</i>' +
-            '</button>' +
-        '</div>'
-    );
     if (multiSelect === "true"){
+        $(".filterFooter").removeClass("hidden");
 
-        $(".listContainer").append('' +
-            '<div class="filterFooter">' +
-            '<div class="filterText">' +
-            '<span class="label">Apply</span>' +
-            '</div>' +
-            '</div>'
-        );
     }
 
 
@@ -353,8 +337,7 @@ function buildFilterItems(evt, json) {
             $("#leagueCollection"+[i]).append(
                 '<li class ="li-element" ><div class ="checkboxStyle"> <input type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" data-leagueName="' + sortedArray[i].name[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].name[m] + '</label></div></li>'
             )
-            //leagueList.add({ leagueName: sortedArray[i].name[m], id: id, league: sortedArray[i].leagues[m]});
-            id++;
+
         });
     })
     $("#leaguelist").append('' +
@@ -362,14 +345,7 @@ function buildFilterItems(evt, json) {
     );
 
 }
-/*$(document).on('click', '.filterTop', function(event){
-    if( $(event.target).hasClass("league") ) {
-        $(event.target)[0].click();
-        return true;
-    }
-    event.stopPropagation();
 
-});*/
 
 $(document).on('click', '.countryWrapper', function(event){
     event.stopPropagation();
@@ -392,6 +368,11 @@ $(document).on('click', '.filterFooter', function(event){
     $( ".listContainer" ).hide();
 });
 
+$(document).on('click', '.closeFilter', function(event){
+    $('html, body').css('overflowY', 'auto');
+    $( ".listContainer" ).hide();
+});
+
 // click selected
 // delete this element
 //find and trigger click on element in listcontent
@@ -405,7 +386,6 @@ $(document).on('click', '#selectedList input:checkbox', function(event){
 });
 
 $(document).on('click', '.topLeagues input:checkbox', function(event){
-    console.log("her2")
 
     event.stopPropagation();
     event.preventDefault();
