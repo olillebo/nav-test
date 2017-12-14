@@ -192,6 +192,8 @@ function loadCookies() {
 
     if (typeof fullScreen === 'undefined'){
         $( ".leagues" ).addClass("fullscreen");
+        $( "#leagueButton" ).addClass("mdl-button--colored")
+        $( "#leagueButton .material-icons" ).text("filter_list");
         fullScreen = true;
         $('#switch-1').attr("checked", true)
     } else if (fullScreen === "true") {
@@ -479,11 +481,8 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
             $(".leagueTitle").hide();
         }
     }
-    console.log(multiSelect)
-    console.log(fullScreen)
 
     if ((multiSelect === false) || (multiSelect === "false") ){
-        console.log(multiSelect)
 
         if (fullScreen === false) {
             $("#leagueButton i").text("arrow_drop_down");
