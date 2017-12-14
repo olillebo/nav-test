@@ -171,6 +171,7 @@ $(document).ready(function() {
     $( ".listContainer" ).hide();
     $( ".selectedLeagues" ).hide();
 
+
 });
 
 function loadCookies() {
@@ -328,7 +329,8 @@ function createList(evt, json) {
     outcomeList.sort('sortDate', { order: "asc" });
     buildFilterItems();
     showItems("Filter events");
-    sortPopularity();
+    //sortPopularity();
+    getLiveEvents();
 }
 
 function buildFilterItems(evt, json) {
@@ -616,9 +618,92 @@ function reorderList() {
     });
 
 };
+
+
 function sort_li(a, b) {
     return ($(b).data('position')) < ($(a).data('position')) ? 1 : -1;
 }
+
+function get_elapsed_time_string(total_seconds) {
+    function pretty_time_string(num) {
+        return ( num < 10 ? "0" : "" ) + num;
+    }
+
+    var minutes = Math.floor(total_seconds / 60);
+    total_seconds = total_seconds % 60;
+
+    var seconds = Math.floor(total_seconds);
+
+    // Pad the minutes and seconds with leading zeros, if required
+    minutes = pretty_time_string(minutes);
+    seconds = pretty_time_string(seconds);
+
+    // Compose the string for display
+    var currentTimeString = minutes + ":" + seconds;
+
+
+    return currentTimeString;
+}
+
+function getLiveEvents() {
+    var listItems = $("#outcomeList .card-container");
+    var currList = [];
+    var listEach = [];
+    $("#outcomeList").hide();
+
+    listItems.each(function( index, div ) {
+        if ($(div).find(".card-wrap").attr("live")==="true")  {
+            var rank = $(div).find(".card-wrap").attr("rank");
+            var id = $(div).find(".card-wrap").attr("id");
+            currList.push([parseInt(rank), parseInt(id)]);
+        }
+    });
+
+    currList.sort(function(a, b) {
+        return b[0] - a[0];
+    });
+
+    var arr = currList.slice(0,5)
+    listEach.push([arr, ""]);
+
+
+    //samme som under
+    $.each( listEach, function( index, value ){
+        $("#outcomeListCopyEvents").append('' +
+            '<div class="eventGroup league-'+value[1]+'">'+
+            '<div class="leagueTitle leagueTitle-'+value[1]+'">' +value[1]+'</div>' +
+            '</div>'
+        );
+        $.each( value[0], function( index2, value2 ){
+            listItems.each(function( index, div ) {
+                if (value2[1]==$(div).find(".card-wrap").attr("id"))  {
+                    $(div).clone().appendTo( ".league-"+value[1] );
+                    $( ".leagueTitle-"+value[1] ).text($(div).find(".leagueName").text())
+                }
+            });
+
+        });
+    });
+
+    // set timer on live cards
+    $("#outcomeListCopy").find('.timer').each(function (i) {
+        //if ( i === 0) {
+
+            var minutes = $($(this)).text().substr(0, 2);
+            var seconds = $($(this)).text().substr(3, 4)
+
+            var elapsed_seconds = (parseInt(minutes)*60)+parseInt(seconds);
+
+            var that = this;
+            setInterval(function() {
+                elapsed_seconds = elapsed_seconds + 1;
+                $(that).text(get_elapsed_time_string(elapsed_seconds));
+            }, 1000);
+        //}
+    });
+
+}
+
 function sortPopularity() {
     var popularLeagues = [1000095001, 1000094994, 1000095049, 1000094985];
     var listItems = $("#outcomeList .card-container");
@@ -642,7 +727,6 @@ function sortPopularity() {
             currList.sort(function(a, b) {
                 return b[0] - a[0];
             });
-            console.log(currList)
 
             //var arr = currList.slice(1).slice(-5);
             var arr = currList.slice(0,5)
