@@ -1012,6 +1012,14 @@ select {
 						background-color: #e75f3f;
 						color: white;
 					}
+
+					button {
+
+					}
+
+					button:disabled {
+						background: #dddddd;
+					}
 				}
 			}
 			.mdl-menu--bottom-left {

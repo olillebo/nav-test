@@ -136,7 +136,7 @@ $(document).ready(function() {
     var todaysDay = new Date().getDate();
     filterOnDay = todaysDay;
     loadCookies();
-    console.log(newCards)
+    $("#applyFilter").attr("disabled", "disabled");
     $('.dayButton').each(function(){
         $(this).data('day',todaysDay);
         $(this).find(".label").text(todaysDay);
@@ -160,9 +160,11 @@ $(document).ready(function() {
         if($('#selectSport').val() == '0') {
             $('#listContent').addClass("hide");
             $('.otherSports').removeClass("hidden");
+            $('#applyFilter').attr("disabled", "disabled");
         } else if ($('#selectSport').val() == '1'){
             $('#listContent').removeClass("hide");
             $('.otherSports').addClass("hidden");
+            $('#applyFilter').removeAttr("disabled");
         }
     });
     $( ".drawer" ).hide();
@@ -363,7 +365,7 @@ $(document).on('click', '.filterHeader', function(event){
 
 });
 
-$(document).on('click', '.filterFooter', function(event){
+$(document).on('click', '#applyFilter', function(event){
     $('html, body').css('overflowY', 'auto');
     $( ".listContainer" ).hide();
 });
