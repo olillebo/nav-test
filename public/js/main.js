@@ -311,7 +311,6 @@ function buildFilterItems(evt, json) {
 
     if (multiSelect === "true"){
         $(".filterFooter").removeClass("hidden");
-
     }
 
 
@@ -481,8 +480,10 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
             $("#leagueButton i").text("arrow_drop_down");
         }
 
-        $('html, body').css('overflowY', 'auto');
+        //$('html, body').css('overflowY', 'auto');
+        $(".filterFooter").trigger("click")
     }
+
 });
 
 
