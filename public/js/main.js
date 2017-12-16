@@ -52,7 +52,7 @@ var outcomeOptions = {
 };
 
 var outcomeOptions_2 = {
-    valueNames: [{ name: 'id', attr: 'id' }, "home", "away", "sport", "league", { name: 'rank', attr: 'rank' }, "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }],
+    valueNames: [{ name: 'homecolor1', attr: 'homecolor1' }, { name: 'awaycolor1', attr: 'awaycolor1' },{ name: 'id', attr: 'id' }, "home", "away", "sport", "league", { name: 'rank', attr: 'rank' }, "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }],
     item: '<div class="card-container v2 id">\n' +
     '    <div class="card-wrap live leagueID id dateStamp rank">\n' +
     '        <div class="left">\n' +
@@ -63,7 +63,7 @@ var outcomeOptions_2 = {
     '                      <div class="teamname-row away"></div>\n' +
     '                  </div>\n' +
     '                  <div class="teamScores">\n' +
-    '                      <div class="homeScore score-item">0</div>\n' +
+    '                      <div class="homeScore homecolor1 homecolor2 score-item">0</div>\n' +
     '                      <div class="awayScore score-item">4</div>\n' +
     '                  </div>\n' +
     '              </div>\n' +
@@ -678,6 +678,19 @@ function getLiveEvents() {
         $.each( value[0], function( index2, value2 ){
             listItems.each(function( index, div ) {
                 if (value2[1]==$(div).find(".card-wrap").attr("id"))  {
+
+                    var homeColor = $(div).find(".homecolor1").attr("homecolor1")
+                    var awayColor = $(div).find(".awaycolor1").attr("awaycolor1")
+
+                    $(div).find(".goal").css({
+                        'color' : homeColor,
+                        'background-color' : awayColor
+                    });
+
+                    //attr('style',  'background-color:'+color+';'color:'+color2+'');
+                    //$(div).attr('style',  'color:'+color2+'');
+
+
                     $(div).clone().appendTo( ".league-"+value[1] );
                     $( ".leagueTitle-"+value[1] ).text($(div).find(".leagueName").text())
                 }
@@ -714,11 +727,10 @@ function getLiveEvents() {
 }
 function createGoal() {
     var $children = $("#outcomeListCopy").find(".score-item");
-    console.log($children)
+
     var interval = setInterval(function () {
         var $d = $children.not("goal");
         var $el = $d.eq(Math.floor(Math.random() * $d.length));
-        console.log($el)
         $el.addClass('goal');
         $el.text(parseInt($el.text()) + 1)
         setTimeout(function() { $el.removeClass('goal'); }, 3000 );
@@ -789,12 +801,10 @@ function sortPopularity() {
         topAll.sort(function(a, b) {
             return b[0] - a[0];
         });
-        console.log(topAll)
 
         //var arr = topAll.slice(1).slice(-12);
         var arr = topAll.slice(0,5)
         topAll = arr;
-        console.log(topAll)
 
         $("#outcomeListCopyEvents").append('' +
             '<div class="eventGroup-popular">'+
@@ -1068,9 +1078,25 @@ var F = $.ajax({ dataType:"json",
                 var awayScore = undefined;
                 var betOffers = undefined;
                 var rank = undefined;
+                var homecolor1 = undefined;
+                var homecolor2 = undefined;
+                var awaycolor1 = undefined;
+                var awaycolor2 = undefined;
 
                 if(item.betOffers != null && item.betOffers.length > 0 ){
                     betOffers = true;
+                } else betOffers = false;
+
+
+                if(item.event.teamColors != null ){
+                    console.log(item.event.teamColors)
+                    console.log(item.event.teamColors.home.shirtColor1)
+
+                    homecolor1 = item.event.teamColors.home.shirtColor1;
+                    homecolor2 = item.event.teamColors.home.shirtColor2;
+                    awaycolor1 = item.event.teamColors.away.shirtColor1;
+                    awaycolor2 = item.event.teamColors.away.shirtColor2;
+
                 } else betOffers = false;
 
                 if(betOffers === true){
@@ -1149,7 +1175,11 @@ var F = $.ajax({ dataType:"json",
                             date: date,
                             stream: stream,
                             betOffers: betOffers,
-                            sortDate: sortDate
+                            sortDate: sortDate,
+                            homecolor1: homecolor1,
+                            homecolor2: homecolor2,
+                            awaycolor1: awaycolor1,
+                            awaycolor2: awaycolor2,
                         });
                     }
                 }
