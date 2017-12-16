@@ -546,7 +546,36 @@ select {
 
 					  .score-item {
 						  text-align: center;
+						  padding: 0 4px;
+
 					  }
+
+						.score-item {
+							&.goal {
+								//background-color: rgb(255, 179, 0);
+								-moz-transition:all 0.5s ease-in-out;
+								-webkit-transition:all 0.5s ease-in-out;
+								-o-transition:all 0.5s ease-in-out;
+								-ms-transition:all 0.5s ease-in-out;
+								transition:all 0.5s ease-in-out;
+								-moz-animation:blink normal 1.5s 3 ease-in-out; /* Firefox */
+								-webkit-animation:blink normal 1.5s 3 ease-in-out; /* Webkit */
+								-ms-animation:blink normal 1.5s 3 ease-in-out; /* IE */
+								animation:blink normal 1.5s 3 ease-in-out; /* Opera */
+								@keyframes blink {
+									0% {
+									background-color: rgba(255,179,0,0.1)
+									}
+									50% {
+									background-color: rgba(255,179,0,1)
+									}
+									100% {
+									background-color: rgba(255,179,0,0.1)
+									}
+								}
+
+							}
+						}
 					}
 
 					.bottomInfo {

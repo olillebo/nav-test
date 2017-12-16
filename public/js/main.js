@@ -331,6 +331,7 @@ function createList(evt, json) {
     showItems("Filter events");
     //sortPopularity();
     getLiveEvents();
+    createGoal();
 }
 
 function buildFilterItems(evt, json) {
@@ -700,9 +701,35 @@ function getLiveEvents() {
                 $(that).text(get_elapsed_time_string(elapsed_seconds));
             }, 1000);
         //}
+        /*var goal = $(this).closest('.cardcontent ').find(".homeScore")
+        if ( i === 0) {
+            setInterval(function() {
+                elapsed_seconds = elapsed_seconds + 1;
+                $(goal).toggleClass("goal");
+                $(goal).text(parseInt($(goal).text()) + 1)
+            }, 10000);
+        }*/
     });
 
 }
+function createGoal() {
+    var $children = $("#outcomeListCopy").find(".score-item");
+    console.log($children)
+    var interval = setInterval(function () {
+        var $d = $children.not("goal");
+        var $el = $d.eq(Math.floor(Math.random() * $d.length));
+        console.log($el)
+        $el.addClass('goal');
+        $el.text(parseInt($el.text()) + 1)
+        setTimeout(function() { $el.removeClass('goal'); }, 3000 );
+        if ($d.length == 1) {
+            clearInterval(interval);
+        }
+    }, Math.floor((Math.random() * 20000) + 500));
+
+}
+
+
 
 function sortPopularity() {
     var popularLeagues = [1000095001, 1000094994, 1000095049, 1000094985];
