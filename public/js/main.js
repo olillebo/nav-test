@@ -496,7 +496,7 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
     if (selectedLeagues.length >= 1) {
         $('#applyFilter').removeAttr("disabled");
         $("#outcomeList").hide();
-        if(cardSortType === "true") {
+        if((cardSortType === true) || (cardSortType === "true")) {
             reorderList();
         } else reorderList2();
 
@@ -506,7 +506,7 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
 
 
     }
-    if (cardSortType === "true") {
+    if ((cardSortType === true) || (cardSortType === "true")) {
         if (selectedLeagues.length > 1) {
             $(".leagueTitle").show();
         } else {
