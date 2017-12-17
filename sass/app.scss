@@ -1068,7 +1068,13 @@ select {
 				font-weight: bold;
 				width: 100%;
 				background-color: #d3d3d34f;
-				padding: 4px 12px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+              span {
+                padding: 5px 12px;
+              }
 			}
 
 
@@ -1461,6 +1467,30 @@ select {
   .eventGroup {
     margin-bottom: 20px;
   }
+
+	.mdl-tabs__tab-bar {
+		border-bottom: 3px solid #dfd8d1;
+		margin-bottom: 8px;
+
+		.mdl-tabs__tab {
+			border-right: 1px solid #dfd8d1;
+			font-size: 14px;
+			font-weight: 700;
+			color: #615452;
+			text-shadow: 1px 2px 0 #f8f3ee;
+			width: 50%;
+			text-transform: initial !important;
+			text-decoration: none !important;
+			&.is-active {
+				color: #e75f3f;
+			}
+
+			&:after {
+				height: 3px !important;
+				background: #e75f3f !important;
+			}
+		}
+	}
 }
 
 #saveSettings {

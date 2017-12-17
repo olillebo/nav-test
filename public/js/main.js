@@ -330,7 +330,9 @@ function createList(evt, json) {
     buildFilterItems();
     showItems("Filter events");
     //sortPopularity();
-    getLiveEvents();
+    getLiveEvents("true");
+    getLiveEvents("false");
+
     createGoal();
 }
 
@@ -352,7 +354,7 @@ function buildFilterItems(evt, json) {
 
     $("#leaguelist").append('' +
         '<div id="listContent" class="listContent hide">'+
-        '<div class="mdl-selectfield-label">Leagues by country</div>'
+        '<div class="mdl-selectfield-label"><span>Leagues by country</span></div>'
     );
     var id = 0;
     $(sortedArray).each(function(i, e) {
@@ -396,6 +398,15 @@ $(document).on('click', '#applyFilter', function(event){
 $(document).on('click', '.closeFilter', function(event){
     $('html, body').css('overflowY', 'auto');
     $( ".listContainer" ).hide();
+});
+
+$(document).on('click', '.resetFilter', function(event){
+    $.each( $("#selectedList li"), function( index2, value2 ){
+        $(value2).find( "input" ).trigger("click");
+    });
+    //selectedList each li trigger click
+
+    //$("#listContent").find("[data-league=" + $(this).data('league') + "]").closest( ".checkboxStyle" ).trigger("click")
 });
 
 // click selected
@@ -480,6 +491,7 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
     filterList();
     showItems(leagueLabel);
     $("#outcomeListCopyEvents").empty();
+    $("#startPagelist").hide();
 
     if (selectedLeagues.length >= 1) {
         $('#applyFilter').removeAttr("disabled");
@@ -489,7 +501,9 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
         } else reorderList2();
 
     } else if (selectedLeagues.length === 0) {
-        $("#outcomeList").show();
+
+        $("#startPagelist").show();
+
 
     }
     if (cardSortType === "true") {
@@ -562,16 +576,33 @@ function reorderList() {
         var currDate = new Date($(div).find(".card-wrap").attr("dateStamp"));
         var currFormatted = currDate.getUTCDate() +"-"+monthNames[(currDate.getUTCMonth())];
 
-        currList.push(currFormatted);
+        currList.push([currFormatted, currDate]);
 
     });
 
-    var formattedCurrList = currList.unique();
+    //var formattedCurrList = currList.unique();
+
+    var formattedCurrList = currList.reduce(function(memo, e1){
+        var matches = memo.filter(function(e2){
+            return e1[0] == e2[0]
+        })
+        if (matches.length == 0)
+            memo.push(e1)
+        return memo;
+    }, [])
 
     $.each( formattedCurrList, function( index2, value2 ){
+        var date1 = new Date();
+        var outputDate = "";
+        var date1_tomorrow = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate() + 1);
+        if (date1.getFullYear() == value2[1].getFullYear() && date1.getMonth() == value2[1].getMonth() && date1.getDate() == value2[1].getDate()) {
+            outputDate = "Today";
+        } else if (date1_tomorrow.getFullYear() == value2[1].getFullYear() && date1_tomorrow.getMonth() == value2[1].getMonth() && date1_tomorrow.getDate() == value2[1].getDate()) {
+            outputDate = "Tomorrow";
+        } else outputDate = value2[0].replace(/-/g, ' ');
         $("#outcomeListCopyEvents").append('' +
-            '<div class="eventGroup date-'+value2+'">'+
-            '<div class="dateTitle dateTitle-'+value2+'">' +value2.replace(/-/g, ' ')+'</div>' +
+            '<div class="eventGroup date-'+value2[0]+'">'+
+            '<div class="dateTitle dateTitle-'+value2[0]+'">' +outputDate+'</div>' +
             '</div>'
         );
     });
@@ -587,7 +618,7 @@ function reorderList() {
                 var currDate = new Date($(div).find(".card-wrap").attr("dateStamp"));
                 var currFormatted = currDate.getUTCDate() +"-"+monthNames[(currDate.getUTCMonth())];
 
-                if ((currFormatted==value2) && value==$(div).find(".card-wrap").attr("leagueID"))  {
+                if ((currFormatted==value2[0]) && value==$(div).find(".card-wrap").attr("leagueID"))  {
                     currList.push(value);
                 }
             });
@@ -595,8 +626,8 @@ function reorderList() {
         var uniqueLeagues = currList.unique();
         $.each( uniqueLeagues, function( index3, value3 ){
 
-            $( ".date-"+value2 ).append('' +
-                '<div class="date-'+value3+value2+'">'+
+            $( ".date-"+value2[0] ).append('' +
+                '<div class="date-'+value3+value2[0]+'">'+
                 '<div class="leagueTitle leagueTitle-'+value3+'">' +value3+'</div>' +
                 '</div>'
             );
@@ -646,17 +677,44 @@ function get_elapsed_time_string(total_seconds) {
     return currentTimeString;
 }
 
-function getLiveEvents() {
+function getLiveEvents(live) {
     var listItems = $("#outcomeList .card-container");
     var currList = [];
     var listEach = [];
     $("#outcomeList").hide();
+    var headerText= "";
+    var active= "";
+    if (live === "true")  {
+        headerText = "Live now"
+        active = "is-active";
+    } else headerText = "Top upcoming"
+
+    $(".mdl-tabs__tab-bar").append('' +
+        '<a href="#'+live+'-panel" class="mdl-tabs__tab '+active+'">'+headerText+'</a>'
+    );
 
     listItems.each(function( index, div ) {
-        if ($(div).find(".card-wrap").attr("live")==="true")  {
+        var within48;
+        var divDate = new Date($(div).find(".card-wrap").attr("datestamp"));
+
+        var today = new Date();
+
+        var currentDateTimestamp = today.getTime();
+        var selectedDateTimestamp = divDate.getTime();
+
+        //Check if the timestamp is within 24 hours, 24 hours = 60 seconds * 60 minutes * 24 hours * 1000 milliseconds
+        if (Math.abs(currentDateTimestamp - selectedDateTimestamp) <= 60 * 60 * 48 * 1000) {
+            within48 = true;
+        }
+
+        if ($(div).find(".card-wrap").attr("live")===live)  {
             var rank = $(div).find(".card-wrap").attr("rank");
             var id = $(div).find(".card-wrap").attr("id");
-            currList.push([parseInt(rank), parseInt(id)]);
+            if (live==="false" && within48) {
+                currList.push([parseInt(rank), parseInt(id)]);
+            } else if (live==="true") {
+                currList.push([parseInt(rank), parseInt(id)]);
+            }
         }
     });
 
@@ -664,22 +722,21 @@ function getLiveEvents() {
         return b[0] - a[0];
     });
 
-    var arr = currList.slice(0,5)
+    var arr = currList.slice(0,10)
     listEach.push([arr, ""]);
-
 
     //samme som under
     $.each( listEach, function( index, value ){
-        $("#outcomeListCopyEvents").append('' +
-            '<div class="eventGroup league-'+value[1]+'">'+
-            '<div class="leagueTitle leagueTitle-'+value[1]+'">' +value[1]+'</div>' +
+        $(".mdl-tabs").append('' +
+            '<div class="mdl-tabs__panel '+active+'" id="'+live+'-panel">'+
+            '<div class="eventGroup league-'+live+'">'+
+            '</div>'+
             '</div>'
-        );
+    );
         $.each( value[0], function( index2, value2 ){
             listItems.each(function( index, div ) {
                 if (value2[1]==$(div).find(".card-wrap").attr("id"))  {
-                    $(div).clone().appendTo( ".league-"+value[1] );
-                    $( ".leagueTitle-"+value[1] ).text($(div).find(".leagueName").text())
+                    $(div).clone().appendTo( ".league-"+live );
                 }
             });
 
@@ -687,9 +744,8 @@ function getLiveEvents() {
     });
 
     // set timer on live cards
-    $("#outcomeListCopy").find('.timer').each(function (i) {
-        //if ( i === 0) {
-
+    $("#startPagelist").find('.timer').each(function (i) {
+        if (($(this).closest(".card-wrap").attr("live")==="true"))  {
             var minutes = $($(this)).text().substr(0, 2);
             var seconds = $($(this)).text().substr(3, 4)
 
@@ -700,25 +756,18 @@ function getLiveEvents() {
                 elapsed_seconds = elapsed_seconds + 1;
                 $(that).text(get_elapsed_time_string(elapsed_seconds));
             }, 1000);
-        //}
-        /*var goal = $(this).closest('.cardcontent ').find(".homeScore")
-        if ( i === 0) {
-            setInterval(function() {
-                elapsed_seconds = elapsed_seconds + 1;
-                $(goal).toggleClass("goal");
-                $(goal).text(parseInt($(goal).text()) + 1)
-            }, 10000);
-        }*/
+        } else {
+            var date = new Date($(this).closest(".card-wrap").attr("datestamp"));
+            $(this).text(date.getUTCDate() +"/"+(date.getUTCMonth() + 1)+" - "+date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes());
+        }
     });
 
 }
 function createGoal() {
-    var $children = $("#outcomeListCopy").find(".score-item");
-    console.log($children)
+    var $children = $("#startPagelist").find(".score-item");
     var interval = setInterval(function () {
         var $d = $children.not("goal");
         var $el = $d.eq(Math.floor(Math.random() * $d.length));
-        console.log($el)
         $el.addClass('goal');
         $el.text(parseInt($el.text()) + 1)
         setTimeout(function() { $el.removeClass('goal'); }, 3000 );
@@ -789,12 +838,12 @@ function sortPopularity() {
         topAll.sort(function(a, b) {
             return b[0] - a[0];
         });
-        console.log(topAll)
+        //console.log(topAll)
 
         //var arr = topAll.slice(1).slice(-12);
         var arr = topAll.slice(0,5)
         topAll = arr;
-        console.log(topAll)
+        //console.log(topAll)
 
         $("#outcomeListCopyEvents").append('' +
             '<div class="eventGroup-popular">'+
@@ -843,7 +892,7 @@ function reorderList2() {
         var formattedCurrList = currList.unique();
         $.each( formattedCurrList, function( index2, value2 ){
             $( ".league-"+value ).append('' +
-                '<div class="date-'+value+value2+'">'+
+                '<div class="date-'+value+value2[1]+'">'+
                 '<div class="dateTitle dateTitle-'+value2+'">' +value2.replace(/-/g, ' ')+'</div>' +
                 '</div>'
             );

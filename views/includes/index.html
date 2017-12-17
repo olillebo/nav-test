@@ -111,7 +111,7 @@
                 <ul class="list" id="leaguelist" for="leagueButton">
 
                     <div class="filterTop">
-                        <div class="mdl-selectfield-label">Sport</div>
+                        <div class="mdl-selectfield-label"><span>Sport</span></div>
 
                         <div class="mdl-selectfield">
                             <select id="selectSport">
@@ -122,7 +122,7 @@
                             </select>
                         </div>
                         <div class="topLeagues">
-                            <div class="mdl-selectfield-label">Top leagues</div>
+                            <div class="mdl-selectfield-label"><span>Top leagues</span></div>
 
                             <li class="li-element" style="transition-delay: 0s;"><div class="checkboxStyle"> <input type="checkbox" id="pl" data-league="1000094985" data-leaguename="Premier League" class="league"> <label for="pl">Premier League</label></div></li>
                             <li class="li-element" style=""><div class="checkboxStyle"> <input type="checkbox" id="laliga" data-league="1000095049" data-leaguename="La Liga" class="league"> <label for="laliga">LaLiga</label></div></li>
@@ -136,7 +136,12 @@
 
                         </div>
                         <div class="selectedLeagues">
-                            <div class="mdl-selectfield-label">Selected leagues</div>
+                            <div class="mdl-selectfield-label">
+                                <span>Selected leagues</span>
+                                <button class="resetFilter mdl-button mdl-js-button">
+                                Reset
+                                </button>
+                            </div>
                             <div id="selectedList">
                             </div>
 
@@ -183,6 +188,12 @@
             <ul class="list" id="outcomeList"></ul>
             <ul class="pagination"></ul>
             <ul class="list" id="outcomeListCopy">
+                <div class="list" id="startPagelist">
+                    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                        <div class="mdl-tabs__tab-bar">
+                        </div>
+                    </div>
+                </div>
                 <div class="list" id="outcomeListCopyEvents"></div>
             </ul>
         </div>
