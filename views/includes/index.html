@@ -101,12 +101,30 @@
             </button>
             <div class="listContainer">
                 <div class="filterHeader">
-                    <div class="filterText">
-                        <div class="label">Filter events</div>
+                    <div class="line top">
+                        <div class="filterText">
+                            <i class="material-icons">arrow_back</i>
+                            <div class="label">Filter events</div>
+                        </div>
+
+                        <div>
+                            <button class="searchFilter mdl-button mdl-js-button">
+                                <i class="material-icons">search</i>
+                            </button>
+                            <button class="showSelected mdl-button mdl-js-button">
+                                <i class="material-icons">inbox</i>
+                            </button>
+                        </div>
                     </div>
-                    <button class="closeFilter mdl-button mdl-js-button">
-                        <i class="material-icons">close</i>
-                    </button>
+                    <div class="line bottomHeader">
+                        <div class="selectedLeagues top">
+                            <div id="selectedList">
+                            </div>
+                            <button class="resetFilter mdl-button mdl-js-button">
+                                Remove all
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <ul class="list" id="leaguelist" for="leagueButton">
 
@@ -132,17 +150,6 @@
                                 <li class="li-element" style=""><div class="checkboxStyle"> <input type="checkbox" id="NHL" data-league="" class="league" disabled> <label for="NHL">NHL</label></div></li>
                                 <li class="li-element" style=""><div class="checkboxStyle"> <input type="checkbox" id="french" data-league="" class="league" disabled> <label for="french">French Open</label></div></li>
                                 <li class="li-element" style=""><div class="checkboxStyle"> <input type="checkbox" id="horse" data-league="" class="league" disabled> <label for="horse">Horsy Mc Horserace</label></div></li>
-                            </div>
-
-                        </div>
-                        <div class="selectedLeagues">
-                            <div class="mdl-selectfield-label">
-                                <span>Selected leagues</span>
-                                <button class="resetFilter mdl-button mdl-js-button">
-                                Reset
-                                </button>
-                            </div>
-                            <div id="selectedList">
                             </div>
 
                         </div>

@@ -1002,20 +1002,33 @@ select {
 
 				.filterHeader {
 					display: none;
-					flex: 0 0 auto;
-					justify-content: space-between;
+					flex-direction: column;
 					height: 50px;
-					align-items: center;
-					padding-left: 12px;
+					flex: 0 0 auto;
+
+					.line {
+						width: 100%;
+						display: flex;
+						flex: 0 0 auto;
+						justify-content: space-between;
+						height: 50px;
+						align-items: center;
+						padding-left: 12px;
+					}
+
+					&.expanded {
+						height: 100px;
+					}
 
 
 					.label {
-						font-size: 18px;
+						font-size: 14px;
 						font-weight: bold;
+						padding-left: 8px;
 					}
 
 					button {
-						padding: 0px 15px;
+						padding: 0px;
 						min-width: 40px;
 					}
 
@@ -1313,6 +1326,7 @@ select {
 
 .topLeagues, .selectedLeagues {
 	margin-top: 16px;
+	width: 100%;
 
 	.mdl-menu__item {
 		padding: 0;
@@ -1324,6 +1338,35 @@ select {
 
 .listContent {
 	margin-top: 16px;
+}
+
+.selectedLeagues {
+	&.top {
+
+		#selectedList {
+			display: flex;
+			flex-direction: row;
+		}
+		display: flex;
+		li {
+			height: auto !important;
+			line-height: normal !important;
+			padding: 0 !important;
+			padding-right: 8px !important;
+			.checkboxStyle {
+				padding-left: 4px !important;
+				border: 1px solid;
+				border-radius: 3px;
+				padding: 4px;
+				label {
+					line-height: initial;
+					&:after, &:before {
+						display: none !important;
+					}
+				}
+			}
+		}
+	}
 }
 
 .drawer {

@@ -761,16 +761,25 @@ select {
         padding: 0; }
       #mainPage .navigation .leagues .listContainer .filterHeader, #mainPage .navigation .leagues .listContainer .filterFooter {
         display: none;
-        flex: 0 0 auto;
-        justify-content: space-between;
+        flex-direction: column;
         height: 50px;
-        align-items: center;
-        padding-left: 12px; }
+        flex: 0 0 auto; }
+        #mainPage .navigation .leagues .listContainer .filterHeader .line, #mainPage .navigation .leagues .listContainer .filterFooter .line {
+          width: 100%;
+          display: flex;
+          flex: 0 0 auto;
+          justify-content: space-between;
+          height: 50px;
+          align-items: center;
+          padding-left: 12px; }
+        #mainPage .navigation .leagues .listContainer .filterHeader.expanded, #mainPage .navigation .leagues .listContainer .expanded.filterFooter {
+          height: 100px; }
         #mainPage .navigation .leagues .listContainer .filterHeader .label, #mainPage .navigation .leagues .listContainer .filterFooter .label {
-          font-size: 18px;
-          font-weight: bold; }
+          font-size: 14px;
+          font-weight: bold;
+          padding-left: 8px; }
         #mainPage .navigation .leagues .listContainer .filterHeader button, #mainPage .navigation .leagues .listContainer .filterFooter button {
-          padding: 0px 15px;
+          padding: 0px;
           min-width: 40px; }
         #mainPage .navigation .leagues .listContainer .filterHeader.shadow, #mainPage .navigation .leagues .listContainer .shadow.filterFooter {
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
@@ -954,7 +963,8 @@ select {
   display: none; }
 
 .topLeagues, .selectedLeagues {
-  margin-top: 16px; }
+  margin-top: 16px;
+  width: 100%; }
   .topLeagues .mdl-menu__item, .selectedLeagues .mdl-menu__item {
     padding: 0; }
   .topLeagues .checkboxStyle, .selectedLeagues .checkboxStyle {
@@ -962,6 +972,26 @@ select {
 
 .listContent {
   margin-top: 16px; }
+
+.selectedLeagues.top {
+  display: flex; }
+  .selectedLeagues.top #selectedList {
+    display: flex;
+    flex-direction: row; }
+  .selectedLeagues.top li {
+    height: auto !important;
+    line-height: normal !important;
+    padding: 0 !important;
+    padding-right: 8px !important; }
+    .selectedLeagues.top li .checkboxStyle {
+      padding-left: 4px !important;
+      border: 1px solid;
+      border-radius: 3px;
+      padding: 4px; }
+      .selectedLeagues.top li .checkboxStyle label {
+        line-height: initial; }
+        .selectedLeagues.top li .checkboxStyle label:after, .selectedLeagues.top li .checkboxStyle label:before {
+          display: none !important; }
 
 .drawer {
   position: fixed;

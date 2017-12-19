@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/sass/app.scss" line="1470" mnemonic="8" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="84e378b2-9e1e-4aa6-b50c-207615ceee08" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/main.js" afterPath="$PROJECT_DIR$/public/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/app.css" afterPath="$PROJECT_DIR$/public/stylesheets/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/app.scss" afterPath="$PROJECT_DIR$/sass/app.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/includes/index.html" afterPath="$PROJECT_DIR$/views/includes/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,21 +30,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="498" column="0" lean-forward="false" selection-start-line="498" selection-start-column="0" selection-end-line="498" selection-end-column="0" />
+            <state relative-caret-position="2580">
+              <caret line="172" column="30" lean-forward="false" selection-start-line="172" selection-start-column="30" selection-end-line="172" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.scss" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sass/app.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16125">
-              <caret line="1075" column="34" lean-forward="false" selection-start-line="1075" selection-start-column="34" selection-end-line="1075" selection-end-column="34" />
+            <state relative-caret-position="320">
+              <caret line="1356" column="31" lean-forward="false" selection-start-line="1356" selection-start-column="31" selection-end-line="1356" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -53,8 +53,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/includes/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1860">
-              <caret line="124" column="61" lean-forward="false" selection-start-line="124" selection-start-column="61" selection-end-line="124" selection-end-column="61" />
+            <state relative-caret-position="87">
+              <caret line="123" column="42" lean-forward="false" selection-start-line="123" selection-start-column="42" selection-end-line="123" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -114,17 +114,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>children</find>
-      <find>outcomeListCopy</find>
-      <find>sortPo</find>
-      <find>teamScores</find>
-      <find>getLivee</find>
-      <find>createGoal</find>
-      <find>sortPopularity</find>
-      <find>console.log</find>
-      <find>outcomelist</find>
-      <find>after</find>
-      <find>CREATEGOAL</find>
       <find>getLiveEvents</find>
       <find>outcomeList</find>
       <find>dateTitle</find>
@@ -144,6 +133,17 @@
       <find>Leagues by country</find>
       <find>cookies</find>
       <find>cardSortType</find>
+      <find>filter</find>
+      <find>filterHeader</find>
+      <find>closeFilter</find>
+      <find>click</find>
+      <find>resetFilter</find>
+      <find>selectedLeagues</find>
+      <find>checkboxStyle</find>
+      <find>selected</find>
+      <find>flex: 0 0 auto;</find>
+      <find>filterHea</find>
+      <find>selectedLea</find>
     </findStrings>
     <replaceStrings>
       <replace>li-element</replace>
@@ -179,9 +179,9 @@
         <option value="$PROJECT_DIR$/sass/_mixins.scss" />
         <option value="$PROJECT_DIR$/views/index.pug" />
         <option value="$PROJECT_DIR$/views/layout.pug" />
-        <option value="$PROJECT_DIR$/sass/app.scss" />
-        <option value="$PROJECT_DIR$/views/includes/index.html" />
         <option value="$PROJECT_DIR$/public/js/main.js" />
+        <option value="$PROJECT_DIR$/views/includes/index.html" />
+        <option value="$PROJECT_DIR$/sass/app.scss" />
       </list>
     </option>
   </component>
@@ -217,7 +217,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -256,6 +255,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -431,12 +431,15 @@
       <workItem from="1513544403996" duration="1489000" />
       <workItem from="1513546214959" duration="1358000" />
       <workItem from="1513548023911" duration="480000" />
-      <workItem from="1513550018937" duration="81000" />
+      <workItem from="1513550018937" duration="285000" />
+      <workItem from="1513716258624" duration="1011000" />
+      <workItem from="1513718629397" duration="1485000" />
+      <workItem from="1513720924544" duration="664000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="253753000" />
+    <option name="totallyTimeSpent" value="257117000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -705,26 +708,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sass/app.scss">
+    <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16125">
-          <caret line="1075" column="34" lean-forward="false" selection-start-line="1075" selection-start-column="34" selection-end-line="1075" selection-end-column="34" />
+        <state relative-caret-position="2580">
+          <caret line="172" column="30" lean-forward="false" selection-start-line="172" selection-start-column="30" selection-end-line="172" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/includes/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1860">
-          <caret line="124" column="61" lean-forward="false" selection-start-line="124" selection-start-column="61" selection-end-line="124" selection-end-column="61" />
+        <state relative-caret-position="87">
+          <caret line="123" column="42" lean-forward="false" selection-start-line="123" selection-start-column="42" selection-end-line="123" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/main.js">
+    <entry file="file://$PROJECT_DIR$/sass/app.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="498" column="0" lean-forward="false" selection-start-line="498" selection-start-column="0" selection-end-line="498" selection-end-column="0" />
+        <state relative-caret-position="320">
+          <caret line="1356" column="31" lean-forward="false" selection-start-line="1356" selection-start-column="31" selection-end-line="1356" selection-end-column="31" />
           <folding />
         </state>
       </provider>

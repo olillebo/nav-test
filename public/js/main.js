@@ -170,6 +170,7 @@ $(document).ready(function() {
     $( ".drawer" ).hide();
     $( ".listContainer" ).hide();
     $( ".selectedLeagues" ).hide();
+    $(".bottomHeader").hide();
 
 
 });
@@ -429,6 +430,11 @@ $(document).on('click', '.topLeagues input:checkbox', function(event){
     $("#listContent").find("[data-league=" + $(this).data('league') + "]").closest( ".checkboxStyle" ).trigger("click")
     $(this).closest( "li" ).hide();
     $(this).prop('checked', false);
+});
+
+$(document).on('click', '.showSelected', function(event){
+    $(".filterHeader").toggleClass("expanded")
+    $(".bottomHeader").toggle();
 });
 
 
