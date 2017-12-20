@@ -1011,13 +1011,17 @@ select {
 						display: flex;
 						flex: 0 0 auto;
 						justify-content: space-between;
-						height: 50px;
 						align-items: center;
-						padding-left: 12px;
+						flex-direction: row;
+						//padding-left: 12px;
+
+						&.top {
+							height: 50px;
+						}
 					}
 
 					&.expanded {
-						height: 100px;
+						height: auto;
 					}
 
 
@@ -1038,17 +1042,106 @@ select {
 					.filterText {
 						display: flex;
 						align-items: center;
+						position: relative;
+
+						.closeLightbox {
+							padding: 10px;
+						}
+
+						button {
+							display: flex;
+							align-items: center;
+
+							border-radius: inherit !important;
+							font-size: inherit !important;
+							height: inherit !important;
+							width: auto !important;
+							i {
+								position: relative !important;
+								top: inherit !important;
+								left: inherit !important;
+								-webkit-transform: none; /* Safari and Chrome */
+								-moz-transform: none; /* Firefox */
+								-ms-transform: none; /* IE 9 */
+								-o-transform: none; /* Opera */
+								transform: none;
+							}
+						}
+
 					}
 				}
 
 				.filterFooter {
-					@extend .filterHeader;
+					display: none;
+					flex-direction: column;
+					height: 50px;
 					flex: 0 0 auto;
 					cursor: pointer;
 					top: auto;
 					bottom: 0;
 					padding: 0;
+
+					.line {
+						width: 100%;
+						display: flex;
+						flex: 0 0 auto;
+						justify-content: space-between;
+						align-items: center;
+						flex-direction: column;
+						//padding-left: 12px;
+
+						&.top {
+							height: 50px;
+						}
+
+                      .selectedLeagues {
+                        margin-top: 0px;
+                      }
+
+						.showSelectedList {
+							height: 50px;
+							display: flex;
+							align-items: center;
+							/* justify-content: flex-start; */
+							width: 100%;
+                            justify-content: space-between;
+                            padding-right: 12px;
+                            box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.12), 0 -2px 2px rgba(0, 0, 0, 0.24);
+
+                          .left {
+                            display: flex;
+                            align-items: center;
+                          }
+
+                          .selectedIcon {
+                            padding: 10px;
+                          }
+
+						}
+					}
+
+					&.expanded {
+						height: auto;
+					}
+
+
+					.label {
+						font-size: 14px;
+						font-weight: bold;
+						padding-left: 8px;
+					}
+
+					button {
+						padding: 0px;
+						min-width: 40px;
+					}
+
+					&.shadow {
+						box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+					}
 					.filterText {
+						display: flex;
+						align-items: center;
 						justify-content: center;
 						width: 100%;
 						height: 100%;
@@ -1056,7 +1149,13 @@ select {
 						color: white;
 						cursor: pointer;
 						outline: none;
+
+
+                      i {
+                        padding: 4px;
+                      }
 					}
+
 
 					button {
 						border: none;
@@ -1325,7 +1424,7 @@ select {
 }
 
 .topLeagues, .selectedLeagues {
-	margin-top: 16px;
+	//margin-top: 16px;
 	width: 100%;
 
 	.mdl-menu__item {
@@ -1346,9 +1445,11 @@ select {
 		#selectedList {
 			display: flex;
 			flex-direction: row;
+			flex-direction: column;
+			width: 100%;
 		}
 		display: flex;
-		li {
+		/*li {
 			height: auto !important;
 			line-height: normal !important;
 			padding: 0 !important;
@@ -1365,7 +1466,7 @@ select {
 					}
 				}
 			}
-		}
+		}*/
 	}
 }
 

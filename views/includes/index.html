@@ -103,42 +103,47 @@
                 <div class="filterHeader">
                     <div class="line top">
                         <div class="filterText">
-                            <i class="material-icons">arrow_back</i>
-                            <div class="label">Filter events</div>
+                            <i class="material-icons closeLightbox">arrow_back</i>
+                            <button id="selectSports" class="mdl-button mdl-js-button mdl-button--icon">
+                                <div class="selectedSportText">Select sport</div>
+                                <i class="material-icons selectSportArrow">arrow_drop_down</i>
+                            </button>
+
+                            <ul id="selectSportsList" class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                                for="selectSports">
+                                <li class="mdl-menu__item" value="0">Select sport</li>
+                                <li class="mdl-menu__item" value="1">Football</li>
+                                <li class="mdl-menu__item" value="2" disabled>Ice Hockey</li>
+                                <li class="mdl-menu__item" value="3" disabled>Tennis</li>
+                                <li class="mdl-menu__item mdl-menu__item--full-bleed-divider" value="4" disabled>Horse racing</li>
+                                <li class="mdl-menu__item" value="5" disabled>A</li>
+                                <li class="mdl-menu__item" value="6" disabled>B</li>
+                            </ul>
                         </div>
 
                         <div>
                             <button class="searchFilter mdl-button mdl-js-button">
                                 <i class="material-icons">search</i>
                             </button>
-                            <button class="showSelected mdl-button mdl-js-button">
+<!--                            <button class="showSelected mdl-button mdl-js-button">
                                 <i class="material-icons">inbox</i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="line bottomHeader">
-                        <div class="selectedLeagues top">
-                            <div id="selectedList">
-                            </div>
-                            <button class="resetFilter mdl-button mdl-js-button">
-                                Remove all
-                            </button>
+                            </button>-->
                         </div>
                     </div>
                 </div>
                 <ul class="list" id="leaguelist" for="leagueButton">
 
                     <div class="filterTop">
-                        <div class="mdl-selectfield-label"><span>Sport</span></div>
+                        <!--                        <div class="mdl-selectfield-label"><span>Sport</span></div>
 
-                        <div class="mdl-selectfield">
-                            <select id="selectSport">
-                                <option value="0" selected>All sports</option>
-                                <option value="1">Football</option>
-                                <option value="2" disabled>Ice Hockey</option>
-                                <option value="3" disabled>Tennis</option>
-                            </select>
-                        </div>
+                                             <div class="mdl-selectfield">
+                                                   <select id="selectSport">
+                                                       <option value="0" selected>All sports</option>
+                                                       <option value="1">Football</option>
+                                                       <option value="2" disabled>Ice Hockey</option>
+                                                       <option value="3" disabled>Tennis</option>
+                                                   </select>
+                                               </div>-->
                         <div class="topLeagues">
                             <div class="mdl-selectfield-label"><span>Top leagues</span></div>
 
@@ -156,9 +161,27 @@
                     </div>
                 </ul>
                 <div class="filterFooter hidden">
-                    <button id="applyFilter" class="filterText">
-                        <span class="label">Apply</span>
-                    </button>
+
+                    <div class="line bottomHeader">
+                        <div class="showSelectedList">
+                            <div class="left">
+                                <i class="material-icons selectedIcon">keyboard_arrow_up</i>
+                                <div class="leaguesSelectedText">Leagues selected</div>
+                            </div>
+                            <button class="resetFilter mdl-button mdl-js-button">
+                                Remove all
+                            </button>
+                        </div>
+                        <div class="selectedLeagues top">
+                            <div id="selectedList">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line top">
+                        <button id="applyFilter" class="filterText">
+                            <span class="label">Apply</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
