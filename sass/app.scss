@@ -1216,7 +1216,7 @@ select {
 				margin: 12px 8px;
 			}
 			.mdl-selectfield-label {
-				margin: 0 !important;
+				margin: 0;
 				//font-size: 16px;
 				font-weight: bold;
 				width: 100%;
@@ -1691,7 +1691,15 @@ select {
 
 .sportsList2 {
 	display: flex;
-	flex-direction: column;
+	//flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .sportRowAZ {
+      width: 100%;
+    }
+  .mdl-selectfield-label{
+    margin-bottom: 15px !important;
+  }
 	.sportRow {
 		display: flex;
 		align-items: center;
@@ -1700,6 +1708,45 @@ select {
 		padding: 0 16px;
 		cursor: pointer;
 		height: 48px;
+      &.special {
+          width: 50%;
+          flex-direction: column;
+          height: auto;
+          padding: 0;
+          padding-bottom: 20px;
+
+          .top {
+            background-color: #fff;
+            background-image: url(https://www.leovegas.com/static/sports-client/images/submenu@2x.f89bd482.png);
+            background-size: 450px 400px;
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+
+            &.football {
+              background-position: -150px -250px;
+            }
+            &.hockey {
+              background-position: -50px -300px;
+            }
+            &.tennis {
+              background-position: -400px -150px;
+            }
+            &.horse {
+              background-position: -400px -200px;
+            }
+          }
+          .bottom {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+
+            .text {
+              padding-right: 4px;
+            }
+          }
+      }
 	}
 }
 
