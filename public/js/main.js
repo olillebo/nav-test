@@ -559,7 +559,7 @@ $(document).on('click', '.resetAll', function(event){
   //trigger click on remove all selected
     $(".resetFilter").trigger("click");
     if ((chooseSport === true) || (chooseSport === "true")){
-        etSport(0, "Choose sport");
+        setSport(0, "Choose sport");
     }
 });
 
