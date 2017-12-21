@@ -830,16 +830,10 @@ function getLiveEvents(live) {
     var currList = [];
     var listEach = [];
     $("#outcomeList").hide();
-    var headerText= "";
-    var active= "";
+    var panel = "";
     if (live === "true")  {
-        headerText = "Live now"
-        active = "is-active";
-    } else headerText = "Top upcoming"
-
-    $(".mdl-tabs__tab-bar").append('' +
-        '<a href="#'+live+'-panel" class="mdl-tabs__tab '+active+'">'+headerText+'</a>'
-    );
+        panel = "live";
+    } else panel = "upcoming";
 
     listItems.each(function( index, div ) {
         var within48;
@@ -875,16 +869,10 @@ function getLiveEvents(live) {
 
     //samme som under
     $.each( listEach, function( index, value ){
-        $(".mdl-tabs").append('' +
-            '<div class="mdl-tabs__panel '+active+'" id="'+live+'-panel">'+
-            '<div class="eventGroup league-'+live+'">'+
-            '</div>'+
-            '</div>'
-    );
         $.each( value[0], function( index2, value2 ){
             listItems.each(function( index, div ) {
                 if (value2[1]==$(div).find(".card-wrap").attr("id"))  {
-                    $(div).clone().appendTo( ".league-"+live );
+                    $(div).clone().appendTo( ".league-"+panel );
                 }
             });
 
