@@ -23,6 +23,10 @@
             <input type="checkbox" id="switch-5">
             <label for="switch-5">Grouped start page</label>
         </div>
+        <div class="checkboxStyle">
+            <input type="checkbox" id="switch-6">
+            <label for="switch-6">Choose sport</label>
+        </div>
     </div>
     <button id="saveSettings" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Save</button>
 
@@ -102,7 +106,7 @@
             <div class="listContainer">
                 <div class="filterHeader">
                     <div class="line top">
-                        <div class="filterText">
+                        <div id="v1" class="filterText">
                             <button id="closeFilter" class="mdl-button mdl-js-button mdl-button--icon">
                                 <i class="material-icons closeLightbox">arrow_back</i>
                             </button>
@@ -113,16 +117,23 @@
 
                             <ul id="selectSportsList" class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
                                 for="selectSports">
-                                <li class="mdl-menu__item" value="0">Select sport</li>
+                                <li class="mdl-menu__item" value="0" hidden>Select sport</li>
                                 <li class="mdl-menu__item" value="1">Football</li>
-                                <li class="mdl-menu__item" value="2" disabled>Ice Hockey</li>
-                                <li class="mdl-menu__item" value="3" disabled>Tennis</li>
+                                <li class="mdl-menu__item" value="2">Ice Hockey</li>
+                                <li class="mdl-menu__item" value="3">Tennis</li>
                                 <li class="mdl-menu__item mdl-menu__item--full-bleed-divider" value="4" disabled>Horse racing</li>
-                                <li class="mdl-menu__item" value="5" disabled>A</li>
-                                <li class="mdl-menu__item" value="6" disabled>B</li>
                             </ul>
                         </div>
-
+                        <div class="filterTextV2">
+                            <div class="V2initial">
+                                <div class="selectedSportTextV2">Choose sport</div>
+                            </div>
+                            <div class="V2change">
+                                <button id="changeSportNew" class="mdl-button mdl-js-button mdl-button--icon mdl-button--raised">
+                                    Change
+                                </button>
+                            </div>
+                        </div>
                         <div>
                             <button class="searchFilter mdl-button mdl-js-button">
                                 <i class="material-icons">search</i>
@@ -130,22 +141,40 @@
                             <button class="resetAll mdl-button mdl-js-button">
                                 <i class="material-icons">settings_backup_restore</i>
                             </button>
+                            <button id="closeFilter" class="mdl-button mdl-js-button closeFilterv1">
+                                <i class="material-icons closeLightbox">close</i>
+                            </button>
                         </div>
                     </div>
                 </div>
                 <ul class="list" id="leaguelist" for="leagueButton">
 
                     <div class="filterTop">
-                        <!--                        <div class="mdl-selectfield-label"><span>Sport</span></div>
 
-                                             <div class="mdl-selectfield">
-                                                   <select id="selectSport">
-                                                       <option value="0" selected>All sports</option>
-                                                       <option value="1">Football</option>
-                                                       <option value="2" disabled>Ice Hockey</option>
-                                                       <option value="3" disabled>Tennis</option>
-                                                   </select>
-                                               </div>-->
+                     <div class="sportsList2">
+                         <div class="mdl-selectfield-label"><span>Top sports</span></div>
+
+                         <div class="sportRow" id="1">
+                             <div class="text">Football</div>
+                             <i class="material-icons">keyboard_arrow_right</i>
+                         </div>
+                         <div class="sportRow" id="2">
+                             <div class="text">Ice Hockey</div>
+                             <i class="material-icons">keyboard_arrow_right</i>
+                         </div>
+                         <div class="sportRow" id="3">
+                             <div class="text">Tennis</div>
+                             <i class="material-icons">keyboard_arrow_right</i>
+                         </div>
+                         <div class="sportRow" id="4">
+                             <div class="text">Horse Racing</div>
+                             <i class="material-icons">keyboard_arrow_right</i>
+                         </div>
+                         <div class="mdl-selectfield-label"><span>A-Z</span></div>
+                         <div class="sportRowAZ">
+
+                         </div>
+                     </div>
                         <div class="topLeagues">
                             <div class="mdl-selectfield-label"><span>Top leagues</span></div>
 
@@ -170,7 +199,7 @@
                                 <i class="material-icons selectedIcon">keyboard_arrow_up</i>
                                 <div class="leaguesSelectedText">Leagues selected</div>
                             </div>
-                            <button class="resetFilter mdl-button mdl-js-button">
+                            <button class="resetFilter mdl-button mdl-js-button mdl-button--icon mdl-button--raised">
                                 Remove all
                             </button>
                         </div>

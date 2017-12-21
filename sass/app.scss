@@ -1039,7 +1039,7 @@ select {
 					&.shadow {
 						box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 					}
-					.filterText {
+					.filterText, .filterTextV2 {
 						display: flex;
 						align-items: center;
 						position: relative;
@@ -1047,6 +1047,7 @@ select {
 						.closeLightbox {
 							padding: 10px;
 						}
+
 
 						button {
 							display: flex;
@@ -1068,6 +1069,20 @@ select {
 							}
 						}
 
+					}
+
+					.filterTextV2 {
+						.selectedSportTextV2{
+							padding: 12px;
+							font-weight: bold;
+						}
+						button {
+							padding: 8px;
+							box-shadow: inherit !important;
+							border-radius: 3px !important;
+                            background: #93a5ac !important;
+                            color: white !important;
+						}
 					}
 				}
 
@@ -1116,6 +1131,20 @@ select {
                           .selectedIcon {
                             padding: 10px;
                           }
+
+							button {
+								padding: 8px;
+                                box-shadow: none !important;
+								border-radius: 3px !important;
+                                display: flex;
+                                align-items: center;
+
+                                font-size: inherit !important;
+                                width: auto !important;
+                                height: 32px !important;
+                                background: #93a5ac !important;
+                                color: white !important;
+							}
 
 						}
 					}
@@ -1646,4 +1675,24 @@ select {
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     transform: rotate(180deg);
+}
+
+.sportsList2 {
+	display: flex;
+	flex-direction: column;
+	.sportRow {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		justify-content: space-between;
+		padding: 0 16px;
+		cursor: pointer;
+		height: 48px;
+	}
+}
+
+#v1 {
+	.mdl-menu__container {
+		width: 200px !important;
+	}
 }

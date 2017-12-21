@@ -119,6 +119,41 @@ var outcomeOptions_2 = {
 
 //new
 var arrayOfLeagues = [];
+var sportsList = ["American Football",
+    "Australian Rules",
+    "Bandy",
+    "Baseball",
+    "Basketball",
+    "Boxing",
+    "Chess",
+    "Cricket",
+    "Cycling",
+    "Cyclo-Cross",
+    "Darts",
+    "E-Sports",
+    "Football",
+    "Futsal",
+    "Golf",
+    "Greyhounds",
+    "Handball",
+    "Horse Racing",
+    "Ice Hockey",
+    "Leo Specials",
+    "Motorsports",
+    "Netball",
+    "Pesapallo",
+    "Politics",
+    "Rugby League",
+    "Rugby Union",
+    "Snooker",
+    "TV & Novelty",
+    "Tennis",
+    "Trotting",
+    "UFC/MMA",
+    "Volleyball",
+    "Winter Olympic Games",
+    "Winter Sports",
+    "Yachting"]
 
 //
 
@@ -126,7 +161,7 @@ var selectedLeagues = [];
 var visibleItems = 0;
 var filterOnDay;
 var progress = 0;
-var cardSortType, fullScreen, newCards, multiSelect, groupStartPage;
+var cardSortType, fullScreen, newCards, multiSelect, groupStartPage, chooseSport;
 var addedBets = 0;
 var outcomeValues, outcomeList, leagueLabel, leagueList;
 
@@ -173,8 +208,6 @@ $(document).ready(function() {
     $(".bottomHeader").hide();
     $(".topLeagues").hide();
     $('.otherSports').hide();
-
-
 });
 
 function loadCookies() {
@@ -183,6 +216,7 @@ function loadCookies() {
     newCards = Cookies.get('newCards');
     multiSelect = Cookies.get('multiSelect');
     groupStartPage = Cookies.get('groupStartPage');
+    chooseSport = Cookies.get('chooseSport');
 
     if (typeof newCards === 'undefined'){
         newCards = true;
@@ -229,6 +263,13 @@ function loadCookies() {
     } else if (groupStartPage === "true") {
         $('#switch-5').attr("checked", true)
     } else $('#switch-5').attr("checked", false)
+
+    if (typeof chooseSport === 'undefined'){
+        chooseSport = true;
+        $('#switch-6').attr("checked", true)
+    } else if (chooseSport === "true") {
+        $('#switch-6').attr("checked", true)
+    } else $('#switch-6').attr("checked", false)
 }
 
 $( ".sidebar" ).click(function() {
@@ -284,6 +325,14 @@ $( "#switch-5" ).click(function() {
     }
 });
 
+$( "#switch-6" ).click(function() {
+    if($(this).is(':checked')) {
+        Cookies.set('chooseSport', true );
+    } else {
+        Cookies.set('chooseSport', false );
+    }
+});
+
 $( "#leagueButton" ).click(function() {
     $( ".listContainer" ).slideToggle( "fast");
 });
@@ -306,19 +355,28 @@ $(document).on('click', '.betOfferButton', function() {
     }
 });
 
-$(document).on('click', '#selectSportsList li', function() {
-    $(".selectedSportText").text($(this).text());
-
-    if($(this).val() == 0) {
+function setSport(id, text) {
+    if(id == 0) {
         $('#listContent').addClass("hide");
-        $('.topLeagues').hide()
+        $('.topLeagues').hide();
         $('#applyFilter').attr("disabled", "disabled");
-        $('.resetAll').trigger("click")
-    } else if ($(this).val() == 1){
+        //$('.resetAll').trigger("click");
+        $('.sportsList2').show();
+        $(".V2change").hide();
+    } else {
+        $(".V2change").show();
         $('#listContent').removeClass("hide");
         $('.topLeagues').show();
         $('#applyFilter').removeAttr("disabled");
+        $('.sportsList2').hide();
+
     }
+    $(".selectedSportText").text(text);
+    $(".selectedSportTextV2").text(text);
+}
+
+$(document).on('click', '#selectSportsList li', function(event){
+    setSport($(this).val(), $(this).text());
 });
 
 
@@ -345,13 +403,36 @@ function createList(evt, json) {
 
     outcomeList = new List("outcomes", options, outcomeValues);
     outcomeList.sort('sortDate', { order: "asc" });
+    buildSportList();
     buildFilterItems();
     showItems("Filter events");
     //sortPopularity();
     getLiveEvents("true");
     getLiveEvents("false");
-
     createGoal();
+    if ((chooseSport === true) || (chooseSport === "true")){
+        $("#v1").hide();
+        $(".filterTextV2").show();
+        $(".V2change").hide();
+    } else {
+        setSport(1, "Football");
+        $(".filterTextV2").hide();
+        $(".closeFilterv1").hide();
+    }
+}
+
+function buildSportList() {
+    $.each(sportsList, function (index, value) {
+        $(".sportRowAZ").append('' +
+            '<div class="sportRow" id="'+[index+5]+'">'+
+            '<div class="text">'+[value]+'</div>'+
+            '<i class="material-icons">keyboard_arrow_right</i>'+
+            '</div>'
+        );
+        $("#selectSportsList").append('' +
+            '<li class="mdl-menu__item" value="'+[index+5]+'" disabled>'+[value]+'</li>'
+        );
+    });
 }
 
 function buildFilterItems(evt, json) {
@@ -418,6 +499,12 @@ $(document).on('click', '#closeFilter', function(event){
     $( ".listContainer" ).hide();
 });
 
+
+$(document).on('click', '#changeSportNew', function(event){
+    $( ".resetFilter" ).trigger("click");
+    setSport(0, "Choose sport");
+});
+
 $(document).on('click', '.resetFilter', function(event){
     event.stopPropagation();
     $.each( $("#selectedList li"), function( index2, value2 ){
@@ -456,8 +543,12 @@ $(document).on('click', '.topLeagues input:checkbox', function(event){
     //$(this).closest( ".checkboxStyle" ).find("label").attr('checked', true);
 });
 
+$(document).on('click', '.sportsList2 .sportRow', function(event){
+    event.stopPropagation();
+    setSport($(this).attr('id'), $(this).find(".text").text());
+});
+
 $(document).on('click', '.showSelectedList', function(event){
-    console.log("h")
     $(".selectedLeagues").toggle();
     if($(".selectedLeagues").is(":visible")) {
         $(".selectedIcon").text("keyboard_arrow_down");
@@ -467,7 +558,9 @@ $(document).on('click', '.showSelectedList', function(event){
 $(document).on('click', '.resetAll', function(event){
   //trigger click on remove all selected
     $(".resetFilter").trigger("click");
-    $("#selectSportsList").find("[value=0]").trigger("click")
+    if ((chooseSport === true) || (chooseSport === "true")){
+        etSport(0, "Choose sport");
+    }
 });
 
 
