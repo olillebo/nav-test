@@ -313,6 +313,7 @@ $(document).on('click', '#selectSportsList li', function() {
         $('#listContent').addClass("hide");
         $('.topLeagues').hide()
         $('#applyFilter').attr("disabled", "disabled");
+        $('.resetAll').trigger("click")
     } else if ($(this).val() == 1){
         $('#listContent').removeClass("hide");
         $('.topLeagues').show();
@@ -412,18 +413,20 @@ $(document).on('click', '#applyFilter', function(event){
     $( ".listContainer" ).hide();
 });
 
-$(document).on('click', '.closeFilter', function(event){
+$(document).on('click', '#closeFilter', function(event){
     $('html, body').css('overflowY', 'auto');
     $( ".listContainer" ).hide();
 });
 
 $(document).on('click', '.resetFilter', function(event){
+    event.stopPropagation();
     $.each( $("#selectedList li"), function( index2, value2 ){
         $(value2).find( "input" ).trigger("click");
     });
     $.each( $(".topLeagues li"), function( index2, value3 ){
         $(value3).find( "label" ).attr("checked", false)
     });
+    $( ".selectedLeagues" ).hide();
     //selectedList each li trigger click
 
     //$("#listContent").find("[data-league=" + $(this).data('league') + "]").closest( ".checkboxStyle" ).trigger("click")
@@ -444,20 +447,27 @@ $(document).on('click', '#selectedList input:checkbox', function(event){
 $(document).on('click', '.topLeagues input:checkbox', function(event){
 
     event.stopPropagation();
-    event.preventDefault();
+    //event.preventDefault();
 
     var ligaNavn =  parseInt($(this).data('league'));
     $("#listContent").find("[data-league=" + $(this).data('league') + "]").closest( ".checkboxStyle" ).trigger("click")
     //$(this).prop('checked', false);
-    conso
-    $(this).attr('checked', true);
+    //console.log($(this).closest( ".checkboxStyle" ).find("label"))
+    //$(this).closest( ".checkboxStyle" ).find("label").attr('checked', true);
 });
 
 $(document).on('click', '.showSelectedList', function(event){
+    console.log("h")
     $(".selectedLeagues").toggle();
     if($(".selectedLeagues").is(":visible")) {
         $(".selectedIcon").text("keyboard_arrow_down");
     } else $(".selectedIcon").text("keyboard_arrow_up");
+});
+
+$(document).on('click', '.resetAll', function(event){
+  //trigger click on remove all selected
+    $(".resetFilter").trigger("click");
+    $("#selectSportsList").find("[value=0]").trigger("click")
 });
 
 
@@ -482,7 +492,7 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
         });
         $("#selectedList").find("[data-league=" + inputElement.data('league') + "]").closest( "li" ).remove();
         //$(".topLeagues").find("[data-league=" + inputElement.data('league') + "]").attr("checked", false);
-        $(".topLeagues").find("[data-league=" + inputElement.data('league') + "]").attr("checked", false)
+        $(".topLeagues").find("[data-league=" + inputElement.data('league') + "]").prop("checked", false)
     } else {
         //turning on
         inputElement.prop('checked', true);
@@ -494,7 +504,7 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
         inputElement.closest( "li" ).clone().addClass('out').appendTo( "#selectedList" );
         $("#selectedList").find("[data-league=" + inputElement.data('league') + "]").prop('id', id + 100 );
         //$(".topLeagues").find("[data-league=" + inputElement.data('league') + "]").attr("checked", true);
-        $(".topLeagues").find("[data-league=" + inputElement.data('league') + "]").attr("checked", true)
+        $(".topLeagues").find("[data-league=" + inputElement.data('league') + "]").prop("checked", true)
 
 
 
@@ -508,17 +518,14 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
 
     if (selectedLeagues.length > 1) {
         leagueButtonLabel.text(selectedLeagues.length+" leagues selected");
-        //$(".selectedLeagues").show();
     } else if (selectedLeagues.length === 1) {
         leagueButtonLabel.text($("#listContent input:checkbox:checked").data('leaguename'));
-        //$(".selectedLeagues").show();
     } else if (selectedLeagues.length === 0) {
         leagueLabel = "Filter events"
         leagueButtonLabel.text(leagueLabel)
         selectedLeagues = [];
-        $(".selectedLeagues").toggle();
+        $(".selectedLeagues").hide();
         $(".selectedIcon").text("keyboard_arrow_up");
-        //$(".selectedLeagues").hide();
     } else {
         // when is this called?
         leagueButtonLabel.text($("#listContent input:checkbox:checked").next("label").text());
@@ -542,7 +549,6 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
     } else if (selectedLeagues.length === 0) {
         $(".filterFooter").removeClass("expanded")
         $(".bottomHeader").hide();
-        //$(".selectedLeagues").hide();
         $("#startPagelist").show();
 
 
