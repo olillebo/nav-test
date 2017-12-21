@@ -209,6 +209,7 @@ $(document).ready(function() {
     $("#resetAllButton").hide();
     $(".topLeagues").hide();
     $('.otherSports').hide();
+    $('.loading').hide();
 });
 
 function loadCookies() {
@@ -364,6 +365,7 @@ function setSport(id, text) {
         //$('.resetAll').trigger("click");
         $('.sportsList2').show();
         $(".V2change").hide();
+
     } else {
         $(".V2change").show();
         $('#listContent').removeClass("hide");
@@ -372,6 +374,10 @@ function setSport(id, text) {
         $('.sportsList2').hide();
 
     }
+
+    $('.loading').show().delay(800).queue(function(){
+        $('.loading').hide().dequeue();
+    });
     $(".selectedSportText").text(text);
     $(".selectedSportTextV2").text(text);
 }
@@ -1291,15 +1297,15 @@ var F = $.ajax({ dataType:"json",
                     }
                 }
 
-                if(odds1) {
-                    odds1 = odds1.toString()[0]+"."+odds1.toString()[1]+odds1.toString()[2];
-                } else odds1 = ""
 
+                if(odds1) {
+                    odds1 = convertOdds(odds1);
+                } else odds1 = ""
                 if(oddsX) {
-                    oddsX = oddsX.toString()[0]+"."+oddsX.toString()[1]+oddsX.toString()[2];
+                    oddsX = convertOdds(oddsX);
                 } else oddsX = ""
                 if(odds2) {
-                    odds2 = odds2.toString()[0]+"."+odds2.toString()[1]+odds2.toString()[2];
+                    odds2 = convertOdds(odds2);
                 } else odds2 = ""
                 var stream = true;
                 if (item.event.streams.length === 0) {
@@ -1359,9 +1365,27 @@ $( function() {
 }
 );
 
-$("#quickbet").click(function(){
-    location.replace('/quickbet')
-})
+
+
+function convertOdds(odds) {
+    var oddsReturn;
+
+    switch(odds.toString().length) {
+        case 4:
+            oddsReturn = odds.toString()[0]+"."+odds.toString()[1]+odds.toString()[2];
+            break;
+        case 5:
+            oddsReturn = odds.toString()[0]+odds.toString()[1]+"."+odds.toString()[2]+odds.toString()[3];
+            break
+        case 6:
+            oddsReturn = odds.toString()[0]+odds.toString()[1]+odds.toString()[2]+"."+odds.toString()[3]+odds.toString()[4];
+            break
+        default:
+            oddsReturn = odds.toString()[0]+"."+odds.toString()[1]+odds1toString()[2];
+            break
+        }
+    return oddsReturn
+}
 
 var isoCountries = {
     'Afghanistan': 'AF',
@@ -1475,6 +1499,7 @@ var isoCountries = {
     'Isle Of Man': 'IM',
     'Israel': 'IL',
     'Italy': 'IT',
+    'Ivory Coast': 'CI',
     'Jamaica': 'JM',
     'Japan': 'JP',
     'Jersey': 'JE',
