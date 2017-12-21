@@ -206,6 +206,7 @@ $(document).ready(function() {
     $( ".listContainer" ).hide();
     $( ".selectedLeagues" ).hide();
     $(".bottomHeader").hide();
+    $("#resetAllButton").hide();
     $(".topLeagues").hide();
     $('.otherSports').hide();
 });
@@ -550,6 +551,7 @@ $(document).on('click', '.sportsList2 .sportRow', function(event){
 
 $(document).on('click', '.showSelectedList', function(event){
     $(".selectedLeagues").toggle();
+    $("#resetAllButton").toggle();
     if($(".selectedLeagues").is(":visible")) {
         $(".selectedIcon").text("keyboard_arrow_down");
     } else $(".selectedIcon").text("keyboard_arrow_up");
