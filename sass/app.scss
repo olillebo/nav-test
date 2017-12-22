@@ -1062,6 +1062,7 @@ select {
 
 
 						button {
+
 							display: flex;
 							align-items: center;
 
@@ -1092,9 +1093,20 @@ select {
 							padding: 8px;
 							box-shadow: inherit !important;
 							border-radius: 3px !important;
-                            background: #93a5ac !important;
-                            color: white !important;
+                            //background: #93a5ac !important;
+                            //color: white !important;
+
+							background: white !important;
+							color: black !important;
+							border: none;
+							font-weight: bold;
 						}
+
+						.V2change {
+							display: flex;
+							align-items: center;
+						}
+
 					}
 				}
 
