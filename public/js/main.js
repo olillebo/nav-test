@@ -184,11 +184,11 @@ $(document).ready(function() {
 
     getJsonData();
 
-    $("#leaguelist" ).scroll(function() { //.box is the class of the div
+/*    $("#leaguelist" ).scroll(function() { //.box is the class of the div
         var p = $( ".filterTop" ).position().top;
         if(p<0) $(".filterHeader" ).addClass("shadow");
         else $(".filterHeader" ).removeClass("shadow");
-    });
+    });*/
 
 
 /*    $('#selectSport').change(function(){
@@ -206,7 +206,7 @@ $(document).ready(function() {
     $( ".listContainer" ).hide();
     $( ".selectedLeagues" ).hide();
     $(".bottomHeader").hide();
-    $("#resetAllButton").hide();
+    //$("#resetAllButton").hide();
     $(".topLeagues").hide();
     $('.otherSports').hide();
     $('.loading').hide();
@@ -375,11 +375,17 @@ function setSport(id, text) {
 
     }
 
-    $('.loading').show().delay(800).queue(function(){
+    $('.loading').show().delay(1100).queue(function(){
         $('.loading').hide().dequeue();
     });
     $(".selectedSportText").text(text);
     $(".selectedSportTextV2").text(text);
+
+    $(".selectedSportTextV2").addClass("animate").delay(500).queue(function(next){
+        $(".selectedSportTextV2").removeClass("animate");
+        next();
+    });
+
 }
 
 $(document).on('click', '#selectSportsList li', function(event){
@@ -460,12 +466,12 @@ function buildFilterItems(evt, json) {
 
     $("#leaguelist").append('' +
         '<div id="listContent" class="listContent hide">'+
-        '<div class="mdl-selectfield-label"><span>Leagues by country</span></div>'
+        '<div class="mdl-selectfield-label"><span>A-Z</span></div>'
     );
     var id = 0;
     $(sortedArray).each(function(i, e) {
         $(".listContent").append(
-            '<div class="countryWrapper" leagueCollection=leagueCollection'+[i]+'><span class="flag-icon flag-icon-'+getCountryCode(sortedArray[i].country).toLowerCase()+'"></span><div class="country">'+sortedArray[i].country+'</div><div class ="checkboxStyle"><i class="material-icons">arrow_drop_down</i></div></div><div class="leagueCollection" id=leagueCollection'+[i]+'></div>'
+            '<div class="countryWrapper" leagueCollection=leagueCollection'+[i]+'><span class="flag-icon flag-icon-'+getCountryCode(sortedArray[i].country).toLowerCase()+'"></span><div class="country">'+sortedArray[i].country+'</div><div class ="checkboxStyle"><i class="material-icons">keyboard_arrow_down</i></div></div><div class="leagueCollection" id=leagueCollection'+[i]+'></div>'
         )
         $(sortedArray[i].leagues).each(function(m, e) {
             $("#leagueCollection"+[i]).append(
@@ -509,7 +515,7 @@ $(document).on('click', '#closeFilter', function(event){
 
 $(document).on('click', '#changeSportNew', function(event){
     $( ".resetFilter" ).trigger("click");
-    setSport(0, "Choose sport");
+    setSport(0, "Sport");
 });
 
 $(document).on('click', '.resetFilter', function(event){
@@ -557,7 +563,7 @@ $(document).on('click', '.sportsList2 .sportRow', function(event){
 
 $(document).on('click', '.showSelectedList', function(event){
     $(".selectedLeagues").toggle();
-    $("#resetAllButton").toggle();
+    //$("#resetAllButton").toggle();
     if($(".selectedLeagues").is(":visible")) {
         $(".selectedIcon").text("keyboard_arrow_down");
     } else $(".selectedIcon").text("keyboard_arrow_up");
@@ -637,12 +643,19 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
     $("#outcomeListCopyEvents").empty();
     $("#startPagelist").hide();
 
+
     if (selectedLeagues.length >= 1) {
         $('#applyFilter').removeAttr("disabled");
         $("#outcomeList").hide();
         $(".filterFooter").addClass("expanded")
         $(".bottomHeader").show();
         leaguesSelectedText.text(selectedLeagues.length+" leagues selected");
+
+        leaguesSelectedText.addClass("animate").delay(500).queue(function(next){
+            leaguesSelectedText.removeClass("animate");
+            next();
+        });
+
         if((cardSortType === true) || (cardSortType === "true")) {
             reorderList();
         } else reorderList2();
@@ -1071,9 +1084,9 @@ $("#leagueButton").click(function(){
 
 $("#selectSports").click(function(){
     if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
-        $(this).find(".material-icons").text("arrow_drop_down");
+        $(this).find(".material-icons").text("keyboard_arrow_down");
     } else {
-        $(this).find(".material-icons").text("arrow_drop_up");
+        $(this).find(".material-icons").text("keyboard_arrow_up");
     }
 });
 
@@ -1168,13 +1181,22 @@ $(document).mouseup(function(e)
 
 
 function getJsonData() {
+/*
 var data = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/england/premier_league.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510215931013&categoryGroup=COMBINED&displayDefault=true";
 var data2 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/spain/laliga.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510228334897&categoryGroup=COMBINED&displayDefault=true&category=match";
 var data3 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/germany/bundesliga.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510231152204&categoryGroup=COMBINED&displayDefault=true&category=match";
 var data4 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/italy/serie_a.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510231127753&categoryGroup=COMBINED&displayDefault=true&category=match";
 var inplay = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/all/all/all/all/in-play.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510245150377&categoryGroup=COMBINED&displayDefault=true";
 var all = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/all/all/all/all.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1511963366090&categoryGroup=COMBINED&displayDefault=true";
-var output = {events: []};
+*/
+
+    var data = "data/data.json";
+    var data2 = "data/data2.json";
+    var data3 = "data/data3.json";
+    var data4 = "data/data4.json";
+    var inplay =  "data/in-play.json";
+    var all = "data/all.json";
+    var output = {events: []};
 //var A = $.getJSON(data);
 
 var A = $.ajax({ dataType:"json",

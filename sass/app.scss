@@ -989,7 +989,7 @@ select {
 					background-color: transparent;
 					text-align: left;
 					margin: 0;
-					padding: 0 16px;
+					padding: 0 12px;
 					outline-color: #bdbdbd;
 					position: relative;
 					overflow: hidden;
@@ -1017,6 +1017,8 @@ select {
 					flex-direction: column;
 					height: 50px;
 					flex: 0 0 auto;
+					background-color: #53778a;
+					color: white;
 
 					.line {
 						width: 100%;
@@ -1048,8 +1050,13 @@ select {
 						min-width: 40px;
 					}
 
+					i {
+						color: white;
+					}
+
 					&.shadow {
-						box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+						box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+						//box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 					}
 					.filterText, .filterTextV2 {
 						display: flex;
@@ -1065,11 +1072,11 @@ select {
 
 							display: flex;
 							align-items: center;
-
 							border-radius: inherit !important;
 							font-size: inherit !important;
 							height: inherit !important;
 							width: auto !important;
+							cursor: pointer;
 							i {
 								position: relative !important;
 								top: inherit !important;
@@ -1085,21 +1092,30 @@ select {
 					}
 
 					.filterTextV2 {
+						padding-left: 12px;
 						.selectedSportTextV2{
-							padding: 12px;
+							padding: 12px 12px 12px 0;
 							font-weight: bold;
+							&.animate {
+								//transform-origin: 50% 100%;
+								animation-duration: .3s;
+								animation-name: fadeAndScale;
+								animation-timing-function: cubic-bezier(.71,.55,.62,1.57);
+							}
 						}
 						button {
-							padding: 8px;
+							padding: 12px 12px 12px 0;
 							box-shadow: inherit !important;
 							border-radius: 3px !important;
                             //background: #93a5ac !important;
                             //color: white !important;
 
-							background: white !important;
-							color: black !important;
+							background: transparent !important;
+							color: white !important;
 							border: none;
-							font-weight: bold;
+							//font-weight: bold;
+							text-decoration: underline !important;
+							padding-right: 0;
 						}
 
 						.V2change {
@@ -1145,11 +1161,20 @@ select {
 							width: 100%;
                             justify-content: space-between;
                             padding-right: 12px;
-                            box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.12), 0 -2px 2px rgba(0, 0, 0, 0.24);
+							box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.26);
+                            //box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.12), 0 -2px 2px rgba(0, 0, 0, 0.24);
 
                           .left {
                             display: flex;
                             align-items: center;
+
+							  .leaguesSelectedText {
+								  &.animate {
+									  animation-duration: .3s;
+									  animation-name: fadeAndScale;
+									  animation-timing-function: cubic-bezier(.71,.55,.62,1.57);
+								  }
+							  }
                           }
 
                           .selectedIcon {
@@ -1158,16 +1183,17 @@ select {
 
 							button {
 								padding: 8px;
-                                box-shadow: none !important;
+								display: flex;
+
+/*								box-shadow: none !important;
 								border-radius: 3px !important;
-                                display: flex;
                                 align-items: center;
 
                                 font-size: inherit !important;
                                 width: auto !important;
                                 height: 32px !important;
                                 background: #93a5ac !important;
-                                color: white !important;
+                                color: white !important;*/
 							}
 
 						}
@@ -1232,7 +1258,8 @@ select {
 				//font-size: 16px;
 				font-weight: bold;
 				width: 100%;
-				background-color: #d3d3d34f;
+				border-left: 10px solid #93a5ac;
+				background-color: rgba(82, 118, 138, 0.10);
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -1309,7 +1336,7 @@ select {
 			}
 		}
 
-		$md-checkbox-checked-color: rgb(51, 122, 183);
+		$md-checkbox-checked-color: #e75f3f;
 		$md-checkbox-border-color: rgba(0, 0, 0, 0.54);
 
 		$md-checkbox-size: 20px;
@@ -1334,7 +1361,7 @@ select {
 			position: relative;
 			margin: 0;
 			display: flex;
-			padding-left: 50px;
+			padding-left: 45.5px;
 
 
 			label {
@@ -1815,7 +1842,7 @@ select {
 }
 
 .la-pacman > div:nth-child(2) {
-	margin-top: -32px;
+	margin-top: -42px;
 	-webkit-animation-name: pacman-rotate-half-down;
 	-moz-animation-name: pacman-rotate-half-down;
 	-o-animation-name: pacman-rotate-half-down;
@@ -1831,12 +1858,51 @@ select {
 	left: 200%;
 	width: 8px;
 	height: 8px;
+	width: 0 !important;
+	height: 0 !important;
 	border-radius: 100%;
 	opacity: 0;
 	-webkit-animation: pacman-balls 2s 0s infinite linear;
 	-moz-animation: pacman-balls 2s 0s infinite linear;
 	-o-animation: pacman-balls 2s 0s infinite linear;
 	animation: pacman-balls 2s 0s infinite linear;
+
+	&:after {
+		//font-family: 'Material Icons';
+		//content: "arrow_drop_down";
+		font-family: FontAwesome;
+		font-size: 24px;
+		content: "";
+		position: absolute;
+		top: -23px;
+
+		background-image: url(https://www.leovegas.com/static/sports-client/images/submenu@2x.f89bd482.png);
+		background-size: 450px 400px;
+		background-position: -150px -250px;
+		width: 50px;
+		height: 50px;
+		//filter: grayscale(100%);
+		right: -23px;
+		zoom: 0.7;
+		-moz-transform:scale(0.7);
+		-moz-transform-origin: 0 0;
+		filter: grayscale(100%) brightness(0) invert(1);
+	}
+}
+.la-pacman > div:nth-child(4) {
+	&:after {
+		background-position: -50px -300px;
+	}
+}
+.la-pacman > div:nth-child(5) {
+	&:after {
+		background-position: -400px -150px;
+	}
+}
+.la-pacman > div:nth-child(6) {
+	&:after {
+		background-position: -400px -200px;
+	}
 }
 
 .la-pacman > div:nth-child(3) {
@@ -1890,17 +1956,17 @@ select {
 }
 
 .la-pacman.la-2x {
-	width: 64px;
-	height: 64px;
+	width: 110px;
+	height: 95px;
 }
 
 .la-pacman.la-2x > div:nth-child(1),
 .la-pacman.la-2x > div:nth-child(2) {
-	border-width: 32px;
+	border-width: 47px;
 }
 
 .la-pacman.la-2x > div:nth-child(2) {
-	margin-top: -64px;
+	margin-top: -94px;
 }
 
 .la-pacman.la-2x > div:nth-child(3),
@@ -2131,4 +2197,19 @@ select {
 		-o-transform: translateY(-50%);
 		transform: translateY(-50%);
 	}
+}
+
+@keyframes fadeAndScale {
+	from {
+		opacity: 0;
+		transform: scale(.9, .9);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1, 1);
+	}
+}
+
+.material-icons {
+	//color: #a29999 !important;
 }

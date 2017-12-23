@@ -751,7 +751,7 @@ select {
         background-color: transparent;
         text-align: left;
         margin: 0;
-        padding: 0 16px;
+        padding: 0 12px;
         outline-color: #bdbdbd;
         position: relative;
         overflow: hidden;
@@ -773,7 +773,9 @@ select {
         display: none;
         flex-direction: column;
         height: 50px;
-        flex: 0 0 auto; }
+        flex: 0 0 auto;
+        background-color: #53778a;
+        color: white; }
         #mainPage .navigation .leagues .listContainer .filterHeader .line {
           width: 100%;
           display: flex;
@@ -792,8 +794,10 @@ select {
         #mainPage .navigation .leagues .listContainer .filterHeader button {
           padding: 0px;
           min-width: 40px; }
+        #mainPage .navigation .leagues .listContainer .filterHeader i {
+          color: white; }
         #mainPage .navigation .leagues .listContainer .filterHeader.shadow {
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
         #mainPage .navigation .leagues .listContainer .filterHeader .filterText, #mainPage .navigation .leagues .listContainer .filterHeader .filterTextV2 {
           display: flex;
           align-items: center;
@@ -806,7 +810,8 @@ select {
             border-radius: inherit !important;
             font-size: inherit !important;
             height: inherit !important;
-            width: auto !important; }
+            width: auto !important;
+            cursor: pointer; }
             #mainPage .navigation .leagues .listContainer .filterHeader .filterText button i, #mainPage .navigation .leagues .listContainer .filterHeader .filterTextV2 button i {
               position: relative !important;
               top: inherit !important;
@@ -820,20 +825,27 @@ select {
               -o-transform: none;
               /* Opera */
               transform: none; }
-        #mainPage .navigation .leagues .listContainer .filterHeader .filterTextV2 .selectedSportTextV2 {
-          padding: 12px;
-          font-weight: bold; }
-        #mainPage .navigation .leagues .listContainer .filterHeader .filterTextV2 button {
-          padding: 8px;
-          box-shadow: inherit !important;
-          border-radius: 3px !important;
-          background: white !important;
-          color: black !important;
-          border: none;
-          font-weight: bold; }
-        #mainPage .navigation .leagues .listContainer .filterHeader .filterTextV2 .V2change {
-          display: flex;
-          align-items: center; }
+        #mainPage .navigation .leagues .listContainer .filterHeader .filterTextV2 {
+          padding-left: 12px; }
+          #mainPage .navigation .leagues .listContainer .filterHeader .filterTextV2 .selectedSportTextV2 {
+            padding: 12px 12px 12px 0;
+            font-weight: bold; }
+            #mainPage .navigation .leagues .listContainer .filterHeader .filterTextV2 .selectedSportTextV2.animate {
+              animation-duration: .3s;
+              animation-name: fadeAndScale;
+              animation-timing-function: cubic-bezier(0.71, 0.55, 0.62, 1.57); }
+          #mainPage .navigation .leagues .listContainer .filterHeader .filterTextV2 button {
+            padding: 12px 12px 12px 0;
+            box-shadow: inherit !important;
+            border-radius: 3px !important;
+            background: transparent !important;
+            color: white !important;
+            border: none;
+            text-decoration: underline !important;
+            padding-right: 0; }
+          #mainPage .navigation .leagues .listContainer .filterHeader .filterTextV2 .V2change {
+            display: flex;
+            align-items: center; }
       #mainPage .navigation .leagues .listContainer .filterFooter {
         display: none;
         flex-direction: column;
@@ -862,23 +874,28 @@ select {
             width: 100%;
             justify-content: space-between;
             padding-right: 12px;
-            box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.12), 0 -2px 2px rgba(0, 0, 0, 0.24); }
+            box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.26); }
             #mainPage .navigation .leagues .listContainer .filterFooter .line .showSelectedList .left {
               display: flex;
               align-items: center; }
+              #mainPage .navigation .leagues .listContainer .filterFooter .line .showSelectedList .left .leaguesSelectedText.animate {
+                animation-duration: .3s;
+                animation-name: fadeAndScale;
+                animation-timing-function: cubic-bezier(0.71, 0.55, 0.62, 1.57); }
             #mainPage .navigation .leagues .listContainer .filterFooter .line .showSelectedList .selectedIcon {
               padding: 10px; }
             #mainPage .navigation .leagues .listContainer .filterFooter .line .showSelectedList button {
               padding: 8px;
-              box-shadow: none !important;
-              border-radius: 3px !important;
               display: flex;
-              align-items: center;
-              font-size: inherit !important;
-              width: auto !important;
-              height: 32px !important;
-              background: #93a5ac !important;
-              color: white !important; }
+              /*								box-shadow: none !important;
+								border-radius: 3px !important;
+                                align-items: center;
+
+                                font-size: inherit !important;
+                                width: auto !important;
+                                height: 32px !important;
+                                background: #93a5ac !important;
+                                color: white !important;*/ }
         #mainPage .navigation .leagues .listContainer .filterFooter.expanded {
           height: auto; }
         #mainPage .navigation .leagues .listContainer .filterFooter .label {
@@ -914,7 +931,8 @@ select {
       margin: 0;
       font-weight: bold;
       width: 100%;
-      background-color: #d3d3d34f;
+      border-left: 10px solid #93a5ac;
+      background-color: rgba(82, 118, 138, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center; }
@@ -971,7 +989,7 @@ select {
     position: relative;
     margin: 0;
     display: flex;
-    padding-left: 50px; }
+    padding-left: 45.5px; }
     #mainPage .navigation .checkboxStyle label {
       margin: 0;
       cursor: pointer; }
@@ -1002,7 +1020,7 @@ select {
       -moz-appearance: none;
       outline: 0; }
       #mainPage .navigation .checkboxStyle input[type="checkbox"]:checked + label:before {
-        background: #337ab7;
+        background: #e75f3f;
         border: none; }
       #mainPage .navigation .checkboxStyle input[type="checkbox"]:checked + label:after {
         transform: rotate(-45deg);
@@ -1309,7 +1327,7 @@ select {
   animation: pacman-rotate-half-up .5s 0s infinite; }
 
 .la-pacman > div:nth-child(2) {
-  margin-top: -32px;
+  margin-top: -42px;
   -webkit-animation-name: pacman-rotate-half-down;
   -moz-animation-name: pacman-rotate-half-down;
   -o-animation-name: pacman-rotate-half-down;
@@ -1324,12 +1342,42 @@ select {
   left: 200%;
   width: 8px;
   height: 8px;
+  width: 0 !important;
+  height: 0 !important;
   border-radius: 100%;
   opacity: 0;
   -webkit-animation: pacman-balls 2s 0s infinite linear;
   -moz-animation: pacman-balls 2s 0s infinite linear;
   -o-animation: pacman-balls 2s 0s infinite linear;
   animation: pacman-balls 2s 0s infinite linear; }
+  .la-pacman > div:nth-child(3):after,
+  .la-pacman > div:nth-child(4):after,
+  .la-pacman > div:nth-child(5):after,
+  .la-pacman > div:nth-child(6):after {
+    font-family: FontAwesome;
+    font-size: 24px;
+    content: "";
+    position: absolute;
+    top: -23px;
+    background-image: url(https://www.leovegas.com/static/sports-client/images/submenu@2x.f89bd482.png);
+    background-size: 450px 400px;
+    background-position: -150px -250px;
+    width: 50px;
+    height: 50px;
+    right: -23px;
+    zoom: 0.7;
+    -moz-transform: scale(0.7);
+    -moz-transform-origin: 0 0;
+    filter: grayscale(100%) brightness(0) invert(1); }
+
+.la-pacman > div:nth-child(4):after {
+  background-position: -50px -300px; }
+
+.la-pacman > div:nth-child(5):after {
+  background-position: -400px -150px; }
+
+.la-pacman > div:nth-child(6):after {
+  background-position: -400px -200px; }
 
 .la-pacman > div:nth-child(3) {
   -webkit-animation-delay: -1.44s;
@@ -1374,15 +1422,15 @@ select {
   height: 4px; }
 
 .la-pacman.la-2x {
-  width: 64px;
-  height: 64px; }
+  width: 110px;
+  height: 95px; }
 
 .la-pacman.la-2x > div:nth-child(1),
 .la-pacman.la-2x > div:nth-child(2) {
-  border-width: 32px; }
+  border-width: 47px; }
 
 .la-pacman.la-2x > div:nth-child(2) {
-  margin-top: -64px; }
+  margin-top: -94px; }
 
 .la-pacman.la-2x > div:nth-child(3),
 .la-pacman.la-2x > div:nth-child(4),
@@ -1563,3 +1611,11 @@ select {
     -moz-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%); } }
+
+@keyframes fadeAndScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9, 0.9); }
+  to {
+    opacity: 1;
+    transform: scale(1, 1); } }
