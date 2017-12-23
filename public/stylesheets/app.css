@@ -799,7 +799,7 @@ select {
             #mainPage .navigation .leagues .listContainer .filterHeader .line.bottomHeader .li-element {
               padding-left: 36px; }
             #mainPage .navigation .leagues .listContainer .filterHeader .line.bottomHeader .showSelectedList {
-              height: 30px;
+              height: 35px;
               display: flex;
               align-items: center;
               /* justify-content: flex-start; */
@@ -859,6 +859,7 @@ select {
               /* Opera */
               transform: none; }
         #mainPage .navigation .leagues .listContainer .filterHeader .filterTextV2 {
+          font-size: 15px;
           padding-left: 12px; }
           #mainPage .navigation .leagues .listContainer .filterHeader .filterTextV2 .selectedSportTextV2 {
             padding: 12px 12px 12px 0;
@@ -896,7 +897,7 @@ select {
           align-items: center;
           flex-direction: column; }
           #mainPage .navigation .leagues .listContainer .filterFooter .line.top {
-            height: 50px; }
+            height: 55px; }
           #mainPage .navigation .leagues .listContainer .filterFooter .line .selectedLeagues {
             margin-top: 0px; }
           #mainPage .navigation .leagues .listContainer .filterFooter .line .showSelectedList {

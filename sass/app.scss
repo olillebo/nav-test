@@ -1055,7 +1055,7 @@ select {
 
 
 							.showSelectedList {
-								height: 30px;
+								height: 35px;
 								display: flex;
 								align-items: center;
 								/* justify-content: flex-start; */
@@ -1150,6 +1150,7 @@ select {
 					}
 
 					.filterTextV2 {
+						font-size: 15px;
 						padding-left: 12px;
 						.selectedSportTextV2{
 							padding: 12px 12px 12px 0;
@@ -1204,7 +1205,7 @@ select {
 						//padding-left: 12px;
 
 						&.top {
-							height: 50px;
+							height: 55px;
 						}
 
                       .selectedLeagues {
