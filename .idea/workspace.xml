@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84e378b2-9e1e-4aa6-b50c-207615ceee08" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/main.js" afterPath="$PROJECT_DIR$/public/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/app.css" afterPath="$PROJECT_DIR$/public/stylesheets/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/app.scss" afterPath="$PROJECT_DIR$/sass/app.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/includes/index.html" afterPath="$PROJECT_DIR$/views/includes/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,13 +29,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="666" column="12" lean-forward="false" selection-start-line="666" selection-start-column="12" selection-end-line="666" selection-end-column="12" />
+            <state relative-caret-position="307">
+              <caret line="1431" column="27" lean-forward="false" selection-start-line="1431" selection-start-column="27" selection-end-line="1431" selection-end-column="27" />
               <folding>
-                <marker date="1514044109000" expanded="true" signature="51608:55016" ph="{&quot;Afghanistan&quot;: 'AF'...}" />
+                <marker date="1514044391000" expanded="true" signature="51550:54958" ph="{&quot;Afghanistan&quot;: 'AF'...}" />
               </folding>
             </state>
           </provider>
@@ -55,7 +51,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.scss" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sass/app.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="376">
@@ -195,8 +191,8 @@
         <option value="$PROJECT_DIR$/views/index.pug" />
         <option value="$PROJECT_DIR$/views/layout.pug" />
         <option value="$PROJECT_DIR$/views/includes/index.html" />
-        <option value="$PROJECT_DIR$/public/js/main.js" />
         <option value="$PROJECT_DIR$/sass/app.scss" />
+        <option value="$PROJECT_DIR$/public/js/main.js" />
       </list>
     </option>
   </component>
@@ -469,12 +465,12 @@
       <workItem from="1514036449288" duration="1514000" />
       <workItem from="1514038554277" duration="837000" />
       <workItem from="1514041829672" duration="1456000" />
-      <workItem from="1514043675073" duration="387000" />
+      <workItem from="1514043675073" duration="512000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="295876000" />
+    <option name="totallyTimeSpent" value="296001000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -758,21 +754,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="666" column="12" lean-forward="false" selection-start-line="666" selection-start-column="12" selection-end-line="666" selection-end-column="12" />
-          <folding>
-            <marker date="1514044109000" expanded="true" signature="51608:55016" ph="{&quot;Afghanistan&quot;: 'AF'...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sass/app.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="376">
           <caret line="1053" column="29" lean-forward="false" selection-start-line="1053" selection-start-column="29" selection-end-line="1053" selection-end-column="29" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="1431" column="27" lean-forward="false" selection-start-line="1431" selection-start-column="27" selection-end-line="1431" selection-end-column="27" />
+          <folding>
+            <marker date="1514044391000" expanded="true" signature="51550:54958" ph="{&quot;Afghanistan&quot;: 'AF'...}" />
+          </folding>
         </state>
       </provider>
     </entry>

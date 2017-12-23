@@ -1429,7 +1429,7 @@ function convertOdds(odds) {
             oddsReturn = odds.toString()[0]+odds.toString()[1]+odds.toString()[2]+"."+odds.toString()[3]+odds.toString()[4];
             break
         default:
-            oddsReturn = odds.toString()[0]+"."+odds.toString()[1]+odds1toString()[2];
+            oddsReturn = "";
             break
         }
     return oddsReturn
