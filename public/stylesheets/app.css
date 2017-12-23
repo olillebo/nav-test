@@ -785,6 +785,39 @@ select {
           flex-direction: row; }
           #mainPage .navigation .leagues .listContainer .filterHeader .line.top {
             height: 50px; }
+          #mainPage .navigation .leagues .listContainer .filterHeader .line.bottomHeader {
+            flex-direction: column;
+            background-color: white;
+            color: black; }
+            #mainPage .navigation .leagues .listContainer .filterHeader .line.bottomHeader i {
+              color: black;
+              font-size: 20px; }
+            #mainPage .navigation .leagues .listContainer .filterHeader .line.bottomHeader.top {
+              height: 50px; }
+            #mainPage .navigation .leagues .listContainer .filterHeader .line.bottomHeader .selectedLeagues {
+              margin-top: 0px; }
+            #mainPage .navigation .leagues .listContainer .filterHeader .line.bottomHeader .li-element {
+              padding-left: 36px; }
+            #mainPage .navigation .leagues .listContainer .filterHeader .line.bottomHeader .showSelectedList {
+              height: 30px;
+              display: flex;
+              align-items: center;
+              /* justify-content: flex-start; */
+              width: 100%;
+              justify-content: space-between;
+              padding-right: 0px; }
+              #mainPage .navigation .leagues .listContainer .filterHeader .line.bottomHeader .showSelectedList .left {
+                display: flex;
+                align-items: center; }
+                #mainPage .navigation .leagues .listContainer .filterHeader .line.bottomHeader .showSelectedList .left .leaguesSelectedText.animate {
+                  animation-duration: .3s;
+                  animation-name: fadeAndScale;
+                  animation-timing-function: cubic-bezier(0.71, 0.55, 0.62, 1.57); }
+              #mainPage .navigation .leagues .listContainer .filterHeader .line.bottomHeader .showSelectedList .selectedIcon {
+                padding: 0 8px; }
+              #mainPage .navigation .leagues .listContainer .filterHeader .line.bottomHeader .showSelectedList button {
+                padding: 0 8px;
+                display: flex; }
         #mainPage .navigation .leagues .listContainer .filterHeader.expanded {
           height: auto; }
         #mainPage .navigation .leagues .listContainer .filterHeader .label {

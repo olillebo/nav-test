@@ -161,7 +161,7 @@ var selectedLeagues = [];
 var visibleItems = 0;
 var filterOnDay;
 var progress = 0;
-var cardSortType, fullScreen, newCards, multiSelect, groupStartPage, chooseSport;
+var cardSortType, fullScreen, newCards, multiSelect, groupStartPage, chooseSport, selectedTop;
 var addedBets = 0;
 var outcomeValues, outcomeList, leagueLabel, leagueList;
 
@@ -210,6 +210,11 @@ $(document).ready(function() {
     $(".topLeagues").hide();
     $('.otherSports').hide();
     $('.loading').hide();
+
+    if ((selectedTop === true) || (selectedTop === "true")){
+        $('.bottomHeader').appendTo(".filterHeader");
+        $(".selectedIcon").text("keyboard_arrow_down");
+    }
 });
 
 function loadCookies() {
@@ -219,13 +224,13 @@ function loadCookies() {
     multiSelect = Cookies.get('multiSelect');
     groupStartPage = Cookies.get('groupStartPage');
     chooseSport = Cookies.get('chooseSport');
+    selectedTop = Cookies.get('selectedTop');
 
     if (typeof newCards === 'undefined'){
         newCards = true;
 
         $('#switch-3').attr("checked", true)
     } else if (newCards === "true") {
-        console.log("true")
         $('#switch-3').attr("checked", true)
     } else $('#switch-3').attr("checked", false);
 
@@ -272,6 +277,13 @@ function loadCookies() {
     } else if (chooseSport === "true") {
         $('#switch-6').attr("checked", true)
     } else $('#switch-6').attr("checked", false)
+
+    if (typeof selectedTop === 'undefined'){
+        selectedTop = true;
+        $('#switch-7').attr("checked", true)
+    } else if (selectedTop === "true") {
+        $('#switch-7').attr("checked", true)
+    } else $('#switch-7').attr("checked", false)
 }
 
 $( ".sidebar" ).click(function() {
@@ -332,6 +344,14 @@ $( "#switch-6" ).click(function() {
         Cookies.set('chooseSport', true );
     } else {
         Cookies.set('chooseSport', false );
+    }
+});
+
+$( "#switch-7" ).click(function() {
+    if($(this).is(':checked')) {
+        Cookies.set('selectedTop', true );
+    } else {
+        Cookies.set('selectedTop', false );
     }
 });
 
@@ -564,9 +584,18 @@ $(document).on('click', '.sportsList2 .sportRow', function(event){
 $(document).on('click', '.showSelectedList', function(event){
     $(".selectedLeagues").toggle();
     //$("#resetAllButton").toggle();
-    if($(".selectedLeagues").is(":visible")) {
-        $(".selectedIcon").text("keyboard_arrow_down");
-    } else $(".selectedIcon").text("keyboard_arrow_up");
+
+    if ((selectedTop === true) || (selectedTop === "true")){
+        if($(".selectedLeagues").is(":visible")) {
+            $(".selectedIcon").text("keyboard_arrow_up");
+        } else $(".selectedIcon").text("keyboard_arrow_down");
+    } else {
+        if($(".selectedLeagues").is(":visible")) {
+            $(".selectedIcon").text("keyboard_arrow_down");
+        } else $(".selectedIcon").text("keyboard_arrow_up");
+    }
+
+
 });
 
 $(document).on('click', '.resetAll', function(event){
@@ -632,7 +661,11 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
         leagueButtonLabel.text(leagueLabel)
         selectedLeagues = [];
         $(".selectedLeagues").hide();
-        $(".selectedIcon").text("keyboard_arrow_up");
+        if ((selectedTop === true) || (selectedTop === "true")){
+            $(".selectedIcon").text("keyboard_arrow_down");
+        } else {
+            $(".selectedIcon").text("keyboard_arrow_up");
+        }
     } else {
         // when is this called?
         leagueButtonLabel.text($("#listContent input:checkbox:checked").next("label").text());
@@ -647,7 +680,10 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
     if (selectedLeagues.length >= 1) {
         $('#applyFilter').removeAttr("disabled");
         $("#outcomeList").hide();
-        $(".filterFooter").addClass("expanded")
+        if ((selectedTop === true) || (selectedTop === "true")){
+            $(".filterHeader").addClass("expanded")
+        } else $(".filterFooter").addClass("expanded");
+
         $(".bottomHeader").show();
         leaguesSelectedText.text(selectedLeagues.length+" leagues selected");
 
