@@ -1408,6 +1408,7 @@ var F = $.ajax({ dataType:"json",
                 var sortDate = date.getTime();
                 if(live) {
                     if(item.liveData) {
+                        console.log(item.event.homeName)
                         if(item.liveData.score.home) {
                             homeScore = item.liveData.score.home;
                             awayScore = item.liveData.score.away;
