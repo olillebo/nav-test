@@ -637,17 +637,34 @@ select {
                       }
                     }
 
-                    .betoffer[betOffers='false']{
-                      width: 156px;
+/*                    &[betOffers='false']{
+                      width: 150px;
 
-                      button {
+                      .betOfferButton {
                         display: none;
 
                         &.showAll {
                           display: flex;
                         }
                       }
-                    }
+                    }*/
+					  &[oddsOffers='0']{
+						  width: 150px;
+
+						  .betOfferButton {
+							  display: none;
+
+							  &.showAll {
+								  display: flex;
+							  }
+						  }
+					  }
+					  &[oddsOffers='2']{
+						  .betOfferButton:last-of-type {
+							  display: none;
+
+						  }
+					  }
                   }
 				}
 			}
@@ -1393,6 +1410,11 @@ select {
 				width: 100%;
 				padding-left: 16px;
 			}
+
+			.dropDown {
+				display: flex;
+				padding-left: 45.5px;
+			}
 		}
 
 		$md-checkbox-checked-color: #e75f3f;
@@ -1746,9 +1768,58 @@ select {
 	  background-color: transparent;
 	  color: #000;
 	  border-bottom: 1px solid #b3b3b3;
+
   }
   .eventGroup {
     margin-bottom: 20px;
+
+	  .start {
+		  .leagueTitle {
+			  &:before {
+				  font-size: 24px;
+				  content: "";
+				  background-image: url(https://www.leovegas.com/static/sports-client/images/submenu@2x.f89bd482.png);
+				  background-size: 450px 400px;
+				  background-position: -150px -250px;
+				  width: 50px;
+				  height: 50px;
+				  //filter: grayscale(100%);
+				  right: -23px;
+				  zoom: 0.7;
+				  -moz-transform:scale(0.7);
+				  -moz-transform-origin: 0 0;
+				  filter: grayscale(100%) brightness(0) invert(1);
+			  }
+		  }
+		&.Ice_hockey {
+			.leagueTitle {
+				&:before {
+					background-position: -50px -300px;
+				}
+			}
+		}
+		  &.Football {
+			  .leagueTitle {
+				  &:before {
+					  background-position: -150px -250px;
+				  }
+			  }
+		  }
+		  &.Tennis {
+			  .leagueTitle {
+				  &:before {
+					  background-position: -400px -150px;
+				  }
+			  }
+		  }
+		  &.Trotting {
+			  .leagueTitle {
+				  &:before {
+					  background-position: -400px -200px;
+				  }
+			  }
+		  }
+	  }
   }
 
 	.mdl-tabs__tab-bar {

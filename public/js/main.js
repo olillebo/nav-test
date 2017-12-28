@@ -52,9 +52,9 @@ var outcomeOptions = {
 };
 
 var outcomeOptions_2 = {
-    valueNames: [{ name: 'id', attr: 'id' }, "home", "away", "sport", "league", { name: 'rank', attr: 'rank' }, "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }],
+    valueNames: [{ name: 'id', attr: 'id' }, "home", "away", { name: 'sport', attr: 'sport' }, { name: 'rank', attr: 'rank' }, "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }, { name: 'oddsOffers', attr: 'oddsOffers' }],
     item: '<div class="card-container v2 id">\n' +
-    '    <div class="card-wrap live leagueID id dateStamp rank">\n' +
+    '    <div class="card-wrap live leagueID id dateStamp rank sport">\n' +
     '        <div class="left">\n' +
     '           <div class="cardcontent ">\n' +
     '              <div class="teamline">\n' +
@@ -73,7 +73,7 @@ var outcomeOptions_2 = {
     '                   <div class="card-stream stream"></div>\n' +
     '                   <div class="cardtitle hidden">\n' +
     '                       <div class="path">\n' +
-    '                           <span class="sport"></span>\n' +
+    '                           <span class=""></span>\n' +
     '                           <span class="leagueName"></span>\n' +
     '                       </div>\n' +
     '                   </div>\n' +
@@ -81,7 +81,7 @@ var outcomeOptions_2 = {
     '           </div>\n' +
     '        </div>\n' +
     '        <div class="right">\n' +
-    '            <div class="betoffer betOffers">\n' +
+    '            <div class="betoffer betOffers oddsOffers">\n' +
     '                <div class="betOfferButton showAll">\n' +
     '                    <div>\n' +
     '                        <div class="odds">Show all offers</div>\n' +
@@ -175,7 +175,6 @@ $(document).ready(function() {
     $('.dayButton').each(function(){
         $(this).data('day',todaysDay);
         $(this).find(".label").text(todaysDay);
-        //console.log(getNumberOfDays(new Date().getYear(), new Date().getMonth()))
         // if todaysdate = total days in month, todaysDay: 1 else
         if (todaysDay==getNumberOfDays(new Date().getYear(), new Date().getMonth())) {
             todaysDay = 1;
@@ -491,7 +490,7 @@ function buildFilterItems(evt, json) {
     var id = 0;
     $(sortedArray).each(function(i, e) {
         $(".listContent").append(
-            '<div class="countryWrapper" leagueCollection=leagueCollection'+[i]+'><span class="flag-icon flag-icon-'+getCountryCode(sortedArray[i].country).toLowerCase()+'"></span><div class="country">'+sortedArray[i].country+'</div><div class ="checkboxStyle"><i class="material-icons">keyboard_arrow_down</i></div></div><div class="leagueCollection" id=leagueCollection'+[i]+'></div>'
+            '<div class="countryWrapper" leagueCollection=leagueCollection'+[i]+'><span class="flag-icon flag-icon-'+getCountryCode(sortedArray[i].country).toLowerCase()+'"></span><div class="country">'+sortedArray[i].country+'</div><div class ="dropDown"><i class="material-icons">keyboard_arrow_down</i></div></div><div class="leagueCollection" id=leagueCollection'+[i]+'></div>'
         )
         $(sortedArray[i].leagues).each(function(m, e) {
             $("#leagueCollection"+[i]).append(
@@ -901,10 +900,12 @@ function getLiveEvents(live) {
         if ($(div).find(".card-wrap").attr("live")===live)  {
             var rank = $(div).find(".card-wrap").attr("rank");
             var id = $(div).find(".card-wrap").attr("id");
+            var sport = $(div).find(".card-wrap").attr("sport");
+            var league = $(div).find(".card-wrap").attr("leagueID");
             if (live==="false" && within48) {
-                currList.push([parseInt(rank), parseInt(id)]);
+                currList.push([parseInt(rank), parseInt(id), sport, league]);
             } else if (live==="true") {
-                currList.push([parseInt(rank), parseInt(id)]);
+                currList.push([parseInt(rank), parseInt(id), sport, league]);
             }
         }
     });
@@ -913,20 +914,84 @@ function getLiveEvents(live) {
         return b[0] - a[0];
     });
 
-    var arr = currList.slice(0,10)
-    listEach.push([arr, ""]);
+    var arr = currList.slice(0,10);
 
-    //samme som under
-    $.each( listEach, function( index, value ){
-        $.each( value[0], function( index2, value2 ){
-            listItems.each(function( index, div ) {
-                if (value2[1]==$(div).find(".card-wrap").attr("id"))  {
-                    $(div).clone().appendTo( ".league-"+panel );
-                }
-            });
+    ///Grouping by sport
+    var sortedSportList = [];
+    var sportsList2 = ["Football",
+        "Ice_hockey",
+        "Tennis",
+        "Trotting",
+        "Volleyball",
+        "Basketball",
+        "Cricket",
+        "other"];
 
+    //sorter om listen etter sport
+    $.each(sportsList2, function (index, value) {
+        $.each( arr, function( index2, value2 ){
+            if (value2[2]==value)  {
+                sortedSportList.push(value2);
+            } else if (value=="other" && ($.inArray(value2[2], sportsList2) == -1)) {
+                sortedSportList.push(value2)
+            }
         });
     });
+
+    listEach.push([sortedSportList, ""]);
+
+    var leagueList = [];
+    $.each( sortedSportList, function( index, value ){
+        leagueList.push([value[3], value[2]])
+    });
+
+    var prev = {};
+    var filteredData = leagueList.filter( function(arr) {
+        var key = arr[0];
+        if (prev[key])
+            return false;
+
+        return (prev[key] = true);
+    });
+
+
+    var currsport, leaguenm;
+
+    $.each( filteredData, function( index, value ){
+        if(value[1]!=currsport){
+            if(value[1]=="Ice_hockey") {
+                leaguenm = "Ice hockey"
+            } else leaguenm = value[1]
+            $( ".league-"+panel ).append('' +
+                '<div class="start '+value[1]+' sport-'+panel+'-'+value[1]+'">'+
+                    '<div class="dateTitle">'+leaguenm+'</div>'
+                +'</div>'
+            );
+            currsport = value[1];
+        }
+
+        $( ".sport-"+panel+'-'+value[1] ).append('' +
+            '<div class="leagueWrapper sport-'+value[0]+'">'+
+                '<div class="leagueTitle">'+value[0]+'</div>'+
+            '</div>'
+        );
+    });
+
+    $.each( listEach, function( index, value ){
+        $.each( value[0], function( index2, value2 ){
+
+            listItems.each(function( index, div ) {
+                if (value2[1]==$(div).find(".card-wrap").attr("id"))  {
+
+                    var league = $(div).find(".card-wrap").attr("leagueID");
+                    $(".league-"+panel).find(".sport-"+league ).find(".leagueTitle").text($(div).find(".leagueName").text())
+
+                    $(div).clone().appendTo($(".league-"+panel).find(".sport-"+league ));
+                }
+            });
+        });
+    });
+
 
     // set timer on live cards
     $("#startPagelist").find('.timer').each(function (i) {
@@ -946,7 +1011,6 @@ function getLiveEvents(live) {
             $(this).text(date.getUTCDate() +"/"+(date.getUTCMonth() + 1)+" - "+date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes());
         }
     });
-
 }
 function createGoal() {
     var $children = $("#startPagelist").find(".score-item");
@@ -960,7 +1024,6 @@ function createGoal() {
             clearInterval(interval);
         }
     }, Math.floor((Math.random() * 20000) + 500));
-
 }
 
 
@@ -1218,6 +1281,7 @@ $(document).mouseup(function(e)
 
 function getJsonData() {
 
+
 var data = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/england/premier_league.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510215931013&categoryGroup=COMBINED&displayDefault=true";
 var data2 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/spain/laliga.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510228334897&categoryGroup=COMBINED&displayDefault=true&category=match";
 var data3 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/germany/bundesliga.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510231152204&categoryGroup=COMBINED&displayDefault=true&category=match";
@@ -1226,7 +1290,8 @@ var inplay = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/all/a
 var all = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/all/all/all/all.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1511963366090&categoryGroup=COMBINED&displayDefault=true";
 
 
-   /* var data = "data/data.json";
+
+/*    var data = "data/data.json";
     var data2 = "data/data2.json";
     var data3 = "data/data3.json";
     var data4 = "data/data4.json";
@@ -1298,28 +1363,34 @@ var F = $.ajax({ dataType:"json",
     for(var x = 0; x < dataLists.length; x++) {
         for(var i = 0; i < dataLists[x].events.length; i++) {
             var item = dataLists[x].events[i];
-            if(item.event.sport=="FOOTBALL") {
-                var odds1 = undefined;
-                var oddsX = undefined;
-                var odds2 = undefined;
+            //if(item.event.sport=="FOOTBALL") {
+                var odds = undefined;
+                //var oddsX = undefined;
+                //var odds2 = undefined;
                 var live = undefined;
                 var league = undefined;
                 var homeScore = undefined;
                 var awayScore = undefined;
                 var betOffers = undefined;
                 var rank = undefined;
+                var oddsOffers= undefined;
 
                 if(item.betOffers != null && item.betOffers.length > 0 ){
                     betOffers = true;
                 } else betOffers = false;
-
+                odds =  [];
                 if(betOffers === true){
                     for(var j = 0; j < item.betOffers.length; j++) {
                         var offer = item.betOffers[j];
+
+                        if(offer.outcomes.length > 0) {
+                            oddsOffers = offer.outcomes.length;
+                        } else oddsOffers = false;
+
                         if(offer.betOfferType.name == "Match") {
-                            odds1 = offer.outcomes[0].odds;
-                            oddsX = offer.outcomes[1].odds;
-                            odds2 = offer.outcomes[2].odds;
+                            for(var k = 0; k < offer.outcomes.length; k++) {
+                                odds[k] = offer.outcomes[k].odds;
+                            }
                         }
                     }
                 }
@@ -1345,16 +1416,12 @@ var F = $.ajax({ dataType:"json",
                     }
                 }
 
+                for(var n = 0; n < odds.length; n++) {
+                    if(odds[n]) {
+                        odds[n] = convertOdds(odds[n]);
+                    } else odds[n] = ""
+                }
 
-                if(odds1) {
-                    odds1 = convertOdds(odds1);
-                } else odds1 = ""
-                if(oddsX) {
-                    oddsX = convertOdds(oddsX);
-                } else oddsX = ""
-                if(odds2) {
-                    odds2 = convertOdds(odds2);
-                } else odds2 = ""
                 var stream = true;
                 if (item.event.streams.length === 0) {
                     stream = false;
@@ -1364,7 +1431,7 @@ var F = $.ajax({ dataType:"json",
                     return(n.id === item.event.id);
                 });
 
-                if(item.event.sport == "FOOTBALL") {
+                //if(item.event.sport == "FOOTBALL") {
                     if (!alreadyAdded.length) {
                         output.events.push({
                             id: item.event.id,
@@ -1381,19 +1448,20 @@ var F = $.ajax({ dataType:"json",
                             rank: item.event.rank,
                             odds1Name: item.event.homeName,
                             odds2Name : item.event.awayName,
-                            odds1: odds1,
-                            oddsX: oddsX,
-                            odds2: odds2,
+                            odds1: odds[0],
+                            oddsX: odds[1],
+                            odds2: odds[2],
                             homeScore: homeScore,
                             awayScore: awayScore,
                             date: date,
                             stream: stream,
                             betOffers: betOffers,
-                            sortDate: sortDate
+                            sortDate: sortDate,
+                            oddsOffers: odds.length
                         });
                     }
-                }
-            }
+                //}
+            //}
         }
         /*        $( "#progressbar" ).progressbar( "value", progress );
                 progress++;

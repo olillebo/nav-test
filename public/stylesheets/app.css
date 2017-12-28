@@ -470,7 +470,18 @@ select {
       #mainPage .card-container.v2 .card-wrap .right .betOffers {
         display: flex;
         justify-content: center;
-        align-items: center; }
+        align-items: center;
+        /*                    &[betOffers='false']{
+                      width: 150px;
+
+                      .betOfferButton {
+                        display: none;
+
+                        &.showAll {
+                          display: flex;
+                        }
+                      }
+                    }*/ }
         #mainPage .card-container.v2 .card-wrap .right .betOffers .betOfferButton {
           display: flex;
           justify-content: center;
@@ -488,12 +499,14 @@ select {
             justify-content: center; }
           #mainPage .card-container.v2 .card-wrap .right .betOffers .betOfferButton.selected {
             background-color: #27414D; }
-        #mainPage .card-container.v2 .card-wrap .right .betOffers .betoffer[betOffers='false'] {
-          width: 156px; }
-          #mainPage .card-container.v2 .card-wrap .right .betOffers .betoffer[betOffers='false'] button {
+        #mainPage .card-container.v2 .card-wrap .right .betOffers[oddsOffers='0'] {
+          width: 150px; }
+          #mainPage .card-container.v2 .card-wrap .right .betOffers[oddsOffers='0'] .betOfferButton {
             display: none; }
-            #mainPage .card-container.v2 .card-wrap .right .betOffers .betoffer[betOffers='false'] button.showAll {
+            #mainPage .card-container.v2 .card-wrap .right .betOffers[oddsOffers='0'] .betOfferButton.showAll {
               display: flex; }
+        #mainPage .card-container.v2 .card-wrap .right .betOffers[oddsOffers='2'] .betOfferButton:last-of-type {
+          display: none; }
   #mainPage .card-container.v2 .card-wrap[live='false'] .score-item {
     display: none; }
 
@@ -1013,6 +1026,9 @@ select {
     #mainPage .navigation .countryWrapper .country {
       width: 100%;
       padding-left: 16px; }
+    #mainPage .navigation .countryWrapper .dropDown {
+      display: flex;
+      padding-left: 45.5px; }
   #mainPage .navigation .otherSports .checkboxStyle label {
     color: rgba(0, 0, 0, 0.3);
     cursor: not-allowed; }
@@ -1246,6 +1262,27 @@ select {
     border-bottom: 1px solid #b3b3b3; }
   #outcomeListCopy .eventGroup {
     margin-bottom: 20px; }
+    #outcomeListCopy .eventGroup .start .leagueTitle:before, #outcomeListCopy .eventGroup .start .dateTitle:before {
+      font-size: 24px;
+      content: "";
+      background-image: url(https://www.leovegas.com/static/sports-client/images/submenu@2x.f89bd482.png);
+      background-size: 450px 400px;
+      background-position: -150px -250px;
+      width: 50px;
+      height: 50px;
+      right: -23px;
+      zoom: 0.7;
+      -moz-transform: scale(0.7);
+      -moz-transform-origin: 0 0;
+      filter: grayscale(100%) brightness(0) invert(1); }
+    #outcomeListCopy .eventGroup .start.Ice_hockey .leagueTitle:before, #outcomeListCopy .eventGroup .start.Ice_hockey .dateTitle:before {
+      background-position: -50px -300px; }
+    #outcomeListCopy .eventGroup .start.Football .leagueTitle:before, #outcomeListCopy .eventGroup .start.Football .dateTitle:before {
+      background-position: -150px -250px; }
+    #outcomeListCopy .eventGroup .start.Tennis .leagueTitle:before, #outcomeListCopy .eventGroup .start.Tennis .dateTitle:before {
+      background-position: -400px -150px; }
+    #outcomeListCopy .eventGroup .start.Trotting .leagueTitle:before, #outcomeListCopy .eventGroup .start.Trotting .dateTitle:before {
+      background-position: -400px -200px; }
   #outcomeListCopy .mdl-tabs__tab-bar {
     border-bottom: 3px solid #dfd8d1;
     margin-bottom: 8px; }
