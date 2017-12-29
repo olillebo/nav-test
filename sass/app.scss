@@ -975,6 +975,17 @@ select {
 						align-items: center;
 						justify-content: center;
 					}
+					.overlay {
+						position: fixed;
+						width: 100%;
+						z-index: 1;
+						top: 50px;
+						bottom: 0px;
+						background: rgba(39, 39, 39, 0.42);
+						display: flex;
+						align-items: center;
+						justify-content: center;
+					}
 
 				}
               #leagueButton {
@@ -1034,10 +1045,16 @@ select {
 				.filterHeader {
 					display: none;
 					flex-direction: column;
-					height: 50px;
+					//height: 50px;
+					height: auto;
 					flex: 0 0 auto;
 					background-color: #53778a;
 					color: white;
+					z-index: 2;
+
+					#v1 {
+						padding-left: 10px;
+					}
 
 					.line {
 						width: 100%;
@@ -1052,6 +1069,43 @@ select {
 							height: 50px;
 						}
 
+						#selectSports {
+							display: flex;
+					}
+
+						&.bottomHeader2 {
+							display: flex;
+							flex: 1 0 auto;
+							//height: 100%;
+							background-color: white;
+							height: 50%;
+							overflow-y: scroll;
+							color: black;
+							position: absolute;
+							top: 50px;
+							box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
+							.sportRowAZ {
+								height: 100%;
+								width: 100%;
+								.sportRow {
+									display: flex;
+									align-items: center;
+									width: 100%;
+									justify-content: space-between;
+									padding: 0 16px;
+									cursor: pointer;
+									height: 48px;
+
+									i {
+										display: none;
+										color: black;
+									}
+								}
+							}
+
+						}
+						
 						&.bottomHeader {
 							flex-direction: column;
 							background-color: white;
@@ -1114,7 +1168,9 @@ select {
 					&.expanded {
 						height: auto;
 					}
-
+					&.showSports {
+						//height: 50%;
+					}
 
 					.label {
 						font-size: 14px;

@@ -205,10 +205,12 @@ $(document).ready(function() {
     $( ".listContainer" ).hide();
     $( ".selectedLeagues" ).hide();
     $(".bottomHeader").hide();
+    $(".bottomHeader2").hide();
     //$("#resetAllButton").hide();
     $(".topLeagues").hide();
     $('.otherSports').hide();
     $('.loading').hide();
+    $('.overlay').hide();
 
     if ((selectedTop === true) || (selectedTop === "true")){
         $('.bottomHeader').appendTo(".filterHeader");
@@ -406,6 +408,33 @@ function setSport(id, text) {
     });
 
 }
+function setSport2(id, text) {
+    if(id == 0) {
+        $('#listContent').addClass("hide");
+        $('.topLeagues').hide();
+        $('#applyFilter').attr("disabled", "disabled");
+        //$('.resetAll').trigger("click");
+        $('.sportsList2').show();
+        $(".V2change").hide();
+
+    } else {
+        $(".V2change").show();
+        $('#listContent').removeClass("hide");
+        $('.topLeagues').show();
+        $('#applyFilter').removeAttr("disabled");
+        $('.sportsList2').hide();
+
+
+    }
+
+    $(".bottomHeader2").toggle();
+    $('.overlay').toggle();
+    //$(".filterHeader").toggleClass("shadow");
+
+    $(".selectedSportText").text(text);
+    $(".selectedSportTextV2").text(text);
+
+}
 
 $(document).on('click', '#selectSportsList li', function(event){
     setSport($(this).val(), $(this).text());
@@ -449,7 +478,8 @@ function createList(evt, json) {
     } else {
         setSport(1, "Football");
         $(".filterTextV2").hide();
-        $(".closeFilterv1").hide();
+        //$(".closeFilterv1").hide();
+        $("#closeFilter").hide();
     }
 }
 
@@ -578,6 +608,11 @@ $(document).on('click', '.topLeagues input:checkbox', function(event){
 $(document).on('click', '.sportsList2 .sportRow', function(event){
     event.stopPropagation();
     setSport($(this).attr('id'), $(this).find(".text").text());
+});
+
+$(document).on('click', '.bottomHeader2 .sportRow', function(event){
+    event.stopPropagation();
+    setSport2($(this).attr('id'), $(this).find(".text").text());
 });
 
 $(document).on('click', '.showSelectedList', function(event){
@@ -1182,6 +1217,9 @@ $("#leagueButton").click(function(){
 });
 
 $("#selectSports").click(function(){
+    $(".bottomHeader2").toggle();
+    $('.overlay').toggle();
+    //$(".filterHeader").toggleClass("shadow");
     if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
         $(this).find(".material-icons").text("keyboard_arrow_down");
     } else {
@@ -1408,10 +1446,11 @@ var F = $.ajax({ dataType:"json",
                 var sortDate = date.getTime();
                 if(live) {
                     if(item.liveData) {
-                        console.log(item.event.homeName)
-                        if(item.liveData.score.home) {
-                            homeScore = item.liveData.score.home;
-                            awayScore = item.liveData.score.away;
+                        if(item.liveData.score) {
+                            if(item.liveData.score.home) {
+                                homeScore = item.liveData.score.home;
+                                awayScore = item.liveData.score.away;
+                            }
                         }
                         time = (item.liveData.matchClock.minute<10?'0':'') + item.liveData.matchClock.minute + ":" + (item.liveData.matchClock.second<10?'0':'') + item.liveData.matchClock.second;
                     }
