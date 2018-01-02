@@ -119,6 +119,7 @@ var outcomeOptions_2 = {
 
 //new
 var arrayOfLeagues = [];
+var sportSet = "";
 var sportsList = ["American Football",
     "Australian Rules",
     "Bandy",
@@ -357,9 +358,12 @@ $( "#switch-7" ).click(function() {
 });
 
 $( "#leagueButton" ).click(function() {
-    $( ".listContainer" ).slideToggle( "fast");
+    $( ".listContainer" ).show();
+    if(!sportSet) {
+        $( "#selectSports" ).trigger( "click");
+        $( ".bottomHeader2" ).addClass( "sportsOpen");
+    }
 });
-
 
 $(document).on('click', '.betOfferButton', function() {
     if ($(this).hasClass('selected')) {
@@ -401,19 +405,19 @@ function setSport(id, text) {
     });
     $(".selectedSportText").text(text);
     $(".selectedSportTextV2").text(text);
-
     $(".selectedSportTextV2").addClass("animate").delay(500).queue(function(next){
         $(".selectedSportTextV2").removeClass("animate");
         next();
     });
+    sportSet = text;
 
 }
 function setSport2(id, text) {
+    sportSet = text;
     if(id == 0) {
         $('#listContent').addClass("hide");
         $('.topLeagues').hide();
         $('#applyFilter').attr("disabled", "disabled");
-        //$('.resetAll').trigger("click");
         $('.sportsList2').show();
         $(".V2change").hide();
 
@@ -423,17 +427,10 @@ function setSport2(id, text) {
         $('.topLeagues').show();
         $('#applyFilter').removeAttr("disabled");
         $('.sportsList2').hide();
-
-
     }
-
-    $(".bottomHeader2").toggle();
-    $('.overlay').toggle();
-    //$(".filterHeader").toggleClass("shadow");
-
+    $("#selectSports").trigger("click");
     $(".selectedSportText").text(text);
     $(".selectedSportTextV2").text(text);
-
 }
 
 $(document).on('click', '#selectSportsList li', function(event){
@@ -476,7 +473,7 @@ function createList(evt, json) {
         $(".filterTextV2").show();
         $(".V2change").hide();
     } else {
-        setSport(1, "Football");
+        //setSport(1, "Football");
         $(".filterTextV2").hide();
         //$(".closeFilterv1").hide();
         $("#closeFilter").hide();
@@ -503,8 +500,12 @@ function buildFilterItems(evt, json) {
         $(".filterFooter").removeClass("hidden");
     }
 
+    var filterValues = outcomeValues.filter(function (i,n){
+        return [i][0].sport==='Football';
+    });
 
-    var countryLeagues = _.chain(outcomeValues).groupBy('country').map(function(value, key) {
+
+    var countryLeagues = _.chain(filterValues).groupBy('country').map(function(value, key) {
         return {
             country: key,
             leagues: _.uniq(_.pluck(value, 'league')),
@@ -1216,19 +1217,52 @@ $("#leagueButton").click(function(){
     }
 });
 
-$("#selectSports").click(function(){
+/*$("#selectSports").click(function(){
     $(".bottomHeader2").toggle();
     $('.overlay').toggle();
-    //$(".filterHeader").toggleClass("shadow");
-    if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
-        $(this).find(".material-icons").text("keyboard_arrow_down");
+    $(this).toggleClass("visible");
+    $( ".bottomHeader2" ).removeClass( "sportsOpen");
+    if ($(this).hasClass("visible")) {
+        $(this).find(".material-icons").text("arrow_drop_up");
     } else {
-        $(this).find(".material-icons").text("keyboard_arrow_up");
+        $(this).find(".material-icons").text("arrow_drop_down");
     }
+});*/
+
+$("#selectSports").click(function(){
+    if ($(this).hasClass("visible")) {
+
+        if(!sportSet) {
+            //$("#closeFilter").trigger("click")
+        } else {
+            $(".bottomHeader2").slideToggle( "fast").queue(function(next){
+                $('.overlay').hide();
+                next();
+            });
+            $(this).removeClass("visible");
+            $(this).find(".material-icons").text("arrow_drop_down");
+            $( ".bottomHeader2" ).removeClass( "sportsOpen");
+
+        }
+    } else {
+        $('.overlay').show();
+        if(!sportSet) {
+            $(".bottomHeader2").show();
+        } else $(".bottomHeader2").slideToggle( "fast");
+
+        $(this).addClass("visible");
+        $(this).find(".material-icons").text("arrow_drop_up");
+        $( ".bottomHeader2" ).removeClass( "sportsOpen");
+    }
+
 });
 
 $("#sort").click(function(){
 outcomeList.sort('date', { order: "asc" });
+});
+
+$(".overlay").click(function(){
+    $("#selectSports").trigger("click");
 });
 
 
@@ -1305,15 +1339,20 @@ var parts = input.match(/(\d+)/g);
 return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
 }
 
-$(document).mouseup(function(e)
+/*$(document).mouseup(function(e)
     {
     var sportsbutton = $("#selectSports");
-        if (!sportsbutton.is(e.target) && sportsbutton.has(e.target).length === 0)
-    {
-            $("#selectSports i").text("arrow_drop_down");
-    }
-
-});
+        if (!sportsbutton.is(e.target) && sportsbutton.has(e.target).length === 0) {
+            $(".bottomHeader2").toggle();
+            $('.overlay').toggle();
+            sportsbutton.toggleClass("visible");
+            if (sportsbutton.hasClass("visible")) {
+                sportsbutton.find(".material-icons").text("arrow_drop_up");
+            } else {
+                sportsbutton.find(".material-icons").text("arrow_drop_down");
+            }
+        }
+});*/
 
 
 

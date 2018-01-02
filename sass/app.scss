@@ -1048,12 +1048,12 @@ select {
 					//height: 50px;
 					height: auto;
 					flex: 0 0 auto;
-					background-color: #53778a;
+					background-color: #e75f3f;
 					color: white;
 					z-index: 2;
 
 					#v1 {
-						padding-left: 10px;
+						padding-left: 12px;
 					}
 
 					.line {
@@ -1071,6 +1071,8 @@ select {
 
 						#selectSports {
 							display: flex;
+							align-items: center;
+                          cursor: pointer;
 					}
 
 						&.bottomHeader2 {
@@ -1085,6 +1087,10 @@ select {
 							top: 50px;
 							box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 
+							&.sportsOpen {
+								height: calc(100% - 50px);
+							}
+
 							.sportRowAZ {
 								height: 100%;
 								width: 100%;
@@ -1096,6 +1102,10 @@ select {
 									padding: 0 16px;
 									cursor: pointer;
 									height: 48px;
+
+                                  &.topSeparator {
+                                    border-bottom: 1px solid black;
+                                  }
 
 									i {
 										display: none;
@@ -1110,6 +1120,7 @@ select {
 							flex-direction: column;
 							background-color: white;
 							color: black;
+							cursor: pointer;
 
 							i {
 								color: black;
@@ -1135,6 +1146,8 @@ select {
 								width: 100%;
 								justify-content: space-between;
 								padding-right: 0px;
+								background-color: #B74930;
+								color: white;
 								//box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.26);
 								//box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.12), 0 -2px 2px rgba(0, 0, 0, 0.24);
 
@@ -1158,6 +1171,10 @@ select {
 								button {
 									padding: 0 8px;
 									display: flex;
+								}
+
+								i {
+									color: white;
 								}
 
 
@@ -1358,7 +1375,7 @@ select {
 						justify-content: center;
 						width: 100%;
 						height: 100%;
-						background-color: #e75f3f;
+						background-color: #53778a;
 						color: white;
 						cursor: pointer;
 						outline: none;
