@@ -516,7 +516,7 @@ function buildFilterItems(evt, json) {
 
     $("#leaguelist").append('' +
         '<div id="listContent" class="listContent hide">'+
-        '<div class="mdl-selectfield-label"><span>A-Z</span></div>'
+        '<div class="mdl-selectfield-label"><div class="lineLabel">A-Z</div><div class="lineSeparator"></div></div>'
     );
     var id = 0;
     $(sortedArray).each(function(i, e) {

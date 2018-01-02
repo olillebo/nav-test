@@ -2,7 +2,7 @@
 body {
     background-color: rgb(240, 231, 221) !important;
     //font-family: arvo !important;
-	font-family: roboto !important;
+	font-family: 'Roboto Slab', serif !important;
 
 	min-height: auto !important;
 }
@@ -855,7 +855,7 @@ select {
 						border-radius: 3px;
 						color: #222;
 						text-align: center;
-						font-family: Arvo;
+						//font-family: Arvo;
 						border: 1px solid transparent;
 						border-bottom: 3px solid #b74930;
 						cursor: pointer;
@@ -1099,9 +1099,33 @@ select {
 									align-items: center;
 									width: 100%;
 									justify-content: space-between;
-									padding: 0 16px;
+									padding: 0 12px;
 									cursor: pointer;
 									height: 48px;
+
+									.mdl-selectfield-label {
+										margin: 0;
+										//font-size: 16px;
+										font-weight: bold;
+										width: 100%;
+										//border-left: 10px solid #93a5ac;
+										//background-color: rgba(82, 118, 138, 0.10);
+										display: flex;
+										justify-content: space-between;
+										align-items: center;
+										padding: 12px 0;
+
+										.lineLabel {
+											padding-left: 12px;
+											flex-shrink: 0;
+										}
+										.lineSeparator {
+											border-bottom: 1px solid #bdbdbd;
+											flex-grow: 1;
+											padding: 0;
+											margin: 0 12px;
+										}
+									}
 
                                   &.topSeparator {
                                     border-bottom: 1px solid black;
@@ -1409,15 +1433,23 @@ select {
 				//font-size: 16px;
 				font-weight: bold;
 				width: 100%;
-				border-left: 10px solid #93a5ac;
-				background-color: rgba(82, 118, 138, 0.10);
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+				//border-left: 10px solid #93a5ac;
+				//background-color: rgba(82, 118, 138, 0.10);
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 12px 0;
 
-              span {
-                padding: 5px 12px;
-              }
+				.lineLabel {
+					flex-shrink: 0;
+					padding-left: 12px;
+				}
+				.lineSeparator {
+					border-bottom: 1px solid #bdbdbd;
+					flex-grow: 1;
+					padding: 0;
+					margin: 0 12px;
+				}
 			}
 
 
@@ -1479,7 +1511,7 @@ select {
 			padding: 0 12px;
 			cursor: pointer;
 			align-items: center;
-			border-top: 1px solid lightgray;
+			//border-top: 1px solid lightgray;
 
 			.country {
 				width: 100%;
@@ -1672,7 +1704,7 @@ select {
 }
 
 .listContent {
-	margin-top: 16px;
+	//margin-top: 16px;
 }
 
 .selectedLeagues {
@@ -1980,7 +2012,7 @@ select {
 		align-items: center;
 		width: 100%;
 		justify-content: space-between;
-		padding: 0 16px;
+		padding: 0 12px;
 		cursor: pointer;
 		height: 48px;
       &.special {
