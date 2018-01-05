@@ -212,6 +212,7 @@ $(document).ready(function() {
     $('.otherSports').hide();
     $('.loading').hide();
     $('.overlay').hide();
+    $("#setPopularity").hide();
 
     if ((selectedTop === true) || (selectedTop === "true")){
         if ((tabBar === false) || (tabBar === "false")){
@@ -241,16 +242,16 @@ function loadCookies() {
 
     if (typeof fullScreen === 'undefined'){
         $( ".leagues" ).addClass("fullscreen");
-        $( "#leagueButton" ).addClass("mdl-button--colored")
-        $( "#leagueButton .material-icons" ).text("filter_list");
+        $( "#leagueButton2" ).addClass("mdl-button--colored")
+        //$( "#leagueButton .material-icons" ).text("filter_list");
         fullScreen = true;
         $('#switch-1').attr("checked", true)
     } else if (fullScreen === "true") {
         $('#switch-1').attr("checked", true)
         $( ".leagues" ).addClass("fullscreen")
         //$( "#leagueButton" ).addClass("mdl-button--raised")
-        $( "#leagueButton" ).addClass("mdl-button--colored")
-        $( "#leagueButton .material-icons" ).text("filter_list");
+        $( "#leagueButton2" ).addClass("mdl-button--colored")
+        //$( "#leagueButton .material-icons" ).text("filter_list");
     } else {
         $('#switch-1').attr("checked", false);
     }
@@ -375,7 +376,7 @@ $( "#switch-8" ).click(function() {
     }
 });
 
-$( "#leagueButton" ).click(function() {
+$( "#leagueButton2" ).click(function() {
     $( ".listContainer" ).show();
 
     if ((tabBar === true) || (tabBar === "true")){
@@ -672,7 +673,24 @@ $(document).on('click', '.resetAll', function(event){
     }
 });
 
+$(document).on('click', '.tabBar li', function(event){
+    $('.sportSelectTab a').first().removeClass("is-active");
+    $(".sportSelectTab").prepend('' +
+        '<a href="#starks-panel" class="mdl-tabs__tab is-active">' +
+        $(this).text() +
+        '<span class="mdl-tabs__ripple-container mdl-js-ripple-effect" data-upgraded=",MaterialRipple"><span class="mdl-ripple is-animating" style="width: 237.145px; height: 237.145px; transform: translate(-50%, -50%) translate(35px, 42px);"></span></span></a>'
+    );
+    $('.sportSelectTab a').last().remove();
 
+    $('.sportSelectTab a:nth-child(2)').text("Football");
+    $('.sportSelectTab a:nth-child(3)').text("Ice Hockey");
+});
+
+$(document).on('click', '#setPopularity', function(event){
+    $("#setPopularity").hide();
+    $("#leagueButton .label").text("Popular events")
+    location.reload();
+});
 
 $(document).on('click', '#listContent .checkboxStyle', function(event){
     event.stopPropagation();
@@ -744,6 +762,7 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
 
 
     if (selectedLeagues.length >= 1) {
+        $("#setPopularity").show();
         $('#applyFilter').removeAttr("disabled");
         $("#outcomeList").hide();
         if ((selectedTop === true) || (selectedTop === "true")){
@@ -1233,7 +1252,7 @@ function reorderList2() {
 
 
 
-$("#leagueButton").click(function(){
+$("#leagueButton2").click(function(){
     if ($(this).siblings(".mdl-menu__container").hasClass("is-visible")) {
         $('html, body').css('overflowY', 'auto');
 

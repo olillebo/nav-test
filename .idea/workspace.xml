@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/sass/app.scss" line="1650" mnemonic="7" />
+    <bookmark url="file://$PROJECT_DIR$/sass/app.scss" line="1671" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84e378b2-9e1e-4aa6-b50c-207615ceee08" name="Default" comment="">
@@ -47,8 +47,8 @@
       <file leaf-file-name="app.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sass/app.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
-              <caret line="1386" column="43" lean-forward="false" selection-start-line="1386" selection-start-column="43" selection-end-line="1386" selection-end-column="43" />
+            <state relative-caret-position="239">
+              <caret line="1227" column="41" lean-forward="true" selection-start-line="1227" selection-start-column="41" selection-end-line="1227" selection-end-column="41" />
               <folding>
                 <element signature="e#12069#14099#0" expanded="false" />
                 <element signature="e#14371#15099#0" expanded="false" />
@@ -70,9 +70,11 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2835">
-              <caret line="596" column="32" lean-forward="false" selection-start-line="596" selection-start-column="26" selection-end-line="596" selection-end-column="32" />
-              <folding />
+            <state relative-caret-position="544">
+              <caret line="675" column="54" lean-forward="true" selection-start-line="675" selection-start-column="54" selection-end-line="675" selection-end-column="54" />
+              <folding>
+                <marker date="1515169488000" expanded="true" signature="23396:23488" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -80,10 +82,10 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/includes/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="152" column="46" lean-forward="false" selection-start-line="152" selection-start-column="36" selection-end-line="152" selection-end-column="46" />
+            <state relative-caret-position="293">
+              <caret line="194" column="72" lean-forward="false" selection-start-line="194" selection-start-column="72" selection-end-line="194" selection-end-column="72" />
               <folding>
-                <marker date="1515165567000" expanded="true" signature="17817:17854" ph="..." />
+                <marker date="1515169192000" expanded="true" signature="18115:18152" ph="..." />
               </folding>
             </state>
           </provider>
@@ -133,36 +135,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>selectSportSLi</find>
-      <find>sportListAZ</find>
-      <find>selectSports</find>
-      <find>sportRowAZ</find>
-      <find>outcomeValues</find>
-      <find>listContent</find>
-      <find>arvo</find>
-      <find>mdl-selectfield-label</find>
-      <find>sportrowAX</find>
-      <find>sportRowA</find>
-      <find>selectfield</find>
-      <find>sportrowA</find>
-      <find>labelSeparator</find>
       <find>lineSeparator</find>
       <find>line</find>
       <find>sportRow</find>
       <find>top lea</find>
       <find>groupStartPage</find>
-      <find>leagueButton</find>
       <find>sportSet</find>
       <find>setSport</find>
       <find>setSport2</find>
       <find>bottomHeader&quot;</find>
       <find>filterHea</find>
-      <find>tabBar</find>
       <find>filterText</find>
       <find>bottomHeader</find>
       <find>showSelectedList</find>
       <find>tabBa</find>
       <find>change</find>
+      <find>leagueButton</find>
+      <find>leagueButto</find>
+      <find>filter_list</find>
+      <find>overfl</find>
+      <find>overflow</find>
+      <find>selectedLeagues</find>
+      <find>setPopularity</find>
+      <find>popular eve</find>
+      <find>selected events</find>
+      <find>leagues</find>
+      <find>leagueButton2</find>
+      <find>tabBar</find>
+      <find>append</find>
+      <find>mdl-tabs__tab-bar</find>
+      <find>mdl-tabs</find>
     </findStrings>
     <replaceStrings>
       <replace>li-element</replace>
@@ -236,7 +238,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -275,6 +276,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -515,12 +517,14 @@
       <workItem from="1514908134205" duration="1415000" />
       <workItem from="1515159179420" duration="1366000" />
       <workItem from="1515160987517" duration="764000" />
-      <workItem from="1515164998110" duration="1625000" />
+      <workItem from="1515164998110" duration="1738000" />
+      <workItem from="1515166805520" duration="1752000" />
+      <workItem from="1515168668784" duration="863000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="334171000" />
+    <option name="totallyTimeSpent" value="336899000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -799,18 +803,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/includes/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="152" column="46" lean-forward="false" selection-start-line="152" selection-start-column="36" selection-end-line="152" selection-end-column="46" />
+        <state relative-caret-position="293">
+          <caret line="194" column="72" lean-forward="false" selection-start-line="194" selection-start-column="72" selection-end-line="194" selection-end-column="72" />
           <folding>
-            <marker date="1515165567000" expanded="true" signature="17817:17854" ph="..." />
+            <marker date="1515169192000" expanded="true" signature="18115:18152" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sass/app.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="1386" column="43" lean-forward="false" selection-start-line="1386" selection-start-column="43" selection-end-line="1386" selection-end-column="43" />
+        <state relative-caret-position="239">
+          <caret line="1227" column="41" lean-forward="true" selection-start-line="1227" selection-start-column="41" selection-end-line="1227" selection-end-column="41" />
           <folding>
             <element signature="e#12069#14099#0" expanded="false" />
             <element signature="e#14371#15099#0" expanded="false" />
@@ -820,9 +824,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2835">
-          <caret line="596" column="32" lean-forward="false" selection-start-line="596" selection-start-column="26" selection-end-line="596" selection-end-column="32" />
-          <folding />
+        <state relative-caret-position="544">
+          <caret line="675" column="54" lean-forward="true" selection-start-line="675" selection-start-column="54" selection-end-line="675" selection-end-column="54" />
+          <folding>
+            <marker date="1515169488000" expanded="true" signature="23396:23488" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

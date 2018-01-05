@@ -953,7 +953,12 @@ select {
               display: flex;
               justify-content: flex-end;
               width: 100%;
-              padding: 0 4px 4px 4px;
+              //padding: 0 4px 4px 4px;
+
+				.buttonContainer {
+					display: flex;
+					width: 100%;
+				}
 				.listContainer {
 					top: 0;
 
@@ -989,14 +994,28 @@ select {
 
 				}
               #leagueButton {
-                background: #e75f3f;
-                color: white;
+
+				  background: white;
+				  color: black;
 
 				  width: 100%;
 				  display: flex;
 				  justify-content: space-between;
 				  align-items: center;
+				  padding: 0 8px;
               }
+				#leagueButton2 {
+					background: #e75f3f;
+					color: white;
+					width: 120px;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+
+					.fa-sliders {
+						font-size: 20px;
+					}
+				}
 			}
 
 			.mdl-menu__item {
@@ -1217,6 +1236,8 @@ select {
 								border-bottom: none;
 
 								.mdl-tabs__tab {
+									white-space: nowrap;
+									overflow: hidden;
 									:hover {
 										color: white;
 									}

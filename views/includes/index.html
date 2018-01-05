@@ -107,10 +107,16 @@
             </ul>
         </div>
         <div class="leagues">
-            <button id="leagueButton" class="mdl-button mdl-js-button">
-                <span class="label">Filter events</span>
-                <i class="material-icons">arrow_drop_down</i>
-            </button>
+            <div class="buttonContainer">
+                <div id="leagueButton" class="">
+                    <span class="label">Popular events</span>
+                    <i id="setPopularity" class="material-icons">close</i>
+                </div>
+                <button id="leagueButton2" class="mdl-button mdl-js-button">
+                    <span class="label">Filter</span>
+                    <i class="fa fa-sliders" aria-hidden="true"></i>
+                </button>
+            </div>
             <div class="listContainer">
                 <div class="filterHeader shadow">
                     <div class="line top">
@@ -186,7 +192,7 @@
                     </div>
                     <div class="line tabBar">
                         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-                            <div class="mdl-tabs__tab-bar">
+                            <div class="mdl-tabs__tab-bar sportSelectTab">
                                 <a href="#starks-panel" class="mdl-tabs__tab is-active">Football</a>
                                 <a href="#lannisters-panel" class="mdl-tabs__tab">Ice Hockey</a>
                                 <a href="#targaryens-panel" class="mdl-tabs__tab">Tennis</a>
