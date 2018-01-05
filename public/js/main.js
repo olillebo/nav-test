@@ -162,7 +162,7 @@ var selectedLeagues = [];
 var visibleItems = 0;
 var filterOnDay;
 var progress = 0;
-var cardSortType, fullScreen, newCards, multiSelect, groupStartPage, chooseSport, selectedTop;
+var cardSortType, fullScreen, newCards, multiSelect, groupStartPage, chooseSport, selectedTop, tabBar;
 var addedBets = 0;
 var outcomeValues, outcomeList, leagueLabel, leagueList;
 
@@ -214,8 +214,10 @@ $(document).ready(function() {
     $('.overlay').hide();
 
     if ((selectedTop === true) || (selectedTop === "true")){
-        $('.bottomHeader').appendTo(".filterHeader");
-        $(".selectedIcon").text("keyboard_arrow_down");
+        if ((tabBar === false) || (tabBar === "false")){
+            $('.bottomHeader').appendTo(".filterHeader");
+            $(".selectedIcon").text("keyboard_arrow_down");
+        }
     }
 });
 
@@ -227,6 +229,7 @@ function loadCookies() {
     groupStartPage = Cookies.get('groupStartPage');
     chooseSport = Cookies.get('chooseSport');
     selectedTop = Cookies.get('selectedTop');
+    tabBar = Cookies.get('tabBar');
 
     if (typeof newCards === 'undefined'){
         newCards = true;
@@ -286,6 +289,13 @@ function loadCookies() {
     } else if (selectedTop === "true") {
         $('#switch-7').attr("checked", true)
     } else $('#switch-7').attr("checked", false)
+
+    if (typeof tabBar === 'undefined'){
+        tabBar = true;
+        $('#switch-8').attr("checked", true)
+    } else if (tabBar === "true") {
+        $('#switch-8').attr("checked", true)
+    } else $('#switch-8').attr("checked", false)
 }
 
 $( ".sidebar" ).click(function() {
@@ -357,8 +367,29 @@ $( "#switch-7" ).click(function() {
     }
 });
 
+$( "#switch-8" ).click(function() {
+    if($(this).is(':checked')) {
+        Cookies.set('tabBar', true );
+    } else {
+        Cookies.set('tabBar', false );
+    }
+});
+
 $( "#leagueButton" ).click(function() {
     $( ".listContainer" ).show();
+
+    if ((tabBar === true) || (tabBar === "true")){
+        setSport2(1, "Football");
+        $(".bottomHeader2").hide();
+        $(".overlay").hide();
+        $("#v1").hide();
+        $(".tabBar").show();
+        $(".filterTextV2").show();
+        $(".filterTextV2").html("Filter");
+        //$(".tabActions").html("Cancel");
+        $(".searchFilter").hide();
+        //$(".closeFilterv1").html("Cancel");
+    }
     if(!sportSet) {
         $( "#selectSports" ).trigger( "click");
         $( ".bottomHeader2" ).addClass( "sportsOpen");

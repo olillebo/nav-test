@@ -1204,6 +1204,34 @@ select {
 
 							}
 						}
+
+						&.tabBar {
+							height: 50px;
+							background-color: #B54935;
+
+							.mdl-tabs {
+								width: auto;
+							}
+
+							.mdl-tabs__tab-bar {
+								border-bottom: none;
+
+								.mdl-tabs__tab {
+									:hover {
+										color: white;
+									}
+									color: white;
+									padding: 0px 18px;
+									text-decoration: none !important;
+									&.is-active {
+										color: white;
+										&:after {
+											background: white;
+										}
+									}
+								}
+							}
+						}
 					}
 
 					&.expanded {
@@ -1243,12 +1271,12 @@ select {
 
 
 						button {
+							height: 50px;
 
 							display: flex;
 							align-items: center;
 							border-radius: inherit !important;
 							font-size: inherit !important;
-							height: inherit !important;
 							width: auto !important;
 							cursor: pointer;
 							i {
@@ -1304,7 +1332,6 @@ select {
 				.filterFooter {
 					display: none;
 					flex-direction: column;
-					height: 50px;
 					flex: 0 0 auto;
 					cursor: pointer;
 					top: auto;
@@ -1329,7 +1356,7 @@ select {
                       }
 
 						.showSelectedList {
-							height: 50px;
+							height: 35px;
 							display: flex;
 							align-items: center;
 							/* justify-content: flex-start; */
@@ -1357,7 +1384,7 @@ select {
                           }
 
 							button {
-								padding: 8px;
+								padding: 0 8px;
 								display: flex;
 
 /*								box-shadow: none !important;
