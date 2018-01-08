@@ -958,6 +958,7 @@ select {
 				.buttonContainer {
 					display: flex;
 					width: 100%;
+					padding: 0 8px;
 				}
 				.listContainer {
 					top: 0;
@@ -1003,6 +1004,15 @@ select {
 				  justify-content: space-between;
 				  align-items: center;
 				  padding: 0 8px;
+				  margin-right: 8px;
+
+				  i {
+					  color: #e75e3f;;
+				  }
+
+				  &.filter {
+					 border: 2px solid #e75e3f;
+				  }
               }
 				#leagueButton2 {
 					background: #e75f3f;

@@ -159,6 +159,7 @@ var sportsList = ["American Football",
 //
 
 var selectedLeagues = [];
+var allLeagueArray = [];
 var visibleItems = 0;
 var filterOnDay;
 var progress = 0;
@@ -457,7 +458,7 @@ function setSport2(id, text) {
         $(".V2change").show();
         $('#listContent').removeClass("hide");
         $('.topLeagues').show();
-        $('#applyFilter').removeAttr("disabled");
+        //$('#applyFilter').removeAttr("disabled");
         $('.sportsList2').hide();
     }
     $("#selectSports").trigger("click");
@@ -556,6 +557,7 @@ function buildFilterItems(evt, json) {
             '<div class="countryWrapper" leagueCollection=leagueCollection'+[i]+'><span class="flag-icon flag-icon-'+getCountryCode(sortedArray[i].country).toLowerCase()+'"></span><div class="country">'+sortedArray[i].country+'</div><div class ="dropDown"><i class="material-icons">keyboard_arrow_down</i></div></div><div class="leagueCollection" id=leagueCollection'+[i]+'></div>'
         )
         $(sortedArray[i].leagues).each(function(m, e) {
+            allLeagueArray.push(sortedArray[i].leagues[m]);
             $("#leagueCollection"+[i]).append(
                 '<li class ="li-element" ><div class ="checkboxStyle"> <input type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" data-leagueName="' + sortedArray[i].name[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].name[m] + '</label></div></li>'
             )
@@ -688,11 +690,28 @@ $(document).on('click', '.tabBar li', function(event){
 
 $(document).on('click', '#setPopularity', function(event){
     $("#setPopularity").hide();
+    $("#leagueButton").removeClass("filter");
     $("#leagueButton .label").text("Popular events")
     location.reload();
 });
 
+$(document).on('click', '#allFootball', function(event){
+    if($(this).is(':checked')) {
+        $( ".resetFilter" ).trigger("click");
+        $('#applyFilter').removeAttr("disabled");
+        $("#allFootball").prop('checked', true);
+        $("#outcomeList").hide();
+        $("#outcomeListCopyEvents").empty();
+        $("#startPagelist").hide();
+        $("#leagueButton .label").text("Football");
+        $("#leagueButton").addClass("filter");
+        $("#setPopularity").show();
+        reorderList("AllAll");
+    } else $('#applyFilter').attr("disabled", "disabled");
+});
+
 $(document).on('click', '#listContent .checkboxStyle', function(event){
+
     event.stopPropagation();
     event.preventDefault();
 
@@ -762,7 +781,10 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
 
 
     if (selectedLeagues.length >= 1) {
+
+        $("#allFootball").prop('checked', false);
         $("#setPopularity").show();
+        $("#leagueButton").addClass("filter");
         $('#applyFilter').removeAttr("disabled");
         $("#outcomeList").hide();
         if ((selectedTop === true) || (selectedTop === "true")){
@@ -782,10 +804,10 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
         } else reorderList2();
 
     } else if (selectedLeagues.length === 0) {
+        $('#applyFilter').attr("disabled", "disabled");
         $(".filterFooter").removeClass("expanded")
         $(".bottomHeader").hide();
         $("#startPagelist").show();
-
 
     }
     if ((cardSortType === true) || (cardSortType === "true")) {
@@ -844,11 +866,17 @@ function  filterList() {
     }
 };
 
-function reorderList() {
+function reorderList(place) {
 
     var monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
+    var nn;
+    if(place=="AllAll") {
+        outcomeList.filter();
+        nn = allLeagueArray;
+    } else nn = selectedLeagues;
+
     var listItems = $("#outcomeList .card-container");
 
     // Build list
@@ -893,7 +921,7 @@ function reorderList() {
     $.each( formattedCurrList, function( index2, value2 ){
         var currList = [];
 
-        $.each( selectedLeagues, function( index, value ){
+        $.each( nn, function( index, value ){
 
             listItems.each(function( index, div ) {
 
@@ -918,7 +946,7 @@ function reorderList() {
 
     //Place card in list
     listItems.each(function( index, div ) {
-        $.each( selectedLeagues, function( index, value ){
+        $.each( nn, function( index, value ){
 
             var currDate = new Date($(div).find(".card-wrap").attr("dateStamp"));
             var currFormatted = currDate.getUTCDate() +"-"+monthNames[(currDate.getUTCMonth())];
