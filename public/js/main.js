@@ -710,6 +710,14 @@ $(document).on('click', '#allFootball', function(event){
     } else $('#applyFilter').attr("disabled", "disabled");
 });
 
+$(document).on('click', '.sportSelectTab a', function(event){
+    console.log($(this).text())
+
+    if($(this).text()=="Ice Hockey") {
+        $("#leaguelist").addClass("hidden");
+    } else $("#leaguelist").removeClass("hidden");
+});
+
 $(document).on('click', '#listContent .checkboxStyle', function(event){
 
     event.stopPropagation();
