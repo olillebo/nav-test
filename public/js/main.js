@@ -544,8 +544,7 @@ function buildFilterItems(evt, json) {
             name: _.uniq(_.pluck(value, 'leagueName'))
         }
     }).value();
-    var sortedArray = _.sortBy(countryLeagues, function(o) { return o.country; })
-    console.log(sortedArray)
+    var sortedArray = _.sortBy(countryLeagues, function(o) { return o.country; });
 
     $("#leaguelist").append('' +
         '<div id="listContent" class="listContent hide">'+
@@ -711,11 +710,10 @@ $(document).on('click', '#allFootball', function(event){
 });
 
 $(document).on('click', '.sportSelectTab a', function(event){
-    console.log($(this).text())
 
-    if($(this).text()=="Ice Hockey") {
-        $("#leaguelist").addClass("hidden");
-    } else $("#leaguelist").removeClass("hidden");
+    if($(this).text()=="Football") {
+        $("#leaguelist").removeClass("hidden2");
+    } else $("#leaguelist").addClass("hidden2");
 });
 
 $(document).on('click', '#listContent .checkboxStyle', function(event){
