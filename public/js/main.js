@@ -1967,7 +1967,15 @@ var isoCountries = {
     'Western Sahara': 'EH',
     'Yemen': 'YE',
     'Zambia': 'ZM',
-    'Zimbabwe': 'ZW'
+    'Zimbabwe': 'ZW',
+    'NHL': 'US',
+    'KHL': 'RU',
+    'AHL': 'US',
+    'Alps Hockey League': 'EU',
+    'Champions Hockey League': 'EU',
+    'Northern Ireland': 'GB-NIR'
+
+
 };
 
 function getCountryCode (countryName) {
