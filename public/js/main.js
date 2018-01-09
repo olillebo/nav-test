@@ -573,6 +573,10 @@ function buildFilterItems(evt, json) {
             $('.list-'+allSportsUnique[f]).append('' +
                 '<div class="topLeagues">'+
                 '<li class="li-element" style=""><div class="checkboxStyle"> <input type="checkbox" id="allFootball" data-league="0" data-leaguename="allLeagues" class="league"> <label for="allFootball">All Ice Hockey </label></div></li>'+
+                '<div class="mdl-selectfield-label"><div class="lineLabel">Top leagues</div><div class="lineSeparator"></div></div>'+
+                ' <li class="li-element" style="transition-delay: 0s;"><div class="checkboxStyle"> <input type="checkbox" id="nhl" data-league="1000093657" data-leaguename="NHL" class="league"> <label for="nhl">NHL</label></div></li>'+
+                '<li class="li-element" style=""><div class="checkboxStyle"> <input type="checkbox" id="Hockeyallsvenskan" data-league="1000094598" data-leaguename="Hockeyallsvenskan" class="league"> <label for="Hockeyallsvenskan">Hockeyallsvenskan</label></div></li>'+
+                '<li class="li-element" style=""><div class="checkboxStyle"> <input type="checkbox" id="KHL" data-league="1000437980" data-leaguename="KHL" class="league"> <label for="KHL">KHL</label></div></li>'+
                 '</div>'
             );
         } else {
@@ -680,7 +684,7 @@ $(document).on('click', '.topLeagues input:checkbox', function(event){
     //event.preventDefault();
 
     var ligaNavn =  parseInt($(this).data('league'));
-    $("#listContent").find("[data-league=" + $(this).data('league') + "]").closest( ".checkboxStyle" ).trigger("click")
+    $("#leaguelist").find("[data-league=" + $(this).data('league') + "]").closest( ".checkboxStyle" ).trigger("click")
     //$(this).prop('checked', false);
     //console.log($(this).closest( ".checkboxStyle" ).find("label"))
     //$(this).closest( ".checkboxStyle" ).find("label").attr('checked', true);
@@ -1973,7 +1977,9 @@ var isoCountries = {
     'AHL': 'US',
     'Alps Hockey League': 'EU',
     'Champions Hockey League': 'EU',
-    'Northern Ireland': 'GB-NIR'
+    'Northern Ireland': 'GB-NIR',
+    'International Youth Friendlies' : 'EU',
+    'International Youth Tournaments' : 'EU'
 
 
 };

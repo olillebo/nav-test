@@ -1805,6 +1805,20 @@ select {
 	}
 }
 
+.listContent-Tennis {
+	.flag-icon {
+		display: none;
+	}
+
+	.checkboxStyle {
+		padding-left: 25.5px !important;
+	}
+
+	.country {
+		padding-left: 0 !important;
+	}
+}
+
 .drawer {
 	position: fixed;
 	top:0;
@@ -2547,4 +2561,13 @@ select {
 
 .material-icons {
 	//color: #a29999 !important;
+}
+
+.mdl-menu__container {
+	height: 70% !important;
+
+	.countrySelectTab {
+   		height: 100% !important;
+    	overflow: scroll !important;
+    }
 }
