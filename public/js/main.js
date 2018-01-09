@@ -159,7 +159,7 @@ var sportsList = ["American Football",
 //
 
 var selectedLeagues = [];
-var allLeagueArray = [];
+var allLeagueArray = [1000095050, 1000094994, 1000094986, 2000059813];
 var visibleItems = 0;
 var filterOnDay;
 var progress = 0;
@@ -430,7 +430,6 @@ function setSport(id, text) {
         $('.topLeagues').show();
         $('#applyFilter').removeAttr("disabled");
         $('.sportsList2').hide();
-
     }
 
     $('.loading').show().delay(1100).queue(function(){
@@ -546,6 +545,7 @@ function buildFilterItems(evt, json) {
         }
     }).value();
     var sortedArray = _.sortBy(countryLeagues, function(o) { return o.country; })
+    console.log(sortedArray)
 
     $("#leaguelist").append('' +
         '<div id="listContent" class="listContent hide">'+
@@ -557,7 +557,7 @@ function buildFilterItems(evt, json) {
             '<div class="countryWrapper" leagueCollection=leagueCollection'+[i]+'><span class="flag-icon flag-icon-'+getCountryCode(sortedArray[i].country).toLowerCase()+'"></span><div class="country">'+sortedArray[i].country+'</div><div class ="dropDown"><i class="material-icons">keyboard_arrow_down</i></div></div><div class="leagueCollection" id=leagueCollection'+[i]+'></div>'
         )
         $(sortedArray[i].leagues).each(function(m, e) {
-            allLeagueArray.push(sortedArray[i].leagues[m]);
+            //allLeagueArray.push(sortedArray[i].leagues[m]);
             $("#leagueCollection"+[i]).append(
                 '<li class ="li-element" ><div class ="checkboxStyle"> <input type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" data-leagueName="' + sortedArray[i].name[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].name[m] + '</label></div></li>'
             )
