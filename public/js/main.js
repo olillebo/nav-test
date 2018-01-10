@@ -387,7 +387,7 @@ $( "#leagueButton2" ).click(function() {
         $("#v1").hide();
         $(".tabBar").show();
         $(".filterTextV2").show();
-        $(".filterTextV2").html("Filter");
+        $(".filterTextV2").html("Filter events");
         //$(".tabActions").html("Cancel");
         $(".searchFilter").hide();
         //$(".closeFilterv1").html("Cancel");
@@ -561,7 +561,7 @@ function buildFilterItems(evt, json) {
         if(allSportsUnique[f]==="Football") {
             $('.list-'+allSportsUnique[f]).append('' +
                 '<div class="topLeagues">'+
-                '<li class="li-element" style=""><div class="checkboxStyle"> <input type="checkbox" id="allFootball" data-league="0" data-leaguename="allLeagues" class="league"> <label for="allFootball">All '+allSportsUnique[f]+'</label></div></li>'+
+                '<li class="li-element mdl-js-ripple-effect" style=""><div class="checkboxStyle"> <input type="checkbox" id="allFootball" data-league="0" data-leaguename="allLeagues" class="league"> <label for="allFootball">All '+allSportsUnique[f]+'</label></div></li>'+
                 '<div class="mdl-selectfield-label"><div class="lineLabel">Top leagues</div><div class="lineSeparator"></div></div>'+
                 ' <li class="li-element" style="transition-delay: 0s;"><div class="checkboxStyle"> <input type="checkbox" id="pl" data-league="1000094985" data-leaguename="Premier League" class="league"> <label for="pl">Premier League</label></div></li>'+
                 '<li class="li-element" style=""><div class="checkboxStyle"> <input type="checkbox" id="laliga" data-league="1000095049" data-leaguename="La Liga" class="league"> <label for="laliga">LaLiga</label></div></li>'+
@@ -701,7 +701,7 @@ $(document).on('click', '.bottomHeader2 .sportRow', function(event){
 });
 
 $(document).on('click', '.showSelectedList', function(event){
-    $(".selectedLeagues").toggle();
+    /*$(".selectedLeagues").toggle();
     //$("#resetAllButton").toggle();
 
     if ((selectedTop === true) || (selectedTop === "true")){
@@ -713,7 +713,7 @@ $(document).on('click', '.showSelectedList', function(event){
             $(".selectedIcon").text("keyboard_arrow_down");
         } else $(".selectedIcon").text("keyboard_arrow_up");
     }
-
+*/
 
 });
 

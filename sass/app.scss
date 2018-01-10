@@ -18,6 +18,22 @@ select {
 	font-size: 16px!important;
 }
 
+/*#closeFilter {
+	padding: 0 8px;
+	background-color: #e75f3f;
+	height: 34px;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	color: white;
+	margin-right: 8px;
+
+	i {
+		padding-left: 5px;
+	}
+}*/
+
 /*** Styles added to fix the issue with zoom in on iphone ***/
 /* iPhone < 5: */
 @media screen and (device-aspect-ratio: 2/3) {
@@ -1213,6 +1229,8 @@ select {
 									align-items: center;
 
 									.leaguesSelectedText {
+										padding-left: 12px;
+
 										&.animate {
 											animation-duration: .3s;
 											animation-name: fadeAndScale;
@@ -1228,10 +1246,18 @@ select {
 								button {
 									padding: 0 8px;
 									display: flex;
+									background-color: white;
+									height: 34px;
+
+									background-color: white;
+									display: flex;
+									flex-direction: row;
+									align-items: center;
 								}
 
 								i {
 									color: white;
+									padding-left: 5px;
 								}
 
 
@@ -1283,7 +1309,7 @@ select {
 					}
 
 					button {
-						padding: 0px;
+						//padding: 0px;
 						min-width: 40px;
 					}
 
@@ -1303,6 +1329,8 @@ select {
 						.closeLightbox {
 							padding: 10px;
 						}
+
+
 
 
 						button {
@@ -1329,7 +1357,7 @@ select {
 					}
 
 					.filterTextV2 {
-						font-size: 15px;
+						font-size: 18px;
 						padding-left: 12px;
 						.selectedSportTextV2{
 							padding: 12px 12px 12px 0;
@@ -1391,7 +1419,7 @@ select {
                       }
 
 						.showSelectedList {
-							height: 35px;
+							height: 42px;
 							display: flex;
 							align-items: center;
 							/* justify-content: flex-start; */
@@ -1406,6 +1434,8 @@ select {
                             align-items: center;
 
 							  .leaguesSelectedText {
+								  padding-left: 12px;
+
 								  &.animate {
 									  animation-duration: .3s;
 									  animation-name: fadeAndScale;
@@ -1421,16 +1451,17 @@ select {
 							button {
 								padding: 0 8px;
 								display: flex;
+								background-color: white;
+								height: 34px;
 
-/*								box-shadow: none !important;
-								border-radius: 3px !important;
-                                align-items: center;
+								background-color: white;
+								display: flex;
+								flex-direction: row;
+								align-items: center;
+							}
 
-                                font-size: inherit !important;
-                                width: auto !important;
-                                height: 32px !important;
-                                background: #93a5ac !important;
-                                color: white !important;*/
+							i {
+								padding-left: 5px;
 							}
 
 						}
