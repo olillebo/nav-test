@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84e378b2-9e1e-4aa6-b50c-207615ceee08" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/app.css" afterPath="$PROJECT_DIR$/public/stylesheets/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/app.css.map" afterPath="$PROJECT_DIR$/public/stylesheets/app.css.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/app.scss" afterPath="$PROJECT_DIR$/sass/app.scss" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -42,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.scss" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sass/app.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="1993" column="19" lean-forward="false" selection-start-line="1993" selection-start-column="19" selection-end-line="1993" selection-end-column="19" />
+            <state relative-caret-position="1015">
+              <caret line="2604" column="38" lean-forward="false" selection-start-line="2604" selection-start-column="38" selection-end-line="2604" selection-end-column="38" />
               <folding>
                 <element signature="e#14579#15307#0" expanded="false" />
               </folding>
@@ -64,7 +61,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="396">
@@ -533,12 +530,12 @@
       <workItem from="1515493188231" duration="1800000" />
       <workItem from="1515499115626" duration="1534000" />
       <workItem from="1515570412414" duration="1552000" />
-      <workItem from="1515572221331" duration="508000" />
+      <workItem from="1515572221331" duration="662000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="355798000" />
+    <option name="totallyTimeSpent" value="355952000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -825,16 +822,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sass/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="1993" column="19" lean-forward="false" selection-start-line="1993" selection-start-column="19" selection-end-line="1993" selection-end-column="19" />
-          <folding>
-            <element signature="e#14579#15307#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -843,6 +830,16 @@
             <marker date="1515572366000" expanded="true" signature="19452:19473" ph="..." />
             <marker date="1515572366000" expanded="true" signature="20963:20984" ph="..." />
             <marker date="1515572366000" expanded="true" signature="27697:27789" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sass/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1015">
+          <caret line="2604" column="38" lean-forward="false" selection-start-line="2604" selection-start-column="38" selection-end-line="2604" selection-end-column="38" />
+          <folding>
+            <element signature="e#14579#15307#0" expanded="false" />
           </folding>
         </state>
       </provider>
