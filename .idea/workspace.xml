@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84e378b2-9e1e-4aa6-b50c-207615ceee08" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/app.scss" afterPath="$PROJECT_DIR$/sass/app.scss" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -43,8 +42,8 @@
       <file leaf-file-name="app.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sass/app.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="1033" column="24" lean-forward="false" selection-start-line="1033" selection-start-column="24" selection-end-line="1033" selection-end-column="24" />
+            <state relative-caret-position="432">
+              <caret line="1020" column="38" lean-forward="true" selection-start-line="1020" selection-start-column="38" selection-end-line="1020" selection-end-column="38" />
               <folding>
                 <element signature="e#14579#15307#0" expanded="false" />
               </folding>
@@ -216,8 +215,7 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1778" />
-    <option name="y" value="-172" />
+    <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="1138" />
   </component>
@@ -532,12 +530,12 @@
       <workItem from="1515499115626" duration="1534000" />
       <workItem from="1515570412414" duration="1552000" />
       <workItem from="1515572221331" duration="796000" />
-      <workItem from="1515586329224" duration="37000" />
+      <workItem from="1515586329224" duration="145000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="356123000" />
+    <option name="totallyTimeSpent" value="356231000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -549,7 +547,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1778" y="-172" width="1920" height="1138" extended-state="0" />
+    <frame x="0" y="23" width="1920" height="1138" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18483412" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -838,8 +836,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sass/app.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="1033" column="24" lean-forward="false" selection-start-line="1033" selection-start-column="24" selection-end-line="1033" selection-end-column="24" />
+        <state relative-caret-position="432">
+          <caret line="1020" column="38" lean-forward="true" selection-start-line="1020" selection-start-column="38" selection-end-line="1020" selection-end-column="38" />
           <folding>
             <element signature="e#14579#15307#0" expanded="false" />
           </folding>
