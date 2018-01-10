@@ -1023,11 +1023,14 @@ select {
 				  margin-right: 8px;
 
 				  i {
-					  color: #e75e3f;;
+					  color: #e75e3f;
+					  cursor: pointer;
+
 				  }
 
 				  &.filter {
-					 border: 2px solid #e75e3f;
+					 //border: 2px solid #e75e3f;
+					  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.26);
 				  }
               }
 				#leagueButton2 {
@@ -1988,7 +1991,7 @@ select {
 	  display: flex;
 	  padding-left: 8px;
 	  font-weight: bold;
-	  font-size: 13px;
+	  font-size: 15px;
 	  margin-bottom: 8px;
 	  background-color: transparent;
 	  color: #000;
