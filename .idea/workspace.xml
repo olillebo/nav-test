@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/sass/app.scss" line="1720" mnemonic="7" />
+    <bookmark url="file://$PROJECT_DIR$/sass/app.scss" line="1721" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84e378b2-9e1e-4aa6-b50c-207615ceee08" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/app.scss" afterPath="$PROJECT_DIR$/sass/app.scss" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -42,8 +43,8 @@
       <file leaf-file-name="app.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sass/app.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1015">
-              <caret line="2604" column="38" lean-forward="false" selection-start-line="2604" selection-start-column="38" selection-end-line="2604" selection-end-column="38" />
+            <state relative-caret-position="627">
+              <caret line="1033" column="24" lean-forward="false" selection-start-line="1033" selection-start-column="24" selection-end-line="1033" selection-end-column="24" />
               <folding>
                 <element signature="e#14579#15307#0" expanded="false" />
               </folding>
@@ -64,7 +65,7 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
+            <state relative-caret-position="19065">
               <caret line="1271" column="36" lean-forward="false" selection-start-line="1271" selection-start-column="25" selection-end-line="1271" selection-end-column="36" />
               <folding>
                 <marker date="1515572366000" expanded="true" signature="19452:19473" ph="..." />
@@ -78,7 +79,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/includes/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
+            <state relative-caret-position="4545">
               <caret line="303" column="45" lean-forward="false" selection-start-line="303" selection-start-column="39" selection-end-line="303" selection-end-column="45" />
               <folding>
                 <marker date="1515572113000" expanded="false" signature="16099:16120" ph="..." />
@@ -132,7 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>filter()</find>
       <find>#listContent</find>
       <find>listContent</find>
       <find>filterTop</find>
@@ -162,6 +162,7 @@
       <find>leagueButton</find>
       <find>dateTitle</find>
       <find>leagueTitle</find>
+      <find>leaguebutton</find>
     </findStrings>
     <replaceStrings>
       <replace>li-element</replace>
@@ -215,10 +216,10 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1455" />
-    <option name="y" value="-332" />
-    <option name="width" value="2532" />
-    <option name="height" value="1378" />
+    <option name="x" value="1778" />
+    <option name="y" value="-172" />
+    <option name="width" value="1920" />
+    <option name="height" value="1138" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -235,7 +236,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -275,6 +275,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -530,12 +531,13 @@
       <workItem from="1515493188231" duration="1800000" />
       <workItem from="1515499115626" duration="1534000" />
       <workItem from="1515570412414" duration="1552000" />
-      <workItem from="1515572221331" duration="662000" />
+      <workItem from="1515572221331" duration="796000" />
+      <workItem from="1515586329224" duration="37000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="355952000" />
+    <option name="totallyTimeSpent" value="356123000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -547,10 +549,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1455" y="-332" width="2532" height="1378" extended-state="0" />
+    <frame x="1778" y="-172" width="1920" height="1138" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13978495" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18483412" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267671" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -813,7 +815,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/includes/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
+        <state relative-caret-position="4545">
           <caret line="303" column="45" lean-forward="false" selection-start-line="303" selection-start-column="39" selection-end-line="303" selection-end-column="45" />
           <folding>
             <marker date="1515572113000" expanded="false" signature="16099:16120" ph="..." />
@@ -824,7 +826,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
+        <state relative-caret-position="19065">
           <caret line="1271" column="36" lean-forward="false" selection-start-line="1271" selection-start-column="25" selection-end-line="1271" selection-end-column="36" />
           <folding>
             <marker date="1515572366000" expanded="true" signature="19452:19473" ph="..." />
@@ -836,8 +838,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sass/app.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1015">
-          <caret line="2604" column="38" lean-forward="false" selection-start-line="2604" selection-start-column="38" selection-end-line="2604" selection-end-column="38" />
+        <state relative-caret-position="627">
+          <caret line="1033" column="24" lean-forward="false" selection-start-line="1033" selection-start-column="24" selection-end-line="1033" selection-end-column="24" />
           <folding>
             <element signature="e#14579#15307#0" expanded="false" />
           </folding>
