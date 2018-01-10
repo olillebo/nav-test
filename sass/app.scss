@@ -1013,7 +1013,7 @@ select {
               #leagueButton {
 
 				  background: white;
-				  color: white;
+				  //color: white;
 
 				  width: 100%;
 				  display: flex;
@@ -1025,11 +1025,10 @@ select {
 				  i {
 					  color: white;
 					  cursor: pointer;
-
 				  }
 
 				  &.filter {
-					 //border: 2px solid #e75e3f;
+					 color: white;
 					  background-color: #808080;
 					  //box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.26);
 				  }
