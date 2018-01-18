@@ -2605,3 +2605,120 @@ select {
 		overflow-y: scroll !important;
     }
 }
+
+#eventPage {
+	flex-direction: column;
+	width: 100%;
+	z-index: 2;
+	bottom: 50px;
+	background: white;
+	display: flex;
+	height: 100%;
+	margin-top: 84px;
+	padding-bottom: 50px;
+
+	#topBar {
+		padding: 12px;
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		align-items: center;
+		margin: 12px 0;
+
+		.header {
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		#closeEvent {
+			height: 40px;
+			background: #e75f3f;
+			color: white;
+			width: 80px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
+			justify-content: space-between;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			text-align: center;
+			justify-content: center;
+			cursor: pointer;
+		}
+	}
+
+	#offerList {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+
+		.container2 {
+			padding: 11px 12px 12px;
+
+          .title {
+			  font-size: 16px;
+			  padding-bottom: 8px;
+          }
+
+          .offerWrapper {
+              border-bottom: 1px solid white;
+
+
+			  .threeway {
+				  padding: 8px 0;
+			  }
+
+            .offer {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-around;
+
+				.block {
+					display: flex;
+					flex-direction: column;
+					width: 100%;
+				}
+
+              .oddsWrapper {
+                width: 100%;
+                text-align: center;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                justify-content: space-between;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                outline: none;
+                height: 50px;
+                background-color: #52778B;
+                color: #fff;
+                border-left: 1px solid white;
+                cursor: pointer;
+                padding: 8px;
+				  overflow: hidden;
+
+				  &.selected {
+					  background-color: #27414D;
+				  }
+
+				  .label {
+					  display: inline-block;
+					  vertical-align: top;
+					  white-space: nowrap;
+					  text-overflow: ellipsis;
+					  overflow: hidden;
+				  }
+              }
+
+			&.multi {
+				flex-direction: row;
+			}
+            }
+          }
+		}
+	}
+}

@@ -52,9 +52,9 @@ var outcomeOptions = {
 };
 
 var outcomeOptions_2 = {
-    valueNames: [{ name: 'id', attr: 'id' }, "home", "away", { name: 'sport', attr: 'sport' }, { name: 'rank', attr: 'rank' }, "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }, { name: 'oddsOffers', attr: 'oddsOffers' }],
+    valueNames: [{ name: 'id', attr: 'id' }, { name: 'eventID', attr: 'eventID' }, "home", "away", { name: 'sport', attr: 'sport' }, { name: 'rank', attr: 'rank' }, "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }, { name: 'oddsOffers', attr: 'oddsOffers' }],
     item: '<div class="card-container v2 id">\n' +
-    '    <div class="card-wrap live leagueID id dateStamp rank sport">\n' +
+    '    <div class="card-wrap live leagueID id eventID dateStamp rank sport">\n' +
     '        <div class="left">\n' +
     '           <div class="cardcontent ">\n' +
     '              <div class="teamline">\n' +
@@ -159,7 +159,7 @@ var sportsList = ["American Football",
 //
 
 var selectedLeagues = [];
-var allLeagueArray = [1000095050, 1000094994, 1000094986, 2000059813];
+var allLeagueArray = [1000094991, 1000094981, 1000094994, 1000095049, 1000094985, 1000095001]//[1000095050, 1000094994, 1000094986, 2000059813];
 var visibleItems = 0;
 var filterOnDay;
 var progress = 0;
@@ -214,6 +214,7 @@ $(document).ready(function() {
     $('.loading').hide();
     $('.overlay').hide();
     $("#setPopularity").hide();
+    $( "#eventPage" ).hide();
 
     if ((selectedTop === true) || (selectedTop === "true")){
         if ((tabBar === false) || (tabBar === "false")){
@@ -600,7 +601,6 @@ function buildFilterItems(evt, json) {
             )
             $(sortedArray[i].leagues).each(function(m, e) {
                 //allLeagueArray.push(sortedArray[i].leagues[m]);
-                console.log($("#leagueCollection"+[i]+allSportsUnique[f]))
                 $("#leagueCollection"+[i]+allSportsUnique[f]).append(
                     '<li class ="li-element" ><div class ="checkboxStyle"> <input type="checkbox" id="' +id+ '" data-league="' + sortedArray[i].leagues[m] + '" data-leagueName="' + sortedArray[i].name[m] + '" class="league"> <label for="' +id+ '">' + sortedArray[i].name[m] + '</label></div></li>'
                 )
@@ -629,6 +629,30 @@ $(document).on('click', '.countryWrapper', function(event){
     $( "#"+$(this).attr('leaguecollection') ).slideToggle( "fast");
 });
 
+$(document).on('click', '.left', function(event){
+
+    $( "#eventPage" ).empty();
+    var eventID;
+
+    // this parent has live
+    var type;
+    if($(this).parent().attr("live")==="true") {
+        eventID = $(this).parent().attr('id');
+        type = "Live"
+    } else {
+        eventID = $(this).parent().attr('eventID');
+        type = "Pre"
+    }
+
+    getEventJsonData(eventID, type)
+
+});
+$(document).on('click', '#closeEvent', function(event){
+    //$(this).find(".material-icons").toggleClass("rotate")
+    $( "#eventPage" ).hide();
+    $( "#page" ).show();
+    $( ".navigation" ).show();
+});
 
 
 $(document).on('click', '.filterHeader', function(event){
@@ -1495,215 +1519,380 @@ return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
 
 
 function getJsonData() {
+    var data = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/england/premier_league.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510215931013&categoryGroup=COMBINED&displayDefault=true";
+    var data2 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/spain/laliga.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510228334897&categoryGroup=COMBINED&displayDefault=true&category=match";
+    var data3 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/germany/bundesliga.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510231152204&categoryGroup=COMBINED&displayDefault=true&category=match";
+    var data4 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/italy/serie_a.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510231127753&categoryGroup=COMBINED&displayDefault=true&category=match";
+    var inplay = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/all/all/all/all/in-play.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510245150377&categoryGroup=COMBINED&displayDefault=true";
+    var all = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/all/all/all/all.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1511963366090&categoryGroup=COMBINED&displayDefault=true";
+    //var all =    "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1515761778580&categoryGroup=COMBINED&displayDefault=true"
 
 
-var data = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/england/premier_league.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510215931013&categoryGroup=COMBINED&displayDefault=true";
-var data2 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/spain/laliga.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510228334897&categoryGroup=COMBINED&displayDefault=true&category=match";
-var data3 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/germany/bundesliga.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510231152204&categoryGroup=COMBINED&displayDefault=true&category=match";
-var data4 = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/football/italy/serie_a.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510231127753&categoryGroup=COMBINED&displayDefault=true&category=match";
-var inplay = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/all/all/all/all/in-play.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1510245150377&categoryGroup=COMBINED&displayDefault=true";
-var all = "https://e1-api.aws.kambicdn.com/offering/api/v3/leo/listView/all/all/all/all.json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1511963366090&categoryGroup=COMBINED&displayDefault=true";
+    /*    var data = "data/data.json";
+        var data2 = "data/data2.json";
+        var data3 = "data/data3.json";
+        var data4 = "data/data4.json";
+        var inplay =  "data/in-play.json";
+        var all = "data/all.json";*/
+        var data, data2, data3, data4, inplay;
 
+        var output = {events: []};
+    //var A = $.getJSON(data);
 
-
-/*    var data = "data/data.json";
-    var data2 = "data/data2.json";
-    var data3 = "data/data3.json";
-    var data4 = "data/data4.json";
-    var inplay =  "data/in-play.json";
-    var all = "data/all.json";*/
-
-
-    var output = {events: []};
-//var A = $.getJSON(data);
-
-var A = $.ajax({ dataType:"json",
-    url: data,
-    success: function(data){
-/*        $( "#progressbar" ).progressbar( "value", progress );
-        progress++;
-        console.log(progress)*/
-    }
-});
-var B = $.ajax({ dataType:"json",
-    url: data2,
-    success: function(data){
-        /*        $( "#progressbar" ).progressbar( "value", progress );
-                progress++;
-                console.log(progress)*/
-    }
-});
-var C = $.ajax({ dataType:"json",
-    url: data3,
-    success: function(data){
-        /*        $( "#progressbar" ).progressbar( "value", progress );
-                progress++;
-                console.log(progress)*/
-
-    }
-});
-var D = $.ajax({ dataType:"json",
-    url: data4,
-    success: function(data){
-        /*        $( "#progressbar" ).progressbar( "value", progress );
-                progress++;
-                console.log(progress)*/
-
-    }
-});
-var E = $.ajax({ dataType:"json",
-    url: inplay,
-    success: function(data){
-        /*        $( "#progressbar" ).progressbar( "value", progress );
-                progress++;
-                console.log(progress)*/
-
-    }
-});
-var F = $.ajax({ dataType:"json",
-    url: all,
-    success: function(data){
-        /*        $( "#progressbar" ).progressbar( "value", progress );
-                progress++;
-                console.log(progress)*/
-
-    }
-});
-
-    $.when(A,B,C,D,E,F).done(function(aResult, bResult, cResult, dResult, eResult, fResult){//when all request are successful
-    var dataLists = [aResult[0],bResult[0],cResult[0],dResult[0],eResult[0],fResult[0]];
-    //$.when(E,F).done(function(eResult,fResult){//when all request are successful
-    //    var dataLists = [eResult[0],fResult[0]];
-
-    for(var x = 0; x < dataLists.length; x++) {
-        for(var i = 0; i < dataLists[x].events.length; i++) {
-            var item = dataLists[x].events[i];
-            //if(item.event.sport=="FOOTBALL") {
-                var odds = undefined;
-                //var oddsX = undefined;
-                //var odds2 = undefined;
-                var live = undefined;
-                var league = undefined;
-                var homeScore = undefined;
-                var awayScore = undefined;
-                var betOffers = undefined;
-                var rank = undefined;
-                var oddsOffers= undefined;
-
-                if(item.betOffers != null && item.betOffers.length > 0 ){
-                    betOffers = true;
-                } else betOffers = false;
-                odds =  [];
-                if(betOffers === true){
-                    for(var j = 0; j < item.betOffers.length; j++) {
-                        var offer = item.betOffers[j];
-
-                        if(offer.outcomes.length > 0) {
-                            oddsOffers = offer.outcomes.length;
-                        } else oddsOffers = false;
-
-                        if(offer.betOfferType.name == "Match") {
-                            for(var k = 0; k < offer.outcomes.length; k++) {
-                                odds[k] = offer.outcomes[k].odds;
-                            }
-                        }
-                    }
-                }
-
-                var date = new Date(item.event.start);
-                var currentDate = new Date();
-                live = (date <= currentDate);
-                if ((newCards === true) || (newCards === "true")){
-
-                    var time = date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
-
-                } else {
-                    var time = date.getUTCDate() +"/"+(date.getUTCMonth() + 1)+" - "+date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
-                }
-                var sortDate = date.getTime();
-                if(live) {
-                    if(item.liveData) {
-                        if(item.liveData.score) {
-                            if(item.liveData.score.home) {
-                                homeScore = item.liveData.score.home;
-                                awayScore = item.liveData.score.away;
-                            }
-                        }
-                        time = (item.liveData.matchClock.minute<10?'0':'') + item.liveData.matchClock.minute + ":" + (item.liveData.matchClock.second<10?'0':'') + item.liveData.matchClock.second;
-                    }
-                }
-
-                for(var n = 0; n < odds.length; n++) {
-                    if(odds[n]) {
-                        odds[n] = convertOdds(odds[n]);
-                    } else odds[n] = ""
-                }
-
-                var stream = true;
-                if (item.event.streams.length === 0) {
-                    stream = false;
-                }
-
-                var alreadyAdded = $.grep(output.events, function(n) {
-                    return(n.id === item.event.id);
-                });
-
-                //if(item.event.sport == "FOOTBALL") {
-                    if (!alreadyAdded.length) {
-                        output.events.push({
-                            id: item.event.id,
-                            home : item.event.homeName,
-                            away : item.event.awayName,
-                            sport : (item.event.sport).charAt(0).toUpperCase() + (item.event.sport).slice(1).toLowerCase(),
-                            leagueName : item.event.group,
-                            league : item.event.groupId,
-                            dateStamp: date,
-                            leagueID : item.event.groupId,
-                            country: item.event.path[1].name,
-                            live : live,
-                            time : time,
-                            rank: item.event.rank,
-                            odds1Name: item.event.homeName,
-                            odds2Name : item.event.awayName,
-                            odds1: odds[0],
-                            oddsX: odds[1],
-                            odds2: odds[2],
-                            homeScore: homeScore,
-                            awayScore: awayScore,
-                            date: date,
-                            stream: stream,
-                            betOffers: betOffers,
-                            sortDate: sortDate,
-                            oddsOffers: odds.length
-                        });
-                    }
-                //}
-            //}
+    var A = $.ajax({ dataType:"json",
+        url: data,
+        success: function(data){
+    /*        $( "#progressbar" ).progressbar( "value", progress );
+            progress++;
+            console.log(progress)*/
         }
-        /*        $( "#progressbar" ).progressbar( "value", progress );
-                progress++;
-                console.log(progress)*/
+    });
+    var B = $.ajax({ dataType:"json",
+        url: data2,
+        success: function(data){
+            /*        $( "#progressbar" ).progressbar( "value", progress );
+                    progress++;
+                    console.log(progress)*/
+        }
+    });
+    var C = $.ajax({ dataType:"json",
+        url: data3,
+        success: function(data){
+            /*        $( "#progressbar" ).progressbar( "value", progress );
+                    progress++;
+                    console.log(progress)*/
 
-    }
-    $(document).trigger('createList', output);
-});
-}
+        }
+    });
+    var D = $.ajax({ dataType:"json",
+        url: data4,
+        success: function(data){
+            /*        $( "#progressbar" ).progressbar( "value", progress );
+                    progress++;
+                    console.log(progress)*/
 
-$( function() {
-    $( "#progressbar" ).progressbar({
-        value: 0,
-        max: 7
+        }
+    });
+    var E = $.ajax({ dataType:"json",
+        url: inplay,
+        success: function(data){
+            /*        $( "#progressbar" ).progressbar( "value", progress );
+                    progress++;
+                    console.log(progress)*/
 
+        }
+    });
+    var F = $.ajax({ dataType:"json",
+        url: all,
+        success: function(data){
+            /*        $( "#progressbar" ).progressbar( "value", progress );
+                    progress++;
+                    console.log(progress)*/
+
+        }
+    });
+
+        $.when(A,B,C,D,E,F).done(function(aResult, bResult, cResult, dResult, eResult, fResult){//when all request are successful
+        var dataLists = [aResult[0],bResult[0],cResult[0],dResult[0],eResult[0],fResult[0]];
+        //var dataLists = [fResult[0]];
+            console.log(aResult[0])
+            //$.when(E,F).done(function(eResult,fResult){//when all request are successful
+        //    var dataLists = [eResult[0],fResult[0]];
+
+        for(var x = 0; x < dataLists.length; x++) {
+            for(var i = 0; i < dataLists[x].events.length; i++) {
+                var item = dataLists[x].events[i];
+                //if(item.event.sport=="FOOTBALL") {
+                    var odds = undefined;
+                    //var oddsX = undefined;
+                    //var odds2 = undefined;
+                    var live = undefined;
+                    var league = undefined;
+                    var homeScore = undefined;
+                    var awayScore = undefined;
+                    var betOffers = undefined;
+                    var rank = undefined;
+                    var oddsOffers= undefined;
+                    var eventID = undefined;
+
+                    if(item.betOffers != null && item.betOffers.length > 0 ){
+                        betOffers = true;
+                    } else betOffers = false;
+                    odds =  [];
+                    if(betOffers === true){
+                        for(var j = 0; j < item.betOffers.length; j++) {
+                            var offer = item.betOffers[j];
+                            eventID = item.betOffers[j].eventId;
+
+                            if(offer.outcomes.length > 0) {
+                                oddsOffers = offer.outcomes.length;
+                            } else oddsOffers = false;
+
+                            if(offer.betOfferType.name == "Match") {
+                                for(var k = 0; k < offer.outcomes.length; k++) {
+                                    odds[k] = offer.outcomes[k].odds;
+                                }
+                            }
+                        }
+                    }
+
+                    var date = new Date(item.event.start);
+                    var currentDate = new Date();
+                    live = (date <= currentDate);
+                    if ((newCards === true) || (newCards === "true")){
+
+                        var time = date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
+
+                    } else {
+                        var time = date.getUTCDate() +"/"+(date.getUTCMonth() + 1)+" - "+date.getHours()+":"+(date.getMinutes()<10?'0':'') + date.getMinutes();
+                    }
+                    var sortDate = date.getTime();
+                    if(live) {
+                        if(item.liveData) {
+                            if(item.liveData.score) {
+                                if(item.liveData.score.home) {
+                                    homeScore = item.liveData.score.home;
+                                    awayScore = item.liveData.score.away;
+                                }
+                            }
+                            time = (item.liveData.matchClock.minute<10?'0':'') + item.liveData.matchClock.minute + ":" + (item.liveData.matchClock.second<10?'0':'') + item.liveData.matchClock.second;
+                        }
+                    }
+
+                    for(var n = 0; n < odds.length; n++) {
+                        if(odds[n]) {
+                            odds[n] = convertOdds(odds[n]);
+                        } else odds[n] = ""
+                    }
+
+                    var stream = true;
+                    if (item.event.streams.length === 0) {
+                        stream = false;
+                    }
+
+                    var alreadyAdded = $.grep(output.events, function(n) {
+                        return(n.id === item.event.id);
+                    });
+
+                    //if(item.event.sport == "FOOTBALL") {
+                        if (!alreadyAdded.length) {
+                            output.events.push({
+                                id: item.event.id,
+                                eventID: eventID,
+                                home : item.event.homeName,
+                                away : item.event.awayName,
+                                sport : (item.event.sport).charAt(0).toUpperCase() + (item.event.sport).slice(1).toLowerCase(),
+                                leagueName : item.event.group,
+                                league : item.event.groupId,
+                                dateStamp: date,
+                                leagueID : item.event.groupId,
+                                country: item.event.path[1].name,
+                                live : live,
+                                time : time,
+                                rank: item.event.rank,
+                                odds1Name: item.event.homeName,
+                                odds2Name : item.event.awayName,
+                                odds1: odds[0],
+                                oddsX: odds[1],
+                                odds2: odds[2],
+                                homeScore: homeScore,
+                                awayScore: awayScore,
+                                date: date,
+                                stream: stream,
+                                betOffers: betOffers,
+                                sortDate: sortDate,
+                                oddsOffers: odds.length
+                            });
+                        }
+                    //}
+                //}
+            }
+            /*        $( "#progressbar" ).progressbar( "value", progress );
+                    progress++;
+                    console.log(progress)*/
+
+        }
+        $(document).trigger('createList', output);
     });
 }
-);
 
+
+function getEventJsonData(eventID, type) {
+
+    var data;
+
+    if(type=="Live") {
+        data = "https://e1-api.aws.kambicdn.com/offering/api/v2/leo/betoffer/live/event/"+eventID+".json?lang=en_GB&market=SE&client_id=2&channel_id=1&ncid=1516291461393";
+    } else data = "https://e4-api.kambi.com/offering/api/v2/leo/betoffer/event/"+eventID+".json?lang=en_GB&market=SE&client_id=2&channel_id=3&ncid=1516196432158";
+
+    var output = {events: []};
+
+    var EventData = $.ajax({ dataType:"json",
+        url: data,
+        success: function(data){
+        }
+    });
+
+
+
+    $.when(EventData).done(function(EventDataResult){//when all request are successful
+        $( "#eventPage" ).show();
+        $( "#page" ).hide();
+        $( ".navigation" ).hide();
+        $("#eventPage").append('' +
+            '<div id="topBar">' +
+            '<div id="closeEvent">Back</div>' +
+            '</div>'+
+            '<div id="offerList"></div>'
+        );
+
+        for(var t = 0; t < EventDataResult.events.length; t++) {
+            $("#topBar").append('' +
+                '<div class="header">' +
+                EventDataResult.events[t].name+
+                '</div>'
+            );
+        }
+
+
+        for(var i = 0; i < EventDataResult.betoffers.length; i++) {
+            var offerType;
+            switch(EventDataResult.betoffers[i].criterion.label) {
+                case "Half Time/Full Time":
+                    offerType = 1;
+                    break;
+                case "Correct Score":
+                    offerType = 2;
+                    break;
+                case "Correct Score - 2nd Half":
+                    offerType = 2;
+                    break
+                case "Correct Score - 1st Half":
+                    offerType = 2;
+                    break
+                case "Goal Scorer":
+                    offerType = 3;
+                    break
+                default:
+                    offerType = 0;
+                    break
+            }
+            if(offerType!==3) {
+                var add;
+
+                if($('#' + EventDataResult.betoffers[i].criterion.id).length == 0) {
+                    $("#offerList").append('' +
+                        '<div class="container2" id="'+EventDataResult.betoffers[i].criterion.id+'">' +
+                        '<div class="title">'+
+                        EventDataResult.betoffers[i].criterion.label+
+                        '</div>'+
+                        '</div>'
+                    );
+                }
+
+
+                $('#' + EventDataResult.betoffers[i].criterion.id).append('' +
+                    '<div id="'+EventDataResult.betoffers[i].id+'" class="offerWrapper">'+
+                    '<div class="offer '+EventDataResult.betoffers[i].outcomes.length+" "+add+'">'+
+                    '</div>'+
+                    '</div>'
+                );
+
+                if (EventDataResult.betoffers[i].outcomes.length >3) {
+                    $('#' + EventDataResult.betoffers[i].id).find(".offer").append('' +
+                        '<div class="block block-1">' +
+                        '</div>'+
+                        '<div class="block block-2">' +
+                        '</div>'+
+                        '<div class="block block-3">' +
+                        '</div>'
+                    );
+                }
+
+
+                if(EventDataResult.betoffers[i].betOfferType.name.indexOf("3-Way") != -1){
+                    var score;
+                    for(var j = 0; j < EventDataResult.betoffers[i].outcomes.length; j++) {
+                        score = EventDataResult.betoffers[i].outcomes[j].line;
+                    }
+                    var threeway = '' +
+                        '<div class="threeway">' +
+                        "Starts " +convertTothreeWay(EventDataResult.betoffers[i].outcomes[1].line)+
+                        '</div>';
+                    $('#' + EventDataResult.betoffers[i].id).prepend(threeway)
+                }
+
+                for(var j = 0; j < EventDataResult.betoffers[i].outcomes.length; j++) {
+                    var label2;
+                    var participant = EventDataResult.betoffers[i].outcomes[j].participant;
+                    var label = EventDataResult.betoffers[i].outcomes[j].label;
+                    var line = EventDataResult.betoffers[i].outcomes[j].line;
+
+                    if(EventDataResult.betoffers[i].betOfferType.name.indexOf("Asian") != -1){
+                        if(EventDataResult.betoffers[i].betOfferType.name.indexOf("Handicap") != -1){
+                            label2 = label + " " +convertAsianHandicap(line);
+                        } else if (EventDataResult.betoffers[i].betOfferType.name.indexOf("Over") != -1){
+                            label2 = label + " " +convertAsianTotal(line);
+                        }
+                    } else if(EventDataResult.betoffers[i].betOfferType.name.indexOf("3-Way") != -1){
+                        if(participant) {
+                            label2 = participant;
+                        } else label2 = "Draw"
+                    }
+
+                    else if(participant) {
+                        label2 = participant;
+
+                    } else {
+                        if(label && line) {
+                            label2 = label + " " +convertOdds(line);
+                        } else if(label) {
+                            label2 = label;
+                        }
+                    }
+
+                    var test = '' +
+                        '<div class="oddsWrapper betOfferButton">' +
+                            '<div class="label">' +
+                            label2+
+                            '</div>'+
+                            '<div class="odds">' +
+                            convertOdds(EventDataResult.betoffers[i].outcomes[j].odds)+
+                            '</div>'+
+                        '</div>';
+
+                    var block;
+                    if (offerType==2) {
+                        if(label.charAt(0)>label.charAt(2)){
+                            block = ".block-1";
+                        } else if (label.charAt(0)<label.charAt(2)) {
+                            block = ".block-3";
+                        } else block = ".block-2";
+                    } else if (offerType==1) {
+                        if(label.charAt(2)=="1"){
+                            block = ".block-1";
+                        } else if (label.charAt(2)=="2") {
+                            block = ".block-3";
+                        } else block = ".block-2";
+                    } else {
+                        block = ".offer"
+                    }
+                    $('#' + EventDataResult.betoffers[i].id).find(block).append(test)
+                }
+            }
+        }
+        //$(document).trigger('createList', output);
+    });
+};
 
 
 function convertOdds(odds) {
     var oddsReturn;
 
     switch(odds.toString().length) {
+        case 3:
+            oddsReturn = odds.toString()[1]+"."+odds.toString()[0];
+            break;
         case 4:
             oddsReturn = odds.toString()[0]+"."+odds.toString()[1]+odds.toString()[2];
             break;
@@ -1717,6 +1906,184 @@ function convertOdds(odds) {
             oddsReturn = "";
             break
         }
+    return oddsReturn
+}
+
+function convertTothreeWay(line) {
+    var oddsReturn;
+
+    switch(line.toString()) {
+        case "3000":
+            oddsReturn = "3-0";
+            break;
+        case "2000":
+            oddsReturn = "2-0";
+            break;
+        case "1000":
+            oddsReturn = "1-0";
+            break;
+        case "-1000":
+            oddsReturn = "0-1";
+            break;
+        case "-2000":
+            oddsReturn = "0-2";
+            break;
+        case "-3000":
+            oddsReturn = "0-3";
+            break;
+        default:
+            oddsReturn = "";
+            break
+    }
+    return oddsReturn
+}
+
+function convertAsianHandicap(odds) {
+    var oddsReturn;
+
+    switch(odds.toString()) {
+        case "2500":
+            oddsReturn = "+2.5";
+            break;
+        case "2250":
+            oddsReturn = "+2.25";
+            break;
+        case "2000":
+            oddsReturn = "+2";
+            break;
+        case "1750":
+            oddsReturn = "+1.75";
+            break;
+        case "1500":
+            oddsReturn = "+1.5";
+            break;
+        case "1250":
+            oddsReturn = "+1.25";
+            break;
+        case "1000":
+            oddsReturn = "+1";
+            break;
+        case "750":
+            oddsReturn = "+0.75";
+            break;
+        case "500":
+            oddsReturn = "+0.5";
+            break;
+        case "250":
+            oddsReturn = "+0.25";
+            break;
+        case "0":
+            oddsReturn = "";
+            break;
+        case "-2500":
+            oddsReturn = "-2.5";
+            break;
+        case "-2250":
+            oddsReturn = "-2.25";
+            break;
+        case "-2000":
+            oddsReturn = "-2";
+            break;
+        case "-1750":
+            oddsReturn = "-1.75";
+            break;
+        case "-1500":
+            oddsReturn = "-1.5";
+            break;
+        case "-1250":
+            oddsReturn = "-1.25";
+            break;
+        case "-1000":
+            oddsReturn = "-1";
+            break;
+        case "-750":
+            oddsReturn = "-0.75";
+            break;
+        case "-500":
+            oddsReturn = "-0.5";
+            break;
+        case "-250":
+            oddsReturn = "-0.25";
+            break;
+        default:
+            oddsReturn = "";
+            break
+    }
+    return oddsReturn
+}
+
+function convertAsianTotal(odds) {
+    var oddsReturn;
+
+    switch(odds.toString()) {
+        case "5000":
+            oddsReturn = "5";
+            break;
+        case "4750":
+            oddsReturn = "4.75";
+            break;
+        case "4500":
+            oddsReturn = "4.5";
+            break;
+        case "4250":
+            oddsReturn = "4.25";
+            break;
+        case "4000":
+            oddsReturn = "4";
+            break;
+        case "3750":
+            oddsReturn = "3.75";
+            break;
+        case "3500":
+            oddsReturn = "3.5";
+            break;
+        case "3250":
+            oddsReturn = "3.25";
+            break;
+        case "3000":
+            oddsReturn = "3";
+            break;
+        case "2750":
+            oddsReturn = "2.75";
+            break;
+
+        case "2500":
+            oddsReturn = "2.5";
+            break;
+        case "2250":
+            oddsReturn = "2.25";
+            break;
+        case "2000":
+            oddsReturn = "2";
+            break;
+        case "1750":
+            oddsReturn = "1.75";
+            break;
+        case "1500":
+            oddsReturn = "1.5";
+            break;
+        case "1250":
+            oddsReturn = "1.25";
+            break;
+        case "1000":
+            oddsReturn = "1";
+            break;
+        case "750":
+            oddsReturn = "0.75";
+            break;
+        case "500":
+            oddsReturn = "0.5";
+            break;
+        case "250":
+            oddsReturn = "0.25";
+            break;
+        case "0":
+            oddsReturn = "";
+            break;
+        default:
+            oddsReturn = "";
+            break
+    }
     return oddsReturn
 }
 
