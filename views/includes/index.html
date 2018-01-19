@@ -409,7 +409,109 @@
     <div class="empty">
         No events on this day
     </div>
+    <div id="betslip">
+        <div class="wrapper">
+            <div class="header">
+                <div class="title">
+                    <div class="text">Singles</div>
+                    <div id="minimizeBetslip" class="minimize"></div>
+                </div>
 
+            </div>
+            <div class="content">
+                <div class="tabs">
+                    <div class="tabsContainer">
+                        <a href="javascript:void(0)" class="tabs__tab selected " data-tab="single" data-touch-feedback="true">
+                            Singles
+                        </a>
+                        <a href="javascript:void(0)" class="tabs__tab disabled" data-tab="combination" data-touch-feedback="true">
+                            Combination
+                        </a>
+                        <a href="javascript:void(0)" class="tabs__tab disabled" data-tab="system" data-touch-feedback="true">
+                             System
+                        </a>
+                        <div class="KambiBC-tabs__selected-marker KambiBC-js-tabs-selected-marker" style="left: 0px; right: 254.734px;"></div>
+                    </div>
+                </div>
+                <div class="scrollable">
+                    <div class="tabcontent">
+                        <ul class="events">
+                            <!--<li class="event">
+                                <div class="eventwrapper">
+                                    <div class="eventButton"></div>
+                                    <div class="eventContent">
+                                        <div class="description">
+                                                <div class="outcomeheader">
+                                                    <span class="bog"></span>
+                                                    <span class="live-label"></span>
+                                                    <span class="outcome-label">Leicester City</span>
+                                                </div>
+
+                                                <p class="criteria">Full Time</p>
+                                                <a href="#event/1004058540" class="event-link">Leicester City - Watford</a>
+
+                                        </div>
+                                        <div class="stake">
+                                            <span class="oddsContainer">
+                                                <span class="odds">2.35</span>
+                                            </span>
+                                            <span class="stakeContainer">
+                                                <div class="stake-input-container">
+                                                    <div class="stake-input">
+                                                        <div id="outcome">
+                                                            <input class="stake-input" pattern="^[0-9]*[.,]{0,1}[0-9]{0,2}$" type="text" readonly="" placeholder="0">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </li>-->
+                        </ul>
+                        <div class="betslip__summary">
+                            <div class="cash-out-container">
+                                <div class="cash-out-label">CASH OUT</div>
+                            </div>
+                            <div class="summary__row">
+                                <div class="summary__label">Total stake:</div>
+                                <div class="summary__value">
+                                    <span class="free-bet-label hidden">Free bet</span>
+                                    <span class="total-stake-value">0.00 kr</span>
+                                </div>
+                            </div>
+                            <div class="summary__row">
+                                <div class="summary__label">Total odds:</div>
+                                <div class="summary__value">
+                                    <span class="obsolete-odds hidden">3.50</span>
+                                    <span class="total-odds-value">3.50</span>
+                                </div>
+                            </div>
+                            <div class="summary__row">
+                                <div class="summary__label">Potential payout:</div>
+                                <div class="summary__value">
+                                    <span class="boosted-odds-payout-label"></span>
+                                    <span class="potential-payout-value">0.00 kr</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="betbutton">
+                        <button class="KambiBC disabled" type="button" data-touch-feedback="true" disabled="disabled">Place bet</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
     <div id="sportsbook-default" class="view bottom-nav-view">
         <div name="browse" id="quickbet" class="bottomnav-item browse hidden">
             <i class="material-icons">flash_on</i>
@@ -431,7 +533,7 @@
         <div name="openbets" class="bottomnav-item openbets disabled">
         Open Bets
         </div>
-        <div name="betslip" class="bottomnav-item betslip disabled">
+        <div id="bottomBarBetslip" name="betslip" class="bottomnav-item betslip disabled">
             <div class="count-badge-betslip">1</div>
             Betslip
         </div>

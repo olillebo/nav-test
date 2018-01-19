@@ -215,6 +215,7 @@ $(document).ready(function() {
     $('.overlay').hide();
     $("#setPopularity").hide();
     $( "#eventPage" ).hide();
+    $( "#betslip" ).hide();
 
     if ((selectedTop === true) || (selectedTop === "true")){
         if ((tabBar === false) || (tabBar === "false")){
@@ -399,22 +400,100 @@ $( "#leagueButton2" ).click(function() {
     }
 });
 
+$(document).on('click', '#minimizeBetslip', function() {
+    $( "#betslip" ).slideToggle("fast");
+});
+
+$(document).on('click', '#bottomBarBetslip', function() {
+    if(!$(this).hasClass('disabled')) $( "#betslip" ).slideToggle("fast");
+});
+
+
 $(document).on('click', '.betOfferButton', function() {
+    var id = $(this).closest(".card-wrap").attr("id")
+    var event = $(this).closest(".card-wrap").find(".home").text() + " - " + $(this).closest(".card-wrap").find(".away").text()
+    var odds = $(this).find(".odds").text();
+    var selected;
+
+    if($(this).find(".odds").hasClass("odds1")) {
+        selected = $(this).closest(".card-wrap").find(".home").text();
+    } else if ($(this).find(".odds").hasClass("oddsX")) {
+        selected = "Draw"
+    } else selected = $(this).closest(".card-wrap").find(".away").text();
+
+
+
+    var previousVal = addedBets;
     if ($(this).hasClass('selected')) {
         $(this).removeClass('selected');
+        removeBetFromList(id)
         addedBets--;
     } else {
         $(this).addClass('selected');
+        addBetToList(id, event, odds, selected);
         addedBets++;
     }
     $(".count-badge-betslip").text(addedBets);
 
     if (addedBets > 0) {
+        if (addedBets === 1 && previousVal === 0) {
+            $( "#betslip" ).slideToggle("fast");
+        }
         $(".betslip").removeClass('disabled');
+    } if (addedBets === 0) {
+        $( "#betslip" ).slideToggle("fast");
     } else {
         $(".betslip").addClass('disabled');
     }
 });
+
+
+$(document).on('click', '.eventButton', function() {
+    var ids =  $(this).closest("li").attr("id");
+
+    $(this).closest("li").remove();
+    $('[id='+ids+']').find(".selected").trigger("click")
+
+});
+
+function removeBetFromList(id) {
+    $('#betslip li').filter('.' + id).remove()
+}
+
+function addBetToList(id, event, odds, selected) {
+    var html = "<li class=\"event "+id+"\" id="+id+">" +
+        "                                <div class=\"eventwrapper\">" +
+        "                                    <div class=\"eventButton\"></div>" +
+        "                                    <div class=\"eventContent\">" +
+        "                                        <div class=\"description\">" +
+        "                                                <div class=\"outcomeheader\">" +
+        "                                                    <span class=\"bog\"></span>" +
+        "                                                    <span class=\"live-label\"></span>" +
+        "                                                    <span class=\"outcome-label\">"+selected+"</span>" +
+        "                                                </div>" +
+        "                                                <p class=\"criteria\">Full Time</p>" +
+        "                                                <a href=\"#event/1004058540\" class=\"event-link\">"+event+"</a>" +
+        "                                        </div>" +
+        "                                        <div class=\"stake\">" +
+        "                                            <span class=\"oddsContainer\">" +
+        "                                                <span class=\"odds\">"+odds+"</span>" +
+        "                                            </span>\n" +
+        "                                            <span class=\"stakeContainer\">" +
+        "                                                <div class=\"stake-input-container\">" +
+        "                                                    <div class=\"stake-input\">" +
+        "                                                        <div id=\"outcome\">" +
+        "                                                            <input class=\"stake-input\" pattern=\"^[0-9]*[.,]{0,1}[0-9]{0,2}$\" type=\"text\" readonly=\"\" placeholder=\"0\">" +
+        "                                                        </div>" +
+        "                                                    </div>" +
+        "                                                </div>" +
+        "                                            </span>" +
+        "                                        </div>" +
+        "                                    </div>" +
+        "                                </div>" +
+        "                            </li>";
+    $('#betslip').find(".events").append(html)
+}
+
 
 function setSport(id, text) {
     if(id == 0) {
@@ -1655,7 +1734,9 @@ function getJsonData() {
                                     awayScore = item.liveData.score.away;
                                 }
                             }
-                            time = (item.liveData.matchClock.minute<10?'0':'') + item.liveData.matchClock.minute + ":" + (item.liveData.matchClock.second<10?'0':'') + item.liveData.matchClock.second;
+                            if(item.liveData.matchClock) {
+                                time = (item.liveData.matchClock.minute<10?'0':'') + item.liveData.matchClock.minute + ":" + (item.liveData.matchClock.second<10?'0':'') + item.liveData.matchClock.second;
+                            }
                         }
                     }
 

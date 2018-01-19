@@ -21,8 +21,6 @@ body {
   border-bottom: solid 1px lightgrey;
   padding: 8px 12px;
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -33,12 +31,8 @@ body {
 
 #quickbet .editIcon {
   cursor: pointer;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   display: none;
   position: absolute;
   right: 20px;
@@ -46,15 +40,9 @@ body {
 
 #quickbet .icon {
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center; }
+  align-items: center;
+  justify-content: center; }
 
 #quickbet .title {
   display: inline;
@@ -72,8 +60,7 @@ body {
     stroke-miterlimit: 10;
     stroke: #7ac142;
     fill: none;
-    -webkit-animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
   #quickbet .list .iconA .checkmark {
     width: 35px;
     height: 35px;
@@ -83,51 +70,27 @@ body {
     stroke: #fff;
     stroke-miterlimit: 10;
     margin: 10% auto;
-    -webkit-box-shadow: inset 0px 0px 0px #7ac142;
-            box-shadow: inset 0px 0px 0px #7ac142;
-    -webkit-animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
-            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both; }
+    box-shadow: inset 0px 0px 0px #7ac142;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both; }
   #quickbet .list .iconA .checkmark__check {
-    -webkit-transform-origin: 50% 50%;
-            transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
     stroke-dasharray: 48;
     stroke-dashoffset: 48;
-    -webkit-animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
-            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; }
-
-@-webkit-keyframes stroke {
-  100% {
-    stroke-dashoffset: 0; } }
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; }
 
 @keyframes stroke {
   100% {
     stroke-dashoffset: 0; } }
 
-@-webkit-keyframes scale {
-  0%, 100% {
-    -webkit-transform: none;
-            transform: none; }
-  50% {
-    -webkit-transform: scale3d(1.1, 1.1, 1);
-            transform: scale3d(1.1, 1.1, 1); } }
-
 @keyframes scale {
   0%, 100% {
-    -webkit-transform: none;
-            transform: none; }
+    transform: none; }
   50% {
-    -webkit-transform: scale3d(1.1, 1.1, 1);
-            transform: scale3d(1.1, 1.1, 1); } }
-
-@-webkit-keyframes fill {
-  100% {
-    -webkit-box-shadow: inset 0px 0px 0px 30px #7ac142;
-            box-shadow: inset 0px 0px 0px 30px #7ac142; } }
+    transform: scale3d(1.1, 1.1, 1); } }
 
 @keyframes fill {
   100% {
-    -webkit-box-shadow: inset 0px 0px 0px 30px #7ac142;
-            box-shadow: inset 0px 0px 0px 30px #7ac142; } }
+    box-shadow: inset 0px 0px 0px 30px #7ac142; } }
 
 #quickbet .list.highlighted {
   border: 2px solid lightgreen; }
@@ -144,6 +107,7 @@ body {
   width: 100%;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
   /* Firefox, other Gecko */
   box-sizing: border-box;
   height: 50px;
@@ -159,6 +123,7 @@ body {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 15px 20px -20px rgba(0, 0, 0, 0.3);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 15px 20px -20px rgba(0, 0, 0, 0.3);
   -webkit-transition: border .2s linear,-webkit-box-shadow .2s linear;
+  -o-transition: border linear .2s,box-shadow linear .2s;
   transition: border .2s linear,box-shadow .2s linear,-webkit-box-shadow .2s linear; }
 
 #quickbet input:focus {
@@ -177,7 +142,6 @@ body {
 #quickbet .search.move {
   display: none;
   opacity: 0;
-  -webkit-transition: visibility 0s 0.5s, opacity 2s linear;
   transition: visibility 0s 0.5s, opacity 2s linear; }
 
 #quickbet .hide {
@@ -186,24 +150,16 @@ body {
   transition-delay: 2s;
   display: none;
   opacity: 0;
-  -webkit-transition: visibility 0s 0.5s, opacity 2s linear;
   transition: visibility 0s 0.5s, opacity 2s linear; }
 
 #quickbet .selected li {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row; }
+  flex-direction: row; }
 
 #quickbet #placeBet, #quickbet button {
   border-radius: 12px;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e45c3c), color-stop(49%, #df5737), color-stop(50%, #cf4727), to(#e65e3c));
   background: linear-gradient(180deg, #e45c3c 0, #df5737 49%, #cf4727 50%, #e65e3c);
-  -webkit-box-shadow: 0 1px #ad4426, inset 0 1px #f29880;
-          box-shadow: 0 1px #ad4426, inset 0 1px #f29880;
+  box-shadow: 0 1px #ad4426, inset 0 1px #f29880;
   display: inline-block;
   width: 100%;
   border: 0;
@@ -225,19 +181,13 @@ body {
   position: relative;
   text-align: right;
   padding-top: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between; }
+  justify-content: space-between; }
 
 #quickbet .label {
   text-align: left;
   padding-right: 5px;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 1 auto;
-          flex: 0 1 auto;
+  flex: 0 1 auto;
   line-height: 24px;
   color: #615452;
   font-family: Arvo,serif;
@@ -248,9 +198,7 @@ body {
   line-height: 24px;
   font-size: 20px;
   font-weight: 700;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 auto;
-          flex: 0 0 auto; }
+  flex: 0 0 auto; }
 
 #quickbet .pageTitle {
   font-weight: 700;
@@ -303,13 +251,21 @@ body {
   left: 21px;
   color: #fff;
   -webkit-animation: none 3s linear infinite;
+  -moz-animation: none 3s linear infinite;
+  -ms-animation: none 3s linear infinite;
+  -o-animation: none 3s linear infinite;
   animation: none 3s linear infinite;
   -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -ms-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
   animation-fill-mode: both;
   -webkit-animation-name: hotspot-vertical-top;
+  -moz-animation-name: hotspot-vertical-top;
+  -ms-animation-name: hotspot-vertical-top;
+  -o-animation-name: hotspot-vertical-top;
   animation-name: hotspot-vertical-top;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
+  animation-iteration-count: 1;
   width: 278px; }
 
 #quickbet .hotspot-inner {
@@ -320,6 +276,10 @@ body {
   width: 278px;
   margin-bottom: 10px;
   background: #4385f5;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
   border-radius: 8px;
   background: #f5b400; }
 
@@ -348,23 +308,149 @@ body {
   66.667%,
   100% {
     -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
     animation-timing-function: ease-out; }
   35% {
     -webkit-transform: translate3d(0, 25px, 0);
+    -moz-transform: translate3d(0, 25px, 0);
+    -ms-transform: translate3d(0, 25px, 0);
+    -o-transform: translate3d(0, 25px, 0);
     transform: translate3d(0, 25px, 0);
     -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
     animation-timing-function: ease-in; }
   46.667% {
     -webkit-transform: translate3d(0, 12.5px, 0);
+    -moz-transform: translate3d(0, 12.5px, 0);
+    -ms-transform: translate3d(0, 12.5px, 0);
+    -o-transform: translate3d(0, 12.5px, 0);
     transform: translate3d(0, 12.5px, 0);
     -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
     animation-timing-function: ease-in; }
   60% {
     -webkit-transform: translate3d(0, 6.25px, 0);
+    -moz-transform: translate3d(0, 6.25px, 0);
+    -ms-transform: translate3d(0, 6.25px, 0);
+    -o-transform: translate3d(0, 6.25px, 0);
     transform: translate3d(0, 6.25px, 0);
     -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-timing-function: ease-in; } }
+
+@-moz-keyframes hotspot-vertical-top {
+  0%,
+  30%,
+  40%,
+  53.3%,
+  66.667%,
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    animation-timing-function: ease-out; }
+  35% {
+    -webkit-transform: translate3d(0, 25px, 0);
+    -moz-transform: translate3d(0, 25px, 0);
+    -ms-transform: translate3d(0, 25px, 0);
+    -o-transform: translate3d(0, 25px, 0);
+    transform: translate3d(0, 25px, 0);
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-timing-function: ease-in; }
+  46.667% {
+    -webkit-transform: translate3d(0, 12.5px, 0);
+    -moz-transform: translate3d(0, 12.5px, 0);
+    -ms-transform: translate3d(0, 12.5px, 0);
+    -o-transform: translate3d(0, 12.5px, 0);
+    transform: translate3d(0, 12.5px, 0);
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-timing-function: ease-in; }
+  60% {
+    -webkit-transform: translate3d(0, 6.25px, 0);
+    -moz-transform: translate3d(0, 6.25px, 0);
+    -ms-transform: translate3d(0, 6.25px, 0);
+    -o-transform: translate3d(0, 6.25px, 0);
+    transform: translate3d(0, 6.25px, 0);
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-timing-function: ease-in; } }
+
+@-ms-keyframes hotspot-vertical-top {
+  #quickbet 0%,
+  #quickbet 30%,
+  #quickbet 40%,
+  #quickbet 53.3%,
+  #quickbet 66.667%,
+  #quickbet 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    animation-timing-function: ease-out; }
+  #quickbet 35% {
+    -webkit-transform: translate3d(0, 25px, 0);
+    -moz-transform: translate3d(0, 25px, 0);
+    -ms-transform: translate3d(0, 25px, 0);
+    -o-transform: translate3d(0, 25px, 0);
+    transform: translate3d(0, 25px, 0);
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-timing-function: ease-in; }
+  #quickbet 46.667% {
+    -webkit-transform: translate3d(0, 12.5px, 0);
+    -moz-transform: translate3d(0, 12.5px, 0);
+    -ms-transform: translate3d(0, 12.5px, 0);
+    -o-transform: translate3d(0, 12.5px, 0);
+    transform: translate3d(0, 12.5px, 0);
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
+    animation-timing-function: ease-in; }
+  #quickbet 60% {
+    -webkit-transform: translate3d(0, 6.25px, 0);
+    -moz-transform: translate3d(0, 6.25px, 0);
+    -ms-transform: translate3d(0, 6.25px, 0);
+    -o-transform: translate3d(0, 6.25px, 0);
+    transform: translate3d(0, 6.25px, 0);
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
     animation-timing-function: ease-in; } }
 
 @keyframes hotspot-vertical-top {
@@ -375,23 +461,47 @@ body {
   66.667%,
   100% {
     -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
     animation-timing-function: ease-out; }
   35% {
     -webkit-transform: translate3d(0, 25px, 0);
+    -moz-transform: translate3d(0, 25px, 0);
+    -ms-transform: translate3d(0, 25px, 0);
+    -o-transform: translate3d(0, 25px, 0);
     transform: translate3d(0, 25px, 0);
     -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
     animation-timing-function: ease-in; }
   46.667% {
     -webkit-transform: translate3d(0, 12.5px, 0);
+    -moz-transform: translate3d(0, 12.5px, 0);
+    -ms-transform: translate3d(0, 12.5px, 0);
+    -o-transform: translate3d(0, 12.5px, 0);
     transform: translate3d(0, 12.5px, 0);
     -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
     animation-timing-function: ease-in; }
   60% {
     -webkit-transform: translate3d(0, 6.25px, 0);
+    -moz-transform: translate3d(0, 6.25px, 0);
+    -ms-transform: translate3d(0, 6.25px, 0);
+    -o-transform: translate3d(0, 6.25px, 0);
     transform: translate3d(0, 6.25px, 0);
     -webkit-animation-timing-function: ease-in;
+    -moz-animation-timing-function: ease-in;
+    -ms-animation-timing-function: ease-in;
+    -o-animation-timing-function: ease-in;
     animation-timing-function: ease-in; } }
 
 #quickbet .ripple {
@@ -403,26 +513,14 @@ body {
   width: 50px;
   height: 50px;
   background: white;
-  -webkit-animation: ripple-animation 2s;
-          animation: ripple-animation 2s; }
-
-@-webkit-keyframes ripple-animation {
-  from {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 0.4; }
-  to {
-    -webkit-transform: scale(100);
-            transform: scale(100);
-    opacity: 0; } }
+  animation: ripple-animation 2s; }
 
 @keyframes ripple-animation {
   from {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     opacity: 0.4; }
   to {
-    -webkit-transform: scale(100);
-            transform: scale(100);
+    transform: scale(100);
     opacity: 0; } }
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3Nhc3MvcXVpY2tiZXQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHFDQUErQyxFQUVoRDs7QUFDRDtFQUdJLFlBQVcsRUFDWjs7QUFKSDtFQU1JLHdCQUFzQixFQUN2Qjs7QUFQSDtFQVNJLFdBQVM7RUFDVCxVQUFTO0VBQ1QsaUJBQWdCO0VBQ2hCLGtCQUFpQjtFQUNqQixpQkFBZ0I7RUFDaEIsbURBQThDO0VBQzlDLDJDQUFzQztFQUN0QyxvQkFBbUIsRUFDcEI7O0FBakJIO0VBb0JJLG1DQUFrQztFQUNsQyxrQkFBaUI7RUFDakIsZ0JBQWU7RUFDZixxQkFBYTtFQUFiLHFCQUFhO0VBQWIsY0FBYTtFQUNiLCtCQUE4QjtFQUM5Qiw4QkFBNkI7RUFDN0Isd0JBQXVCO0VBQ3ZCLG9CQUFtQixFQUtwQjtFQWhDSDtJQThCTSxZQUFXLEVBQ1o7O0FBL0JMO0VBb0NJLGdCQUFlO0VBQ2YsMEJBQW1CO01BQW5CLHVCQUFtQjtVQUFuQixvQkFBbUI7RUFDbkIseUJBQXVCO01BQXZCLHNCQUF1QjtVQUF2Qix3QkFBdUI7RUFDdkIsY0FBYTtFQUNiLG1CQUFrQjtFQUNsQixZQUFXO0VBQ1gsY0FBYSxFQUNkOztBQTNDSDtFQThDSSxnQkFBZTtFQUNmLHFCQUFhO0VBQWIscUJBQWE7RUFBYixjQUFhO0VBQ2IsMEJBQW1CO01BQW5CLHVCQUFtQjtVQUFuQixvQkFBbUI7RUFDbkIseUJBQXVCO01BQXZCLHNCQUF1QjtVQUF2Qix3QkFBdUIsRUFDeEI7O0FBbERIO0VBcURJLGdCQUFlO0VBQ2YsZ0JBQWU7RUFDZixpQkFBZ0I7RUFDaEIsMkJBQXNCLEVBQ3ZCOztBQXpESDtFQTRETSx5QkFBd0I7RUFHeEIsV0FBVSxFQW9EWDtFQW5ITDtJQWtFUSxzQkFBcUI7SUFDckIsdUJBQXNCO0lBQ3RCLGdCQUFlO0lBQ2Ysc0JBQXFCO0lBQ3JCLGdCQVRvQjtJQVVwQixXQUFVO0lBQ1YsdUVBQXFDO1lBQXJDLCtEQUFxQyxFQUN0QztFQXpF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 */
+
+/*# sourceMappingURL=quickbet.css.map */

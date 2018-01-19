@@ -359,13 +359,12 @@ select {
 	}
 
 	.bottom-nav-view {
-		z-index: 199;
+		z-index: 500;
 		position: fixed;
 		bottom: 0;
 		width: 100%;
 		background: #f0e7dc;
 		box-shadow: 0 -2px 0 #ccc6c0;
-		z-index: 18;
 		height: 48px;
 		overflow: visible;
 		display: table;
@@ -2720,5 +2719,472 @@ select {
             }
           }
 		}
+	}
+}
+
+#betslip {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 50px;
+	background: #555;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	padding: 0;
+	margin: 0;
+	z-index: 200;
+	max-height: 100vh;
+	height: 0;
+	font-family: Arvo,serif;
+	font-size: 16px;
+	line-height: normal;
+	-webkit-tap-highlight-color: transparent;
+	-ms-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	border-radius: 6px 6px 0 0;
+	height: auto;
+
+	.wrapper {
+		transform: translateZ(0);
+		overflow: hidden;
+		background: #555;
+
+		.header {
+			display: flex;
+			flex: 0 0 auto;
+			align-items: center;
+			color: #fff;
+			background-color: #555;
+			box-sizing: border-box;
+			border-top: 4px solid #e45c3c;
+			cursor: pointer;
+			padding: 0 15px;
+			width: 100%;
+			height:52px;
+
+			.title {
+				display: flex;
+				justify-content: space-between;
+				width: 100%;
+
+				.minimize {
+					-webkit-appearance: inherit;
+					appearance: inherit;
+					background: none;
+					border: none;
+					outline: none;
+					cursor: pointer;
+					padding: 0;
+					border-right: 1px solid rgba(0,0,0,.15);
+					flex: 0 0 36px;
+					border-radius: 0;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+
+					&:before {
+						font-family: FontAwesome;
+						font-weight: 400;
+						font-style: normal;
+						content: "\f2d1";
+						speak: none;
+						text-transform: none;
+						-webkit-font-smoothing: antialiased;
+						-moz-osx-font-smoothing: grayscale;
+						opacity: .25;
+						font-size: 23px;
+						color: white;
+						transition: opacity .2s ease-out;
+					}
+				}
+			}
+		}
+		.content {
+			margin: 0 6px 10px;
+			background: #f8f3ee;
+			border-radius: 6px!important;
+
+			.tabs {
+				border-radius: 6px 6px 0 0;
+				border-bottom: 1px solid #c5c5c5;
+				background-color: #fff;
+				height: 40px;
+				min-height: 40px;
+
+				.tabsContainer {
+					display: inline-flex;
+					flex: 0 0 auto;
+					position: relative;
+					line-height: 40px;
+					padding: 0 0 8px;
+					width: 100%;
+
+					a {
+						position: relative;
+						font-size: 13px;
+						padding: 0 12px;
+						cursor: pointer;
+						flex: 1 0 auto;
+						text-align: center;
+						color: rgba(85,85,85,.5);
+						transition: color .2s ease-out;
+						line-height: 38px;
+
+						&.selected {
+							color: #615452;
+							cursor: default;
+							border-bottom: 1px solid red;
+						}
+						&.disabled {
+							color: #b3b3b3;
+							text-decoration: line-through;
+							cursor: default;
+						}
+					}
+				}
+			}
+
+			.scrollable {
+				height: 100%;
+				margin-top: 15px;
+
+				.tabcontent {
+					background-color: transparent;
+					box-sizing: border-box;
+					color: inherit;
+					content: normal;
+					float: none;
+					font-family: inherit;
+					height: auto;
+					line-height: inherit;
+					margin: 0;
+					max-height: none;
+					max-width: none;
+					min-height: 0;
+					min-width: 0;
+					padding: 0;
+					pointer-events: inherit;
+					position: static;
+					right: auto;
+					text-align: inherit;
+					text-decoration: none;
+					text-overflow: clip;
+					top: auto;
+					touch-action: auto;
+					visibility: inherit;
+					width: auto;
+					z-index: auto;
+
+					.events {
+						padding: 0 10px;
+						margin: 0;
+						counter-reset: li;
+						.event {
+							border-radius: 3px;
+							margin-bottom: 2px;
+							border-bottom: 2px solid #c5c5c5;
+							background-color: #fff;
+							color: #615452;
+							position: relative;
+							list-style-type: none;
+							
+							.eventwrapper {
+								display: flex;
+								border-bottom: none;
+
+								.eventButton {
+									-webkit-appearance: inherit;
+									appearance: inherit;
+									background: none;
+									border: none;
+									outline: none;
+									cursor: pointer;
+									padding: 0;
+									border-right: 1px solid rgba(0,0,0,.15);
+									flex: 0 0 36px;
+									border-radius: 0;
+									display: flex;
+									justify-content: center;
+									align-items: center;
+
+									&:before {
+										font-family: FontAwesome;
+										font-weight: 400;
+										font-style: normal;
+										content: "\f00d";
+										speak: none;
+										text-transform: none;
+										-webkit-font-smoothing: antialiased;
+										-moz-osx-font-smoothing: grayscale;
+										opacity: .25;
+										font-size: 23px;
+										color: #000;
+										transition: opacity .2s ease-out;
+									}
+								}
+
+								.eventContent {
+									display: flex;
+									flex: 1 1 auto;
+									flex-wrap: wrap;
+									padding: 8px 10px;
+									font-size: 12px;
+									line-height: 14px;
+
+									.description {
+										flex: 1 0 0%;
+
+										.outcomeheader {
+											display: flex;
+											align-items: flex-start;
+											margin-bottom: 6px;
+											.bog{
+												white-space: pre-line;
+												margin-bottom: 4px;
+											}
+											.live-label{
+												font-family: Arvo,serif;
+												font-weight: 700;
+												color: #fff;
+												font-size: 8px;
+												font-style: bold;
+												text-transform: uppercase;
+												background-color: #d0021b;
+												padding: 0 2px;
+												border-radius: 0;
+												font-style: italic;
+												margin-right: 3px;
+												margin-top: 2px;
+												line-height: 10px;
+												letter-spacing: .5px;
+												display: none;
+												background: #e45c3c;
+											}
+											.outcome-label{
+												font-size: 14px;
+												font-weight: 700;
+												display: inline;
+											}
+										}
+
+										.criteria {
+											white-space: pre-line;
+											margin-bottom: 4px;
+											color: #999;
+										}
+
+										.event-link {
+											font-weight: 700;
+											word-wrap: normal;
+											background-color: transparent;
+											box-sizing: border-box;
+											color: inherit;
+											content: normal;
+											float: none;
+											font-family: inherit;
+											height: auto;
+											line-height: inherit;
+											margin: 0;
+											max-height: none;
+											max-width: none;
+											min-height: 0;
+											min-width: 0;
+											padding: 0;
+											pointer-events: inherit;
+											position: static;
+											right: auto;
+											text-align: inherit;
+											text-decoration: none;
+											text-overflow: clip;
+											top: auto;
+											touch-action: auto;
+											visibility: inherit;
+											width: auto;
+											z-index: auto;
+										}
+									}
+									.stake {
+										flex: 0 0 auto;
+										margin-top: -1px;
+										margin-left: 4px;
+										text-align: right;
+
+										.oddsContainer{
+											display: inline-block;
+											position: relative;
+											margin-right: 4px;
+											margin-bottom: 5px;
+
+											.odds {
+												font-size: 14px;
+												font-weight: 700;
+												line-height: 16px;
+											}
+										}
+
+										.stakeContainer {
+											flex: 0 0 auto;
+											margin-top: -1px;
+											margin-left: 4px;
+											text-align: right;
+
+											.stake-input-container {
+												display: flex;
+												flex-direction: row;
+
+												.stake-input {
+													margin-bottom: 8px;
+													border-radius: 2px;
+
+													input {
+														background: #f8f3ee;
+														-webkit-appearance: none;
+														appearance: none;
+														font-size: 14px;
+														font-weight: 700;
+														width: 66px;
+														height: 30px;
+														color: #615452;
+														border: 1px solid #e0d7d5;
+														border-radius: 2px;
+														padding-left: 4px;
+														padding-right: 4px;
+														user-select: text;
+														-webkit-user-modify: read-write;
+													}
+
+											}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+
+
+					.betslip__summary {
+						padding-top: 15px;
+						padding: 21px 10px 5px;
+						.cash-out-container {
+							font-size: 0;
+							.cash-out-label {
+								background-color: #00953a;
+								border-radius: 2px;
+								color: #fff;
+								font-size: 10px;
+								line-height: 10px;
+								padding: 3px;
+								margin-bottom: 6px;
+								display: none;
+								display: inline-block;
+
+							}
+						}
+						.summary__row {
+							display: flex;
+							align-items: center;
+							margin-bottom: 3px;
+
+							.summary__label {
+								flex: 1 1 auto;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+								margin-right: 2px;
+								font-family: Arvo,serif;
+								font-size: 12px;
+								font-weight: 400;
+								color: #615452;
+							}
+							.summary__value {
+								flex: 0 0 auto;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+								max-width: calc(100% - 30px);
+								font-family: Arvo,serif;
+								font-size: 16px;
+								color: #615452;
+
+								.free-bet-label {
+									font-size: 12px;
+									font-weight: 700;
+									color: #e45c3c;
+								}
+								.total-stake-value {
+									display: inline;
+								}
+								.obsolete-odds {
+									display: inline;
+								}
+								.total-odds-value {
+									display: inline;
+								}
+								.boosted-odds-payout-label {
+									font-size: 12px;
+									font-weight: 700;
+									color: #e45c3c;
+								}
+								.potential-payout-value {
+									display: inline;
+								}
+							}
+						}
+					}
+
+
+				}
+				.betbutton {
+					background-color: transparent;
+					box-sizing: border-box;
+					color: inherit;
+					content: normal;
+					float: none;
+					font-family: inherit;
+					height: auto;
+					line-height: inherit;
+					margin: 0;
+					max-height: none;
+					max-width: none;
+					min-height: 0;
+					min-width: 0;
+					padding: 0;
+					pointer-events: inherit;
+					position: static;
+					right: auto;
+					text-align: inherit;
+					text-decoration: none;
+					text-overflow: clip;
+					top: auto;
+					touch-action: auto;
+					visibility: inherit;
+					width: auto;
+					z-index: auto;
+					padding: 10px 10px 16px;
+
+					.KambiBC {
+						border-radius: 12px;
+						background: linear-gradient(180deg,#e45c3c 0,#df5737 49%,#cf4727 50%,#e65e3c);
+						box-shadow: 0 1px #ad4426, inset 0 1px #f29880;
+						font-size: 20px;
+						padding: 12px 0;
+						cursor: pointer;
+						color: white;
+						width: 100%;
+						font-weight: 700;
+						transition: background .2s ease-out;
+
+						&.disabled {
+							background: linear-gradient(180deg,#9e4e3d 0,#9c4c3c 49%,#974535 50%,#9c4c3c);
+							box-shadow: 0 1px #ad4426, inset 0 1px #ad4426;
+							color: hsla(12,36%,58%,.5);
+						}
+					}
+				}
+			}
+		}
+
+
 	}
 }

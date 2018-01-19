@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/sass/app.scss" line="1720" mnemonic="7" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="84e378b2-9e1e-4aa6-b50c-207615ceee08" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/main.js" afterPath="$PROJECT_DIR$/public/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/app.css" afterPath="$PROJECT_DIR$/public/stylesheets/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/app.css.map" afterPath="$PROJECT_DIR$/public/stylesheets/app.css.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/quickbet.css" afterPath="$PROJECT_DIR$/public/stylesheets/quickbet.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/app.scss" afterPath="$PROJECT_DIR$/sass/app.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/includes/index.html" afterPath="$PROJECT_DIR$/views/includes/index.html" />
     </list>
@@ -47,8 +45,8 @@
       <file leaf-file-name="app.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sass/app.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="2617" column="21" lean-forward="true" selection-start-line="2617" selection-start-column="21" selection-end-line="2617" selection-end-column="21" />
+            <state relative-caret-position="26355">
+              <caret line="1757" column="18" lean-forward="false" selection-start-line="1757" selection-start-column="18" selection-end-line="1757" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -67,12 +65,12 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="652" column="24" lean-forward="true" selection-start-line="652" selection-start-column="24" selection-end-line="652" selection-end-column="24" />
+            <state relative-caret-position="632">
+              <caret line="454" column="4" lean-forward="false" selection-start-line="454" selection-start-column="4" selection-end-line="454" selection-end-column="4" />
               <folding>
-                <marker date="1516294762000" expanded="true" signature="19602:19623" ph="..." />
-                <marker date="1516294762000" expanded="true" signature="21113:21134" ph="..." />
-                <marker date="1516294762000" expanded="true" signature="28372:28464" ph="..." />
+                <marker date="1516374096000" expanded="true" signature="23562:23583" ph="..." />
+                <marker date="1516374096000" expanded="true" signature="25073:25094" ph="..." />
+                <marker date="1516374096000" expanded="true" signature="32332:32424" ph="..." />
               </folding>
             </state>
           </provider>
@@ -81,11 +79,12 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/includes/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="45" column="6" lean-forward="true" selection-start-line="45" selection-start-column="6" selection-end-line="45" selection-end-column="6" />
+            <state relative-caret-position="7050">
+              <caret line="470" column="36" lean-forward="true" selection-start-line="438" selection-start-column="28" selection-end-line="470" selection-end-column="36" />
               <folding>
-                <marker date="1516294182000" expanded="false" signature="16230:16251" ph="..." />
-                <marker date="1516294182000" expanded="true" signature="18622:18659" ph="..." />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#7;n#div#2;n#!!top" expanded="true" />
+                <marker date="1516372249000" expanded="false" signature="16230:16251" ph="..." />
+                <marker date="1516372249000" expanded="true" signature="18622:18659" ph="..." />
               </folding>
             </state>
           </provider>
@@ -135,24 +134,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>leagueTitle</find>
-      <find>leaguebutton</find>
-      <find>allleagu</find>
-      <find>allLeagueArray</find>
-      <find>overlay</find>
-      <find>eventPage</find>
-      <find>mainPage</find>
-      <find>attr</find>
-      <find>eventId</find>
-      <find>unique</find>
-      <find>append</find>
-      <find>undefined</find>
-      <find>convertOdds</find>
-      <find>case</find>
-      <find>betOfferType</find>
-      <find>convertAsianTotal</find>
-      <find>convertTothreeWay</find>
-      <find>oddsWrapper</find>
       <find>betOfferButton</find>
       <find>.container</find>
       <find>container</find>
@@ -165,6 +146,24 @@
       <find>offerList&quot;).app</find>
       <find>.left</find>
       <find>#page</find>
+      <find>.page</find>
+      <find>bottom-nav</find>
+      <find>sportsbook-default</find>
+      <find>a {</find>
+      <find>&amp;:before</find>
+      <find>fontawe</find>
+      <find>$( &quot;#betSlip&quot; ).hide();</find>
+      <find>$( &quot;#betSlip&quot; )</find>
+      <find>bottom-nav-</find>
+      <find>$( &quot;#betslip&quot; )</find>
+      <find>z-index</find>
+      <find>z-index: 18</find>
+      <find>bottom-nav-view</find>
+      <find>betslip</find>
+      <find>find(&quot;.card</find>
+      <find>betOfferbutt</find>
+      <find>\n</find>
+      <find>card-wrap</find>
     </findStrings>
     <replaceStrings>
       <replace>li-element</replace>
@@ -200,9 +199,9 @@
         <option value="$PROJECT_DIR$/views/index.pug" />
         <option value="$PROJECT_DIR$/sass/quickbet.scss" />
         <option value="$PROJECT_DIR$/views/layout.pug" />
+        <option value="$PROJECT_DIR$/sass/app.scss" />
         <option value="$PROJECT_DIR$/views/includes/index.html" />
         <option value="$PROJECT_DIR$/public/js/main.js" />
-        <option value="$PROJECT_DIR$/sass/app.scss" />
       </list>
     </option>
   </component>
@@ -218,10 +217,10 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1533" />
-    <option name="y" value="-57" />
+    <option name="x" value="1528" />
+    <option name="y" value="-328" />
     <option name="width" value="2329" />
-    <option name="height" value="1113" />
+    <option name="height" value="1310" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -238,7 +237,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -277,6 +275,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -556,12 +555,19 @@
       <workItem from="1516287957589" duration="1223000" />
       <workItem from="1516289787694" duration="1577000" />
       <workItem from="1516291599477" duration="1494000" />
-      <workItem from="1516293449705" duration="1233000" />
+      <workItem from="1516293449705" duration="1520000" />
+      <workItem from="1516357857471" duration="1011000" />
+      <workItem from="1516363909234" duration="1677000" />
+      <workItem from="1516365721389" duration="1758000" />
+      <workItem from="1516367833499" duration="1408000" />
+      <workItem from="1516369641735" duration="1409000" />
+      <workItem from="1516371504673" duration="1796000" />
+      <workItem from="1516373327139" duration="737000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="381298000" />
+    <option name="totallyTimeSpent" value="391381000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -573,13 +579,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1533" y="-57" width="2329" height="1113" extended-state="0" />
+    <frame x="1528" y="-328" width="2329" height="1310" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1135182" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267671" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32674897" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -837,33 +843,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/includes/index.html">
+    <entry file="file://$PROJECT_DIR$/sass/app.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="6" lean-forward="true" selection-start-line="45" selection-start-column="6" selection-end-line="45" selection-end-column="6" />
-          <folding>
-            <marker date="1516294182000" expanded="false" signature="16230:16251" ph="..." />
-            <marker date="1516294182000" expanded="true" signature="18622:18659" ph="..." />
-          </folding>
+        <state relative-caret-position="26355">
+          <caret line="1757" column="18" lean-forward="false" selection-start-line="1757" selection-start-column="18" selection-end-line="1757" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sass/app.scss">
+    <entry file="file://$PROJECT_DIR$/views/includes/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="2617" column="21" lean-forward="true" selection-start-line="2617" selection-start-column="21" selection-end-line="2617" selection-end-column="21" />
-          <folding />
+        <state relative-caret-position="7050">
+          <caret line="470" column="36" lean-forward="true" selection-start-line="438" selection-start-column="28" selection-end-line="470" selection-end-column="36" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#7;n#div#2;n#!!top" expanded="true" />
+            <marker date="1516372249000" expanded="false" signature="16230:16251" ph="..." />
+            <marker date="1516372249000" expanded="true" signature="18622:18659" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="652" column="24" lean-forward="true" selection-start-line="652" selection-start-column="24" selection-end-line="652" selection-end-column="24" />
+        <state relative-caret-position="632">
+          <caret line="454" column="4" lean-forward="false" selection-start-line="454" selection-start-column="4" selection-end-line="454" selection-end-column="4" />
           <folding>
-            <marker date="1516294762000" expanded="true" signature="19602:19623" ph="..." />
-            <marker date="1516294762000" expanded="true" signature="21113:21134" ph="..." />
-            <marker date="1516294762000" expanded="true" signature="28372:28464" ph="..." />
+            <marker date="1516374096000" expanded="true" signature="23562:23583" ph="..." />
+            <marker date="1516374096000" expanded="true" signature="25073:25094" ph="..." />
+            <marker date="1516374096000" expanded="true" signature="32332:32424" ph="..." />
           </folding>
         </state>
       </provider>
