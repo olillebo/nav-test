@@ -8,7 +8,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/app.css.map" afterPath="$PROJECT_DIR$/public/stylesheets/app.css.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/quickbet.css" afterPath="$PROJECT_DIR$/public/stylesheets/quickbet.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/app.scss" afterPath="$PROJECT_DIR$/sass/app.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/includes/index.html" afterPath="$PROJECT_DIR$/views/includes/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,8 +44,8 @@
       <file leaf-file-name="app.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sass/app.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26355">
-              <caret line="1757" column="18" lean-forward="false" selection-start-line="1757" selection-start-column="18" selection-end-line="1757" selection-end-column="18" />
+            <state relative-caret-position="625">
+              <caret line="2036" column="21" lean-forward="false" selection-start-line="2036" selection-start-column="21" selection-end-line="2036" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -65,12 +64,12 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="632">
-              <caret line="454" column="4" lean-forward="false" selection-start-line="454" selection-start-column="4" selection-end-line="454" selection-end-column="4" />
+            <state relative-caret-position="476">
+              <caret line="1249" column="49" lean-forward="false" selection-start-line="1249" selection-start-column="49" selection-end-line="1249" selection-end-column="49" />
               <folding>
-                <marker date="1516374096000" expanded="true" signature="23562:23583" ph="..." />
-                <marker date="1516374096000" expanded="true" signature="25073:25094" ph="..." />
-                <marker date="1516374096000" expanded="true" signature="32332:32424" ph="..." />
+                <marker date="1516718292000" expanded="true" signature="23629:23650" ph="..." />
+                <marker date="1516718292000" expanded="true" signature="25140:25161" ph="..." />
+                <marker date="1516718292000" expanded="true" signature="32399:32491" ph="..." />
               </folding>
             </state>
           </provider>
@@ -79,8 +78,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/includes/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7050">
-              <caret line="470" column="36" lean-forward="true" selection-start-line="438" selection-start-column="28" selection-end-line="470" selection-end-column="36" />
+            <state relative-caret-position="15">
+              <caret line="470" column="36" lean-forward="false" selection-start-line="438" selection-start-column="28" selection-end-line="470" selection-end-column="36" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#7;n#div#2;n#!!top" expanded="true" />
                 <marker date="1516372249000" expanded="false" signature="16230:16251" ph="..." />
@@ -134,13 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>betOfferButton</find>
-      <find>.container</find>
-      <find>container</find>
-      <find>.label</find>
-      <find>oddswrapper</find>
-      <find>getEventJsonData</find>
-      <find>eventID</find>
       <find>closeEv</find>
       <find>.attr(&quot;live&quot;)=</find>
       <find>offerList&quot;).app</find>
@@ -164,6 +156,13 @@
       <find>betOfferbutt</find>
       <find>\n</find>
       <find>card-wrap</find>
+      <find>leagueTitle</find>
+      <find>sport-</find>
+      <find>oddsoffers</find>
+      <find>betoffers</find>
+      <find>betOfferButton</find>
+      <find>oddsOffers</find>
+      <find>dateTitle</find>
     </findStrings>
     <replaceStrings>
       <replace>li-element</replace>
@@ -199,8 +198,8 @@
         <option value="$PROJECT_DIR$/views/index.pug" />
         <option value="$PROJECT_DIR$/sass/quickbet.scss" />
         <option value="$PROJECT_DIR$/views/layout.pug" />
-        <option value="$PROJECT_DIR$/sass/app.scss" />
         <option value="$PROJECT_DIR$/views/includes/index.html" />
+        <option value="$PROJECT_DIR$/sass/app.scss" />
         <option value="$PROJECT_DIR$/public/js/main.js" />
       </list>
     </option>
@@ -237,6 +236,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -275,7 +275,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -562,12 +561,15 @@
       <workItem from="1516367833499" duration="1408000" />
       <workItem from="1516369641735" duration="1409000" />
       <workItem from="1516371504673" duration="1796000" />
-      <workItem from="1516373327139" duration="737000" />
+      <workItem from="1516373327139" duration="878000" />
+      <workItem from="1516710382263" duration="1704000" />
+      <workItem from="1516712161876" duration="114000" />
+      <workItem from="1516716713372" duration="1762000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="391381000" />
+    <option name="totallyTimeSpent" value="395102000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -580,14 +582,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1528" y="-328" width="2329" height="1310" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1135182" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32674897" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -843,18 +844,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sass/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26355">
-          <caret line="1757" column="18" lean-forward="false" selection-start-line="1757" selection-start-column="18" selection-end-line="1757" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/includes/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7050">
-          <caret line="470" column="36" lean-forward="true" selection-start-line="438" selection-start-column="28" selection-end-line="470" selection-end-column="36" />
+        <state relative-caret-position="15">
+          <caret line="470" column="36" lean-forward="false" selection-start-line="438" selection-start-column="28" selection-end-line="470" selection-end-column="36" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#7;n#div#2;n#!!top" expanded="true" />
             <marker date="1516372249000" expanded="false" signature="16230:16251" ph="..." />
@@ -863,14 +856,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sass/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="2036" column="21" lean-forward="false" selection-start-line="2036" selection-start-column="21" selection-end-line="2036" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
-          <caret line="454" column="4" lean-forward="false" selection-start-line="454" selection-start-column="4" selection-end-line="454" selection-end-column="4" />
+        <state relative-caret-position="476">
+          <caret line="1249" column="49" lean-forward="false" selection-start-line="1249" selection-start-column="49" selection-end-line="1249" selection-end-column="49" />
           <folding>
-            <marker date="1516374096000" expanded="true" signature="23562:23583" ph="..." />
-            <marker date="1516374096000" expanded="true" signature="25073:25094" ph="..." />
-            <marker date="1516374096000" expanded="true" signature="32332:32424" ph="..." />
+            <marker date="1516718292000" expanded="true" signature="23629:23650" ph="..." />
+            <marker date="1516718292000" expanded="true" signature="25140:25161" ph="..." />
+            <marker date="1516718292000" expanded="true" signature="32399:32491" ph="..." />
           </folding>
         </state>
       </provider>

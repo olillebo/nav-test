@@ -654,17 +654,6 @@ select {
                       }
                     }
 
-/*                    &[betOffers='false']{
-                      width: 150px;
-
-                      .betOfferButton {
-                        display: none;
-
-                        &.showAll {
-                          display: flex;
-                        }
-                      }
-                    }*/
 					  &[oddsOffers='0']{
 						  width: 150px;
 
@@ -683,6 +672,15 @@ select {
 						  }
 					  }
                   }
+				}
+
+				&[sport='Basketball']{
+					.betOffers {
+						&[oddsOffers='0']{
+							width: 100px !important;
+						}
+
+					}
 				}
 			}
 
@@ -2001,6 +1999,7 @@ select {
 
 	  .start {
 		  .leagueTitle {
+			  display: none;
 			  &:before {
 				  font-size: 24px;
 				  content: "";
@@ -2019,8 +2018,26 @@ select {
 			  }
 		  }
 		  .dateTitle {
-			  display: none;
+			  //display: none;
+			  display: flex;
+			  justify-content: space-between;
+			  .title {
+				  width: 100%;
+			  }
+			  .betHeader {
+				  display: flex;
 
+				  .bet {
+					  width: 50px;
+					  justify-content: center;
+					  display: flex;
+				  }
+			  }
+			&.2 {
+				.betX {
+					display: none;
+				}
+			}
 		  }
 		&.Ice_hockey {
 			.leagueTitle {

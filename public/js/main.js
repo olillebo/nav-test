@@ -52,9 +52,9 @@ var outcomeOptions = {
 };
 
 var outcomeOptions_2 = {
-    valueNames: [{ name: 'id', attr: 'id' }, { name: 'eventID', attr: 'eventID' }, "home", "away", { name: 'sport', attr: 'sport' }, { name: 'rank', attr: 'rank' }, "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }, { name: 'oddsOffers', attr: 'oddsOffers' }],
+    valueNames: [{ name: 'id', attr: 'id' }, { name: 'eventID', attr: 'eventID' }, "home", "away", { name: 'sport', attr: 'sport' }, { name: 'rank', attr: 'rank' }, "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }, { name: 'oddsOffers', attr: 'oddsOffers' }, { name: 'oddsOffersCopy', attr: 'oddsOffersCopy' }],
     item: '<div class="card-container v2 id">\n' +
-    '    <div class="card-wrap live leagueID id eventID dateStamp rank sport">\n' +
+    '    <div class="card-wrap live leagueID id eventID dateStamp rank sport oddsOffersCopy">\n' +
     '        <div class="left">\n' +
     '           <div class="cardcontent ">\n' +
     '              <div class="teamline">\n' +
@@ -1238,14 +1238,24 @@ function getLiveEvents(live) {
         if(value[1]!=currsport){
             if(value[1]=="Ice_hockey") {
                 leaguenm = "Ice hockey"
-            } else leaguenm = value[1]
-            $( ".league-"+panel ).append('' +
+            } else leaguenm = value[1];
+
+
+            var header = '' +
                 '<div class="start '+value[1]+' sport-'+panel+'-'+value[1]+'">'+
-                    '<div class="dateTitle">'+leaguenm+'</div>'
-                +'</div>'
-            );
+                    '<div class="dateTitle">'+
+                        '<div class="title">'+value[1]+'</div>'+
+                        '<div class="betHeader">'+
+                            '<div class="bet">1</div>'+
+                            '<div class="bet betX">X</div>'+
+                            '<div class="bet">2</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'
+            $( ".league-"+panel ).append(header);
             currsport = value[1];
         }
+
 
         $( ".sport-"+panel+'-'+value[1] ).append('' +
             '<div class="leagueWrapper sport-'+value[0]+'">'+
@@ -1267,6 +1277,15 @@ function getLiveEvents(live) {
                 }
             });
         });
+    });
+
+    $.each( filteredData, function( index, value ){
+        if(value[1]!=currsport){
+            var numberOffers = $( ".sport-"+panel+'-'+value[1] ).find(".oddsOffers").first().attr("oddsoffers");
+            $( ".sport-"+panel+'-'+value[1] ).find(".dateTitle").addClass(numberOffers);
+            currsport = value[1];
+
+        }
     });
 
 
@@ -1690,6 +1709,7 @@ function getJsonData() {
                     var homeScore = undefined;
                     var awayScore = undefined;
                     var betOffers = undefined;
+                    var oddsOffersCopy = undefined;
                     var rank = undefined;
                     var oddsOffers= undefined;
                     var eventID = undefined;
@@ -1705,6 +1725,7 @@ function getJsonData() {
 
                             if(offer.outcomes.length > 0) {
                                 oddsOffers = offer.outcomes.length;
+
                             } else oddsOffers = false;
 
                             if(offer.betOfferType.name == "Match") {
@@ -1782,7 +1803,8 @@ function getJsonData() {
                                 stream: stream,
                                 betOffers: betOffers,
                                 sortDate: sortDate,
-                                oddsOffers: odds.length
+                                oddsOffers: odds.length,
+                                oddsOffersCopy: odds.length
                             });
                         }
                     //}
