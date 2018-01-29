@@ -599,26 +599,37 @@ select {
 						display: flex;
 						justify-content: space-between;
 						align-items: center;
+
+						.leftWrapper {
+							display: flex;
+							width: 100%;
+						}
+
 						.time {
 							color: #999999;
 						}
 
 						.card-stream {
 							display: none;
+							.material-icons {
+								color: red;
+								font-size: 16px;
+							}
 
 						}
 						.card-livelabel {
 							display: none;
 						}
 						.card-stream[stream='true']{
-							display: inline;
-							width: 42px;
+							display: flex;
+/*							width: 42px;
 							height: 15px;
 							background-image: url('/stylesheets/stream.png');
-							background-repeat: no-repeat;
+							background-repeat: no-repeat;*/
 
 						}
 					}
+
 				}
 
 				.right {
@@ -655,7 +666,7 @@ select {
                     }
 
 					  &[oddsOffers='0']{
-						  width: 150px;
+						  width: 126px;
 
 						  .betOfferButton {
 							  display: none;
@@ -672,6 +683,39 @@ select {
 						  }
 					  }
                   }
+				}
+
+				&.vertical {
+
+					.left {
+						flex-direction: row !important;
+
+						.cardcontent2 {
+							padding-right: 8px;
+
+							.bottomInfo {
+								display: flex;
+								flex-direction: column !important;
+								align-items: left !important;
+
+								.card-livelabel {
+									display: none !important;
+									color: red;
+								}
+							}
+						}
+						.cardcontent {
+							width: 100%;
+							flex: 1 1 auto;
+							min-width: 0;
+						}
+					}
+
+					.right {
+						.betOfferButton {
+							width: 42px;
+						}
+					}
 				}
 
 				&[sport='Basketball']{
@@ -2028,12 +2072,12 @@ select {
 				  display: flex;
 
 				  .bet {
-					  width: 50px;
+					  width: 42px;
 					  justify-content: center;
 					  display: flex;
 				  }
 			  }
-			&.2 {
+			&.Tennis, &.Basketball, &.Tennis, &.Esports,  &.Golf,  &.Volleyball {
 				.betX {
 					display: none;
 				}
@@ -2102,7 +2146,7 @@ select {
 			color: #615452;
 			text-shadow: 1px 2px 0 #f8f3ee;
 			width: 50%;
-			text-transform: initial !important;
+			text-transform: initial;
 			text-decoration: none !important;
 			&.is-active {
 				color: #e75f3f;
@@ -3203,5 +3247,246 @@ select {
 		}
 
 
+	}
+}
+
+body {
+	font-family: 'Source sans pro', serif !important;
+	&.newStyle {
+
+		.navigation {
+			margin-top: 88px !important;
+		}
+
+		background-color: white !important;
+		.titlebar-view {
+			background: none !important;
+			background-color: #FC8244 !important;
+			border-bottom: none !important;
+
+			.logotype {
+				transform: scale(0.8);
+			}
+			
+			.home {
+				display: none;
+			}
+
+			.login, .home, .sidebar, .logotype {
+				display: none !important;
+			}
+
+			.logoType2 {
+				display: block !important;
+			}
+
+			.newHeader {
+				height: 100%;
+				display: flex;
+				justify-content: space-between;
+
+				.material-icons {
+					color: white !important;
+				}
+
+				.mdl-button {
+					padding: 0 8px !important;
+					min-width: 0px !important;
+					height: 100%;
+				}
+			}
+		}
+
+		.lobbyIcon {
+			display: none !important;
+		}
+
+		.lobby-menu-list {
+			background-color: #FC8244 !important;
+
+			li a {
+				border-bottom-color: white !important;
+
+				span {
+					color: white !important;
+					font-weight: normal !important;
+					text-transform: uppercase;
+				}
+			}
+
+			.borderStyle {
+				border-left: none !important;
+			}
+		}
+
+		.lobby-menu-view {
+			text-shadow: none !important;
+		}
+		.bottom-nav-view {
+			background-color: white !important;
+		}
+
+		.card-container {
+			box-shadow: 0 3px 3px 0 rgba(140, 140, 140, 0.3);
+			.teamname-row, .score-item {
+				font-weight: bold !important;
+			}
+
+			.left {
+				padding-left: 0px !important;
+			}
+
+			.teamScores {
+				margin-top: -8px;
+				margin-bottom: -8px;
+				padding-top: 8px;
+				background-color: #0cb0a4;
+				margin-right: 8px;
+				padding-right: 6px;
+				color: white;
+				padding-left: 6px;
+			}
+
+			.cardcontent2 {
+				padding-right: 0px !important;
+				padding-left: 8px;
+
+				.bottomInfo {
+					align-items: flex-end !important;
+				}
+
+				.card-stream {
+					justify-content: flex-end;
+					width: 100%;
+				}
+			}
+
+			.card-wrap {
+				line-height: normal;
+			}
+
+			.betOfferButton {
+				background-color: #EBEBEB !important;
+				color: black !important;
+
+				&.selected {
+					background-color: #FC8244 !important;
+					color: white !important;
+				}
+			}
+		}
+
+		.dateTitle {
+			border-bottom: 1px solid #000000 !important;
+
+			.bet {
+				font-size: 14px !important;
+				font-weight: normal !important;
+			}
+		}
+
+		.leagueTitle {
+			background: black;
+			height: 30px;
+			margin-bottom: 10px;
+			color: white;
+		}
+
+		.tabtab {
+			border-bottom: none !important;
+
+			height: 38px !important;
+
+			#liveEvents {
+				display: flex;
+				width: 100%;
+			}
+
+			.mdl-tabs__tab {
+				//background-color: #0CAFA5 !important;
+				text-shadow: none !important;
+				//color: white !important;
+				height: 100% !important;
+				line-height: 38px !important;
+				padding: 0 !important;
+
+				font-size: 15px !important;
+				text-transform: uppercase !important;
+				font-weight: normal !important;
+				border-right: none !important;
+
+
+				&.is-active {
+					background-color: white !important;
+					border-bottom: none !important;
+					color: black !important;
+					font-weight: bold !important;
+
+					span {
+						border-bottom: 2px solid #0cb0a4;
+						color: #0cb0a4 !important;
+					}
+
+
+					&:after {
+						display: none;
+					}
+				}
+			}
+
+			#leagueButton {
+
+				background: white;
+				//color: white;
+
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0 8px;
+				//margin-right: 8px;
+
+				i {
+					color: black;
+					cursor: pointer;
+				}
+
+				&.filter {
+					color: black !important;
+					background-color: white;//#808080;
+					font-size: 14px !important;
+					font-weight: bold;
+					//box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.26);
+				}
+			}
+
+			.buttonContainer {
+				display: flex;
+
+				height: 100%;
+
+				&.full {
+					width: 100%;
+				}
+				#leagueButton2 {
+					background-color: #0CAFA5 !important;
+					color: white;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					min-width: 0 !important;
+					border-radius: 0 !important;
+					height: 100% !important;
+
+					.fa-sliders {
+						font-size: 20px;
+					}
+
+					.label {
+						display: none !important;
+					}
+				}
+			}
+		}
 	}
 }

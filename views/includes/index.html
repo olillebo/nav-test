@@ -35,6 +35,10 @@
             <input type="checkbox" id="switch-8">
             <label for="switch-8">Tabs</label>
         </div>
+        <div class="checkboxStyle">
+            <input type="checkbox" id="switch-9">
+            <label for="switch-9">New brand</label>
+        </div>
     </div>
     <button id="saveSettings" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Save</button>
 
@@ -55,6 +59,19 @@
         <div class="sidebar"><span><i class="iconsheader-paw"></i></span></div>
         <a href="#" class="home disabled"><span><i class="icon-home"></i></span></a>
         <a href="/en/login/" class="text login"><span>Log in</span></a>
+
+            <div class="newHeader hidden">
+                <button id="login" class="mdl-button mdl-js-button closeFilterv1">
+                    <i class="material-icons closeLightbox">menu</i>
+                </button>
+                <span class="logotype logoType2">
+                    <span class="close-icon"></span>
+                    <span class="search-icon"></span>
+                </span>
+                <button id="login" class="mdl-button mdl-js-button closeFilterv1">
+                    <i class="material-icons closeLightbox">person</i>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -113,7 +130,7 @@
         </div>
         <div class="leagues">
             <div class="buttonContainer">
-                <div id="leagueButton" class="">
+                <div id="leagueButton">
                     <span class="label">Popular events</span>
                     <i id="setPopularity" class="material-icons">close</i>
                 </div>
@@ -385,16 +402,18 @@
             <ul class="list" id="outcomeListCopy">
                 <div class="list" id="startPagelist">
                     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-                        <div class="mdl-tabs__tab-bar">
-                            <a href="#live-panel" class="mdl-tabs__tab is-active">Live now</a>
-                            <a href="#upcoming-panel" class="mdl-tabs__tab">Top upcoming</a>
+                        <div class="mdl-tabs__tab-bar tabtab">
+                            <div id="liveEvents">
+                                <a href="#live-panel" class="mdl-tabs__tab is-active">Live now</a>
+                                <a href="#upcoming-panel" class="mdl-tabs__tab">Top upcoming</a>
+                            </div>
                         </div>
                         <div class="mdl-tabs__panel is-active" id="live-panel">
                             <div class="eventGroup league-live"></div>
                         </div>
                         <div class="mdl-tabs__panel" id="upcoming-panel">
                             <div class="eventGroup league-upcoming"></div>
-                        </div>'
+                        </div>
                     </div>
                 </div>
                 <div class="list" id="outcomeListCopyEvents"></div>

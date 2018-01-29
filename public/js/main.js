@@ -51,7 +51,7 @@ var outcomeOptions = {
     '</div>'
 };
 
-var outcomeOptions_2 = {
+var outcomeOptions_3 = {
     valueNames: [{ name: 'id', attr: 'id' }, { name: 'eventID', attr: 'eventID' }, "home", "away", { name: 'sport', attr: 'sport' }, { name: 'rank', attr: 'rank' }, "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }, { name: 'oddsOffers', attr: 'oddsOffers' }, { name: 'oddsOffersCopy', attr: 'oddsOffersCopy' }],
     item: '<div class="card-container v2 id">\n' +
     '    <div class="card-wrap live leagueID id eventID dateStamp rank sport oddsOffersCopy">\n' +
@@ -76,6 +76,61 @@ var outcomeOptions_2 = {
     '                           <span class=""></span>\n' +
     '                           <span class="leagueName"></span>\n' +
     '                       </div>\n' +
+    '                   </div>\n' +
+    '               </div>\n' +
+    '           </div>\n' +
+    '        </div>\n' +
+    '        <div class="right">\n' +
+    '            <div class="betoffer betOffers oddsOffers">\n' +
+    '                <div class="betOfferButton showAll">\n' +
+    '                    <div>\n' +
+    '                        <div class="odds">Show all offers</div>\n' +
+    '                    </div>\n' +
+    '                </div>\n' +
+    '                <div class="betOfferButton">\n' +
+    '                    <div>\n' +
+    '                        <div class="odds odds1"></div>\n' +
+    '                    </div>\n' +
+    '                </div>\n' +
+    '                <div class="betOfferButton">\n' +
+    '                    <div>\n' +
+    '                        <div class="odds oddsX"></div>\n' +
+    '                    </div>\n' +
+    '                </div>\n' +
+    '                <div class="betOfferButton">\n' +
+    '                    <div>\n' +
+    '                        <div class="odds odds2"></div>\n' +
+    '                    </div>\n' +
+    '                </div>\n' +
+    '            </div>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '</div>'
+};
+
+var outcomeOptions_2 = {
+    valueNames: [{ name: 'id', attr: 'id' }, { name: 'eventID', attr: 'eventID' }, "home", "away", { name: 'sport', attr: 'sport' }, { name: 'rank', attr: 'rank' }, "leagueName",{ name: 'dateStamp', attr: 'dateStamp' }, { name: 'leagueID', attr: 'leagueID' }, { name: 'live', attr: 'live' }, "time", "odds1Name","odds1", "oddsX", "odds2Name", "odds2", "league", "homeScore", "awayScore", "date", "sortDate", { name: 'stream', attr: 'stream' }, { name: 'betOffers', attr: 'betOffers' }, { name: 'oddsOffers', attr: 'oddsOffers' }, { name: 'oddsOffersCopy', attr: 'oddsOffersCopy' }],
+    item: '<div class="card-container v2 id">\n' +
+    '    <div class="card-wrap live leagueID id eventID dateStamp rank sport oddsOffersCopy vertical">\n' +
+    '        <div class="left">\n' +
+    '           <div class="cardcontent ">\n' +
+    '              <div class="teamline">\n' +
+    '                  <div class="teamScores">\n' +
+    '                      <div class="homeScore score-item">0</div>\n' +
+    '                      <div class="awayScore score-item">4</div>\n' +
+    '                  </div>\n' +
+    '                  <div class="teamNames">\n' +
+    '                      <div class="teamname-row home"></div>\n' +
+    '                      <div class="teamname-row away"></div>\n' +
+    '                  </div>\n' +
+    '              </div>\n' +
+    '           </div>\n' +
+    '           <div class="cardcontent2 ">\n' +
+    '               <div class="bottomInfo">\n' +
+    '                   <div class="card-timer"><span class="timer time">90:35</span></div>\n' +
+    '                   <div class="leftWrapper">\n' +
+    '                       <div class="card-livelabel started">Live</div>\n' +
+    '                       <div class="card-stream stream"><i class="material-icons">play_circle_filled</i></div>\n' +
     '                   </div>\n' +
     '               </div>\n' +
     '           </div>\n' +
@@ -163,7 +218,7 @@ var allLeagueArray = [1000094991, 1000094981, 1000094994, 1000095049, 1000094985
 var visibleItems = 0;
 var filterOnDay;
 var progress = 0;
-var cardSortType, fullScreen, newCards, multiSelect, groupStartPage, chooseSport, selectedTop, tabBar;
+var cardSortType, fullScreen, newCards, multiSelect, groupStartPage, chooseSport, selectedTop, tabBar, newBrand;
 var addedBets = 0;
 var outcomeValues, outcomeList, leagueLabel, leagueList;
 
@@ -217,6 +272,16 @@ $(document).ready(function() {
     $( "#eventPage" ).hide();
     $( "#betslip" ).hide();
 
+    if ((newBrand === true) || (newBrand === "true")) {
+        $( "body" ).addClass("newStyle");
+        $( ".newHeader" ).removeClass("hidden");
+        $("#leagueButton").hide();
+
+        $('.buttonContainer').detach().appendTo(".tabtab");
+    }
+
+
+
     if ((selectedTop === true) || (selectedTop === "true")){
         if ((tabBar === false) || (tabBar === "false")){
             $('.bottomHeader').appendTo(".filterHeader");
@@ -226,6 +291,8 @@ $(document).ready(function() {
 });
 
 function loadCookies() {
+    newBrand = Cookies.get('newBrand');
+
     cardSortType = Cookies.get('cardSort');
     fullScreen = Cookies.get('fullScreen');
     newCards = Cookies.get('newCards');
@@ -300,6 +367,14 @@ function loadCookies() {
     } else if (tabBar === "true") {
         $('#switch-8').attr("checked", true)
     } else $('#switch-8').attr("checked", false)
+
+
+    if (typeof newBrand === 'undefined'){
+        newBrand = true;
+        $('#switch-9').attr("checked", true)
+    } else if (newBrand === "true") {
+        $('#switch-9').attr("checked", true)
+    } else $('#switch-9').attr("checked", false)
 }
 
 $( ".sidebar" ).click(function() {
@@ -940,7 +1015,17 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
     filterList();
     showItems(leagueLabel);
     $("#outcomeListCopyEvents").empty();
-    $("#startPagelist").hide();
+
+    if ((newBrand === true) || (newBrand === "true")) {
+        $("#liveEvents").hide();
+        $("#leagueButton").show();
+        $(".buttonContainer").addClass("full");
+        $("#live-panel").hide();
+        $("#upcoming-panel").hide();
+    } else {
+        $("#startPagelist").hide();
+
+    }
 
 
     if (selectedLeagues.length >= 1) {
@@ -970,7 +1055,15 @@ $(document).on('click', '#listContent .checkboxStyle', function(event){
         $('#applyFilter').attr("disabled", "disabled");
         $(".filterFooter").removeClass("expanded")
         $(".bottomHeader").hide();
-        $("#startPagelist").show();
+        if ((newBrand === true) || (newBrand === "true")) {
+            $("#liveEvents").show();
+            $("#leagueButton").hide();
+            $(".buttonContainer").removeClass("full");
+            $("#live-panel").show();
+            $("#upcoming-panel").show();
+        } else {
+            $("#startPagelist").show();
+        }
 
     }
     if ((cardSortType === true) || (cardSortType === "true")) {
@@ -1243,7 +1336,7 @@ function getLiveEvents(live) {
 
             var header = '' +
                 '<div class="start '+value[1]+' sport-'+panel+'-'+value[1]+'">'+
-                    '<div class="dateTitle">'+
+                    '<div class="dateTitle '+value[1]+'">'+
                         '<div class="title">'+value[1]+'</div>'+
                         '<div class="betHeader">'+
                             '<div class="bet">1</div>'+
